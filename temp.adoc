@@ -1,0 +1,9 @@
+My Dev Notes
+===========
+:nofooter:
+
+[%autowidth, cols="a,a", frame=none, grid=none, role="center"]
+|===
+| image::https://storage.googleapis.com/cms-storage-bucket/70760bf1e88b184bb1bc.png[]
+| image::https://devio2023-media.developers.io/wp-content/uploads/2023/02/astro-eyecatch-3.png[]
+|===
