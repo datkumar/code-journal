@@ -26,6 +26,8 @@
 - Adv. Animations (Rive/Lottie,...)
 - Push Notifs, Logging(errors, crashes), remote servers
 
+[Button borderRadius](https://stackoverflow.com/questions/49991444/create-a-rounded-button-button-with-border-radius-in-flutter)
+
 ---
 
 ## YT Channels
