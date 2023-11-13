@@ -4,6 +4,10 @@
 
 ---
 
+[Flutter Resources Google doc. - Akshit Madan](https://docs.google.com/document/d/1s0yh1_b7ODD89Y-4gd10lnA8-kDc1uBuln3iFMtiPPI/)
+
+[Top 35 Flutter Widgets](https://youtu.be/M9J-JJOuyE0?si=ZJZhy3q0OMotaf7X)
+
 [Flutter Google CodeLabs](https://codelabs.developers.google.com/?product=flutter)
 
 - Widgets, types, Stateful vs Stateless
@@ -25,6 +29,17 @@
 - Deploy IPA/APK to app store
 - Adv. Animations (Rive/Lottie,...)
 - Push Notifs, Logging(errors, crashes), remote servers
+
+---
+
+Some articles:
+
+1. [https://betterprogramming.pub/flutter...](https://betterprogramming.pub/flutter...)
+2. [ / flutter-bloc-for-beginners ]( / flutter-bloc-for-beginners )
+3. [https://bloclibrary.dev/#/gettingstarted](https://bloclibrary.dev/#/gettingstarted)  
+   4.[https://docs.flutter.dev/development/...](https://docs.flutter.dev/development/...)
+4. [https://www.raywenderlich.com/2237994...](https://www.raywenderlich.com/2237994...)
+5. [https://wilsonwilson.dev/articles/flu...](https://wilsonwilson.dev/articles/flu...)
 
 ---
 
