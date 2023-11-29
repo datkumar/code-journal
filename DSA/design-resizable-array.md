@@ -78,3 +78,5 @@ public:
 
 };
 ```
+
+Refer this GFG article: [Implement vector in C](https://www.geeksforgeeks.org/how-to-implement-our-own-vector-class-in-c/)
