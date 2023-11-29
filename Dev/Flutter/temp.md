@@ -4,6 +4,8 @@
 
 ---
 
+[Android Studio LTS versions??](https://developer.android.com/studio/archive)
+
 [Flutter Resources Google doc. - Akshit Madan](https://docs.google.com/document/d/1s0yh1_b7ODD89Y-4gd10lnA8-kDc1uBuln3iFMtiPPI/)
 
 [Top 35 Flutter Widgets](https://youtu.be/M9J-JJOuyE0?si=ZJZhy3q0OMotaf7X)
@@ -26,7 +28,7 @@
 - Connect with a backend
 - Services, repos
 - Clean code, MVVM, Bloc architectures
-- Deploy IPA/APK to app store
+- Deploy IPA/APK to app storem@rD
 - Adv. Animations (Rive/Lottie,...)
 - Push Notifs, Logging(errors, crashes), remote servers
 
@@ -49,6 +51,7 @@ Some articles:
 
 - Akshit Madan
 - The Flutter Way
+- Mitch Koko
 
 [Build reactive mobile apps with Flutter (Google I/O '18)](https://youtu.be/RS36gBEp8OI?si=Soz7jQsRGLjbnH8P)
 

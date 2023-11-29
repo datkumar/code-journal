@@ -1,6 +1,6 @@
 # Flutter App Assets
 
-## App Icon Setup:
+## App Icon Setup
 
 App Icon Generator: [https://www.appicon.co/](https://www.appicon.co/)
 
@@ -12,7 +12,7 @@ Use `./android/app/src/main/res/` folder
 
 If adding only **ONE** size, add it to the `.../res/drawable/` folder
 
-## Flutter Custom Fonts
+## Fonts
 
 [https://blog.logrocket.com/use-custom-fonts-flutter/](https://blog.logrocket.com/use-custom-fonts-flutter/)
 
