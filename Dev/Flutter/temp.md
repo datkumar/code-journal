@@ -34,6 +34,8 @@
 
 [Button borderRadius](https://stackoverflow.com/questions/49991444/create-a-rounded-button-button-with-border-radius-in-flutter)
 
+[`Expanded` vs `Flexible`](https://stackoverflow.com/questions/52645944/flutter-expanded-vs-flexible)
+
 ---
 
 Some articles:

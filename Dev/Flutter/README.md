@@ -22,14 +22,21 @@
 
 ## Flutter CLI Commands [(docs)](https://docs.flutter.dev/reference/flutter-cli)
 
-| Action                        | Command                           |
-| ----------------------------- | --------------------------------- |
-| Check installed tooling       | `flutter doctor`                  |
-| Create new project            | `flutter create <DIRECTORY_NAME>` |
-| Add a dependency to project   | `flutter pub add <PACKAGE_NAME>`  |
-| Download project dependencies | `flutter pub get`                 |
-| View Project Dependencies     | `flutter pub deps`                |
-| Delete old build files        | `flutter clean`                   |
+| Action                       | Command                             |
+| ---------------------------- | ----------------------------------- |
+| Check installed tooling      | `flutter doctor`                    |
+| Create new project           | `flutter create <DIRECTORY_NAME>`   |
+| Get all project dependencies | `flutter pub get`                   |
+| View project dependencies    | `flutter pub deps`                  |
+| Add a project dependency     | `flutter pub add <PACKAGE_NAME>`    |
+| Add a dev dependency         | `flutter pub add -d <PACKAGE_NAME>` |
+| Remove a dependency          | `flutter pub remove <PACKAGE_NAME>` |
+| Delete old build files       | `flutter clean`                     |
+
+> Read more:
+
+- [Flutter and the pubspec file](https://docs.flutter.dev/tools/pubspec)
+- [Using packages](https://docs.flutter.dev/packages-and-plugins/using-packages#adding-a-package-dependency-to-an-app-using-flutter-pub-add)
 
 ---
 
