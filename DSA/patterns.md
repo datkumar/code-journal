@@ -19,9 +19,9 @@
 <td>
 
 ```cpp
-for(int y=0; y<n; y++){
-    for(int x=0; x<n; x++){
-        cout<<"* ";
+for(int y=0; y < n; y++){
+    for(int x=0; x < n; x++){
+        cout << "* ";
     }
     cout<<endl;
 }
@@ -45,9 +45,9 @@ for(int y=0; y<n; y++){
 <td>
 
 ```cpp
-for(int y=0; y<n; y++){
-    for(int x=0; x<=y; x++){
-        cout<<"* ";
+for(int y=0; y < n; y++){
+    for(int x=0; x <= y; x++){
+        cout << "* ";
     }
     cout<<endl;
 }
@@ -71,9 +71,9 @@ for(int y=0; y<n; y++){
 <td>
 
 ```cpp
-for(int y=0; y<n; y++)
+for(int y=0; y < n; y++)
 {
-    for(int x=n; x>y; x--){
+    for(int x=n; x > y; x--){
         cout<<"*"<<" ";
     }
     cout<<endl;
@@ -112,9 +112,9 @@ for(int y=0; y<n; y++)
 <td>
 
 ```cpp
-for(int row=1; row<=n; row++){
-    for(int col=1; col<=row; col++){
-        cout<< col <<" ";
+for(int row=1; row <= n; row++){
+    for(int col=1; col <= row; col++){
+        cout<< col << " ";
     }
     cout<<endl;
 }
@@ -138,7 +138,7 @@ for(int row=1; row<=n; row++){
 <td>
 
 ```cpp
-for(int y=1; y<=n; y++){
+for(int y=1; y <= n; y++){
     for (int x=1; x <= n-y; x++) {
         cout << x << " ";
     }
@@ -158,20 +158,23 @@ for(int y=1; y<=n; y++){
 
 </td>
 </tr>
-</table>
 
----
+<!--  -->
+<tr>
+<td>Upper-left<br>with numbers<br>row</td>
+<td>
 
 ```cpp
-for(int row=1; row<=n; row++){
-    for(int col=1; col<=row; col++){
+for(int row=1; row <= n; row++){
+    for(int col=1; col <= row; col++){
         cout<< row << " ";
     }
     cout<<endl;
 }
 ```
 
-Output:
+</td>
+<td>
 
 ```txt
 1
@@ -179,3 +182,54 @@ Output:
 3 3 3
 4 4 4 4
 ```
+
+</td>
+</tr>
+</table>
+
+---
+
+## New pattern
+
+<table>
+<!--  -->
+<tr>
+    <th>Pattern</th>
+    <th>Code</th>
+    <th>Output(4)</th>
+</tr>
+<!--  -->
+<tr>
+<td>X'mas Tree</td>
+<td>
+
+```cpp
+for(int y=1; y <= n; y++)
+{
+    for(int x=1; x <= n-y; x++){
+        cout<<" ";
+    }
+    for(int x=1; x <= (2*y) - 1; x++){
+        cout<< "*";
+    }
+    cout<<endl;
+}
+```
+
+</td>
+<td>
+
+```txt
+   *
+  ***
+ *****
+*******
+```
+
+</td>
+</tr>
+<!--  -->
+
+</table>
+
+---
