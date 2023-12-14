@@ -1,5 +1,9 @@
 # C++ STL Containers
 
+- [Vectors](./vectors.md)
+
+---
+
 A container is a holder object that stores a collection of other objects (its elements). They are implemented as class templates, which allows great flexibility in the types supported as elements.
 
 The container manages the storage space for its elements and provides member functions to access them, either directly or through iterators (reference objects with similar properties to pointers).

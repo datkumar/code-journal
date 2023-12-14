@@ -3,18 +3,18 @@
 ## Dev
 
 - [Flutter](./flutter/README.md)
-- [Web-Dev](./cs/dbms/README.md)
+- [Web-Dev](./web-dev/README.md)
   - [HTML](./html/README.md)
   - [CSS](./css/README.md)
   - [JS](./js/README.md)
-  - [TypeScript](./ts/README.md)
-  - [NodeJS](./nodejs/README.md)
+  - [TS](./ts/README.md)
   - [React](./react/README.md)
+  - [NodeJS](./nodejs/README.md)
   - [Astro](./astro/README.md)
 
 ## DSA
 
-- [C++](./cs/dbms/README.md)
+- [C++](./cpp/README.md)
 - [DSA](./dsa/README.md)
 
 ## CS
