@@ -99,24 +99,7 @@
 - `.push_back(val)` - Appends one element having value `val` at the end of element. Takes `O(N)` time in most cases ,but `O(N)` when resizing
 - `.emplace_back(val)` - Constructs the element in-place at the end of the vector. Same time complexity as `push_back` but one less copy operation
 - `.clear()` - Remove all elements. Takes `O(N)` time
-
-> More:
-
 - `.erase()` - Removes element(s) at specific position via `erase(pos)` or within a range via `erase(start, end)`. Takes `O(N)` time on average
-- `.insert()` - Inserts an element at specific position via `insert(pos,val)` or inserts an element multiple times at specified position via `insert(pos, reps, val)` or even another range of elements via `insert(pos, start_pos, end_pos)`. Takes `O(N)` time on average
-
-  ```cpp
-  vector<int> v1{10,20,30,40,50};
-
-  v1.insert(v1.begin()+3, 101);
-  v1.insert(v1.begin()+2, 3, 420);
-
-  vector<int> v2{-1, -2, -3, -4, -5, -6};
-  v1.insert(v1.begin()+2, v2.begin()+1, v2.begin()+4);
-
-  // Output:
-  // 10, 20, -2, -3, -4, 420, 420, 420, 30, 101, 40, 50
-  ```
 
 > **Note:**
 
@@ -141,8 +124,27 @@
   y, 15
   ```
 
+> More:
+
+- `.insert()` - Inserts an element at specific position via `insert(pos,val)` or inserts an element multiple times at specified position via `insert(pos, reps, val)` or even another range of elements via `insert(pos, start_pos, end_pos)`. Takes `O(N)` time on average
+
+  ```cpp
+  vector<int> v1{10,20,30,40,50};
+
+  v1.insert(v1.begin()+3, 101);
+  v1.insert(v1.begin()+2, 3, 420);
+
+  vector<int> v2{-1, -2, -3, -4, -5, -6};
+  v1.insert(v1.begin()+2, v2.begin()+1, v2.begin()+4);
+
+  // Output:
+  // 10, 20, -2, -3, -4, 420, 420, 420, 30, 101, 40, 50
+  ```
+
+- `.emplce()` - Similar to `insert()` but constructs the element in-place
+
 ---
 
 ### Doubts
 
-- Traversible Vector for custom data type object
+- Traversible (auto range) Vector for custom data type object

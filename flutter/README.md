@@ -22,16 +22,18 @@
 
 ## Flutter CLI Commands [(docs)](https://docs.flutter.dev/reference/flutter-cli)
 
-| Action                       | Command                             |
-| ---------------------------- | ----------------------------------- |
-| Check installed tooling      | `flutter doctor`                    |
-| Create new project           | `flutter create <DIRECTORY_NAME>`   |
-| Get all project dependencies | `flutter pub get`                   |
-| View project dependencies    | `flutter pub deps`                  |
-| Add a project dependency     | `flutter pub add <PACKAGE_NAME>`    |
-| Add a dev dependency         | `flutter pub add -d <PACKAGE_NAME>` |
-| Remove a dependency          | `flutter pub remove <PACKAGE_NAME>` |
-| Delete old build files       | `flutter clean`                     |
+| Action                       | Command                                                     |
+| ---------------------------- | ----------------------------------------------------------- |
+| Check installed tooling      | `flutter doctor`                                            |
+| Create new project           | `flutter create <DIR_NAME>`                                 |
+| Specifying platforms         | `flutter create --platforms = android, ios, web <DIR_NAME>` |
+| Get all project dependencies | `flutter pub get`                                           |
+| View project dependencies    | `flutter pub deps`                                          |
+| Add a project dependency     | `flutter pub add <PACKAGE_NAME>`                            |
+| Add a dev dependency         | `flutter pub add -d <PACKAGE_NAME>`                         |
+| Remove a dependency          | `flutter pub remove <PACKAGE_NAME>`                         |
+| Delete old build files       | `flutter clean`                                             |
+| Generate APK                 | `flutter build apk`                                         |
 
 > Read more:
 
@@ -44,7 +46,7 @@
 
 - In Imperative UI, you **manually construct a full-functioned UI entity**, such as a `UIView` or equivalent, and **later mutate it using methods** and setters when the UI changes
 
-    <img src='https://docs.flutter.dev/assets/images/docs/declarativeUIchanges.png'>
+    <img src='https://docs.flutter.dev/assets/images/docs/declarativeUIchanges.png' alt="Declarative UI examp">
 
   ```dart
   // Imperative style
