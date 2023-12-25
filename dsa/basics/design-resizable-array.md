@@ -1,6 +1,6 @@
 # Design a dynamic (resizable) array
 
-> Problem Links: [**NeetCode**](https://neetcode.io/problems/dynamicArray)
+> Problem Link: [**NeetCode**](https://neetcode.io/problems/dynamicArray)
 
 ## Problem Statement
 
@@ -18,6 +18,8 @@ Your `DynamicArray` class should support the following operations:
 - `int getCapacity()` will return the capacity of the array.
 
 If we call `pushback(int n)` but the array is full, we should resize the array first.
+
+## Solution
 
 ```cpp
 class DynamicArray {
