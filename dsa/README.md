@@ -7,4 +7,6 @@
 
 ## Basics
 
+- [Big-O Complexity](./basics/big-o-complexity.md)
+- [Patterns](./basics/patterns.md)
 - [Design a dynamic (resizable) array](./design-resizable-array.md)
