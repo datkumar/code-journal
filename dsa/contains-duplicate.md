@@ -23,14 +23,13 @@ for each element in array:                      <- O(N)
 return false
 ```
 
-| Complexity | Value                              |
-| ---------- | ---------------------------------- |
-| Time       | $$O(N^2)$$                         |
-| Space      | $$O(1)$$ ... no extra space needed |
+| Complexity | Value                                |
+| ---------- | ------------------------------------ |
+| Time       | **O( N<sup> 2</sup> )**              |
+| Space      | **O( 1 )** ... no extra space needed |
 
 ### 2. Sorting
 
-> [!NOTE]
 > When we sort the array, the similar elements would get placed close to each other
 
 ```txt
@@ -43,14 +42,15 @@ for each element in sorted array:                           <- O(N)
 return false
 ```
 
-| Complexity | Value                                        |
-| ---------- | -------------------------------------------- |
-| Time       | $$O(N\cdot\log(N))+O(N) = O(N\cdot\log(N))$$ |
-| Space      | $$O(1)$$ ... no extra space needed           |
+Time Complexity = O(N&middot;log(N)) + O(N) = O(N&middot;log(N))
+
+| Complexity | Value                                |
+| ---------- | ------------------------------------ |
+| Time       | **O( N &middot; log(N) )**           |
+| Space      | **O( 1 )** ... no extra space needed |
 
 ### 3. Hashing
 
-> [!NOTE]
 > By using some space for the set, we can quickly check if an element was previouly added to it
 
 ```txt
@@ -64,9 +64,9 @@ for each element in the array:                      <- O(N)
 return false
 ```
 
-| Complexity | Value                                     |
-| ---------- | ----------------------------------------- |
-| Time       | $O(N)$ ... on avg.                        |
-| Space      | $O(N)$ ... worst-case when all are unique |
+| Complexity | Value                                         |
+| ---------- | --------------------------------------------- |
+| Time       | **O( N )** ... on avg.                        |
+| Space      | **O( N )** ... worst-case when all are unique |
 
-> Above complexities are for `unordered_set` in C++. However, if you use `set`, the **insertion** and **find** operations would take `O(logN)` time in worst-case. So, the final complexity would be `O(N*logN)`
+> Above time complexity is for `unordered_set` in C++. However, if you use `set`, the **insertion** and **find** operations would take `O(logN)` time in **worst-case**. So, the final complexity would be `O(N*logN)`

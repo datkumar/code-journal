@@ -3,7 +3,7 @@
 ## Arrays
 
 1. [Contains Duplicate](./contains-duplicate.md)
-2. [Valid Anagram](./)
+2. [Valid Anagram](./valid-anagram.md)
 
 ## Basics
 
