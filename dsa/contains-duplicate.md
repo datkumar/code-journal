@@ -23,10 +23,10 @@ for each element in array:                      <- O(N)
 return false
 ```
 
-| Complexity | Value                            |
-| ---------- | -------------------------------- |
-| Time       | $O(N^2)$                         |
-| Space      | $O(1)$ ... no extra space needed |
+| Complexity | Value                              |
+| ---------- | ---------------------------------- |
+| Time       | $$O(N^2)$$                         |
+| Space      | $$O(1)$$ ... no extra space needed |
 
 ### 2. Sorting
 
@@ -43,10 +43,10 @@ for each element in sorted array:                           <- O(N)
 return false
 ```
 
-| Complexity | Value                                       |
-| ---------- | ------------------------------------------- |
-| Time       | $O(N\cdot\log(N))+O(N)  = O(N\cdot\log(N))$ |
-| Space      | $O(1)$ ... no extra space needed            |
+| Complexity | Value                                        |
+| ---------- | -------------------------------------------- |
+| Time       | $$O(N\cdot\log(N))+O(N) = O(N\cdot\log(N))$$ |
+| Space      | $$O(1)$$ ... no extra space needed           |
 
 ### 3. Hashing
 
