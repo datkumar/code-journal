@@ -40,6 +40,8 @@
 
 ---
 
+Create new project: `npm create astro@latest`
+
 Disable telemetry: `npm run astro telemetry disable`
 
 Add Tailwind integration: `npx astro add tailwind`
