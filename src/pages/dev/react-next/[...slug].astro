@@ -1,0 +1,36 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import MarkdownLayout from "../../../layouts/MarkdownLayout.astro";
+import ConceptTags from "../../../layouts/ConceptTags.astro";
+
+export async function getStaticPaths() {
+  const reactConcepts = (await getCollection("concepts")).filter((item) =>
+    item.data.tags.includes("react")
+  );
+  const reactConceptsRoutes = reactConcepts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: entry,
+  }));
+
+  const nextConcepts = (await getCollection("concepts")).filter((item) =>
+    item.data.tags.includes("next")
+  );
+
+  const nextConceptsRoutes = nextConcepts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: entry,
+  }));
+
+  return [...reactConceptsRoutes, ...nextConceptsRoutes];
+}
+
+type Props = CollectionEntry<"concepts">;
+const pageEntry = Astro.props;
+
+const { Content } = await pageEntry.render();
+---
+
+<MarkdownLayout {...pageEntry.data}>
+  <ConceptTags tags={pageEntry.data.tags} />
+  <Content />
+</MarkdownLayout>

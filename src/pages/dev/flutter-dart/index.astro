@@ -1,0 +1,44 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+// import "../../../styles/contents-list.css";
+
+const flutterConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("flutter")
+);
+
+const dartConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("dart")
+);
+
+const baseUrl = import.meta.env.BASE_URL;
+const folderSlug = "dev/flutter-dart";
+---
+
+<BaseLayout tabTitle="Flutter">
+  <h2>Flutter</h2>
+  <ol>
+    {
+      flutterConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+
+  <h2>Dart</h2>
+  <ol>
+    {
+      dartConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</BaseLayout>

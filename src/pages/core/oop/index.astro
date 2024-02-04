@@ -1,0 +1,26 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const oopConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("oop")
+);
+
+const baseUrl = import.meta.env.BASE_URL;
+const folderSlug = "core/oop";
+---
+
+<BaseLayout tabTitle="OOP">
+  <h2>OOP</h2>
+  <ol>
+    {
+      oopConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</BaseLayout>

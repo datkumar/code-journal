@@ -1,0 +1,43 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+// import "../../../styles/contents-list.css";
+
+const htmlConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("html")
+);
+
+const cssConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("css")
+);
+
+const baseUrl = import.meta.env.BASE_URL;
+const folderSlug = "dev/html-css";
+---
+
+<BaseLayout tabTitle="HTML, CSS">
+  <h2>HTML</h2>
+  <ol>
+    {
+      htmlConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+  <h2>CSS</h2>
+  <ol>
+    {
+      cssConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</BaseLayout>

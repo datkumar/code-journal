@@ -1,0 +1,43 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+// import "../../../styles/contents-list.css";
+
+const jsConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("js")
+);
+
+const tsConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("ts")
+);
+
+const baseUrl = import.meta.env.BASE_URL;
+const folderSlug = "dev/js-ts";
+---
+
+<BaseLayout tabTitle="JS, TS">
+  <h2>Javascript</h2>
+  <ol>
+    {
+      jsConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+  <h2>Typescript</h2>
+  <ol>
+    {
+      tsConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</BaseLayout>

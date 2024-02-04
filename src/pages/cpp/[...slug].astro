@@ -1,0 +1,23 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
+import "../../styles/contents-list.css";
+
+export async function getStaticPaths() {
+  const cppEntries = (await getCollection("concepts")).filter((item) =>
+    item.data.tags.includes("cpp")
+  );
+  return cppEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: entry,
+  }));
+}
+
+type Props = CollectionEntry<"concepts">;
+const pageEntry = Astro.props;
+const { Content } = await pageEntry.render();
+---
+
+<MarkdownLayout {...pageEntry.data}>
+  <Content />
+</MarkdownLayout>

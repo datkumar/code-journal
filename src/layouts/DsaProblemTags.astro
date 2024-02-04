@@ -1,0 +1,68 @@
+---
+interface Props {
+  links: string[];
+  techniques: string[];
+  level: number;
+}
+
+type Site = {
+  base: string;
+  label: string;
+};
+const questionSites: Site[] = [
+  { base: "leetcode", label: "LeetCode" },
+  { base: "neetcode", label: "NeetCode" },
+  { base: "codingninjas", label: "Coding Ninjas" },
+  { base: "interviewbit", label: "InterviewBit" },
+  { base: "geeksforgeeks", label: "GFG" },
+  { base: "hackerearth", label: "HackerEarth" },
+  { base: "atcoder", label: "AtCoder" },
+  { base: "codeforces", label: "Codeforces" },
+  { base: "codechef", label: "CodeChef" },
+  { base: "hackerrank", label: "HackerRank" },
+];
+
+function getSiteNameFromProblemLink(problemLink: string) {
+  for (const site of questionSites) {
+    if (problemLink.includes(site.base)) {
+      return site.label;
+    }
+  }
+  return "Link";
+}
+
+const { links, techniques, level } = Astro.props;
+let difficultyColors = ["blue", "green", "yellow", "red", "purple"];
+difficultyColors = ["#3285fa", "#7cb342", "#ffcc32", "#f44336", "#ab47bc"];
+---
+
+<div>
+  <strong style={`color: ${difficultyColors[level]}`}>
+    {["🔵 Basic", "🟢 Easy", "🟡 Medium", "🔴 Hard", "🟣 Expert"][level]}
+  </strong>
+  <br />
+  <strong>Links:&ensp;</strong>
+  {
+    links.map((link) => (
+      <>
+        <a href={link}>{getSiteNameFromProblemLink(link)}</a> &ensp;
+      </>
+    ))
+  }
+  <br />
+
+  <strong>Techniques:&ensp;</strong>
+  {
+    techniques.map((t) => (
+      <>
+        <code>{t.toUpperCase()}</code>&ensp;
+      </>
+    ))
+  }
+</div>
+
+<style>
+  code {
+    color: var(--contentColor);
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<BaseLayout tabTitle="Code Journal">
+  <h2>CS Core</h2>
+  <ul>
+    <h3>
+      <li>
+        <a href={`${baseUrl}/core/dbms`}>DBMS</a>
+      </li>
+    </h3>
+    <h3>
+      <li>
+        <a href={`${baseUrl}/core/oop`}>OOP</a>
+      </li>
+    </h3>
+    <h3>
+      <li>
+        <a href={`${baseUrl}/core/os`}>OS</a>
+      </li>
+    </h3>
+  </ul>
+</BaseLayout>

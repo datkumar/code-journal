@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const reactConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("react")
+);
+
+const nextConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("next")
+);
+
+const baseUrl = import.meta.env.BASE_URL;
+const folderSlug = "dev/react-next";
+---
+
+<BaseLayout tabTitle="React, NextJs">
+  <h2>React</h2>
+  <ol>
+    {
+      reactConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+  <h2>NextJs</h2>
+  <ol>
+    {
+      nextConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</BaseLayout>

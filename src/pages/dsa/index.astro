@@ -1,0 +1,63 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+// import "../../styles/contents-list.css";
+
+const dsaConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("dsa")
+);
+
+const stlEntries = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("stl")
+);
+
+const dsaProblems = await getCollection("dsaProblems");
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<BaseLayout tabTitle="DSA">
+  <h2>DSA</h2>
+
+  <details>
+    <summary><strong>C++ STL</strong></summary>
+    <ul>
+      {
+        stlEntries.map((entry) => (
+          <li>
+            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+  <details>
+    <summary><strong>Theory</strong></summary>
+    <ul>
+      {
+        dsaConcepts.map((entry) => (
+          <li>
+            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+  <h3>Arrays & Strings:</h3>
+  <ol>
+    {
+      dsaProblems
+        .sort((a, b) => a.data.level - b.data.level)
+        .map((entry) => {
+          if (entry.data.ds === "array" || entry.data.ds === "string") {
+            return (
+              <li>
+                {["🔵", "🟢", "🟡", "🔴", "🟣"][entry.data.level]}
+                <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
+              </li>
+            );
+          }
+        })
+    }
+  </ol>
+</BaseLayout>

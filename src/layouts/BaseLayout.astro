@@ -1,0 +1,92 @@
+---
+import ThemeSlider from "../components/ThemeSlider.astro";
+// import { ViewTransitions } from "astro:transitions";
+// Global CSS styles
+import "../styles/global.css";
+
+interface Props {
+  tabTitle: string;
+}
+const { tabTitle } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href=`${import.meta.env.BASE_URL}/icons/code.svg`
+    />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Theme switch script -->
+    <script src="../utils/theme-script.ts"></script>
+
+    <!-- MathJax for Math expressions -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <!-- For smooth transition animation -->
+    <!-- <ViewTransitions /> -->
+
+    <title>{tabTitle}</title>
+  </head>
+
+  <body class="markdown-body">
+    <ThemeSlider />
+    <a href="/code-journal" id="home-link"><strong>Code Journal</strong></a>
+    <main>
+      <slot>
+        <!-- Actual content unique to the page (with fallback content) -->
+        This page is empty
+      </slot>
+    </main>
+
+    <script>
+      async function renderDiagrams(graphs: HTMLCollectionOf<Element>) {
+        const { default: mermaid } = await import("mermaid");
+        mermaid.initialize({
+          startOnLoad: false,
+          fontFamily: "monospace",
+          // Only "base" theme can be modified
+          theme: "base",
+          themeVariables: {
+            lineColor: "#5f00ed",
+            primaryColor: "#e4ddf0",
+          },
+        });
+
+        for (const graph of graphs) {
+          const content = graph.getAttribute("data-content");
+          if (!content) {
+            continue;
+          }
+          let svg = document.createElement("svg");
+          const id = (svg.id = "mermaid-" + Math.round(Math.random() * 100000));
+          graph.appendChild(svg);
+          mermaid.render(id, content).then((result: any) => {
+            graph.innerHTML = result.svg;
+          });
+        }
+      }
+
+      const graphs = document.getElementsByClassName("mermaid");
+      if (document.getElementsByClassName("mermaid").length > 0) {
+        renderDiagrams(graphs);
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  a#home-link {
+    text-decoration: none;
+  }
+</style>

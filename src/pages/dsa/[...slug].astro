@@ -1,0 +1,49 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
+import DsaProblemTags from "../../layouts/DsaProblemTags.astro";
+
+export async function getStaticPaths() {
+  const dsaConcepts = (await getCollection("concepts")).filter((item) =>
+    item.data.tags.includes("dsa")
+  );
+  const dsaConceptRoutes = dsaConcepts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: entry,
+  }));
+
+  const stlConcepts = (await getCollection("concepts")).filter((item) =>
+    item.data.tags.includes("stl")
+  );
+  const stlConceptRoutes = stlConcepts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: entry,
+  }));
+
+  const dsaProblems = await getCollection("dsaProblems");
+  const dsaProblemRoutes = dsaProblems.map((entry) => ({
+    params: { slug: entry.slug },
+    props: entry,
+  }));
+
+  return [...stlConceptRoutes, ...dsaConceptRoutes, ...dsaProblemRoutes];
+}
+
+type Props = CollectionEntry<"dsaProblems" | "concepts">;
+
+const pageEntry = Astro.props;
+const { Content } = await pageEntry.render();
+---
+
+<MarkdownLayout {...pageEntry.data}>
+  {
+    pageEntry.collection === "dsaProblems" && (
+      <DsaProblemTags
+        links={pageEntry.data.links}
+        techniques={pageEntry.data.techniques}
+        level={pageEntry.data.level}
+      />
+    )
+  }
+  <Content />
+</MarkdownLayout>

@@ -1,0 +1,24 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<div>
+  <strong>Tags:&ensp;</strong>
+  {
+    tags.map((t) => (
+      <>
+        <code>{t}</code>&ensp;
+      </>
+    ))
+  }
+</div>
+
+<style>
+  code {
+    color: var(--contentColor);
+  }
+</style>
