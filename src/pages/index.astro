@@ -4,71 +4,84 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
+<style>
+  h1 {
+    margin: 0;
+    margin-top: 2.5rem;
+    padding: 0;
+  }
+
+  h2 {
+    margin: 0;
+    margin-top: 1rem;
+    padding: 0;
+  }
+</style>
 <BaseLayout tabTitle="Code Journal">
-  <h2>DSA</h2>
+  <h1 style="margin-top: 1.5rem;">DSA</h1>
   <ul>
-    <h3>
+    <h2>
       <li>
         <a href={`${baseUrl}/dsa`}>DSA</a>
       </li>
-    </h3>
-    <h3>
+    </h2>
+    <h2>
       <li>
         <a href={`${baseUrl}/cpp`}>C++</a>
       </li>
-    </h3>
+    </h2>
   </ul>
 
-  <h2>Development</h2>
+  <h1>Development</h1>
   <ul>
-    <h3>
+    <h2>
       <li>
         <a href={`${baseUrl}/dev/html-css`}>HTML, CSS</a>
       </li>
-    </h3>
-    <h3>
+    </h2>
+    <h2>
       <li>
         <a href={`${baseUrl}/dev/js-ts`}>Javascript, Typescript</a>
       </li>
-    </h3>
-    <h3>
+    </h2>
+    <h2>
       <li>
         <a href={`${baseUrl}/dev/astro`}>Astro</a>
       </li>
-    </h3>
-    <h3>
+    </h2>
+    <h2>
       <li>
         <a href={`${baseUrl}/dev/node`}>NodeJs</a>
       </li>
-    </h3>
-    <h3>
+    </h2>
+    <h2>
       <li>
         <a href={`${baseUrl}/dev/react-next`}>React, NextJs</a>
       </li>
-    </h3>
-    <h3>
+    </h2>
+    <h2>
       <li>
         <a href={`${baseUrl}/dev/flutter-dart`}>Flutter, Dart</a>
       </li>
-    </h3>
+    </h2>
   </ul>
 
-  <h2>CS Core</h2>
+  <h1>CS Core</h1>
   <ul>
-    <h3>
+    <h2>
       <li>
         <a href={`${baseUrl}/core/dbms`}>DBMS</a>
       </li>
-    </h3>
-    <h3>
+    </h2>
+    <h2>
       <li>
         <a href={`${baseUrl}/core/oop`}>OOP</a>
       </li>
-    </h3>
-    <h3>
+    </h2>
+    <h2>
       <li>
         <a href={`${baseUrl}/core/os`}>OS</a>
       </li>
-    </h3>
+    </h2>
   </ul>
 </BaseLayout>

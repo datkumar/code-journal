@@ -1,5 +1,5 @@
 ---
-title: Patterns
+title: Patterns problems to practice loops
 tags: [cpp, loops]
 ---
 
@@ -10,7 +10,7 @@ tags: [cpp, loops]
 <tr>
     <th>Pattern</th>
     <th>Code</th>
-    <th>Output(4)</th>
+    <th>Output (n = 4)</th>
 </tr>
 <!--  -->
 <tr>
@@ -40,7 +40,7 @@ for(int y=0; y < n; y++){
 </tr>
 <!--  -->
 <tr>
-<td>Lower-left<br>Traingle</td>
+<td>Lower-left<br>Triangle</td>
 <td>
 
 ```cpp
@@ -66,7 +66,7 @@ for(int y=0; y < n; y++){
 </tr>
 <!--  -->
 <tr>
-<td>Upper-left<br>Traingle</td>
+<td>Upper-left<br>Triangle</td>
 <td>
 
 ```cpp
@@ -94,16 +94,16 @@ for(int y=0; y < n; y++)
 
 </table>
 
-<br>
+---
 
-## Traingle with numbers
+## Triangle with numbers
 
 <table>
 <!--  -->
 <tr>
     <th>Pattern</th>
     <th>Code</th>
-    <th>Output(4)</th>
+    <th>Output (n = 4)</th>
 </tr>
 <!--  -->
 <tr>
@@ -111,9 +111,9 @@ for(int y=0; y < n; y++)
 <td>
 
 ```cpp
-for(int row=1; row <= n; row++){
-    for(int col=1; col <= row; col++){
-        cout<< col << " ";
+for(int x=1; x <= n; x++){
+    for(int y=1; y <= x; y++){
+        cout<< y << " ";
     }
     cout<<endl;
 }
@@ -160,13 +160,13 @@ for(int y=1; y <= n; y++){
 
 <!--  -->
 <tr>
-<td>Upper-left<br>with numbers<br>row</td>
+<td>Upper-left<br>with numbers<br>x</td>
 <td>
 
 ```cpp
-for(int row=1; row <= n; row++){
-    for(int col=1; col <= row; col++){
-        cout<< row << " ";
+for(int x=1; x <= n; x++){
+    for(int y=1; y <= x; y++){
+        cout<< x << " ";
     }
     cout<<endl;
 }
@@ -186,7 +186,7 @@ for(int row=1; row <= n; row++){
 </tr>
 </table>
 
-<br>
+---
 
 ## New pattern
 
@@ -195,7 +195,7 @@ for(int row=1; row <= n; row++){
 <tr>
     <th>Pattern</th>
     <th>Code</th>
-    <th>Output(4)</th>
+    <th>Output (n = 4)</th>
 </tr>
 <!--  -->
 <tr>

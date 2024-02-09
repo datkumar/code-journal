@@ -4,7 +4,7 @@
   --bgColor: moccasin;
   --textColor: #494848;
   --accentColor: #a73358;
-  --linkColor: #430f97;
+  --linkColor: #092abd;
   --lineColor: #065d67;
   --themeSliderBgColor: #138ce8;
   /* Code */
@@ -39,7 +39,7 @@ body {
   font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
     Arial, sans-serif;
   font-weight: normal;
-  line-height: 1.75rem;
+  line-height: 1.5em;
   max-width: 900px;
   overflow-wrap: break-word;
   margin: 0 auto;
@@ -74,7 +74,7 @@ pre {
 code {
   background-color: var(--codeBgColor);
   color: var(--codeColor);
-  padding: 0.3rem 0.4rem;
+  padding: 0.25em 0.4rem;
   border-radius: 0.3rem;
   white-space: nowrap;
 
@@ -88,13 +88,18 @@ pre code {
 /* Code blocks are a div with below class */
 .expressive-code {
   margin-top: 0.75rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 a,
 a:hover,
 a:visited {
   color: var(--linkColor);
+}
+
+a:hover {
+  font-size: 115%;
+  font-weight: bold;
 }
 
 hr {
@@ -111,6 +116,7 @@ h3,
 h4,
 h5 {
   color: var(--accentColor);
+  margin-top: 2em;
 }
 
 summary {
@@ -142,6 +148,10 @@ ul li,
 ol li {
   margin-left: 0.5em;
   padding: 3px 8px;
+}
+
+li p {
+  margin: 2px;
 }
 
 /* 

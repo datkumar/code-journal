@@ -12,3 +12,5 @@ int y = 3;
 
 int *p2 = new int[25];
 ```
+
+> `itr->member` is equivalent to `(*itr).member`

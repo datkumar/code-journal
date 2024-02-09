@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
-import "../../styles/contents-list.css";
+import ConceptTags from "../../layouts/ConceptTags.astro";
 
 export async function getStaticPaths() {
   const cppEntries = (await getCollection("concepts")).filter((item) =>
@@ -19,5 +19,6 @@ const { Content } = await pageEntry.render();
 ---
 
 <MarkdownLayout {...pageEntry.data}>
+  <ConceptTags tags={pageEntry.data.tags} />
   <Content />
 </MarkdownLayout>

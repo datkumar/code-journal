@@ -1,7 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-// import "../../styles/contents-list.css";
 
 const dsaConcepts = (await getCollection("concepts")).filter((item) =>
   item.data.tags.includes("dsa")

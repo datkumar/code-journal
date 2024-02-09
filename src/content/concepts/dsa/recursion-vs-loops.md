@@ -48,11 +48,11 @@ for(item in structure)
 
 ## Recursion
 
-Now, what if we don't have a mutable state such as `trackerVariable` but still want to do an action a number if times
+Now, what if we don't have a mutable state such as `trackerVariable` but still want to do an action a number of times
 
-This is seen in functional languages where there is no state to track anything. Just inputs to functions. The same input always gives the same output
+This is seen in functional programming where there is no state to track anything. Just inputs to functions, and the same input always gives the same output
 
-**Consider calculating sum of integers 1 to N**:
+Consider calculating sum of integers 1 to N:
 
 Via **Loop**:
 
@@ -82,7 +82,6 @@ int addToSum(int curr, int N, int &ans)
     ans += curr;                        // Do work. It updates state
 
     return addToSum(curr + 1, N, ans);  // Schedule work with updated tracker
-                                        // and the recently updated state
 }
 
 int solveUsingRecursion(int N)
@@ -93,11 +92,18 @@ int solveUsingRecursion(int N)
 }
 ```
 
-Both these methods can achieve the same final answer
+Both these methods can achieve the **same final answer**
 
-So, technically, you can use recursion to achieve the same work as loops. But that doesn't mean you always should
+> So, technically, you can use recursion to achieve the same work as loops. But that doesn't mean you always _should_
 
-Note that **Recursion uses a call stack**
+### Recursion uses a call stack
+
+- Each time a function is called, it gets added onto the call stack
+- Each function call entry consists of the data associated with it's call such as:
+  - Function **parameters**
+  - Function **pointer**
+  - **Local variables** created in function body
+- After the call executes (i.e. that function returns), the call's entry is popped off the stack and then the stack frame points to the previous (parent caller) function
 
 ```txt
 |           |
@@ -116,17 +122,9 @@ Note that **Recursion uses a call stack**
 |-----------|
 |  main()   |
 |-----------|
-
 ```
 
-- Each time a function is called, it gets added onto the call stack
-- Each function call entry consists of the data associated with it's call such as:
-  - Function **parameters**
-  - Function **pointer**
-  - **Local variables** created in function body
-- After the call executes (i.e. that function returns), the call's entry is popped off the stack and then the stack frame points to the previous (parent caller) function
-
-Thus, deep recusion can require significant **memory usage**. The stack overflow can lead to SegFaults and crash our code
+Thus, deep recusion can require significant **memory usage**. The stack overflow can lead to segfaults and crash our code
 
 ## Tail-Call Optimization
 

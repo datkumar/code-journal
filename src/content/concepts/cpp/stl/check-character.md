@@ -1,5 +1,5 @@
 ---
-title: Checking a character in C++
+title: C++ Character functions
 tags: [cpp, stl]
 ---
 

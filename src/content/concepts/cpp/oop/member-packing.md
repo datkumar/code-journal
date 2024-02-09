@@ -3,23 +3,34 @@ title: Packing members in a struct
 tags: [cpp, oop]
 ---
 
-```cpp
-struct S1 {
-    char a;    // 1 byte
-    double c;  // 8 bytes
-    int b;     // 4 bytes
-};
-// Size of S1 struct: 24 bytes
+The order of members in a struct can affect memory usage and performance:
 
-struct S2 {
-    double c;  // 8 bytes
-    int b;     // 4 bytes
-    char a;    // 1 byte
+```cpp title="struct_packing"
+struct S1
+{
+    char a;   // 1 byte
+    double c; // 8 bytes
+    int b;    // 4 bytes
 };
-// Size of S2 struct: 16 bytes
+
+struct S2
+{
+    double c; // 8 bytes
+    int b;    // 4 bytes
+    char a;   // 1 byte
+};
+
+int main()
+{
+    cout << "S1: " << sizeof(S1) << " bytes" << endl;
+    // S1: 24 bytes
+
+    cout << "S2: " << sizeof(S2) << " bytes" << endl;
+    // S2: 16 bytes
+
+    return 0;
+}
 ```
-
-Ordering members in a struct can affect memory usage and performance.
 
 Here's how to optimize it:
 
