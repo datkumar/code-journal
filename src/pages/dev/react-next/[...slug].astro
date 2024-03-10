@@ -1,7 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
+import ConceptTags from "../../../components/ConceptTags.astro";
 import MarkdownLayout from "../../../layouts/MarkdownLayout.astro";
-import ConceptTags from "../../../layouts/ConceptTags.astro";
 
 export async function getStaticPaths() {
   const reactConcepts = (await getCollection("concepts")).filter((item) =>

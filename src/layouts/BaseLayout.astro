@@ -1,8 +1,9 @@
 ---
-import ThemeSlider from "../components/ThemeSlider.astro";
 // import { ViewTransitions } from "astro:transitions";
 // Global CSS styles
 import "../styles/global.css";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
 
 interface Props {
   tabTitle: string;
@@ -40,14 +41,15 @@ const { tabTitle } = Astro.props;
   </head>
 
   <body class="markdown-body">
-    <ThemeSlider />
-    <a href="/code-journal" id="home-link"><strong>Code Journal</strong></a>
+    <Header />
     <main>
       <slot>
         <!-- Actual content unique to the page (with fallback content) -->
         This page is empty
       </slot>
     </main>
+
+    <Footer />
 
     <script>
       async function renderDiagrams(graphs: HTMLCollectionOf<Element>) {
@@ -84,9 +86,3 @@ const { tabTitle } = Astro.props;
     </script>
   </body>
 </html>
-
-<style>
-  a#home-link {
-    text-decoration: none;
-  }
-</style>

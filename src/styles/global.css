@@ -38,24 +38,35 @@ body {
   color: var(--textColor);
   font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
     Arial, sans-serif;
+  font-size: 16px;
   font-weight: normal;
   line-height: 1.5em;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   max-width: 900px;
+  min-height: 100vh;
+  min-height: 100vsh; /* for newer browsers */
   overflow-wrap: break-word;
+  overflow-x: scroll;
   margin: 0 auto;
   padding: 30px 40px;
+}
+
+body > footer {
+  margin-top: auto;
 }
 
 img {
   max-height: 800px;
   max-width: 800px;
-  /* border-radius: 10px; */
 }
 
 /* Media Queries */
 @media only screen and (max-width: 600px) {
   body {
-    padding: 30px;
+    padding: 20px;
   }
   img {
     max-height: 500px;
@@ -89,6 +100,8 @@ pre code {
 .expressive-code {
   margin-top: 0.75rem;
   margin-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 a,
@@ -123,19 +136,6 @@ summary {
   cursor: pointer;
 }
 
-blockquote {
-  background-color: var(--quoteBgColor);
-  border-left: 12px solid var(--quoteHighlightColor);
-  color: var(--quoteTextColor);
-  margin: 1.5em 0px;
-  padding: 0.5em 12px;
-  /* quotes: "\201C""\201D""\2018""\2019"; */
-}
-
-blockquote p {
-  display: inline;
-}
-
 /* 
   Lists
 */
@@ -152,6 +152,23 @@ ol li {
 
 li p {
   margin: 2px;
+}
+
+blockquote {
+  background-color: var(--quoteBgColor);
+  border-left: 12px solid var(--quoteHighlightColor);
+  color: var(--quoteTextColor);
+  margin: 1em 0px;
+  padding: 10px 13px;
+}
+
+mjx-container {
+  max-width: 900px;
+}
+
+blockquote mjx-container {
+  overflow: scroll;
+  padding-bottom: 1.5rem;
 }
 
 /* 

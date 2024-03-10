@@ -2,7 +2,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import MarkdownLayout from "../../../layouts/MarkdownLayout.astro";
 
-import ConceptTags from "../../../layouts/ConceptTags.astro";
+import ConceptTags from "../../../components/ConceptTags.astro";
 
 export async function getStaticPaths() {
   const osConcepts = (await getCollection("concepts")).filter((item) =>

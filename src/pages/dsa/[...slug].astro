@@ -1,7 +1,8 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
+import ConceptTags from "../../components/ConceptTags.astro";
+import DsaProblemTags from "../../components/DsaProblemTags.astro";
 import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
-import DsaProblemTags from "../../layouts/DsaProblemTags.astro";
 
 export async function getStaticPaths() {
   const dsaConcepts = (await getCollection("concepts")).filter((item) =>
@@ -43,6 +44,11 @@ const { Content } = await pageEntry.render();
         techniques={pageEntry.data.techniques}
         level={pageEntry.data.level}
       />
+    )
+  }
+  {
+    pageEntry.collection === "concepts" && (
+      <ConceptTags tags={pageEntry.data.tags} />
     )
   }
   <Content />

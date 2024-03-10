@@ -1,0 +1,38 @@
+---
+import ThemeSlider from "../components/ThemeSlider.astro";
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<style>
+  nav {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--lineColor);
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<header>
+  <ThemeSlider />
+
+  <nav role="navigation">
+    <li><a href=`${baseUrl}`>Code Journal</a></li>
+    <li><a href=`${baseUrl}/dev`>Dev</a></li>
+    <li><a href=`${baseUrl}/dsa`>DSA</a></li>
+    <li><a href=`${baseUrl}/core`>Core</a></li>
+  </nav>
+</header>

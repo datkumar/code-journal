@@ -15,8 +15,7 @@ class Solution
     static vector<int> ans;
 
 public:
-    void init()
-    // static void init()
+    static void init()
     {
         // Pre-compute ans[] ONLY ONCE and use it everywhere
         if (ans.empty())
