@@ -51,6 +51,7 @@ const { tabTitle } = Astro.props;
 
     <Footer />
 
+    <!-- Mermaid for generating diagrams from code -->
     <script>
       async function renderDiagrams(graphs: HTMLCollectionOf<Element>) {
         const { default: mermaid } = await import("mermaid");

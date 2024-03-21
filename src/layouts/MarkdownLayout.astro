@@ -8,15 +8,6 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<style>
-  h2,
-  h3,
-  h4,
-  h5 {
-    padding-top: 1.5em;
-  }
-</style>
-
 <BaseLayout tabTitle={title}>
   <h1>{title}</h1>
   <hr />

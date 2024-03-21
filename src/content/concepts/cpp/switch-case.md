@@ -3,7 +3,9 @@ title: Switch-case in C++
 tags: [cpp]
 ---
 
-When initalizing separate variables inside switch cases, wrap the case code inside `{_}` braces. Refer [this answer](https://stackoverflow.com/a/11578973)
+When initalizing separate variables inside switch cases, wrap the case code inside `{_}` braces
+
+Refer [this answer](https://stackoverflow.com/a/11578973)
 
 ```cpp
 double areaSwitchCase(int choice, vector<double> arr) {

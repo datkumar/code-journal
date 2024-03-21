@@ -1,9 +1,14 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const dsaConcepts = (await getCollection("concepts")).filter((item) =>
-  item.data.tags.includes("dsa")
+const dsaConcepts = (await getCollection("concepts")).filter(
+  (item) =>
+    item.data.tags.includes("dsa") && !item.data.tags.includes("algorithm")
+);
+
+const algorithms = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("algorithm")
 );
 
 const stlEntries = (await getCollection("concepts")).filter((item) =>
@@ -30,8 +35,9 @@ const baseUrl = import.meta.env.BASE_URL;
       }
     </ul>
   </details>
+
   <details>
-    <summary><strong>Theory</strong></summary>
+    <summary><strong>Concepts</strong></summary>
     <ul>
       {
         dsaConcepts.map((entry) => (
@@ -42,6 +48,20 @@ const baseUrl = import.meta.env.BASE_URL;
       }
     </ul>
   </details>
+
+  <details>
+    <summary><strong>Sorting Algorithms</strong></summary>
+    <ol>
+      {
+        algorithms.map((entry) => (
+          <li>
+            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+          </li>
+        ))
+      }
+    </ol>
+  </details>
+
   <h3>Arrays & Strings:</h3>
   <ol>
     {

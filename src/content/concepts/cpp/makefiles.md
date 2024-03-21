@@ -36,7 +36,7 @@ int main()
 
 **Note**: We have used the `CC` macro as the variable denoting the compiler
 
-```make title="makefile"
+```make title="Makefile"
 CC=g++
 
 make: run_app run_tests cleanup

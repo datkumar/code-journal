@@ -33,6 +33,8 @@ for(
 }
 ```
 
+Note that the "update trackerVariable" step is done **AFTER** each iteration
+
 A common use-case of this loop is iterating over a structure. To fulfill this, a new type of loop was introduced with nicer syntax:
 
 ## Range-based loops

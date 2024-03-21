@@ -49,10 +49,10 @@ return true;
 
 Time \\( = 3 \cdot O(N) = O(N) \\)
 
-| Metric | Complexity                      |
-| ------ | ------------------------------- |
-| Time   | \\( O(N) \\)                    |
-| Space  | \\( O(1) \\) ... no extra space |
+| Metric | Complexity                   |
+| ------ | ---------------------------- |
+| Time   | \\( O(N) \\)                 |
+| Space  | \\( O(1) \\) ... fixed space |
 
 ### 2. Sorting
 
@@ -61,7 +61,7 @@ When sorted, both the strings must be the same
 ```cpp
 sort(str1);                 // O(NlogN)
 sort(str2);                 // O(NlogN)
-return (str1 == str2);      // O(N) for comparing all characters
+return (str1 == str2);      // O(N) for comparing character-by-character
 ```
 
 Time \\( = 2 \cdot O(N \cdot logN ) + O(N) = O(N \cdot logN ) \\)

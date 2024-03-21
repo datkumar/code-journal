@@ -5,7 +5,7 @@ tags: [cpp, stl, algorithms]
 
 ## References
 
-- [**`<algorithm>` library**](https://en.cppreference.com/w/cpp/algorithm/sort)
+- [**`<algorithm>` library**](https://en.cppreference.com/w/cpp/algorithm)
 - [**GFG article**](https://www.geeksforgeeks.org/algorithms-library-c-stl/)
 
 ## Sorting

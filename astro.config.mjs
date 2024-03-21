@@ -13,9 +13,10 @@ export default defineConfig({
   },
   integrations: [
     expressiveCode({
-      themes: ["one-dark-pro"],
+      themes: ["material-theme-ocean"],
       styleOverrides: {
-        uiFontFamily: "monospace",
+        // codeFontFamily: "ui-monospace",
+        uiFontFamily: "ui-monospace, monospace",
         uiFontWeight: "600",
         uiFontSize: "medium",
       },

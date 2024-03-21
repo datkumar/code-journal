@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "*.css": "css",
+    "*.tcc": "cpp",
+    "list": "cpp",
+    "algorithm": "cpp",
+    "iterator": "cpp",
+    "variant": "cpp"
+  }
+}

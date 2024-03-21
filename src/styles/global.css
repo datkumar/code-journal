@@ -18,7 +18,7 @@
 }
 
 :root[data-theme="dark"] {
-  --bgColor: rgb(37, 36, 36);
+  --bgColor: rgb(35, 35, 36);
   --textColor: #d9e8eb;
   --accentColor: #eec05c;
   --themeSliderBgColor: #0c3778;
@@ -129,7 +129,8 @@ h3,
 h4,
 h5 {
   color: var(--accentColor);
-  margin-top: 2em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
 }
 
 summary {
@@ -150,6 +151,11 @@ ol li {
   padding: 3px 8px;
 }
 
+ul,
+ol {
+  margin-top: 0.1em;
+}
+
 li p {
   margin: 2px;
 }
@@ -158,7 +164,7 @@ blockquote {
   background-color: var(--quoteBgColor);
   border-left: 12px solid var(--quoteHighlightColor);
   color: var(--quoteTextColor);
-  margin: 1em 0px;
+  margin: 0.5em 0px;
   padding: 10px 13px;
 }
 
@@ -167,7 +173,8 @@ mjx-container {
 }
 
 blockquote mjx-container {
-  overflow: scroll;
+  /* overflow: scroll; */
+  overflow-x: scroll;
   padding-bottom: 1.5rem;
 }
 
