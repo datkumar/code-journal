@@ -42,6 +42,28 @@ Present inside the `<vector>` header, vectors are dynamic arrays with the abilit
 - **`.clear()`** - Remove all elements. Takes `O(N)` time
 - **`.erase()`** - Removes element(s) at specific position via `erase(pos)` or within a range via `erase(start, end)`. Takes `O(N)` time on average
 
+> Difference between `.emplace_back()` and `.push_back()`
+
+- Generally, `emplace_back()` is slightly faster than `push_back()` as it **constructs the element in-place** while `push_back()` creates the element and then **copies** it. So, prefer `emplace_back()` for complex objects or fast insertion.
+- You can also pass the appropriate list of arguments to construct the vector element during `emplace_back()`, but for `push_back()`, you need to create the object first.
+
+  ```cpp
+  vector<pair<char, int>> v1;
+
+  v1.emplace_back('x', 12);
+  v1.push_back({'y', 15});
+  v1.push_back(make_pair('z', 17));
+
+  for (auto &p : v1)
+  {
+      cout << p.first << ", " << p.second << endl;
+  }
+
+  // x, 12
+  // y, 15
+  // z, 17
+  ```
+
 ## Ways to initialize a vector
 
 **1. Declare and `.push_back()` each element:**
@@ -102,27 +124,13 @@ iota(v1.begin()+2, v1.end()-3, 20);
 // { 0, 0, 20, 21, 22, 23, 24, 0, 0, 0 }
 ```
 
-> Difference between `.emplace_back()` and `.push_back()`
+### Initialising 2D vector
 
-- Generally, `emplace_back()` is slightly faster than `push_back()` as it **constructs the element in-place** while `push_back()` creates the element and then **copies** it. So, prefer `emplace_back()` for complex objects or fast insertion.
-- You can also pass the appropriate list of arguments to construct the vector element during `emplace_back()`, but for `push_back()`, you need to create the object first.
+```cpp
+vector<vector<int>> mat(3, vector<int>(4, -1));
+```
 
-  ```cpp
-  vector<pair<char, int>> v1;
-
-  v1.emplace_back('x', 12);
-  v1.push_back({'y', 15});
-  v1.push_back(make_pair('z', 17));
-
-  for (auto &p : v1)
-  {
-      cout << p.first << ", " << p.second << endl;
-  }
-
-  // x, 12
-  // y, 15
-  // z, 17
-  ```
+Above line initializes a 2D matrix `mat` of `3` rows and `4` columns with the default value `-1` at each cell
 
 ## Traversal
 

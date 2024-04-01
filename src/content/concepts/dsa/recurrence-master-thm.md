@@ -259,6 +259,6 @@ So, the total time would be:
 
 \\( T(n) = 1 + log(n!) \\)
 
-\\( \text{We know } log(n!) \text{ is } O(n\cdot logn) \\) ... See [here](/code-journal/dsa/dsa/algorithm-analysis#asymptotic-notations)
+\\( \text{We know } log(n!) \text{ is } O(n\cdot logn) \\) ... See [here](/code-journal/dsa/dsa/algorithm-complexity#asymptotic-notations)
 
 \\( \therefore T(n) = O(n\cdot logn) \\)

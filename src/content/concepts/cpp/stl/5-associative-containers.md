@@ -62,6 +62,12 @@ The `pair` container is used to **club two items together**
 
 > If the hash function is poorly defined, operations in `unordered_set` & `unordered_map` can take `O(N)` time in worst case due to several collisions
 
+Also refer these posts for writing better hash functions:
+
+- [C++ `unordered_map` using a custom class type as the key](https://stackoverflow.com/questions/17016175/c-unordered-map-using-a-custom-class-type-as-the-key)
+- [Blowing up `unordered_map`, and how to stop getting hacked on it](https://codeforces.com/blog/entry/62393)
+- [C++ STL: Order of magnitude faster hash tables with Policy Based Data Structures](https://codeforces.com/blog/entry/60737)
+
 ---
 
 ## Sets
@@ -266,6 +272,8 @@ int main()
 **C++ Reference**: [`map`](https://en.cppreference.com/w/cpp/container/map) , [`unordered_map`](https://en.cppreference.com/w/cpp/container/unordered_map)
 
 **Declaration**: `map<keyType,valueType>` , `unordered_map<keyType,valueType>`
+
+We can pass our custom hash function as: `unordered_map<keyType, valueType, hashFunction>`
 
 ### Look-up in maps
 

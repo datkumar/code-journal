@@ -1,9 +1,9 @@
 ---
 title: Contains Duplicate
-links: [https://leetcode.com/problems/contains-duplicate/description/]
-ds: array
+ds: [array]
 techniques: [sorting, hashing]
-level: 1
+level: 0
+links: [https://leetcode.com/problems/contains-duplicate/description/]
 ---
 
 ## Problem Statement
@@ -47,12 +47,10 @@ return false
 ```
 
 <details>
-<summary>
-    <strong>C++ code</strong>
-</summary>
+<summary><strong>C++ code</strong></summary>
 
 ```cpp
-bool containsDuplicate(vector<int>& nums){
+bool containsDuplicate(vector<int> &nums){
     sort(nums.begin(),nums.end());
 
     for(int i=0; i < nums.size()-1; i++){
@@ -94,7 +92,7 @@ return false
 </summary>
 
 ```cpp
-bool containsDuplicate(vector<int>& nums) {
+bool containsDuplicate(vector<int> &nums) {
     unordered_set<int> uniqueNums;
     for(auto &curr: nums){
         // Duplicate found

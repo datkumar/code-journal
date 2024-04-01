@@ -1,7 +1,7 @@
 ---
 title: Design a dynamic (resizable) array
 links: [https://neetcode.io/problems/dynamicArray]
-ds: array
+ds: [array]
 techniques: [design]
 level: 0
 ---
@@ -28,61 +28,56 @@ If we call `pushback(int n)` but the array is full, we should resize the array f
 Also refer this GFG article: [Implement your own Vector class](https://www.geeksforgeeks.org/how-to-implement-our-own-vector-class-in-c/)
 
 ```cpp
-class DynamicArray {
-    int *arr;
-    int size, capacity;
+class DynamicArray
+{
+    int *arr;     // Points to block of heap memory containing array elements
+    int size;     // Number of filled elements
+    int capacity; // Total elements the current array can hold
 
 public:
-
-    DynamicArray(int capacity) {
-        arr = new int[capacity];
-        size = 0;
-        this->capacity = capacity;
+    // Parameterized constructor initialization
+    DynamicArray(int _capacity) : size(0), capacity(_capacity){
+        arr = new int[_capacity];
     }
 
+    // Get size and capacity of current array
     int getSize() { return size; }
-
     int getCapacity() { return capacity; }
 
-    int get(int i) {
-        // Assume that index i is valid
-        return arr[i];
-    }
+    // Get/Set element at index 'i' (Assuming index within bounds)
+    int get(int i) { return arr[i]; }
+    void set(int i, int n) { arr[i] = n; }
 
-    void set(int i, int n) {
-        // Assume that index i is valid
-        arr[i] = n;
-    }
-
-    void resize() {
-        // Holds old array
-        int *old = arr;
-        // Create new double-sized array
-        arr = new int[capacity << 1];
-        for(int i=0; i<size; i++){
-            // Copy old's elements into new array
+    void resize()
+    {
+        int *old = arr;              // To keep track of existing elements
+        arr = new int[capacity * 2]; // Set current array as new double-capacity one
+        for (int i = 0; i < size; i++){
+            // Copy elements from existing array into new one
             arr[i] = old[i];
         }
-        // Capacity doubles, size unchanged
-        capacity *= 2;
-        // De-allocate old array's memory
-        delete []old;
+        capacity *= 2; // Capacity doubles (size unchanged)
+        delete[] old;  // De-allocate previous array's memory
     }
 
-    void pushback(int n) {
-        // Fully filled
-        if(size == capacity){
+    void pushback(int val)
+    {
+        // Fully-filled, no space in current array
+        if (size == capacity){
             resize();
         }
-        arr[size] = n;
+        // Last element present at 'size-1' index. Insert after it
+        arr[size] = val;
         size++;
     }
 
-    int popback() {
-        int ans = arr[size-1];
-        size--;
-        return ans;
+    int popback()
+    {
+        // Mark filled elements as one less from end
+        if (size > 0){
+            size--;
+        }
+        return arr[size];
     }
-
 };
 ```

@@ -1,9 +1,9 @@
 ---
 title: Valid Anagram
-links: [https://leetcode.com/problems/valid-anagram/]
-ds: array
+ds: [array]
 techniques: [sorting, hashing]
-level: 1
+level: 0
+links: [https://leetcode.com/problems/valid-anagram/]
 ---
 
 ## Problem Statement

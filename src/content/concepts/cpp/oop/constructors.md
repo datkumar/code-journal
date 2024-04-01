@@ -172,5 +172,3 @@ This member initializer list syntax is a concise way to set the initial values o
 > **Use Member Initialization as it is faster than assignment inside the body of Constructor**
 
 Refer [this question](https://stackoverflow.com/questions/1711990/what-is-this-weird-colon-member-syntax-in-the-constructor)
-
----

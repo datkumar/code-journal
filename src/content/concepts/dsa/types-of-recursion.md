@@ -3,7 +3,8 @@ title: Types of Recursion
 tags: [dsa]
 ---
 
-> **You can trace your recursion function's call tree on [VisuAlgo](https://visualgo.net/en/recursion)**
+To know how recurion calls are traced, refer [VisuAlgo](https://visualgo.net/en/recursion)
+and [this example](/code-journal/dsa/dsa/recurrence-master-thm#tracing-recursion-calls)
 
 ## 1. Tail Recursion
 
@@ -55,7 +56,7 @@ void func(int n){
 }
 ```
 
-So, it's not as easy to convert into iterative solution as Tail recursion. Need some modifications to be made.
+So, it's not as easy to convert into iterative solution as Tail recursion. Quite some modifications need to be made.
 
 Recursion in which there's a **single recursive call per input** is called **Linear Recursion**
 

@@ -76,11 +76,11 @@ They provide a **wrapper interface** for Sequential containers
 ```cpp title="forward_list_demo"
 void printList(forward_list<int> &ll)
 {
-    for (auto &num : ll)
-    {
-        cout << num << " -> ";
-    }
-    cout << "X" << endl;
+  for (auto &num : ll)
+  {
+      cout << num << " -> ";
+  }
+  cout << "X" << endl;
 }
 
 int main()
@@ -422,3 +422,5 @@ int main()
 > **Note**: After each insertion/deletion, to **maintain the sorted Heap property**, the elements are re-organized internally by the adaptor itself.
 
 Also refer: [`is_heap()`](https://en.cppreference.com/w/cpp/algorithm/is_heap) , [`make_heap()`](https://en.cppreference.com/w/cpp/algorithm/make_heap), [`push_heap()`](https://en.cppreference.com/w/cpp/algorithm/push_heap) , [`pop_heap()`](https://en.cppreference.com/w/cpp/algorithm/pop_heap) , [`sort_heap()`](https://en.cppreference.com/w/cpp/algorithm/sort_heap)
+
+Can also use keyboard characters `←` , `→` , `↔` as arrows in display functions

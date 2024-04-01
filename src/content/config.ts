@@ -1,4 +1,4 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection, z } from "astro:content";
 
 const concepts = defineCollection({
   type: "content",
@@ -11,7 +11,7 @@ const concepts = defineCollection({
 const dataStructure = z.enum([
   "array",
   "string",
-  "ll",
+  "list",
   "stack",
   "queue",
   "heap",
@@ -34,6 +34,7 @@ const solutionTechnique = z.enum([
   "bfs",
   "bit-manip",
   "math",
+  "precompute",
   "special-algo",
 ]);
 
@@ -42,7 +43,7 @@ const dsaProblems = defineCollection({
   schema: z.object({
     title: z.string(),
     links: z.array(z.string().url()),
-    ds: dataStructure,
+    ds: z.array(dataStructure),
     techniques: z.array(solutionTechnique),
     level: z.number().int().gte(0).lte(4),
     // 0: basic, 1:easy, 2:medium, 3:hard, 4:expert

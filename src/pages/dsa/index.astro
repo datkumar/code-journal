@@ -1,14 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { containsSomeTag } from "../../utils/helper-functions";
 
 const dsaConcepts = (await getCollection("concepts")).filter(
   (item) =>
     item.data.tags.includes("dsa") && !item.data.tags.includes("algorithm")
 );
 
-const algorithms = (await getCollection("concepts")).filter((item) =>
-  item.data.tags.includes("algorithm")
+const algorithms = (await getCollection("concepts")).filter(
+  (item) =>
+    item.data.tags.includes("algorithm") && item.data.tags.includes("sorting")
 );
 
 const stlEntries = (await getCollection("concepts")).filter((item) =>
@@ -37,7 +39,7 @@ const baseUrl = import.meta.env.BASE_URL;
   </details>
 
   <details>
-    <summary><strong>Concepts</strong></summary>
+    <summary><strong>Theory</strong></summary>
     <ul>
       {
         dsaConcepts.map((entry) => (
@@ -49,6 +51,7 @@ const baseUrl = import.meta.env.BASE_URL;
     </ul>
   </details>
 
+  <h3>Algorithms</h3>
   <details>
     <summary><strong>Sorting Algorithms</strong></summary>
     <ol>
@@ -62,20 +65,38 @@ const baseUrl = import.meta.env.BASE_URL;
     </ol>
   </details>
 
-  <h3>Arrays & Strings:</h3>
+  <h3>Arrays & Strings</h3>
   <ol>
     {
       dsaProblems
         .sort((a, b) => a.data.level - b.data.level)
+        .filter((entry) => containsSomeTag(entry.data.ds, ["array", "string"]))
         .map((entry) => {
-          if (entry.data.ds === "array" || entry.data.ds === "string") {
-            return (
-              <li>
-                {["🔵", "🟢", "🟡", "🔴", "🟣"][entry.data.level]}
-                <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
-              </li>
-            );
-          }
+          return (
+            <li>
+              {["🔵", "🟢", "🟡", "🔴", "🟣"][entry.data.level]}
+              <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
+            </li>
+          );
+        })
+    }
+  </ol>
+
+  <h3>Stack, Queues, Heaps</h3>
+  <ol>
+    {
+      dsaProblems
+        .sort((a, b) => a.data.level - b.data.level)
+        .filter((entry) =>
+          containsSomeTag(entry.data.ds, ["stack", "queue", "heap"])
+        )
+        .map((entry) => {
+          return (
+            <li>
+              {["🔵", "🟢", "🟡", "🔴", "🟣"][entry.data.level]}
+              <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
+            </li>
+          );
         })
     }
   </ol>

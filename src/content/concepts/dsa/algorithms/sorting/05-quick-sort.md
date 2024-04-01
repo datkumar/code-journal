@@ -6,7 +6,7 @@ tags: [dsa, algorithm, sorting]
 ## Main Idea
 
 - It uses a recursive **Divide-and-Conquer** approach
-  - Conquer step: **Partition** current working array into two parts around a **pivot** element
+  - Conquer step: **Partition** current working array into two parts around a **pivot** element. (All elements smaller than it are placed to it's left and greater elements to it's right)
   - Divide step: Sort the **remaining** two parts **independently**
 - The terminating **base case** for recursion is when the subarray contains **only one element** or if any **index is out-of-bounds**. We can assume then that the subarray is sorted and stop partitioning
 - The crucial step in the algorithm is of **partitioning working array around the pivot element**
@@ -163,6 +163,12 @@ The cases for running time of Quick-sort are:
    \\[ 2n \cdot ln(n) \approx 1.39 n \cdot log_2 (n) \\]
 
    This means that, on average, quicksort performs only about **39%** worse than in its best case. In this sense, it is **closer to the best case** than the worst case
+
+|   Case    |     Time Complexity      | Occurs when             |
+| :-------: | :----------------------: | ----------------------- |
+| **Best**  | \\( O(n \cdot log n) \\) | Balanced Partitioning   |
+| **Worst** |      \\( O(n^2) \\)      | Unbalanced partitioning |
+|  **Avg**  | \\( O(n \cdot log n) \\) | Random partitioning     |
 
 ### Space Complexity
 

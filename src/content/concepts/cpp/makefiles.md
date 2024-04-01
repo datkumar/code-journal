@@ -53,13 +53,19 @@ cleanup:
     rm application tests.out
 ```
 
+We can also pass input and output arguments while running the executable as:
+
+```sh frame="none"
+./executable < input.txt > output.txt
+```
+
 ## Running makefile
 
-```sh
+```sh title="bash"
 make
 ```
 
-**Output**:
+The output would look like:
 
 ```txt
 g++ code.cpp -o application

@@ -37,25 +37,26 @@ difficultyColors = ["#3285fa", "#7cb342", "#ffcc32", "#f44336", "#ab47bc"];
 ---
 
 <div>
-  <strong style={`color: ${difficultyColors[level]}`}>
+  <strong
+    style={`color: ${difficultyColors[level]}; background-color: black; padding: 5px;`}
+  >
     {["🔵 Basic", "🟢 Easy", "🟡 Medium", "🔴 Hard", "🟣 Expert"][level]}
   </strong>
+  <br />
+  <strong>Techniques:&ensp;</strong>
+  {
+    techniques.map((t) => (
+      <>
+        <code>{t.toUpperCase()}</code>&ensp;
+      </>
+    ))
+  }
   <br />
   <strong>Links:&ensp;</strong>
   {
     links.map((link) => (
       <>
         <a href={link}>{getSiteNameFromProblemLink(link)}</a> &ensp;
-      </>
-    ))
-  }
-  <br />
-
-  <strong>Techniques:&ensp;</strong>
-  {
-    techniques.map((t) => (
-      <>
-        <code>{t.toUpperCase()}</code>&ensp;
       </>
     ))
   }
