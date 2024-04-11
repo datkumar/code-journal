@@ -8,6 +8,13 @@ interface Props {
 const { title } = Astro.props;
 ---
 
+<style>
+  img {
+    text-align: center;
+    margin: auto;
+  }
+</style>
+
 <BaseLayout tabTitle={title}>
   <h1>{title}</h1>
   <hr />

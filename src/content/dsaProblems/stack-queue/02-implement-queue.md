@@ -3,10 +3,11 @@ title: Queue Implementation
 ds: [stack]
 techniques: [design]
 level: 0
-links: [
+links:
+  [
     https://www.geeksforgeeks.org/problems/implement-queue-using-array/1,
-    https://www.geeksforgeeks.org/problems/implement-queue-using-linked-list/1
-]
+    https://www.geeksforgeeks.org/problems/implement-queue-using-linked-list/1,
+  ]
 ---
 
 ## Queue ADT
@@ -17,18 +18,43 @@ The `Queue` class must provide the following functionality (assuming elements of
 - `bool isEmpty()` : Check whether queue is empty in \\( O(1) \\) time
 - `void enque(int val)` : Insert element at end of queue in \\( O(1) \\) time
 - `void deque()` : Remove element from start of queue in \\( O(1) \\) time
-- `int first()` :  Return first (front) element of queue in \\( O(1) \\) time
-- `int last()` :  Return last (rear) element of queue in \\( O(1) \\) time
-- `int getSize()` :  Return number of elements present in queue in \\( O(1) \\) time
+- `int first()` : Return first (front) element of queue in \\( O(1) \\) time
+- `int last()` : Return last (rear) element of queue in \\( O(1) \\) time
+- `int getSize()` : Return number of elements present in queue in \\( O(1) \\) time
 
-Throw exception when stack underflow or overflow occurs
+Throw exception when queue underflow or overflow occurs
 
 ## Implementing Queue using Linked-List
 
-> **Insertion** occurs at the **beginning** and **deletion** at the end (via **rear pointer**) in the  internal linked-list  
+> **Insertion** occurs at the **beginning** and **deletion** at the end (via **rear pointer**) in the internal linked-list
+
+### Diagrams of some operations
+
+<details>
+<summary><strong>Expand to see diagrams</strong></summary>
+
+**`enque(val)`** operation:
+
+![`enque(val)` operation](/code-journal/diagrams/queue-ll-enque.svg)
+
+**`enque(val)`** operation on an **empty** queue;
+
+![enque operation on empty queue](/code-journal/diagrams/queue-ll-enque-empty.svg)
+
+**`deque()`** operation:
+
+![deque operation](/code-journal/diagrams/queue-ll-deque.svg)
+
+**`deque()`** operation on a **single-element** queue:
+
+![deque operation on single-element queue](/code-journal/diagrams/queue-ll-deque-single-element.svg)
+
+</details>
+
+### Code
 
 ```cpp
-// Definition of a Node for the linked-list used by the Queue internally 
+// Definition of a Node for the linked-list used by the Queue internally
 class Node
 {
 private:
@@ -88,7 +114,7 @@ public:
         Node *newNode = new Node(val);
 
         if (isEmpty()) { // The queue was empty before
-            // Both front and rear will point to the only existing inserted element 
+            // Both front and rear will point to the only existing inserted element
             front = rear = newNode;
         } else { // The queue had one or more existing elements before
             // Attach new node after the old rear
@@ -109,15 +135,15 @@ public:
         Node *nodeToDelete = front;
         // Make front point to the node after first (can be null)
         front = front->next;
-        if (!front) { // When there was only one existing element (it's next is null) 
+        if (!front) { // When there was only one existing element (it's next is null)
             // Both front and rear would become null after deletion in this case
-            rear = nullptr;
+            rear = front;
         }
         delete nodeToDelete; // Deallocate the first node's memory
         size--; // Decrement size after deletion
     }
 
-    // Destructor to deallocate memory of all items of queue 
+    // Destructor to deallocate memory of all items of queue
     ~Queue()
     {
         // Keep deque-ing items till queue isn't empty
@@ -139,13 +165,13 @@ int main()
 
             cout << jobs.first() << endl;
             // UNDERFLOW: Cannot access top element in empty stack
-            
+
             cout << jobs.last() << endl;
             // UNDERFLOW: Cannot access rear element in empty queue
 
             jobs.deque();
             // UNDERFLOW: Cannot remove element from empty queue
-        
+
         */
         jobs.enque(12);
         cout << "size=" << jobs.getSize() << ", first=" << jobs.first() << ", last=" << jobs.last() << endl;

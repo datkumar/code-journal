@@ -3,11 +3,18 @@ title: Stack Implementation
 ds: [stack]
 techniques: [design]
 level: 0
-links: [
+links:
+  [
     https://www.geeksforgeeks.org/problems/implement-stack-using-array/1,
     https://www.geeksforgeeks.org/problems/implement-stack-using-linked-list/1,
-]
+  ]
 ---
+
+<style>
+    img{
+        margin-bottom: 10px;
+    }
+</style>
 
 ## Stack ADT
 
@@ -17,7 +24,7 @@ The `Stack` class must provide the following functionality (assuming elements of
 - `bool isEmpty()` : Check whether stack is empty in \\( O(1) \\) time
 - `void push(int val)` : Insert an element on top of stack in \\( O(1) \\) time
 - `void pop()` : Remove topmost element of stack in \\( O(1) \\) time
-- `int peek()` :  Return topmost element of stack in \\( O(1) \\) time
+- `int peek()` : Return topmost element of stack in \\( O(1) \\) time
 
 Throw exception when stack underflow or overflow occurs
 
@@ -25,8 +32,25 @@ Throw exception when stack underflow or overflow occurs
 
 > The **insertion** and **deletion** operations would occur at the **beginning** of the internal **linked-list**
 
+### Diagrams of some operations
+
+<details>
+<summary><strong>Expand to see diagrams</strong></summary>
+
+**`push(val)` operation**
+
+![push operation](/code-journal/diagrams/stack-ll-push.svg)
+
+**`pop()` operation**
+
+![pop() operation](/code-journal/diagrams/stack-ll-pop.svg)
+
+</details>
+
+### Code
+
 ```cpp
-// Definition of a Node for the linked-list used by the Stack internally 
+// Definition of a Node for the linked-list used by the Stack internally
 class Node
 {
 private:

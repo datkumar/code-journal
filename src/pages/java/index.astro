@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const javaConceptEntries = (await getCollection("concepts")).filter((entry) =>
+  entry.data.tags.includes("java")
+);
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<BaseLayout tabTitle="Java">
+  <h2 class="heading">Java</h2>
+  <ul>
+    {
+      javaConceptEntries.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/java/${entry.slug}`}>{entry.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

@@ -99,7 +99,7 @@ vector<int> topKFrequent(vector<int> &nums, int k)
 
 The frequency count of any number in the input can range between: \\( 0 \text{ to } n \\)
 
-> We can create \\( n \\) **buckets** where each bucket represents elements having that count. The **index** of the bucket will be the frequency count it's elements
+> We can create \\( n \\) **buckets** where each bucket represents elements having that count. The **index** of the bucket will be the frequency count of it's elements
 
 ```txt
 Construct frequency map
@@ -155,8 +155,7 @@ vector<int> topKFrequent(vector<int> &nums, int k)
 {
     // {number : count} map
     unordered_map<int, int> freq;
-    for (int number : nums)
-    {
+    for (int number : nums) {
         freq[number]++;
     }
 
@@ -164,22 +163,20 @@ vector<int> topKFrequent(vector<int> &nums, int k)
     // n+1 buckets where each bucket stores numbers having
     // frequency count equal to index of bucket
     vector<vector<int>> buckets(n + 1);
-    for (auto &[number, count] : freq)
-    {
+    for (auto &[number, count] : freq) {
         // Add number to the bucket representing that frequency count
         buckets[count].push_back(number);
     }
 
     vector<int> ans;
-    for (int i = n; i >= 0; i--)
-    {
+    for (int i = n; i >= 0; i--) {
         // Skip processing bucket if it's empty
         if (buckets[i].empty())
             continue;
 
         // Append elemets of the bucket into answer (till k total items)
         for (int number : buckets[i])
-        {
+         {
             ans.push_back(number);
 
             if (ans.size() == k)

@@ -85,11 +85,12 @@ pre {
 code {
   background-color: var(--codeBgColor);
   color: var(--codeColor);
-  padding: 0.25em 0.4rem;
+  padding: 0.15rem 0.3rem;
   border-radius: 0.3rem;
   white-space: nowrap;
 
   font-family: monospace;
+  font-size: 90%;
 }
 
 pre code {

@@ -10,7 +10,7 @@ Given an unsorted array of integers `nums`, return the **length** of the **longe
 
 For example, if input array is `[4,5,9,3,10,4,7,6,1,9,5]` , the longest consecutive sequence is `[3,4,5,6,7]` and return it's length `5` as answer
 
-## Sorting
+## 1. Sorting
 
 > Sorting would bring the **equal/consecutive elements closer** to each other
 
@@ -64,7 +64,7 @@ Time taken is \\( O(n \cdot logn) \\) for sorting + \\( O(n) \\) for traversing 
 | Time   | \\( O(N \cdot logN ) \\) |
 | Space  | \\( O(1) \\)             |
 
-## Union-Find approach
+## 2. Union-Find approach
 
 Consider input `nums=[4,5,9,3,10,4,7,6,1,9,5]`
 
@@ -95,8 +95,7 @@ int longestConsecutive(vector<int> &nums)
             int seqLength = 1;
             int curr = val;
             // Keep finding next consecutive element to append into sequence
-            while(uniqueNums.count(curr + 1))
-            {
+            while(uniqueNums.count(curr + 1)) {
                 curr++;
                 seqLength++;
             }
