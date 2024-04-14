@@ -136,6 +136,16 @@ Refer [Abdul Bari video](https://youtu.be/A03oI0znAoc?si=YoBhnMxYnzoE71sb)
 
 ---
 
+## Amortized Complexity
+
+The motivation for amortized analysis is that looking at the **worst-case run time can be too pessimistic**. Instead, amortized analysis averages the running times of operations in a sequence over that sequence.
+
+For a given operation of an algorithm, certain situations may imply a significant cost in resources, whereas other situations may not be as costly. The amortized analysis **considers both the costly and less costly operations together over the whole sequence of operations**. This may include accounting for different types of input, length of the input, and other factors that affect its performance.
+
+Refer: [Wikipedia section](https://en.wikipedia.org/wiki/Amortized_analysis) , [StackOverflow post](https://stackoverflow.com/questions/15079327/amortized-complexity-in-laymans-terms)
+
+---
+
 > \\(\text{How } n! \text{ is } O(n^n)\\)
 
 \\[ n! = [n \cdot (n-1) \cdot (n-2) \cdot ... \cdot 1] \space\space\text{ with 'n' terms } \\]

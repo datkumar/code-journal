@@ -198,6 +198,22 @@ cout << "}" << endl;
 
 - `.emplace(pos,...args)` - Inserts a new element into the container directly before `pos` by constructing it in-place.
 
+---
+
+## Beware of `vector<bool>`
+
+`vector<bool>` in C++ is a specialization of the standard `vector` container class that allows you to store a sequence of boolean values. Unlike a regular `vector<T>` where `T` can be any data type, `vector<bool>` doesn't store each `bool` value as a full byte in memory. Instead, it utilizes bit manipulation techniques to **pack multiple boolean values (typically 8) into a single byte**. Due to the bit-packing optimization, operations like element access and modification are not as straightforward as with other types:
+
+- **No Direct Element Access**: You cannot directly access individual elements via `[]`. Instead, you need to use member functions like `at()` or iterators.
+- **No References**: The reference type returned by `std::vector<bool>::operator[]` is a proxy class (often called `std::vector<bool>::reference`), which behaves like a `bool&` but **is not actually a reference to a single bool value**. This can lead to confusion and unexpected behavior. You cannot take the address of a bool element in a `std::vector<bool>`, as each element is not stored as a separate byte in memory.
+
+**Better alternatives**:
+
+- If the size is known at compile-time: use [`bistset<N>`](https://en.cppreference.com/w/cpp/container/vector_bool) as suggested by [CPP Reference](https://en.cppreference.com/w/cpp/utility/bitset)
+- For dynamic sizes: you can use `vector<char>` or [`boost::dynamic_bitset`](https://www.boost.org/doc/libs/1_84_0/libs/dynamic_bitset/dynamic_bitset.html)
+
+---
+
 ## Vector of custom data-type
 
 ```cpp

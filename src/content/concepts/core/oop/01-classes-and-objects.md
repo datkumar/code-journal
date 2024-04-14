@@ -1,5 +1,5 @@
 ---
-title: Classes and Objects
+title: Classes, Objects in Java & C++
 tags: [oop, java, cpp]
 ---
 

@@ -8,9 +8,17 @@ const dsaConcepts = (await getCollection("concepts")).filter(
     item.data.tags.includes("dsa") && !item.data.tags.includes("algorithm")
 );
 
-const algorithms = (await getCollection("concepts")).filter(
+const algorithms = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("algorithm")
+);
+
+const sortSearchAlgos = algorithms.filter(
   (item) =>
-    item.data.tags.includes("algorithm") && item.data.tags.includes("sorting")
+    item.data.tags.includes("sorting") ||
+    item.data.tags.includes("binary-search")
+);
+const graphAlgos = algorithms.filter((item) =>
+  item.data.tags.includes("graph")
 );
 
 const stlEntries = (await getCollection("concepts")).filter((item) =>
@@ -55,10 +63,22 @@ const baseUrl = import.meta.env.BASE_URL;
 
   <h3>Algorithms</h3>
   <details>
-    <summary><strong>Sorting Algorithms</strong></summary>
+    <summary><strong>Sorting algorithms & Binary Search</strong></summary>
     <ol>
       {
-        algorithms.map((entry) => (
+        sortSearchAlgos.map((entry) => (
+          <li>
+            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+          </li>
+        ))
+      }
+    </ol>
+  </details>
+  <details>
+    <summary><strong>Graph algorithms</strong></summary>
+    <ol>
+      {
+        graphAlgos.map((entry) => (
           <li>
             <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
           </li>

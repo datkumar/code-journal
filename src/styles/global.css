@@ -109,6 +109,9 @@ a,
 a:hover,
 a:visited {
   color: var(--linkColor);
+
+  /* Link hover animation */
+  transition: font-size 0.3s ease-in-out, font-weight 0.3s ease-in-out;
 }
 
 a:hover {

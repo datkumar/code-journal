@@ -47,13 +47,13 @@ It stores **static and global variables**. It is further categorised into 2 part
 
 ### Stack vs Heap memory
 
-|                 | Stack memory                           | Heap memory                               |
-| --------------: | -------------------------------------- | ----------------------------------------- |
-|        **Size** | Fixed size limit                       | Flexible size                             |
-|   **Managment** | Automatically managed                  | Explicit allocation & deallocation        |
-|      **Access** | Direct and faster access               | Indirect and slower access (via pointers) |
-|  **Contiguous** | Stack frames allocated in contiguously | No contiguous allocation guaranteed       |
-| **Persistance** | Removed when out of scope              | Can persist out of scope                  |
+|                 | Stack memory                        | Heap memory                               |
+| --------------: | ----------------------------------- | ----------------------------------------- |
+|        **Size** | Fixed size limit                    | Flexible size                             |
+|   **Managment** | Automatically managed               | Explicit allocation & deallocation        |
+|      **Access** | Direct and faster access            | Indirect and slower access (via pointers) |
+|  **Contiguous** | Stack frames allocated contiguously | No contiguous allocation guaranteed       |
+| **Persistance** | Removed when out of scope           | Can persist out of scope                  |
 
 > **Use Stack memory whenever possible** as it's fast and automatically-managed; unless you want to store large data or persist data beyond scopes, in which case use Heap memory
 

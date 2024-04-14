@@ -23,10 +23,10 @@ const dataStructure = z.enum([
 const solutionTechnique = z.enum([
   "design",
   "sorting",
+  "binary-search",
   "hashing",
   "sliding-window",
   "2-ptr",
-  "binary-search",
   "recursion",
   "greedy",
   "dp",

@@ -1,0 +1,143 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="332pt" height="298pt" viewBox="0.00 0.00 332.00 298.00">
+<g id="graph0" class="graph" transform="translate(4,294) scale(1)" data-name="">
+<polygon fill="white" stroke="none" points="-4,4 -4,-294 328,-294 328,4 -4,4" style=""/>
+<!-- 8 -->
+<g id="node1" class="node" pointer-events="visible" data-name="8">
+
+<ellipse fill="none" stroke="black" cx="18" cy="-18" rx="18" ry="18" style=""/>
+<text text-anchor="middle" x="18" y="-13.8" font-family="Times,serif" font-size="14.00" style="">8</text>
+</g>
+<!-- 0 -->
+<g id="node2" class="node" pointer-events="visible" data-name="0">
+
+<ellipse fill="none" stroke="black" cx="18" cy="-72" rx="18" ry="18" style=""/>
+<text text-anchor="middle" x="18" y="-67.8" font-family="Times,serif" font-size="14.00" style="">0</text>
+</g>
+<!-- 1 -->
+<g id="node3" class="node" pointer-events="visible" data-name="1">
+
+<ellipse fill="none" stroke="black" cx="90" cy="-72" rx="18" ry="18" style=""/>
+<text text-anchor="middle" x="90" y="-67.8" font-family="Times,serif" font-size="14.00" style="">1</text>
+</g>
+<!-- 0&#45;&#45;1 -->
+<g id="edge1" class="edge" data-name="0--1">
+
+<path fill="none" stroke="black" d="M36.3,-72C47.15,-72 61.08,-72 71.9,-72" style=""/>
+</g>
+<!-- 2 -->
+<g id="node4" class="node" pointer-events="visible" data-name="2">
+
+<ellipse fill="none" stroke="black" cx="162" cy="-114" rx="18" ry="18" style=""/>
+<text text-anchor="middle" x="162" y="-109.8" font-family="Times,serif" font-size="14.00" style="">2</text>
+</g>
+<!-- 0&#45;&#45;2 -->
+<g id="edge2" class="edge" data-name="0--2">
+
+<path fill="none" stroke="black" d="M33.78,-81.07C44.12,-87.03 58.47,-94.53 72,-99 96.1,-106.96 125.34,-110.85 143.56,-112.64" style=""/>
+</g>
+<!-- 5 -->
+<g id="node5" class="node" pointer-events="visible" data-name="5">
+
+<ellipse fill="none" stroke="black" cx="234" cy="-68" rx="18" ry="18" style=""/>
+<text text-anchor="middle" x="234" y="-63.8" font-family="Times,serif" font-size="14.00" style="">5</text>
+</g>
+<!-- 0&#45;&#45;5 -->
+<g id="edge3" class="edge" data-name="0--5">
+
+<path fill="none" stroke="black" d="M33.57,-62.2C43.82,-55.91 58.14,-48.33 72,-45 124.17,-32.48 187.58,-51.21 216.82,-61.71" style=""/>
+</g>
+<!-- 1&#45;&#45;2 -->
+<g id="edge4" class="edge" data-name="1--2">
+
+<path fill="none" stroke="black" d="M105.85,-80.91C117.72,-88.03 134.3,-97.98 146.18,-105.11" style=""/>
+</g>
+<!-- 1&#45;&#45;5 -->
+<g id="edge5" class="edge" data-name="1--5">
+
+<path fill="none" stroke="black" d="M108.41,-71.51C135.81,-70.74 188.68,-69.25 215.89,-68.48" style=""/>
+</g>
+<!-- 2&#45;&#45;5 -->
+<g id="edge6" class="edge" data-name="2--5">
+
+<path fill="none" stroke="black" d="M177.5,-104.47C189.52,-96.57 206.51,-85.41 218.51,-77.52" style=""/>
+</g>
+<!-- 7 -->
+<g id="node6" class="node" pointer-events="visible" data-name="7">
+
+<ellipse fill="none" stroke="black" cx="306" cy="-95" rx="18" ry="18" style=""/>
+<text text-anchor="middle" x="306" y="-90.8" font-family="Times,serif" font-size="14.00" style="">7</text>
+</g>
+<!-- 5&#45;&#45;7 -->
+<g id="edge11" class="edge" data-name="5--7">
+
+<path fill="none" stroke="black" d="M251.24,-74.26C262.54,-78.62 277.56,-84.42 288.85,-88.77" style=""/>
+</g>
+<!-- 9 -->
+<g id="node7" class="node" pointer-events="visible" data-name="9">
+
+<ellipse fill="none" stroke="black" cx="306" cy="-41" rx="18" ry="18" style=""/>
+<text text-anchor="middle" x="306" y="-36.8" font-family="Times,serif" font-size="14.00" style="">9</text>
+</g>
+<!-- 5&#45;&#45;9 -->
+<g id="edge12" class="edge" data-name="5--9">
+
+<path fill="none" stroke="black" d="M251.24,-61.74C262.54,-57.38 277.56,-51.58 288.85,-47.23" style=""/>
+</g>
+<!-- 3 -->
+<g id="node8" class="node" pointer-events="visible" data-name="3">
+
+<ellipse fill="none" stroke="black" cx="18" cy="-218" rx="18" ry="18" style=""/>
+<text text-anchor="middle" x="18" y="-213.8" font-family="Times,serif" font-size="14.00" style="">3</text>
+</g>
+<!-- 4 -->
+<g id="node9" class="node" pointer-events="visible" data-name="4">
+
+<ellipse fill="none" stroke="black" cx="90" cy="-272" rx="18" ry="18" style=""/>
+<text text-anchor="middle" x="90" y="-267.8" font-family="Times,serif" font-size="14.00" style="">4</text>
+</g>
+<!-- 3&#45;&#45;4 -->
+<g id="edge7" class="edge" data-name="3--4">
+
+<path fill="none" stroke="black" d="M32.83,-228.67C45.1,-238.14 62.94,-251.89 75.2,-261.35" style=""/>
+</g>
+<!-- 6 -->
+<g id="node10" class="node" pointer-events="visible" data-name="6">
+
+<ellipse fill="none" stroke="black" cx="90" cy="-218" rx="18" ry="18" style=""/>
+<text text-anchor="middle" x="90" y="-213.8" font-family="Times,serif" font-size="14.00" style="">6</text>
+</g>
+<!-- 3&#45;&#45;6 -->
+<g id="edge8" class="edge" data-name="3--6">
+
+<path fill="none" stroke="black" d="M36.3,-218C47.15,-218 61.08,-218 71.9,-218" style=""/>
+</g>
+<!-- 10 -->
+<g id="node11" class="node" pointer-events="visible" data-name="10">
+
+<ellipse fill="none" stroke="black" cx="90" cy="-164" rx="18" ry="18" style=""/>
+<text text-anchor="middle" x="90" y="-159.8" font-family="Times,serif" font-size="14.00" style="">10</text>
+</g>
+<!-- 3&#45;&#45;10 -->
+<g id="edge9" class="edge" data-name="3--10">
+
+<path fill="none" stroke="black" d="M32.83,-207.33C45.1,-197.86 62.94,-184.11 75.2,-174.65" style=""/>
+</g>
+<!-- 11 -->
+<g id="node12" class="node" pointer-events="visible" data-name="11">
+
+<ellipse fill="none" stroke="black" cx="162" cy="-245" rx="18" ry="18" style=""/>
+<text text-anchor="middle" x="162" y="-240.8" font-family="Times,serif" font-size="14.00" style="">11</text>
+</g>
+<!-- 4&#45;&#45;11 -->
+<g id="edge10" class="edge" data-name="4--11">
+
+<path fill="none" stroke="black" d="M107.24,-265.74C118.54,-261.38 133.56,-255.58 144.85,-251.23" style=""/>
+</g>
+<!-- 6&#45;&#45;11 -->
+<g id="edge13" class="edge" data-name="6--11">
+
+<path fill="none" stroke="black" d="M107.24,-224.26C118.54,-228.62 133.56,-234.42 144.85,-238.77" style=""/>
+</g>
+</g>
+</svg>
