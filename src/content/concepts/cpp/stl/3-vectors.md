@@ -37,7 +37,7 @@ Present inside the `<vector>` header, vectors are dynamic arrays with the abilit
 ## Modifiers
 
 - **`.pop_back()`** - Removes last element from the vector. Takes `O(1)` time
-- **`.push_back(val)`** - Appends one element having value `val` at the end of element. Takes `O(N)` time in most cases ,but `O(N)` when resizing
+- **`.push_back(val)`** - Appends one element having value `val` at the end of element. Takes `O(1)` time in most cases ,but `O(N)` when resizing
 - **`.emplace_back(val)`** - Constructs the element in-place at the end of the vector. Same time complexity as `push_back()` but **one less copy operation**
 - **`.clear()`** - Remove all elements. Takes `O(N)` time
 - **`.erase()`** - Removes element(s) at specific position via `erase(pos)` or within a range via `erase(start, end)`. Takes `O(N)` time on average

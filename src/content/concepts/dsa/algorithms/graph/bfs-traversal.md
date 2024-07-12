@@ -26,7 +26,7 @@ To traverse a **disconnected** graph, run this component exploration from **ever
 
 ## BFS traversal on Adjacency List
 
-Refer [Adjacency List Graph representation](http://localhost:4321/code-journal/dsa/dsa/graph-representations#2-adjacency-list-best)
+Refer [Adjacency List Graph representation](/code-journal/dsa/dsa/graph-representations#2-adjacency-list-best)
 
 ```cpp
 // Traverse the component level-by-level starting from source node
@@ -261,7 +261,7 @@ const vector<vector<int>> bfsOfGraph(vector<vector<int>> const &Adj)
 | Time   | \\( O(V+E ) \\) |
 | Space  | \\( O(V) \\)    |
 
-BFS is suitable when the node we're searching is located close to the source at a small depth
+> BFS is suitable when the node we're searching is located **close to the source** at a small depth
 
 ### Time
 

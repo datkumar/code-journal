@@ -62,8 +62,7 @@ vector<int> twoSum(vector<int> &nums, int target)
         int curr = nums[i];
         int complement = target - curr;
         // Answer pair FOUND
-        if (ump.find(complement) != ump.end())
-        {
+        if (ump.find(complement) != ump.end()) {
             return {ump[complement], i };
         }
         // Insert current element into map
@@ -111,8 +110,7 @@ int getPairsCount(int arr[], int n, int target)
     // {number : count} map
     unordered_map<int, int> freq;
     // Construct frequency counts over all values present in array
-    for (int i = 0; i < n; i++)
-    {
+    for (int i = 0; i < n; i++) {
         freq[arr[i]]++;
     }
     // Total count of valid pairs
@@ -189,12 +187,10 @@ In worst case, we have to go till last pair. So the time taken:
 // Return index if key found, else -1
 int binarySearch(vector<int> &arr, int key, int low, int high)
 {
-    while (low <= high)
-    {
+    while (low <= high) {
         int mid = low + (high - low) / 2;
 
-        // Key found
-        if (arr[mid] == key)
+        if (arr[mid] == key) // FOUND
             return mid;
 
         if (arr[mid] < key)
@@ -214,7 +210,7 @@ vector<int> twoSum(vector<int> &nums, int target)
 
         // Search complement among elements ahead
         int searchResult = binarySearch(nums, complement, i + 1, n - 1);
-        if (searchResult != -1)
+        if (searchResult != -1) // FOUND
             return {i, searchResult};
     }
     return {-1, -1}; // No pair found

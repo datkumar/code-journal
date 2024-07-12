@@ -122,4 +122,21 @@ const baseUrl = import.meta.env.BASE_URL;
         })
     }
   </ol>
+
+  <h3>Linked Lists</h3>
+  <ol>
+    {
+      dsaProblems
+        .sort((a, b) => a.data.level - b.data.level)
+        .filter((entry) => containsSomeTag(entry.data.ds, ["list"]))
+        .map((entry) => {
+          return (
+            <li>
+              {["🔵", "🟢", "🟡", "🔴", "🟣"][entry.data.level]}
+              <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
+            </li>
+          );
+        })
+    }
+  </ol>
 </BaseLayout>

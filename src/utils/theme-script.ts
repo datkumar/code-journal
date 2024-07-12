@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setLightTheme();
   }
 
-  themeCheckbox.addEventListener("change", (e) => {
+  themeCheckbox.addEventListener("change", (_) => {
     themeCheckbox.checked ? setDarkTheme() : setLightTheme();
   });
 });

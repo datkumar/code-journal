@@ -1,5 +1,5 @@
 ---
-title: Classes, Objects in Java & C++
+title: Classes and Objects
 tags: [oop, java, cpp]
 ---
 
@@ -40,10 +40,10 @@ class Person {
 class Demo {
 
     public static void main(String[] args) {
-        // Creating object of "Person" class and storing reference to it
+        // Creating object of "Person" class and storing reference to it in "p"
         Person p = new Person("Sam");
 
-        // Calling "greet" method of "Person" class on object "p"
+        // Calling "greet" method of "Person" class on the object that "p" refers to
         p.greet();
         // Output: Hello Sam
     }

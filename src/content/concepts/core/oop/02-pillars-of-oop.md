@@ -1,6 +1,6 @@
 ---
 title: 4 Pillars of OOP
-tags: [oop]
+tags: [oop, cpp, java]
 ---
 
 These are the four pillars of Object-Oriented Programming:
@@ -10,8 +10,9 @@ These are the four pillars of Object-Oriented Programming:
 ![Encapsulation](/code-journal/diagrams/encapsulation.svg)
 
 - It refers to the practice of wrapping the state (data members) and functions manipulating it (methods) together into a single unit (class)
-- The data members are best to be kept `private` (or `protected`) and then define getters or setters for accessing or modifying the state from outside the class, as is required. We can decide which data is visible/mutable to others and which isn't. Thus, encapsulation is also called as **data-hiding**
+- The data members are best to be kept `private` (or `protected`) and then define `public` **getters or setters** for accessing or modifying the state from outside the class, as and when required. We can decide which data is visible/mutable to others and which isn't. Thus, encapsulation is also called as **data-hiding**
 - This packing of state and methods to the class makes code easier to control, test and maintain
+- The class contains a **"has-a"** relationship with it's data members
 
 ## 2. Abstraction
 

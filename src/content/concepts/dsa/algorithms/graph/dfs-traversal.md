@@ -23,7 +23,7 @@ To traverse a **disconnected** graph, run this component exploration from **ever
 
 ## DFS traversal on Adjacency List
 
-Refer [Adjacency List Graph representation](http://localhost:4321/code-journal/dsa/dsa/graph-representations#2-adjacency-list-best)
+Refer [Adjacency List Graph representation](/code-journal/dsa/dsa/graph-representations#2-adjacency-list-best)
 
 ```cpp
 // Explore an unvisited neighbor of current node

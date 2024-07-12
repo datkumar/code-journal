@@ -1,5 +1,5 @@
 ---
-title: Differences in Java & C++
+title: C++ vs Java
 tags: [java, cpp]
 ---
 

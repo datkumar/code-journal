@@ -84,6 +84,8 @@ java Demo
 # Loads an instance of JVM which then starts execution from psvm() method of Demo class
 ```
 
+A separate `.class` file is generated for each class defined within the files(s) during compilation
+
 ---
 
 ## Memory allocation in Java
