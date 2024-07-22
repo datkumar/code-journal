@@ -34,13 +34,8 @@ const setLightTheme = () => {
 document.addEventListener("DOMContentLoaded", () => {
   const existingTheme = getLocalTheme() || getSystemTheme();
 
-  if (existingTheme === "dark") {
-    // themeCheckbox.checked = true;
-    setDarkTheme();
-  } else {
-    // themeCheckbox.checked = false;
-    setLightTheme();
-  }
+  if (existingTheme === "dark") setDarkTheme();
+  else setLightTheme();
 
   themeCheckbox.addEventListener("change", (_) => {
     themeCheckbox.checked ? setDarkTheme() : setLightTheme();

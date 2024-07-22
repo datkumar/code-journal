@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
-    "astro": "^4.11.1",
+    "astro": "^4.12.2",
     "astro-expressive-code": "^0.32.4",
     "mermaid": "^10.9.1",
-    "typescript": "^5.5.2",
+    "typescript": "^5.5.3",
     "unist-util-visit": "^5.0.0"
   }
 }
