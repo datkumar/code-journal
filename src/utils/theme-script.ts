@@ -1,5 +1,4 @@
 const rootElement = document.documentElement;
-
 const themeCheckbox = document.getElementById(
   "theme-toggle"
 ) as HTMLInputElement;
@@ -11,13 +10,15 @@ const getSystemTheme = () => {
   if (window.matchMedia("(prefers-color-scheme: light)").matches) {
     return "light";
   }
+  return null;
 };
 
 const getLocalTheme = () => {
   const locallySavedTheme = localStorage.getItem("theme");
-  if (locallySavedTheme !== null) {
+  if (locallySavedTheme) {
     return locallySavedTheme;
   }
+  return null;
 };
 
 const setDarkTheme = () => {
@@ -31,12 +32,19 @@ const setLightTheme = () => {
   localStorage.setItem("theme", "light");
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  const existingTheme = getLocalTheme() || getSystemTheme();
-
+const applyTheme = () => {
+  const existingTheme = getLocalTheme() || getSystemTheme() || "light";
   if (existingTheme === "dark") setDarkTheme();
   else setLightTheme();
+};
 
+// Reapply theme after Astro swaps the page during page navigations
+document.addEventListener("astro:after-swap", applyTheme);
+
+document.addEventListener("astro:page-load", () => {
+  // Set theme as per previous prefs
+  applyTheme();
+  // Change theme if slider pressed
   themeCheckbox.addEventListener("change", (_) => {
     themeCheckbox.checked ? setDarkTheme() : setLightTheme();
   });

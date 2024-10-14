@@ -4,7 +4,7 @@
   --bgColor: moccasin;
   --textColor: #494848;
   --accentColor: #a73358;
-  --linkColor: #092abd;
+  --linkColor: #1049ac;
   --lineColor: #065d67;
   --themeSliderBgColor: #138ce8;
   /* Code */
@@ -36,8 +36,7 @@
 body {
   background-color: var(--bgColor);
   color: var(--textColor);
-  font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
-    Arial, sans-serif;
+  font-family: system-ui, sans-serif;
   font-size: 16px;
   font-weight: normal;
   line-height: 1.5em;
@@ -49,7 +48,7 @@ body {
   min-height: 100vh;
   min-height: 100vsh; /* for newer browsers */
   overflow-wrap: break-word;
-  overflow-x: scroll;
+  overflow-x: auto;
   margin: 0 auto;
   padding: 30px 40px;
 }
@@ -106,17 +105,17 @@ pre code {
 }
 
 a,
-a:hover,
 a:visited {
   color: var(--linkColor);
-
+  text-decoration: none;
   /* Link hover animation */
-  transition: font-size 0.3s ease-in-out, font-weight 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 a:hover {
   font-size: 115%;
   font-weight: bold;
+  text-decoration: underline;
 }
 
 hr {
@@ -158,6 +157,7 @@ ol li {
 ul,
 ol {
   margin-top: 0.1em;
+  padding-left: 1.5rem;
 }
 
 li p {

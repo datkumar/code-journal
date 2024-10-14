@@ -5,7 +5,7 @@ tags: [html]
 
 [MDN Reference](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes) , [W3Schools article](https://www.w3schools.com/tags/att_data-.asp)
 
-Here's a CodePen demonstrating how to use `data-*` attribute
+Here's a CodePen demonstrating how to use `data-*` attribute:
 
 <p
     class="codepen"

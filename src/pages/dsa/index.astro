@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { containsSomeTag } from "../../utils/helper-functions";
+import { problemDifficulties } from "../../utils/data";
 
 const dsaConcepts = (await getCollection("concepts")).filter(
   (item) =>
@@ -30,13 +31,24 @@ const dsaProblems = await getCollection("dsaProblems");
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
+<style>
+  ul {
+    padding-left: 0;
+  }
+
+  .problem-item {
+    list-style: none;
+    list-style-position: outside;
+    padding-block: 5px;
+  }
+</style>
+
 <BaseLayout tabTitle="DSA">
-  <h2>DSA</h2>
+  <h1>DSA</h1>
 
   <details>
     <summary><strong>C++ STL</strong></summary>
-
-    <ul>
+    <ol>
       {
         stlEntries.map((entry) => (
           <li>
@@ -45,12 +57,12 @@ const baseUrl = import.meta.env.BASE_URL;
         ))
       }
       <li><a rel="stylesheet" href={`${baseUrl}/cpp`}> Other C++ </a></li>
-    </ul>
+    </ol>
   </details>
 
   <details>
     <summary><strong>Theory</strong></summary>
-    <ul>
+    <ol>
       {
         dsaConcepts.map((entry) => (
           <li>
@@ -58,10 +70,10 @@ const baseUrl = import.meta.env.BASE_URL;
           </li>
         ))
       }
-    </ul>
+    </ol>
   </details>
 
-  <h3>Algorithms</h3>
+  <h2>Algorithms</h2>
   <details>
     <summary><strong>Sorting algorithms & Binary Search</strong></summary>
     <ol>
@@ -87,25 +99,27 @@ const baseUrl = import.meta.env.BASE_URL;
     </ol>
   </details>
 
-  <h3>Arrays & Strings</h3>
-  <ol>
+  <!-- PROBLEMS: -->
+
+  <h2>Arrays & Strings</h2>
+  <ul>
     {
       dsaProblems
         .sort((a, b) => a.data.level - b.data.level)
         .filter((entry) => containsSomeTag(entry.data.ds, ["array", "string"]))
         .map((entry) => {
           return (
-            <li>
-              {["🔵", "🟢", "🟡", "🔴", "🟣"][entry.data.level]}
+            <li class="problem-item">
+              {problemDifficulties[entry.data.level].icon}{" "}
               <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
             </li>
           );
         })
     }
-  </ol>
+  </ul>
 
-  <h3>Stack, Queues, Heaps</h3>
-  <ol>
+  <h2>Stack, Queues, Heaps</h2>
+  <ul>
     {
       dsaProblems
         .sort((a, b) => a.data.level - b.data.level)
@@ -114,29 +128,29 @@ const baseUrl = import.meta.env.BASE_URL;
         )
         .map((entry) => {
           return (
-            <li>
-              {["🔵", "🟢", "🟡", "🔴", "🟣"][entry.data.level]}
+            <li class="problem-item">
+              {problemDifficulties[entry.data.level].icon}{" "}
               <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
             </li>
           );
         })
     }
-  </ol>
+  </ul>
 
   <h3>Linked Lists</h3>
-  <ol>
+  <ul>
     {
       dsaProblems
         .sort((a, b) => a.data.level - b.data.level)
         .filter((entry) => containsSomeTag(entry.data.ds, ["list"]))
         .map((entry) => {
           return (
-            <li>
-              {["🔵", "🟢", "🟡", "🔴", "🟣"][entry.data.level]}
+            <li class="problem-item">
+              {problemDifficulties[entry.data.level].icon}{" "}
               <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
             </li>
           );
         })
     }
-  </ol>
+  </ul>
 </BaseLayout>

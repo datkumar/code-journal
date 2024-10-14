@@ -4,26 +4,60 @@ import "../styles/global.css";
 
 import Header from "./Header.astro";
 import Footer from "./Footer.astro";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   tabTitle: string;
 }
 const { tabTitle } = Astro.props;
+const siteDescription = "A site to organize and showcase my coding notes";
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Code Journal" />
-    <meta name="viewport" content="width=device-width" />
-    <!-- Favicon -->
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href=`${import.meta.env.BASE_URL}/icons/code.svg`
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href=`${baseUrl}/icons/code.svg` />
+
+    <!-- Page's Browser Tab title -->
     <title>{tabTitle}</title>
+    <meta name="description" content={siteDescription} />
+
+    <!-- Theme switch script -->
+    <script src="../utils/theme-script.ts"></script>
+
+    <!-- Mermaid for generating diagrams from code -->
+    <script src="../utils/mermaid-script.ts"></script>
+
+    <!-- MathJax for Math expressions -->
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+      is:inline
+      data-astro-rerun></script>
+
+    <!-- <script is:inline data-astro-rerun>
+      // Reinitialize MathJax after page navigation
+      document.addEventListener(
+        "astro:after-swap",
+        async () => await MathJax.typesetPromise()
+      );
+
+      // Init MathJax on page load
+      document.addEventListener(
+        "astro:page-load",
+        async () => await MathJax.typesetPromise()
+      );
+    </script> -->
+
+    <!-- Smooth animation between page navigations instead of default full page refresh -->
+    <ViewTransitions fallback="swap" />
   </head>
 
   <body class="markdown-body">
@@ -37,51 +71,5 @@ const { tabTitle } = Astro.props;
     </main>
 
     <Footer />
-
-    <!-- Theme switch script -->
-    <script src="../utils/theme-script.ts"></script>
-
-    <!-- MathJax for Math expressions -->
-    <script
-      is:inline
-      id="MathJax-script"
-      async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-    ></script>
-
-    <!-- Mermaid for generating diagrams from code -->
-    <script>
-      async function renderDiagrams(graphs: HTMLCollectionOf<Element>) {
-        const { default: mermaid } = await import("mermaid");
-        mermaid.initialize({
-          startOnLoad: false,
-          fontFamily: "monospace",
-          // Only "base" theme can be modified
-          theme: "base",
-          themeVariables: {
-            lineColor: "#5f00ed",
-            primaryColor: "#e4ddf0",
-          },
-        });
-
-        for (const graph of graphs) {
-          const content = graph.getAttribute("data-content");
-          if (!content) {
-            continue;
-          }
-          let svg = document.createElement("svg");
-          const id = (svg.id = "mermaid-" + Math.round(Math.random() * 100000));
-          graph.appendChild(svg);
-          mermaid.render(id, content).then((result: any) => {
-            graph.innerHTML = result.svg;
-          });
-        }
-      }
-
-      const graphs = document.getElementsByClassName("mermaid");
-      if (document.getElementsByClassName("mermaid").length > 0) {
-        renderDiagrams(graphs);
-      }
-    </script>
   </body>
 </html>

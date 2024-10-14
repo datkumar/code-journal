@@ -1,38 +1,59 @@
 ---
-import ThemeSlider from "../components/ThemeSlider.astro";
+import ThemeSlider from "./ThemeSlider.astro";
+
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <style>
-  nav {
+  li {
+    list-style-type: none;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--lineColor);
+  }
+
+  a:hover {
+    text-decoration: underline dotted;
+    text-underline-offset: 4px;
+    font-size: 100%;
+  }
+
+  .outer {
     display: flex;
     flex-direction: row;
     gap: 1em;
   }
 
-  li {
-    list-style-type: none;
+  .inner {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
   }
 
-  a {
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 20px;
-    color: var(--lineColor);
-  }
-
-  a:hover {
-    text-decoration: underline;
+  @media (max-width: 768px) {
+    .outer {
+      flex-direction: column;
+      gap: 0.5em;
+    }
   }
 </style>
 
-<header>
+<header transition:persist>
   <ThemeSlider />
-
-  <nav role="navigation">
-    <li><a href=`${baseUrl}`>Code Journal</a></li>
-    <li><a href=`${baseUrl}/dev`>Dev</a></li>
-    <li><a href=`${baseUrl}/dsa`>DSA</a></li>
-    <li><a href=`${baseUrl}/core`>Core</a></li>
+  <nav role="navigation" class="outer">
+    <div>
+      <li>
+        <a href=`${baseUrl}`> Code Journal </a>
+      </li>
+    </div>
+    <div class="inner">
+      <li><a href=`${baseUrl}/dsa`>DSA</a></li>
+      <li><a href=`${baseUrl}/dev`>Dev</a></li>
+      <li><a href=`${baseUrl}/core`>Core</a></li>
+    </div>
   </nav>
 </header>

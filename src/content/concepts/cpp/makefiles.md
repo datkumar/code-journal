@@ -55,8 +55,8 @@ cleanup:
 
 Note that the file name of the Makefile is case-insensitive
 
-- We can define multiple steps. Then run one, more or all of those steps
-- Right next to the script name, we define the target files that have to be watched for that step. Updates are made only if there are changes in the target files. It's a good practice to specify all the linked or related source code files as target
+- We can define multiple recipes (such as `make`, `build`, `run` etc. above) of our build system in a Makefile. Then run one, more or all of those
+- Right next to the script name, we define the **target** files that have to be watched for that step. Updates are made only if there are changes in the target files. It's a good practice to specify all the linked or related source code files as target
 - We can define macros denoting variables such as `CC` here that denotes the compiler. Another example is `CXXFLAGS` to store compilation flags
 - The `.PHONY` indicates the names of all the recipes so that they aren't mistaken for file names. This prevents conflicts between them.
 

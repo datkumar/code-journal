@@ -1,41 +1,21 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+import { devLinks } from "../../utils/data";
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout tabTitle="Code Journal">
-  <h2>Development</h2>
+  <h1>Development</h1>
   <ul>
-    <h3>
-      <li>
-        <a href={`${baseUrl}/dev/html-css`}>HTML, CSS</a>
-      </li>
-    </h3>
-    <h3>
-      <li>
-        <a href={`${baseUrl}/dev/js-ts`}>Javascript, Typescript</a>
-      </li>
-    </h3>
-    <h3>
-      <li>
-        <a href={`${baseUrl}/dev/astro`}>Astro</a>
-      </li>
-    </h3>
-    <h3>
-      <li>
-        <a href={`${baseUrl}/dev/node`}>NodeJs</a>
-      </li>
-    </h3>
-    <h3>
-      <li>
-        <a href={`${baseUrl}/dev/react-next`}>React, NextJs</a>
-      </li>
-    </h3>
-    <h3>
-      <li>
-        <a href={`${baseUrl}/dev/flutter-dart`}>Flutter, Dart</a>
-      </li>
-    </h3>
+    {
+      devLinks.map((entry) => (
+        <h2>
+          <li>
+            <a href={`${baseUrl}/dev/${entry.url}`.toString()}>{entry.title}</a>
+          </li>
+        </h2>
+      ))
+    }
   </ul>
 </BaseLayout>

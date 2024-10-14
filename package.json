@@ -2,20 +2,21 @@
   "name": "code-journal",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@9.4.0",
   "scripts": {
-    "dev": "astro dev --host",
+    "dev": "astro dev",
+    "dev-local": "astro dev --host",
     "start": "astro dev",
     "build": "rm -rf dist/ && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.4.1",
-    "astro": "^4.12.2",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/markdown-remark": "^5.3.0",
+    "astro": "^4.16.2",
     "astro-expressive-code": "^0.32.4",
-    "mermaid": "^10.9.1",
-    "typescript": "^5.5.3",
+    "mermaid": "^10.9.2",
+    "typescript": "^5.6.3",
     "unist-util-visit": "^5.0.0"
   }
 }
