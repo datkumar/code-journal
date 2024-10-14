@@ -6,12 +6,13 @@ import Header from "./Header.astro";
 import Footer from "./Footer.astro";
 import { ViewTransitions } from "astro:transitions";
 
+const baseUrl = import.meta.env.BASE_URL;
+
 interface Props {
   tabTitle: string;
 }
 const { tabTitle } = Astro.props;
 const siteDescription = "A site to organize and showcase my coding notes";
-const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <html lang="en">
@@ -34,27 +35,8 @@ const baseUrl = import.meta.env.BASE_URL;
     <!-- Mermaid for generating diagrams from code -->
     <script src="../utils/mermaid-script.ts"></script>
 
-    <!-- MathJax for Math expressions -->
-    <script
-      id="MathJax-script"
-      async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-      is:inline
-      data-astro-rerun></script>
-
-    <!-- <script is:inline data-astro-rerun>
-      // Reinitialize MathJax after page navigation
-      document.addEventListener(
-        "astro:after-swap",
-        async () => await MathJax.typesetPromise()
-      );
-
-      // Init MathJax on page load
-      document.addEventListener(
-        "astro:page-load",
-        async () => await MathJax.typesetPromise()
-      );
-    </script> -->
+    <!-- MathJax script for Math expressions -->
+    <script src="../utils/mathjax-script.ts"></script>
 
     <!-- Smooth animation between page navigations instead of default full page refresh -->
     <ViewTransitions fallback="swap" />

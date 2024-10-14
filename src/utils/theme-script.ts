@@ -38,9 +38,7 @@ const applyTheme = () => {
   else setLightTheme();
 };
 
-// Reapply theme after Astro swaps the page during page navigations
-document.addEventListener("astro:after-swap", applyTheme);
-
+// Set theme on page load
 document.addEventListener("astro:page-load", () => {
   // Set theme as per previous prefs
   applyTheme();
@@ -49,3 +47,6 @@ document.addEventListener("astro:page-load", () => {
     themeCheckbox.checked ? setDarkTheme() : setLightTheme();
   });
 });
+
+// Reapply theme after Astro swaps the page during page navigations
+document.addEventListener("astro:after-swap", applyTheme);

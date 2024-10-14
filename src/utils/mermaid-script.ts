@@ -35,8 +35,8 @@ const initializeMermaid = () => {
   }
 };
 
-// Re-init mermaid before loading new page during navigation
-document.addEventListener("astro:after-swap", initializeMermaid);
-
 // Init mermaid on page load
 document.addEventListener("astro:page-load", initializeMermaid);
+
+// Re-init mermaid before loading new page during navigation
+document.addEventListener("astro:after-swap", initializeMermaid);

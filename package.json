@@ -13,8 +13,8 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/markdown-remark": "^5.3.0",
-    "astro": "^4.16.2",
-    "astro-expressive-code": "^0.32.4",
+    "astro": "^4.16.3",
+    "astro-expressive-code": "^0.37.0",
     "mermaid": "^10.9.2",
     "typescript": "^5.6.3",
     "unist-util-visit": "^5.0.0"
