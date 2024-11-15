@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
 import expressiveCode from "astro-expressive-code";
-import { mermaid } from "./src/plugins/mermaid.ts";
+import { mermaid } from "./src/utils/mermaid";
 
 // https://astro.build/config
 export default defineConfig({

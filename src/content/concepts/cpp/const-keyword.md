@@ -51,8 +51,9 @@ When declaring a member variable of a const object, make it const as well. This 
 
 ```cpp
 class Car {
-public:
+  public:
     const string model;  // Constant member variable
+
     // ... other members
 };
 
@@ -66,10 +67,10 @@ If a member **function doesn't modify the object's state**, declare it as `const
 
 ```cpp
 class Point {
-public:
+  public:
     int x, y;
-    const int getX() const { return x; }  // Doesn't modify state
-    void setX(int val) { x = val; }    // Modifies state
+    const int getX () const { return x; }  // Doesn't modify state
+    void setX (int val) { x = val; }       // Modifies state
 };
 ```
 
@@ -78,7 +79,7 @@ public:
 Use `const` to declare **pointers or references to constant data**. This enforces that the data pointed to or referred to cannot be modified.
 
 ```cpp
-const int *ptr = &PI;  // Pointer to constant integer
+const int *ptr = &PI;      // Pointer to constant integer
 const string &ref = NAME;  // Reference to constant string
 
 // *ptr cannot be modified (PI is constant)

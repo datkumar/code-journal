@@ -50,11 +50,11 @@ return false
 <summary><strong>C++ code</strong></summary>
 
 ```cpp
-bool containsDuplicate(vector<int> &nums){
-    sort(nums.begin(),nums.end());
+bool containsDuplicate(vector<int> &nums) {
+    sort(nums.begin(), nums.end());
 
-    for(int i=0; i < nums.size()-1; i++){
-        if(nums[i] == nums[i+1]){
+    for (int i = 0; i < nums.size() - 1; i++) {
+        if (nums[i] == nums[i + 1]) {
             return true;
         }
     }
@@ -92,11 +92,11 @@ return false
 </summary>
 
 ```cpp
-bool containsDuplicate(vector<int> &nums) {
+bool containsDuplicate (vector<int> &nums) {
     unordered_set<int> uniqueNums;
-    for(auto &curr: nums){
+    for (auto &curr : nums) {
         // Duplicate found
-        if(uniqueNums.find(curr) != uniqueNums.end()){
+        if (uniqueNums.find(curr) != uniqueNums.end()) {
             return true;
         }
         uniqueNums.insert(curr);

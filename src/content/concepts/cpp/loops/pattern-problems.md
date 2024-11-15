@@ -18,11 +18,11 @@ tags: [cpp, loops]
 <td>
 
 ```cpp
-for(int y=0; y < n; y++){
-    for(int x=0; x < n; x++){
+for (int y = 0; y < n; y++) {
+    for (int x = 0; x < n; x++) {
         cout << "* ";
     }
-    cout<<endl;
+    cout << endl;
 }
 ```
 
@@ -44,11 +44,11 @@ for(int y=0; y < n; y++){
 <td>
 
 ```cpp
-for(int y=0; y < n; y++){
-    for(int x=0; x <= y; x++){
+for (int y = 0; y < n; y++) {
+    for (int x = 0; x <= y; x++) {
         cout << "* ";
     }
-    cout<<endl;
+    cout << endl;
 }
 ```
 
@@ -70,12 +70,11 @@ for(int y=0; y < n; y++){
 <td>
 
 ```cpp
-for(int y=0; y < n; y++)
-{
-    for(int x=n; x > y; x--){
-        cout<<"*"<<" ";
+for (int y = 0; y < n; y++) {
+    for (int x = n; x > y; x--) {
+        cout << "*" << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
 ```
 
@@ -111,11 +110,11 @@ for(int y=0; y < n; y++)
 <td>
 
 ```cpp
-for(int x=1; x <= n; x++){
-    for(int y=1; y <= x; y++){
-        cout<< y << " ";
+for (int x = 1; x <= n; x++) {
+    for (int y = 1; y <= x; y++) {
+        cout << y << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
 ```
 
@@ -137,8 +136,8 @@ for(int x=1; x <= n; x++){
 <td>
 
 ```cpp
-for(int y=1; y <= n; y++){
-    for (int x=1; x <= n-y; x++) {
+for (int y = 1; y <= n; y++) {
+    for (int x = 1; x <= n - y; x++) {
         cout << x << " ";
     }
     cout << endl;
@@ -164,11 +163,11 @@ for(int y=1; y <= n; y++){
 <td>
 
 ```cpp
-for(int x=1; x <= n; x++){
-    for(int y=1; y <= x; y++){
-        cout<< x << " ";
+for (int x = 1; x <= n; x++) {
+    for (int y = 1; y <= x; y++) {
+        cout << x << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
 ```
 
@@ -203,15 +202,14 @@ for(int x=1; x <= n; x++){
 <td>
 
 ```cpp
-for(int y=1; y <= n; y++)
-{
-    for(int x=1; x <= n-y; x++){
-        cout<<" ";
+for (int y = 1; y <= n; y++) {
+    for (int x = 1; x <= n - y; x++) {
+        cout << " ";
     }
-    for(int x=1; x <= (2*y) - 1; x++){
-        cout<< "*";
+    for (int x = 1; x <= (2 * y) - 1; x++) {
+        cout << "*";
     }
-    cout<<endl;
+    cout << endl;
 }
 ```
 

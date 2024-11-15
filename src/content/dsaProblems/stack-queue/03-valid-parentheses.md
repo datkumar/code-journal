@@ -39,8 +39,7 @@ An input string is valid if:
 - At the end, all pairs would clear out and stack should become empty in the case of balanced pairs. If **stack isn't empty at the end, then the input is unbalanced**.
 
 ```cpp
-bool isValid(string str)
-{
+bool isValid (string str) {
     // Odd length strings are invalid
     if (str.size() & 1) return false;
 
@@ -51,9 +50,9 @@ bool isValid(string str)
         {'}', '{'},
     };
 
-    stack<char> stk;    // Stack which stores opening braces
-    for (char c : str)  // Iterate over string characters
-    {
+    stack<char> stk;  // Stack which stores opening braces
+    // Iterate over string characters
+    for (char c : str) {
         // Add opening brace into stack
         if (c == '(' || c == '[' || c == '{') {
             stk.push(c);
@@ -68,7 +67,7 @@ bool isValid(string str)
             stk.pop();
         }
     }
-    // All matching pairs would get cleared out and stack should be empty. Else invalid
+    // All matching pairs would get cleared out and stack be empty, else invalid
     return (stk.empty());
 }
 ```

@@ -1,26 +1,23 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { coreLinks } from "../../utils/data";
 
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout tabTitle="Code Journal">
+<BaseLayout tabTitle="CS Core">
   <h1>CS Core</h1>
   <ul>
-    <h2>
-      <li>
-        <a href={`${baseUrl}/core/dbms`}>DBMS</a>
-      </li>
-    </h2>
-    <h2>
-      <li>
-        <a href={`${baseUrl}/core/oop`}>OOP</a>
-      </li>
-    </h2>
-    <h2>
-      <li>
-        <a href={`${baseUrl}/core/os`}>OS</a>
-      </li>
-    </h2>
+    {
+      coreLinks.map((entry) => (
+        <h2>
+          <li>
+            <a href={`${baseUrl}/core/${entry.url}`.toString()}>
+              {entry.title}
+            </a>
+          </li>
+        </h2>
+      ))
+    }
   </ul>
 </BaseLayout>

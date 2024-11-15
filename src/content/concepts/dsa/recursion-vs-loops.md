@@ -59,37 +59,29 @@ Consider calculating sum of integers 1 to N:
 Via **Loop**:
 
 ```cpp
-int solveUsingLoop(int N)
-{
-    int curr = 1, ans = 0;      // Init tracker and state
-
-    while(curr <= N){           // Exit condition
-        ans += curr;            // Do work. It updates state
-        curr++;                 // Update tracker
+int solveUsingLoop(int N) {
+    int curr = 1, ans = 0;  // Init tracker and state
+    while (curr <= N) {     // Exit condition
+        ans += curr;        // Do work. It updates state
+        curr++;             // Update tracker
     }
-
-    return ans;                 // Return final state
+    return ans;             // Return final state
 }
 ```
 
 Via **Recursion**:
 
 ```cpp
-int addToSum(int curr, int N, int &ans)
-{
-    if(curr > N){                       // Exit condition
+int addToSum(int curr, int N, int &ans) {
+    if (curr > N) {                     // Exit condition
         return ans;
     }
-
     ans += curr;                        // Do work. It updates state
-
     return addToSum(curr + 1, N, ans);  // Schedule work with updated tracker
 }
 
-int solveUsingRecursion(int N)
-{
+int solveUsingRecursion(int N) {
     int curr = 1, ans = 0;              // Init tracker and state
-
     return addToSum(curr, N, ans);      // Start work
 }
 ```
@@ -144,21 +136,19 @@ using namespace std;
 const int COUNT = 2 * 1e9;
 const int STEP = 1e4;
 
-void func(int curr){
-    if(curr % STEP == 0){
+void func(int curr) {
+    if (curr % STEP == 0) {
         int temp = COUNT - curr;
         printf("count: %d \n", temp);
         // cout<< "count: " << temp << endl;
     }
-    if(curr == 0){
+    if (curr == 0) {
         return;
     }
     func(curr - 1);
 }
 
-
-int main()
-{
+int main() {
     func(COUNT);
 
     return 0;

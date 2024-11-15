@@ -16,34 +16,33 @@ tags: [dsa, algorithm, sorting]
 ```txt
 Sorting working array:
 
-    Parition array around a pivot element
+    Partition array around a pivot element.
 
-    Sort the two partitions recusively independently
+    Sort the two partitions recursively independently.
 ```
 
 ```txt
 Partitioning:
 
-    (Assuming last element of current array as pivot)
+    (Assuming last element of current array as pivot).
 
     Start traversing current array from start uptil before pivot:
 
         When you find an element less than pivot:
 
-            Move left part ahead by one
-            Send that element to end of left part
+            Move left part ahead by one.
+            Send that element to end of left part.
 
 
-    At end, we will have left part, joining it is right part, and then pivot at last
-    Swap pivot with first element of right part so array becomes partitioned around pivot
+    At end, we will have left part, joining it is right part, and then pivot at last.
+    Swap pivot with first element of right part so array becomes partitioned around pivot.
 
 ```
 
 ## Code
 
 ```cpp
-int partition(int arr[], int low, int high)
-{
+int partition(int arr[], int low, int high) {
     // We're picking pivot as last element of working array
     int pivot = arr[high];
 
@@ -54,11 +53,10 @@ int partition(int arr[], int low, int high)
     int curr = low;
 
     // Traverse working array (except last element which is pivot)
-    while (curr < high)
-    {
-        // When current element is less than pivot (it should be placed in left part)
-        if (arr[curr] < pivot)
-        {
+    while (curr < high) {
+        // When current element is less than pivot (it should be placed in left
+        // part)
+        if (arr[curr] < pivot) {
             // Shift left part ahead by one and swap to fix order
             prev++;
             swap(arr[prev], arr[curr]);
@@ -68,20 +66,20 @@ int partition(int arr[], int low, int high)
     }
 
     // We ran through all elements of working array
-    // Now, we have left, right parts as contiguous with the pivot element after them
-    // Left part ends at [prev] and right part starts at [prev + 1]
+    // Now, we have left, right parts as contiguous with the pivot element after
+    // them Left part ends at [prev] and right part starts at [prev + 1]
     int partitionIndex = prev + 1;
+
     // Swap pivot with the first element of right part
     swap(arr[partitionIndex], arr[high]);
+
     // Array has been partitioned around the pivot. Provide that partition index
     return partitionIndex;
 }
 
-void quickSort(int arr[], int low, int high)
-{
+void quickSort(int arr[], int low, int high) {
     // Terminating base case: ONE element or index out-of-bounds
-    if (low >= high || low < 0)
-    {
+    if (low >= high || low < 0) {
         return;
     }
 
@@ -106,13 +104,11 @@ void quickSort(int arr[], int low, int high)
 ### Time Complexity
 
 ```cpp
-int partition(int arr[], int low, int high)
-{
+int partition(int arr[], int low, int high) {
     // Traverse array to find partition index       -> n
 }
 
-void quickSort(int arr[], int low, int high)        // T(n)
-{
+void quickSort(int arr[], int low, int high) {      // T(n)
     // Base case check                              // 1
 
     int p = partition(arr, low, high);              // n
@@ -182,16 +178,13 @@ So, the worst-case space used by Quick-sort (albeit just for call-stack) is \\( 
 We can optimize the tail calls where we make a recursive call only for the smaller part after partition such as:
 
 ```cpp
-void quickSort(int arr[], int low, int high)
-{
-    while (low < high)
-    {
+void quickSort(int arr[], int low, int high) {
+    while (low < high) {
         int p = partition(arr, low, high);
-        if (p - low < high - p){
+        if (p - low < high - p) {
             quickSort(arr, low, p - 1);
             low = p + 1;
-        }
-        else{
+        } else {
             quickSort(arr, p + 1, high);
             high = p - 1;
         }
@@ -208,9 +201,10 @@ Note that we are placing all elements less tha pivot in left part, then swapping
 ```cpp
 // The element with the lower index is considered smaller and gets swapped first.
 // This preserves the original order of elements with equal values
-if (arr[j].val < pivot ||
-    (arr[j].val == pivot && arr[j].index < arr[high].index))
-{
+if (
+    arr[j].val < pivot ||
+    (arr[j].val == pivot && arr[j].index < arr[high].index)
+) {
     i++;
     swap(arr[i], arr[j]);
 }

@@ -12,8 +12,8 @@ and [this example](/code-journal/dsa/dsa/recurrence-master-thm#tracing-recursion
 - These can be **easily optimized into loops** to save call stack memory
 
 ```cpp
-void func(int n){
-    if(n > 0){
+void func(int n) {
+    if (n > 0) {
         cout << n << endl;
         func(n - 1);        // Recursive call
     }
@@ -23,8 +23,8 @@ void func(int n){
 If it had something like `func(n-1) + 1`, it wouldn't be tail recursion as there is some extra operation after the recursive call. The above tail-recursive function can be converted into iterative one as:
 
 ```cpp
-void func(int n){
-    while(n > 0){
+void func(int n) {
+    while (n > 0) {
         cout << n << endl;
         n--;
     }
@@ -36,8 +36,8 @@ void func(int n){
 - The recursive call is the **first step** in the function body
 
 ```cpp
-void func(int n){
-    if(n > 0){
+void func(int n) {
+    if (n > 0) {
         func(n - 1);        // Recursive call
         cout << n << endl;
     }
@@ -47,9 +47,9 @@ void func(int n){
 The iterative version would be:
 
 ```cpp
-void func(int n){
+void func(int n) {
     int i = 0;
-    while(i < n){
+    while (i < n) {
         cout << i << endl;
         i++;
     }
@@ -65,8 +65,8 @@ Recursion in which there's a **single recursive call per input** is called **Lin
 There can be **multiple recursive calls (branching) per input**. These are typically called Tree Recursion
 
 ```cpp
-void func(){
-    if(n > 0){
+void func() {
+    if (n > 0) {
         cout << n << endl;
         func(n - 1);        // Recursive call
         func(n - 1);        // Recursive call
@@ -79,19 +79,19 @@ void func(){
 There may be more than one function and they are calling one another in a circular manner
 
 ```cpp
-// Declaration (to avoid not-found error)
+// Functions declarations (to avoid not-found error)
 void F1(int n);
 void F2(int n);
 
-void F1(){
-    if(n > 0){
+void F1() {
+    if (n > 0) {
         cout << n << endl;
         F2(n - 1);
     }
 }
 
-void F2(){
-    if(n > 0){
+void F2() {
+    if (n > 0) {
         cout << n << endl;
         F1(n / 2);
     }
@@ -103,10 +103,10 @@ void F2(){
 The recursive call is nested inside another call
 
 ```cpp
-void func(){
-    if(n > 0){
+void func() {
+    if (n > 0) {
         cout << n << endl;
-        func( func(n - 1) );    // Nested Recursive call
+        func(func(n - 1));  // Nested Recursive call
     }
 }
 ```

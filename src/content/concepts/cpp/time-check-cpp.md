@@ -14,20 +14,18 @@ This is a simple approach, but it has limitations:
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    clock_t start = clock();  // Start the clock
+int main() {
+    clock_t start = clock(); // Start the clock
 
     // Your code block to be benchmarked
-    for (int i = 0; i < 1e9; ++i)
-    {
+    for (int i = 0; i < 1e9; ++i) {
         // Do some work here
     }
 
-    clock_t end = clock();  // Stop the clock
-    double elapsed_seconds = double(end - start) / CLOCKS_PER_SEC;
+    clock_t end = clock(); // Stop the clock
+    double seconds_elapsed = double(end - start) / CLOCKS_PER_SEC;
 
-    cout << "Time taken: " << elapsed_seconds << " seconds" << endl;
+    cout << "Time taken: " << seconds_elapsed << " sec" << endl;
 
     return 0;
 }
@@ -53,21 +51,19 @@ The `<chrono>` library provides a more accurate and versatile way to measure tim
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    auto start = chrono::steady_clock::now();  // Start time
+int main() {
+    auto start = chrono::steady_clock::now(); // Start time
 
     // Your code block to be benchmarked
-    for (int i = 0; i < 1e9; ++i)
-    {
+    for (int i = 0; i < 1e9; ++i) {
         // Do some work here
     }
 
-    auto end = chrono::steady_clock::now();  // End time
+    auto end = chrono::steady_clock::now(); // End time
 
-    auto elapsed_seconds = chrono::duration_cast<chrono::duration<double>>(end - start).count();
+    auto seconds_elapsed = chrono::duration_cast<chrono::duration<double>>(end - start).count();
 
-    cout << "Time taken: " << elapsed_seconds << " seconds" << endl;
+    cout << "Time taken: " << seconds_elapsed << " sec" << endl;
 
     return 0;
 }

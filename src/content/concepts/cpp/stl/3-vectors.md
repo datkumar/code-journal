@@ -47,22 +47,21 @@ Present inside the `<vector>` header, vectors are dynamic arrays with the abilit
 - Generally, `emplace_back()` is slightly faster than `push_back()` as it **constructs the element in-place** while `push_back()` creates the element and then **copies** it. So, prefer `emplace_back()` for complex objects or fast insertion.
 - You can also pass the appropriate list of arguments to construct the vector element during `emplace_back()`, but for `push_back()`, you need to create the object first.
 
-  ```cpp
-  vector<pair<char, int>> v1;
+```cpp
+vector<pair<char, int>> v1;
 
-  v1.emplace_back('x', 12);
-  v1.push_back({'y', 15});
-  v1.push_back(make_pair('z', 17));
+v1.emplace_back('x', 12);
+v1.push_back({'y', 15});
+v1.push_back(make_pair('z', 17));
 
-  for (auto &p : v1)
-  {
-      cout << p.first << ", " << p.second << endl;
-  }
+for (auto &p : v1) {
+    cout << p.first << ", " << p.second << endl;
+}
 
-  // x, 12
-  // y, 15
-  // z, 17
-  ```
+// x, 12
+// y, 15
+// z, 17
+```
 
 ## Ways to initialize a vector
 
@@ -146,8 +145,7 @@ vector<int> v1{105, 48, 23, 6, 94, 52};
 
 // Range-based for loop
 cout << "{ ";
-for (auto &x : v1)
-{
+for (auto &x : v1) {
     cout << x << ", ";
 }
 cout << "}" << endl;
@@ -155,8 +153,7 @@ cout << "}" << endl;
 
 // for loop with iterators
 cout << "{ ";
-for (auto itr = v1.begin(); itr != v1.end(); itr++)
-{
+for (auto itr = v1.begin(); itr != v1.end(); itr++) {
     cout << *(itr) << ", ";
 }
 cout << "}" << endl;
@@ -164,8 +161,7 @@ cout << "}" << endl;
 
 // Reverse traversal: for loop with reverse iterators
 cout << "{ ";
-for (auto itr = v1.rbegin(); itr != v1.rend(); itr++)
-{
+for (auto itr = v1.rbegin(); itr != v1.rend(); itr++) {
     cout << *(itr) << ", ";
 }
 cout << "}" << endl;
@@ -217,36 +213,32 @@ cout << "}" << endl;
 ## Vector of custom data-type
 
 ```cpp
-struct Student
-{
+struct Student {
     int id;
     string name;
     Student(int _id, string _name) : id(_id), name(_name) {}
 };
 
-bool compareIds(Student &s1, Student &s2)
-{
+bool compareIds(Student &s1, Student &s2) {
     // Assuming unique ids
     return (s1.id < s2.id);
 }
 
-void showStudents(vector<Student> &students)
-{
-    for (auto &s : students)
-    {
+void showStudents(vector<Student> &students) {
+    for (auto &s : students) {
         cout << s.id << "\t" << s.name << endl;
     }
 }
 
-int main()
-{
+int main() {
+
     vector<Student> v1{
         // List-initialization
         Student{101, "Ramesh"},
         Student{103, "Shyam"},
         // Constructing Object
         Student(102, "Pankaj"),
-        Student(104, "Sai")
+        Student(104, "Sai"),
     };
 
     showStudents(v1);

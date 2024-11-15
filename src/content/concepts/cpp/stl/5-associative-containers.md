@@ -33,16 +33,16 @@ The `pair` container is used to **club two items together**
 - STL provides function `make_pair(item1, item2)` to construct a pair. Helpful for custom data-types
 
   ```cpp
-  struct Point{
+  struct Point {
       int x, y;
       Point(int n1, int n2) : x(n1), y(n2) {}
   };
 
-  int main(){
-      auto myPair = make_pair( Point(2,3), 'z');
+  int main() {
+      auto myPair = make_pair(Point(2, 3), 'z');
 
       auto &[myPoint, alphabet] = myPair; // Structured binding
-      cout<< myPoint.x <<" "<< myPoint.y <<" "<< alphabet <<endl;
+      cout << myPoint.x << " " << myPoint.y << " " << alphabet << endl;
       // 2 3 z
 
       return 0;
@@ -111,36 +111,34 @@ Also refer these posts for writing better hash functions:
 <summary><code>unordered_set</code> demo</summary>
 
 ```cpp title="unordered_set_demo"
-void printHashSet(unordered_set<int> &us)
-{
-    for(auto &key: us){
-        cout<< key << " ";
+void printHashSet(unordered_set<int> &us) {
+    for (auto &key : us) {
+        cout << key << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
 
 // Lookup using find()
-void lookupViaFind(unordered_set<int> &us, int key){
-    if(us.find(key) != us.end()){
+void lookupViaFind(unordered_set<int> &us, int key) {
+    if (us.find(key) != us.end()) {
         cout << key << " found in set" << endl;
-    }else{
+    } else {
         cout << key << " NOT found in set" << endl;
     }
 }
 
 // Lookup using count()
-void lookupViaCount(unordered_set<int> &us, int key){
-    if(us.count(key)){
+void lookupViaCount(unordered_set<int> &us, int key) {
+    if (us.count(key)) {
         cout << key << " found in set" << endl;
-    }else{
+    } else {
         cout << key << " NOT found in set" << endl;
     }
 }
 
-int main()
-{
+int main() {
     // declare, initialize
-    unordered_set<int> us1{10,20,30};
+    unordered_set<int> us1{10, 20, 30};
     printHashSet(us1); // 30 20 10
 
     // Lookup
@@ -166,13 +164,13 @@ int main()
     us1.merge(us2);
     printHashSet(us1); // 99 98 10 20 17 4 100 42 55 3 64 25 30 1 2
 
-    unordered_set<int> us3{1,2,1,0,2}; // handles duplicates
-    printHashSet(us3); // 0 2 1
+    unordered_set<int> us3{1, 2, 1, 0, 2};  // handles duplicates
+    printHashSet(us3);                      // 0 2 1
 
-    unordered_set<int> us4{1,2,3,4};
+    unordered_set<int> us4{1, 2, 3, 4};
     us4.erase(2);
-    us4.erase(70); // no change
-    printHashSet(us4); // 4 3 1
+    us4.erase(70);      // no change
+    printHashSet(us4);  // 4 3 1
 
     return 0;
 }
@@ -181,18 +179,15 @@ int main()
 </details>
 
 ```cpp title="set_demo"
-void printSet(set<int> &ss)
-{
+void printSet(set<int> &ss) {
     cout << "[ ";
-    for (auto &key : ss)
-    {
+    for (auto &key : ss) {
         cout << key << ", ";
     }
     cout << "]" << endl;
 }
 
-int main()
-{
+int main() {
     // declare, initialize
     set<int> s1{10, 20, 30};
     printSet(s1);
@@ -205,15 +200,13 @@ int main()
     const int TARGET = 20;
 
     // Lookup via find()
-    if (s1.find(TARGET) != s1.end())
-    {
+    if (s1.find(TARGET) != s1.end()) {
         cout << "Key " << TARGET << " found" << endl;
         // Key 20 found
     }
 
     // Lookup via count()
-    if (s1.count(TARGET))
-    {
+    if (s1.count(TARGET)) {
         cout << "Key " << TARGET << " found" << endl;
         // Key 20 found
     }
@@ -311,12 +304,11 @@ We can pass our custom hash function as: `unordered_map<keyType, valueType, hash
     <summary> Other ways of traversing maps</summary>
 
 ```cpp
-unordered_map<int, char> ump{ {3,'r'}, {1,'p'}, {4,'w'} };
+unordered_map<int, char> ump{{3, 'r'}, {1, 'p'}, {4, 'w'}};
 
 cout << "[ ";
 // Range-based loop WITHOUT structured binding
-for (auto &p : ump)
-{
+for (auto &p : ump) {
     cout << "{" << p.first << ", " << p.second << "}, ";
 }
 cout << "]" << endl;
@@ -324,8 +316,7 @@ cout << "]" << endl;
 
 cout << "[ ";
 // Normal for loop with iterators
-for (auto itr = ump.begin(); itr != ump.end(); itr++)
-{
+for (auto itr = ump.begin(); itr != ump.end(); itr++) {
     cout << "{" << itr->first << ", " << itr->second << "}, ";
     // Below line also does the same thing
     // cout << "{" << (*itr).first << ", " << (*itr).second << "}, ";
@@ -340,8 +331,7 @@ cout << "]" << endl;
 map<int, char> mp{{3, 'r'}, {1, 'p'}, {4, 'w'}};
 
 cout << "[ ";
-for (auto itr = mp.rbegin(); itr != mp.rend(); itr++)
-{
+for (auto itr = mp.rbegin(); itr != mp.rend(); itr++) {
     cout << "{" << itr->first << ", " << itr->second << "}, ";
 }
 cout << "]" << endl;
@@ -355,23 +345,17 @@ cout << "]" << endl;
     <summary><code>unordered_map</code> demo</summary>
 
 ```cpp title="unordered_map_demo"
-void printHashMap(unordered_map<int, string> &ump)
-{
+void printHashMap(unordered_map<int, string> &ump) {
     cout << "[ ";
-    for (auto &[key, val] : ump)
-    {
+    for (auto &[key, val] : ump) {
         cout << "{" << key << ", " << val << "}, ";
     }
     cout << "]" << endl;
 }
 
-int main()
-{
+int main() {
     unordered_map<int, string> ump{
-        {5, "aaa"},
-        {1, "bbb"},
-        {9, "cc"},
-        {5, "dddd"}, // Duplicate key, so NOT inserted
+        {5, "aaa"}, {1, "bbb"}, {9, "cc"}, {5, "dddd"}, // Duplicate key, so NOT inserted
         {4, "eeee"},
     };
     printHashMap(ump);
@@ -381,8 +365,7 @@ int main()
 
     // Lookup via find()
     auto keyPtr = ump.find(TARGET);
-    if (keyPtr != ump.end())
-    {
+    if (keyPtr != ump.end()) {
         cout << "Key " << TARGET << " found" << endl;
         // Key 9 found
 
@@ -395,8 +378,7 @@ int main()
     }
 
     // Lookup via count()
-    if (ump.count(TARGET))
-    {
+    if (ump.count(TARGET)) {
         cout << "Key " << TARGET << " found" << endl;
         // Key 9 found
     }
@@ -425,8 +407,7 @@ int main()
     ump.insert(make_pair(20, "xyz"));
     ump.insert({10, "pqr"});
     ump.insert({
-        {30, "abc"},
-        {20, "def"} // key already present, so not inserted
+        {30, "abc"}, {20, "def"} // key already present, so not inserted
     });
     ump.insert(v1.begin(), v1.end());
     printHashMap(ump);
@@ -440,9 +421,7 @@ int main()
     // [ {101, oho}, {10, pqr}, {20, xyz}, {30, abc}, {4, eeee}, {9, cc}, {1, bbb}, {5, aaa}, ]
 
     unordered_map<int, string> ump2{
-        {-1, "AAA"},
-        {-2, "BBB"},
-        {1, "CCC"}, // key already present, so not merged
+        {-1, "AAA"}, {-2, "BBB"}, {1, "CCC"}, // key already present, so not merged
     };
     ump.merge(ump2);
     printHashMap(ump);
@@ -455,22 +434,17 @@ int main()
 </details>
 
 ```cpp title="maps_demo"
-void printMap(map<int, string> &mp)
-{
+void printMap(map<int, string> &mp) {
     cout << "[ ";
-    for (auto &[key, val] : mp)
-    {
+    for (auto &[key, val] : mp) {
         cout << "{" << key << ", " << val << "}, ";
     }
     cout << "]" << endl;
 }
 
-int main()
-{
+int main() {
     map<int, string> mp{
-        {5, "aaa"},
-        {1, "bbb"},
-        {9, "cc"},
+        {5, "aaa"}, {1, "bbb"}, {9, "cc"},
         {5, "dddd"}, // Duplicate key, so NOT inserted
         {4, "eeee"},
     };
@@ -481,8 +455,7 @@ int main()
 
     // Lookup via find()
     auto keyPtr = mp.find(TARGET);
-    if (keyPtr != mp.end())
-    {
+    if (keyPtr != mp.end()) {
         cout << "Key " << TARGET << " found" << endl;
         // Key 9 found
 
@@ -495,8 +468,7 @@ int main()
     }
 
     // Lookup via count()
-    if (mp.count(TARGET))
-    {
+    if (mp.count(TARGET)) {
         cout << "Key " << TARGET << " found" << endl;
         // Key 9 found
     }
@@ -525,8 +497,7 @@ int main()
     mp.insert(make_pair(10, "xyz"));
     mp.insert({20, "pqr"});
     mp.insert({
-        {30, "abc"},
-        {20, "def"} // key already present, so not inserted
+        {30, "abc"}, {20, "def"} // key already present, so not inserted
     });
     mp.insert(v1.begin(), v1.end());
     printMap(mp);
@@ -572,13 +543,13 @@ int main()
 Used for clubbing multiple items of different types together
 
 ```cpp title="tuple_demo"
-tuple <char, int, double> data('g', 5, 3.14 );
+tuple<char, int, double> data('g', 5, 3.14);
 
-cout<< get<0>(data) << ", " << get<1>(data) << ", " << get<2>(data) <<endl;
+cout << get<0>(data) << ", " << get<1>(data) << ", " << get<2>(data) << endl;
 // g, 5, 3.14
 
 auto &[a, b, c] = data;
-cout<< a << ", " << b << ", " << c <<endl;
+cout << a << ", " << b << ", " << c << endl;
 // g, 5, 3.14
 ```
 

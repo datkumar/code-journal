@@ -9,15 +9,13 @@ Binary search is an algorithm is used to find a key in a **sorted search space**
 
 ```txt
 Till working array exists:
-
-    Pick the middle element of working array
-
-    If key equal to middle element: return answer
-
-    If key smaller: Search in LEFT half of working array (before middle element)
-
-    If key larger: Search in RIGHT half of working array (after middle element)
-
+    Pick the middle element of working array.
+    If key equal to middle element:
+        return answer.
+    If key smaller:
+        Search in LEFT half of working array (before middle element).
+    If key larger:
+        Search in RIGHT half of working array (after middle element).
 ```
 
 While **calculating midpoint** of working array:
@@ -27,23 +25,21 @@ Technically, `mid = (low + high) / 2` . But value of `low + high` might cause in
 ## Iterative Binary Search
 
 ```cpp
-int binarySearch(int const arr[], int low, int high, const int &key)
-{
-    while (low <= high) // Check working array size is 1 or more
-    {
+int binarySearch(int const arr[], int low, int high, const int &key) {
+    // Check working array size is 1 or more
+    while (low <= high) {
         // Calculate midpoint of working array
         int mid = low + (high - low) / 2;
 
-        if (key == arr[mid]) // KEY FOUND:
-            return mid;      // Return index position
+        if (key == arr[mid])  // KEY FOUND:
+            return mid;       // Return index position
 
-        if (key < arr[mid]) // Key is smaller:
-            high = mid - 1; //  Look back in smaller part
-        else                // Key is bigger:
-            low = mid + 1;  //  Look ahead in larger part
+        if (key < arr[mid])  // Key is smaller:
+            high = mid - 1;  //  Look back in smaller part
+        else                 // Key is bigger:
+            low = mid + 1;   //  Look ahead in larger part
     }
-
-    return -1; // KEY NOT FOUND
+    return -1;  // KEY NOT FOUND
 }
 ```
 
@@ -52,22 +48,22 @@ Both functions called like: `int result = binarySearch(nums, 0, n-1, 57)`
 ## Recursive Binary Search
 
 ```cpp
-int binarySearch(int arr[], const int low, const int high, const int &key)
-{
+int binarySearch(
+    int arr[], int n,
+    const int low, const int high,
+    const int &key
+) {
     // Terminating base-case: Working array size < 1
-    if (low > high)
-        return -1; // NOT FOUND
+    if (low > high) return -1;  // NOT FOUND
 
     // Calculate midpoint of working array
     int mid = low + (high - low) / 2;
 
     // KEY FOUND: Return index position
-    if (key == arr[mid])
-        return mid;
+    if (key == arr[mid]) return mid;
 
     // Key is smaller. Need to search in left-side
-    if (key < arr[mid])
-        return binarySearch(arr, n, key, low, mid - 1);
+    if (key < arr[mid]) return binarySearch(arr, n, key, low, mid - 1);
 
     // Key is larger. Need to search in right-side
     return binarySearch(arr, n, key, mid + 1, high);

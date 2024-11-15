@@ -18,7 +18,7 @@ Input: `strs = ["eat","tea","tan","ate","nat","bat"]`
 
 An acceptable output could be like:
 
-```cpp
+```py
 [
     ["bat"],
     ["nat","tan"],
@@ -50,24 +50,21 @@ Total time \\( = O(n) + O(n \cdot m \cdot logm) + O(1) + O(n) = O(n \cdot m \cdo
 | Space  | \\( O(n) \\) ... Frequency map  |
 
 ```cpp
-vector<vector<string>> groupAnagrams(vector<string> &strs)
-{
+vector<vector<string>> groupAnagrams (vector<string> &strs) {
     // { sorted_anagram : entries_which_match_that }
     unordered_map<string, vector<string>> ump;
-    for (string &word : strs)
-    {
+    for (string &word : strs) {
         // Sort characters of current word to get sortedAnagram
         string sortedAnagram = word;
         sort(sortedAnagram.begin(), sortedAnagram.end());
-
         // Add word to sortedAnagram key's entries
         ump[sortedAnagram].push_back(word);
     }
-
     // Construct answer as array of all values of map
     vector<vector<string>> ans;
-    for (auto &[anagram, words] : ump)
+    for (auto &[anagram, words] : ump) {
         ans.push_back(words);
+    }
     return ans;
 }
 ```
@@ -88,35 +85,28 @@ The step of sorting letters of word in first method has been replaced with calcu
 ```cpp
 const int BASE = 997;
 const long long MOD = 101103107109113LL;
-
 // Rolling-hash function with predefined base and modulo
-long long getHash(string &s)
-{
+long long getHash (string &s) {
     long long H = 1;
-    for (char c : s)
-    {
+    for (char c : s) {
         H *= (BASE + c);
-        if (H >= MOD)
-            H %= MOD;
+        if (H >= MOD) H %= MOD;
     }
     return H;
 }
 
-vector<vector<string>> groupAnagrams(vector<string> &strs)
-{
+vector<vector<string>> groupAnagrams (vector<string> &strs) {
     unordered_map<long long, vector<string>> ump;
-    for (string &word : strs)
-    {
+    for (string &word : strs) {
         // Calculate hash value of word
         long long hash = getHash(word);
-
         // Use that hash value as key to index anagrams of that word
         ump[hash].push_back(word);
     }
-
     vector<vector<string>> ans;
-    for (auto &[hash, words] : ump)
+    for (auto &[hash, words] : ump) {
         ans.push_back(words);
+    }
     return ans;
 }
 ```

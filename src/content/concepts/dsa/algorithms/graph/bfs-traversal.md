@@ -10,16 +10,12 @@ Breadth-First Search (BFS) traversal of Graph is also called as **Level-Order** 
 Below is the approach for BFS traversal of a **connected component** with one node selected as the **source node**:
 
 ```txt title="Pseudocode"
-Add the source node in a queue and mark it as visited
-
+Add the source node in a queue and mark it as visited.
 Continue till no elements remain in queue:
-
-    Pick one element apart from the front of queue
-
+    Pick one element apart from the front of queue.
     Explore all neighbors of this node:
-
         If any neighbor wasn't visited before:
-            Append it to the end of queue and mark it as visited
+            Append it to the end of queue and mark it as visited.
 ```
 
 To traverse a **disconnected** graph, run this component exploration from **every unvisited node as the source**
@@ -33,9 +29,9 @@ Refer [Adjacency List Graph representation](/code-journal/dsa/dsa/graph-represen
 const vector<int> bfs(
     vector<vector<int>> const &Adj,
     vector<char> &visited,
-    const int src)
-{
-    queue<int> Q; // To store nodes that we have to explore next
+    const int src
+) {
+    queue<int> Q;                   // To store nodes that we have to explore next
     vector<int> componentTraversal; // Stores traversal of this component
 
     // Add the source node into the empty queue and mark it as visited
@@ -43,31 +39,26 @@ const vector<int> bfs(
     visited[src] = true;
 
     // Keep going till no elements remain to be explored
-    while (!Q.empty())
-    {
+    while (!Q.empty()) {
         // Pick apart the front element of queue and add it to traversed (exploration done) nodes
         const int currentNode = Q.front();
         Q.pop();
         componentTraversal.push_back(currentNode);
 
         // Explore all neighbours of this picked node
-        for (auto &neighbour : Adj[currentNode])
-        {
-            if (!visited[neighbour])
-            {
+        for (auto &neighbour : Adj[currentNode]) {
+            if (!visited[neighbour]) {
                 // Append the univisited neighbour into queue and mark it visited
                 Q.push(neighbour);
                 visited[neighbour] = true;
             }
         }
     }
-
-    // This component has been explored. Return our traversal taken
+    // This component has been traversed. Return our traversal taken
     return componentTraversal;
 }
 
-const vector<vector<int>> bfsOfGraph(vector<vector<int>> const &Adj)
-{
+const vector<vector<int>> bfsOfGraph(vector<vector<int>> const &Adj) {
     int V = Adj.size();
     vector<vector<int>> graphTraversal; // Stores answer
 
@@ -84,7 +75,7 @@ const vector<vector<int>> bfsOfGraph(vector<vector<int>> const &Adj)
             graphTraversal.push_back(componentTraversal);
         }
     }
-
+    // Entire graph has been traversed. Return final answer
     return graphTraversal;
 }
 
@@ -94,10 +85,10 @@ int main() {
     cin >> V >> E;
     vector<vector<int>> Adj(V);
     for (int i = 0; i < E; i++) {
-        int src, dest;
-        cin >> src >> dest;
-        Adj[src].push_back(dest);
-        Adj[dest].push_back(src);
+        int u, v;
+        cin >> u >> v;
+        Adj[u].push_back(v);
+        Adj[v].push_back(u);
     }
 
     // Perform BFS traversal of graph:
@@ -206,15 +197,14 @@ Below code was used to generate the verbose dry-run output:
 const vector<int> bfs(
     vector<vector<int>> const &Adj,
     vector<char> &visited,
-    const int src)
-{
+    const int src
+) {
     vector<int> componentTraversal;
     queue<int> Q;
     Q.push(src);
     visited[src] = true;
     cout << "\tRoot " << src << " marked visited and appended as first element in queue." << endl;
-    while (!Q.empty())
-    {
+    while (!Q.empty()) {
         const int currentNode = Q.front();
         Q.pop();
         componentTraversal.push_back(currentNode);
@@ -230,8 +220,7 @@ const vector<int> bfs(
     return componentTraversal;
 }
 
-const vector<vector<int>> bfsOfGraph(vector<vector<int>> const &Adj)
-{
+const vector<vector<int>> bfsOfGraph(vector<vector<int>> const &Adj) {
     int V = Adj.size();
     vector<vector<int>> graphTraversal;
     vector<char> visited(V, false);

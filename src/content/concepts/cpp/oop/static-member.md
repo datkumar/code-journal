@@ -10,16 +10,13 @@ Consider below example for computing the **Nth Padovan number** in [this GFG que
 > Static member variables must be defined outside of the class definition to allocate memory for them. Notice the `vector<int> Solution::ans;` line
 
 ```cpp
-class Solution
-{
+class Solution {
     static vector<int> ans;
 
-public:
-    static void init()
-    {
+  public:
+    static void init () {
         // Pre-compute ans[] ONLY ONCE and use it everywhere
-        if (ans.empty())
-        {
+        if (ans.empty()) {
             ans.resize(1e6 + 1, 0);
             ans[2] = ans[1] = ans[0] = 1;
             for (int i = 3; i <= 1e6; i++) {
@@ -28,11 +25,11 @@ public:
         }
     }
 
-    Solution() {
+    Solution () {
         init();
     }
 
-    int padovanSequence(int n) {
+    int padovanSequence (int n) {
         return ans[n];
     }
 };
@@ -40,12 +37,10 @@ public:
 // Allocating memory for the static member
 vector<int> Solution::ans;
 
-int main()
-{
+int main () {
     int t;
     cin >> t;
-    while (t--)
-    {
+    while (t--) {
         int n;
         cin >> n;
         Solution ob;

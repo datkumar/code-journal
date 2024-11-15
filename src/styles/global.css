@@ -96,7 +96,7 @@ pre code {
   padding: 0;
 }
 
-/* Code blocks are a div with below class */
+/* Code blocks are a div with class name as below: */
 .expressive-code {
   margin-top: 0.75rem;
   margin-bottom: 1.5rem;
@@ -104,16 +104,18 @@ pre code {
   margin-right: auto;
 }
 
+/* Links */
 a,
 a:visited {
   color: var(--linkColor);
   text-decoration: none;
   /* Link hover animation */
-  transition: 0.3s ease-in-out;
+  transition: 0.3s ease;
 }
 
 a:hover {
-  font-size: 115%;
+  /* font-size: 112%; */
+  transform: scale(1.15);
   font-weight: bold;
   text-decoration: underline;
 }

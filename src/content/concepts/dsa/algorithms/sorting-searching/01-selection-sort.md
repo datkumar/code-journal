@@ -13,11 +13,11 @@ tags: [dsa, algorithm, sorting]
 ```txt
 For each element in array:
 
-    Locate smallest element among elements from that position to end
+    Locate smallest element among elements from that position to end.
 
-    Place that minimum element at start (correct sorted position)
+    Place that minimum element at start i.e. it's correct sorted position.
 
-    Update working array as one less element from left
+    Update working array as one less element from left.
 
 ```
 
@@ -27,22 +27,18 @@ For each element in array:
 - At last index's pass, since working array is only last one element (which is also minimum itself), no need to process that pass
 
 ```cpp title="C++"
-void selectionSort(int arr[], int n)
-{
+void selectionSort(int arr[], int n) {
     // Ignore last element's pass, so (n-1) passes
-    for (int i = 0; i < (n - 1); i++)
-    {
+    for (int i = 0; i < (n - 1); i++) {
         // Working subarray is arr[i] to arr[n-1]
 
         // Tracks index of minimum element in working subarray
         int nextMinElemIdx = i;
 
         // Traverse the working subarray
-        for (int j = i + 1; j < n; j++)
-        {
+        for (int j = i + 1; j < n; j++) {
             // Update position whenever smaller element found
-            if (arr[j] < arr[i])
-            {
+            if (arr[j] < arr[i]) {
                 nextMinElemIdx = j;
             }
         }

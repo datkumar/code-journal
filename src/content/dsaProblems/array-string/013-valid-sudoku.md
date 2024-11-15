@@ -41,8 +41,7 @@ Output: true
 - To track the elements in squares, maintain a `3x3` grid where each cell contains the digits in a square. The square grid cell that an element at `[x][y]` index position in input board will go to will be given by calculating `[x/3][y/3]`
 
 ```cpp
-bool isValidSudoku(vector<vector<char>> &board)
-{
+bool isValidSudoku (vector<vector<char>> &board) {
     // Type alias for set of uniqie digits
     using uniqueDigits = unordered_set<int>;
 
@@ -52,13 +51,10 @@ bool isValidSudoku(vector<vector<char>> &board)
     vector<vector<uniqueDigits>> squareVals(3, vector<uniqueDigits>(3));
 
     // Traverse each cell of board
-    for (int r = 0; r < 9; r++)
-    {
-        for (int c = 0; c < 9; c++)
-        {
+    for (int r = 0; r < 9; r++) {
+        for (int c = 0; c < 9; c++) {
             // Ignore cell if it's not a number
-            if (board[r][c] == '.')
-                continue;
+            if (board[r][c] == '.') continue;
 
             // '1'-'9' charcter digit converted to 0-8 index
             int curr = board[r][c] - '0' - 1;
@@ -68,11 +64,9 @@ bool isValidSudoku(vector<vector<char>> &board)
             // If current digit already present in either of it's
             // row or column or square, the sudoku is INVALID
             if (
-                rowVals[r].count(curr)
-                || colVals[c].count(curr)
+                rowVals[r].count(curr) || colVals[c].count(curr)
                 || squareVals[squareX][squareY].count(curr)
-            )
-            {
+            ) {
                 return false;
             }
 

@@ -30,8 +30,7 @@ Code to print **ALL punctuation** characters:
 
 ```cpp
 char c = numeric_limits<char>::min();
-while (true)
-{
+while (true) {
     if (ispunct(c)) {
         cout << c << " ";
     }

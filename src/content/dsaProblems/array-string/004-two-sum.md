@@ -40,8 +40,8 @@ Time \\( = (N-1) + (N-2) + ... + 1 = O(N^2) \\)
 ```txt
 For each element traversed in array:
     If complementary value has been added before into map:
-        Return pair {complement, current} as answer
-    Add current element to map
+        Return pair {complement, current} as answer.
+    Add current element to map.
 ```
 
 | Metric | Complexity                  |
@@ -53,22 +53,20 @@ For each element traversed in array:
 <summary><strong>C++ code</strong></summary>
 
 ```cpp
-vector<int> twoSum(vector<int> &nums, int target)
-{
+vector<int> twoSum(vector<int> &nums, int target) {
     // {number : index} map
     unordered_map<int, int> ump;
-    for (int i = 0; i < nums.size(); i++)
-    {
+    for (int i = 0; i < nums.size(); i++) {
         int curr = nums[i];
         int complement = target - curr;
         // Answer pair FOUND
         if (ump.find(complement) != ump.end()) {
-            return {ump[complement], i };
+            return {ump[complement], i};
         }
         // Insert current element into map
         ump.insert({curr, i});
     }
-    return {}; // No answer found
+    return {};  // No answer found
 }
 ```
 
@@ -105,8 +103,7 @@ The cases we need to handle are:
 <summary><strong>C++ code</strong></summary>
 
 ```cpp
-int getPairsCount(int arr[], int n, int target)
-{
+int getPairsCount (int arr[], int n, int target) {
     // {number : count} map
     unordered_map<int, int> freq;
     // Construct frequency counts over all values present in array
@@ -116,19 +113,16 @@ int getPairsCount(int arr[], int n, int target)
     // Total count of valid pairs
     int ans = 0;
     // Keep traversing and emptying the map
-    while (!freq.empty())
-    {
+    while (!freq.empty()) {
         // Take starting entrry of present map
         int curr = freq.begin()->first;
-
+        int complement = target - curr;
         int f1 = 0, f2 = 0;
         int ways = 0;
 
         // Case 1: Selecting same value (curr) twice in pair
-        if (target == curr * 2)
-        {
-            if (freq[curr] < 2)
-            {
+        if (target == curr * 2) {
+            if (freq[curr] < 2) {
                 freq.erase(curr);
                 continue;
             }
@@ -137,9 +131,7 @@ int getPairsCount(int arr[], int n, int target)
         }
 
         // Case 2: Selecting two different values (curr, complement)
-        int complement = target - curr;
-        else if (freq.find(complement) != freq.end())
-        {
+        else if (freq.find(complement) != freq.end()) {
             f1 = freq[curr], f2 = freq[complement];
             ways = f1 * f2;
         }
@@ -147,7 +139,7 @@ int getPairsCount(int arr[], int n, int target)
         // Update answer and remove entry
         ans += ways;
         freq.erase(curr);
-        freq.erase(complement); // removed if exists
+        freq.erase(complement);  // removed if exists
     }
     return ans;
 }
@@ -185,35 +177,32 @@ In worst case, we have to go till last pair. So the time taken:
 
 ```cpp
 // Return index if key found, else -1
-int binarySearch(vector<int> &arr, int key, int low, int high)
-{
+int binarySearch (vector<int> &arr, int key, int low, int high) {
     while (low <= high) {
         int mid = low + (high - low) / 2;
-
-        if (arr[mid] == key) // FOUND
-            return mid;
-
-        if (arr[mid] < key)
+        if (arr[mid] == key) {
+            return mid;  // FOUND
+        }
+        if (arr[mid] < key) {
             low = mid + 1;
-        else
+        } else {
             high = mid - 1;
+        }
     }
     return -1;
 }
-vector<int> twoSum(vector<int> &nums, int target)
-{
+vector<int> twoSum (vector<int> &nums, int target) {
     int n = nums.size();
-    for (int i = 0; i < n - 1; i++)
-    {
+    for (int i = 0; i < n - 1; i++) {
         int curr = nums[i];
         int complement = target - curr;
 
         // Search complement among elements ahead
         int searchResult = binarySearch(nums, complement, i + 1, n - 1);
-        if (searchResult != -1) // FOUND
+        if (searchResult != -1)  // FOUND
             return {i, searchResult};
     }
-    return {-1, -1}; // No pair found
+    return {-1, -1};  // No pair found
 }
 ```
 
@@ -222,18 +211,18 @@ vector<int> twoSum(vector<int> &nums, int target)
 ### 2. Two-Pointer
 
 ```txt
-Maintain two pointers intially at two ends of array
+Maintain two pointers intially at two ends of array.
 
 While they are within bounds:
 
     If the sum elements at the two indices equals target:
-        return pair as solution
+        return pair as solution.
 
     If smaller sum needed:
-        move RIGHT pointer BEHIND by one
+        move RIGHT pointer BEHIND by one.
 
     Else i.e. larger sum needed:
-        move LEFT pointer AHEAD by one
+        move LEFT pointer AHEAD by one.
 
 ```
 
@@ -248,20 +237,19 @@ At each step, one of the two pointers is moving closer to the other. At worst, t
 <summary><strong>C++ code</strong></summary>
 
 ```cpp
-vector<int> twoSum(vector<int> &nums, int target)
-{
+vector<int> twoSum (vector<int> &nums, int target) {
     int n = nums.size();
     int left = 0, right = n - 1;
-    while (left < right)
-    {
+    while (left < right) {
         int currSum = nums[left] + nums[right];
-        if (target == currSum)
+        if (target == currSum) {
             return {left, right};
-
-        if (target < currSum)
+        }
+        if (target < currSum) {
             right--;
-        else
+        } else {
             left++;
+        }
     }
     return {-1, -1};
 }

@@ -24,16 +24,13 @@ The product of any prefix or suffix of `nums` is **guaranteed to fit in a 32-bit
 <summary><strong>C++ code</strong></summary>
 
 ```cpp
-vector<int> productExceptSelf(vector<int> &nums)
-{
+vector<int> productExceptSelf (vector<int> &nums) {
     int n = nums.size();
     // Find the zero element (stop when zero count reaches 2)
     vector<int> zeroValueIndices;
     for (int i = 0; i < n; i++) {
-        if (zeroValueIndices.size() >= 2)
-            break;
-        if (nums[i] == 0)
-            zeroValueIndices.push_back(i);
+        if (zeroValueIndices.size() >= 2) break;
+        if (nums[i] == 0) zeroValueIndices.push_back(i);
     }
     // Case 1: Two or more zero elements present
     if (zeroValueIndices.size() > 1) {
@@ -68,7 +65,7 @@ vector<int> productExceptSelf(vector<int> &nums)
     // The product at each element will be
     // the overall product divided by current element
     for (int i = 0; i < n; i++) {
-        // Using the division operator here
+        // NOTE: We're using division operator here 🙅‍♂️
         ans[i] = productOfAll / nums[i];
     }
     return ans;
@@ -113,8 +110,7 @@ Each element in answer array will be the product of corresponding values in pref
 <summary><strong>C++ code</strong></summary>
 
 ```cpp
-vector<int> productExceptSelf(vector<int> &nums)
-{
+vector<int> productExceptSelf (vector<int> &nums) {
     int n = nums.size();
 
     vector<int> prefix(n, 1);
@@ -135,7 +131,6 @@ vector<int> productExceptSelf(vector<int> &nums)
         ans[i] = prefix[i] * suffix[i];
     }
     return ans;
-
 }
 ```
 
@@ -163,8 +158,7 @@ Traverse input array from right:
 <summary><strong>C++ code</strong></summary>
 
 ```cpp
-vector<int> productExceptSelf(vector<int> &nums)
-{
+vector<int> productExceptSelf (vector<int> &nums) {
     int n = nums.size();
 
     vector<int> ans(n, 1);
@@ -177,7 +171,6 @@ vector<int> productExceptSelf(vector<int> &nums)
     for (int i = n - 2; i >= 0; i--) {
         // Calculate suffix product
         suffix *= nums[i + 1];
-
         // Multiply existing prefix product with calculated suffix product
         ans[i] *= suffix;
     }

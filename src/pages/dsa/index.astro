@@ -32,72 +32,97 @@ const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <style>
+  ul,
+  ol {
+    padding: 0;
+    margin: 0;
+  }
+
   ul {
-    padding-left: 0;
+    list-style: disc;
+  }
+
+  li {
+    padding: 0;
+    margin: 0;
+    padding-bottom: 3px;
+    /* padding-left: 0.5rem; */
+    /* margin-left: 2rem; */
+    margin-left: 0.5rem;
+    list-style-position: inside;
+  }
+
+  li::marker {
+    margin: 0;
+    padding: 0;
+    margin: 0;
+  }
+  ul li::marker {
+    font-size: 20px;
+  }
+  ol li::marker {
   }
 
   .problem-item {
     list-style: none;
-    list-style-position: outside;
-    padding-block: 5px;
   }
 </style>
 
 <BaseLayout tabTitle="DSA">
   <h1>DSA</h1>
 
-  <details>
-    <summary><strong>C++ STL</strong></summary>
-    <ol>
-      {
-        stlEntries.map((entry) => (
-          <li>
-            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
-          </li>
-        ))
-      }
-      <li><a rel="stylesheet" href={`${baseUrl}/cpp`}> Other C++ </a></li>
-    </ol>
-  </details>
+  <hr />
 
-  <details>
-    <summary><strong>Theory</strong></summary>
-    <ol>
-      {
-        dsaConcepts.map((entry) => (
-          <li>
-            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
-          </li>
-        ))
-      }
-    </ol>
-  </details>
+  <h2>C++ prerequisites</h2>
+  <ul>
+    {
+      stlEntries.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+        </li>
+      ))
+    }
+    <li><a rel="stylesheet" href={`${baseUrl}/cpp`}>More C++</a></li>
+  </ul>
 
-  <h2>Algorithms</h2>
-  <details>
-    <summary><strong>Sorting algorithms & Binary Search</strong></summary>
-    <ol>
-      {
-        sortSearchAlgos.map((entry) => (
-          <li>
-            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
-          </li>
-        ))
-      }
-    </ol>
-  </details>
-  <details>
-    <summary><strong>Graph algorithms</strong></summary>
-    <ol>
-      {
-        graphAlgos.map((entry) => (
-          <li>
-            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
-          </li>
-        ))
-      }
-    </ol>
-  </details>
+  <hr />
+
+  <h2>Theory</h2>
+
+  <h3>Concepts</h3>
+  <ul>
+    {
+      dsaConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h3>Sorting and Searching algorithms</h3>
+  <ul>
+    {
+      sortSearchAlgos.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h3>Graph algorithms</h3>
+  <ul>
+    {
+      graphAlgos.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <hr />
 
   <!-- PROBLEMS: -->
 
@@ -110,7 +135,7 @@ const baseUrl = import.meta.env.BASE_URL;
         .map((entry) => {
           return (
             <li class="problem-item">
-              {problemDifficulties[entry.data.level].icon}{" "}
+              {problemDifficulties[entry.data.level].icon}&ensp;
               <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
             </li>
           );
@@ -129,7 +154,7 @@ const baseUrl = import.meta.env.BASE_URL;
         .map((entry) => {
           return (
             <li class="problem-item">
-              {problemDifficulties[entry.data.level].icon}{" "}
+              {problemDifficulties[entry.data.level].icon}&ensp;
               <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
             </li>
           );
@@ -137,7 +162,7 @@ const baseUrl = import.meta.env.BASE_URL;
     }
   </ul>
 
-  <h3>Linked Lists</h3>
+  <h2>Linked Lists</h2>
   <ul>
     {
       dsaProblems
@@ -146,7 +171,7 @@ const baseUrl = import.meta.env.BASE_URL;
         .map((entry) => {
           return (
             <li class="problem-item">
-              {problemDifficulties[entry.data.level].icon}{" "}
+              {problemDifficulties[entry.data.level].icon}&ensp;
               <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
             </li>
           );

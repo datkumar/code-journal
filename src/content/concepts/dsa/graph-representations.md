@@ -86,10 +86,8 @@ In C++, the number of columns in static 2D array should be known at compile-time
 const int V_MAX = 100;
 
 // Print (V x V) cells of  (V x V_MAX) Adjacency Matrix
-void printMatrix(int Adj[][V_MAX], const int V)
-{
-    for (int row = 0; row < V; row++)
-    {
+void printMatrix(int Adj[][V_MAX], const int V) {
+    for (int row = 0; row < V; row++) {
         for (int col = 0; col < V; col++) {
             cout << Adj[row][col] << " ";
         }
@@ -97,14 +95,13 @@ void printMatrix(int Adj[][V_MAX], const int V)
     }
 }
 
-int main()
-{
+int main() {
     // Input number of nodes and edges
     int V, E;
     cin >> V >> E;
 
-    int Adj[V][V_MAX];              // Create (V x V_MAX) Adjacency Matrix
-    memset(Adj, 0, sizeof(Adj));    // Initialize all cells as '0'
+    int Adj[V][V_MAX];            // Create (V x V_MAX) Adjacency Matrix
+    memset(Adj, 0, sizeof(Adj));  // Initialize all cells as '0'
 
     cout << "\nAfter Initialization:" << endl;
     printMatrix(Adj, V);
@@ -142,10 +139,8 @@ int main()
 
 ```cpp
 // Print cells of (V x V) Adjacency Matrix
-void printMatrix(int** Adj, const int V)
-{
-    for (int row = 0; row < V; row++)
-    {
+void printMatrix(int** Adj, const int V) {
+    for (int row = 0; row < V; row++) {
         for (int col = 0; col < V; col++) {
             cout << Adj[row][col] << " ";
         }
@@ -154,16 +149,14 @@ void printMatrix(int** Adj, const int V)
 }
 
 // Cleanup allocated memory of matrix
-void deallocateMatrix(int** Adj, const int V)
-{
+void deallocateMatrix(int** Adj, const int V) {
     for (int row = 0; row < V; row++) {
-        delete[] Adj[row];  // Deallocate the pointed row
-        Adj[row] = nullptr; // Set pointer as not pointing to anything
+        delete[] Adj[row];   // Deallocate the pointed row
+        Adj[row] = nullptr;  // Set pointer as not pointing to anything
     }
 }
 
-int main()
-{
+int main() {
     // Input number of nodes and edges
     int V, E;
     cin >> V >> E;
@@ -207,11 +200,9 @@ int main()
 **Space required**: \\( O( V^2 ) \\)
 
 ```cpp
-void printMatrix(vector<vector<int>> const &Adj)
-{
+void printMatrix(vector<vector<int>> const &Adj) {
     int V = Adj.size();
-    for (int row = 0; row < V; row++)
-    {
+    for (int row = 0; row < V; row++) {
         for (int col = 0; col < V; col++) {
             cout << Adj[row][col] << " ";
         }
@@ -219,14 +210,13 @@ void printMatrix(vector<vector<int>> const &Adj)
     }
 }
 
-int main()
-{
+int main() {
     // Input number of nodes and edges
     int V, E;
     cin >> V >> E;
 
     // Create (V x V) Adjacency Matrix and initialize all cells to '0'
-    vector< vector<int> > Adj( V, vector<int>(V, 0) );
+    vector<vector<int>> Adj(V, vector<int>(V, 0));
 
     cout << "\nAfter Initialization:" << endl;
     printMatrix(Adj);
@@ -266,12 +256,10 @@ int main()
 ## 2. Adjacency List (best)
 
 ```cpp
-void printMatrix(vector<vector<int>> const &Adj)
-{
+void printMatrix(vector<vector<int>> const &Adj) {
     int V = Adj.size();
     // Traverse all neighbors of each node
-    for (int node = 0; node < V; node++)
-    {
+    for (int node = 0; node < V; node++) {
         cout << node << " -> ";
         for (int neighbor : Adj[node]) {
             cout << neighbor << ", ";
@@ -279,8 +267,8 @@ void printMatrix(vector<vector<int>> const &Adj)
         cout << endl;
     }
 }
-int main()
-{
+
+int main() {
     // Input number of nodes and edges
     int V, E;
     cin >> V >> E;
@@ -292,8 +280,7 @@ int main()
     printMatrix(Adj);
 
     // Building graph edges from input
-    for (int i = 0; i < E; i++)
-    {
+    for (int i = 0; i < E; i++) {
         // Input the two ends of edge
         int src, dest;
         cin >> src >> dest;
@@ -374,8 +361,8 @@ Filled Graph:
   vector< unordered_set<int> > Adj(V);
 
   // Checking if edge exists from node 'a' to 'b'
-  if(Adj[a].count(b)) {
-      cout<<"Edge exist";
+  if (Adj[a].count(b)) {
+      cout << "Edge exist";
   }
   ```
 
@@ -418,7 +405,7 @@ vector<vector<int>> Adj( V + 1, vector<int>(V + 1, 0) );
 vector< vector<int> > Adj( V + 1 );
 
 // Traversal
-for(int node = 1; node <= V; node++) {
+for (int node = 1; node <= V; node++) {
     // traverse neighbors of 'node'
 }
 ```

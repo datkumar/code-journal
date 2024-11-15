@@ -14,32 +14,29 @@ tags: [dsa, algorithm, sorting]
 ```txt
 While unsorted part is not empty:
 
-    Pick one (left-most) element from unsorted part
+    Pick one (left-most) element from unsorted part.
 
-    In sorted part, shift all elements that are greater than picked element one place ahead
+    In sorted part, shift all elements that are greater than picked element one place ahead.
 
-    Place the picked element in that gap created (after the right-most unmoved element)
+    Place the picked element in that gap created (after the right-most unmoved element).
 
-    Update unsorted and sorted parts
+    Update unsorted and sorted parts.
 
 ```
 
 ## Code
 
 ```cpp title="C++"
-void insertionSort(int arr[], int n)
-{
+void insertionSort(int arr[], int n) {
     // Assume first element arr[0] as sorted part at beginning
     int sortedUptoIdx = 0;
-    while (sortedUptoIdx != n - 1)
-    {
+    while (sortedUptoIdx != n - 1) {
         // Currently, sorted part is arr[0] to arr[i-1]
         // And the newly picked element is arr[i]
         int newEntry = arr[sortedUptoIdx + 1];
         // Start shifting from the end of sorted part
         int j = sortedUptoIdx;
-        while (j >= 0 && arr[j] > newEntry)
-        {
+        while (j >= 0 && arr[j] > newEntry) {
             // Shift one place ahead
             arr[j + 1] = arr[j];
             j--;
@@ -59,8 +56,7 @@ The inner loop (shifting of elements) can also be written as:
 {
     // ....
     int j;
-    for (j = sortedUptoIdx; j >= 0 && arr[j] > newEntry; j--)
-    {
+    for (j = sortedUptoIdx; j >= 0 && arr[j] > newEntry; j--) {
         arr[j + 1] = arr[j];
     }
     // ....
@@ -112,18 +108,15 @@ At each step, we are picking one element from the unsorted part and placing it a
 ```cpp title="C++"
 // Picks one element from unsorted part and places it
 // at correct position within the sorted part
-void pickAndInsert(int arr[], int n, int sortedUptoIdx)
-{
+void pickAndInsert(int arr[], int n, int sortedUptoIdx) {
     // Base case
-    if (sortedUptoIdx == n - 1)
-    {
+    if (sortedUptoIdx == n - 1) {
         return;
     }
 
     int newEntry = arr[sortedUptoIdx + 1];
     int j = sortedUptoIdx;
-    while (j >= 0 && arr[j] > newEntry)
-    {
+    while (j >= 0 && arr[j] > newEntry) {
         arr[j + 1] = arr[j];
         j--;
     }
@@ -133,8 +126,7 @@ void pickAndInsert(int arr[], int n, int sortedUptoIdx)
     pickAndInsert(arr, n, sortedUptoIdx + 1);
 }
 
-void insertionSort(int arr[], int n)
-{
+void insertionSort(int arr[], int n) {
     // Assume sorted part as first element at beginning
     int sortedUptoIdx = 0;
     pickAndInsert(arr, n, sortedUptoIdx);

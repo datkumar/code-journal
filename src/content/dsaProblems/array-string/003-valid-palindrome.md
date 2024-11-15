@@ -14,12 +14,13 @@ Given a string `str`, return `true` if it is a palindrome, or `false` otherwise.
 Maintain 2 pointers (one at start and one at end of string)
 
 While they don't meet:
-    Skip comparison if non-alphanumeric character
+    Skip comparison if non-alphanumeric character.
 
     Compare if the lower-case form of the two characters are same:
-        if not, they are NOT Palindromes
+        if not, return answer as NOT Palindromes.
 
-    Move both pointers closer
+    Move both pointers closer.
+
 ```
 
 | Metric | Complexity                                         |
@@ -28,24 +29,24 @@ While they don't meet:
 | Space  | \\( O(1) \\)                                       |
 
 ```cpp
-bool isPalindrome(string str) {
+bool isPalindrome (string str) {
     int n = str.size();
     int left = 0, right = n - 1;
-    // While the 2 pointers don't meet
-    while (left < right)
-    {
+    // While the two pointers don't meet
+    while (left < right) {
         // Skipping comparison for non-alphanumeric characters
-        if(!isalnum(str[left])){
-            left++; continue;
+        if (!isalnum(str[left])) {
+            left++;
+            continue;
         }
-        if(!isalnum(str[right])){
-            right--; continue;
+        if (!isalnum(str[right])) {
+            right--;
+            continue;
         }
-
         // Lower-case form of the two characters not same
-        if (tolower(str[left]) != tolower(str[right]))
+        if (tolower(str[left]) != tolower(str[right])) {
             return false;
-
+        }
         // Move both pointers closer
         left++, right--;
     }

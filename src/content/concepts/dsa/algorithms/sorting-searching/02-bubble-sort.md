@@ -16,9 +16,9 @@ For each element in array:
     Go comparing two adjacent elements till the end of working array:
 
         If the second element smaller than first:
-            Swap the two
+            Swap the two.
 
-    Update working array as one less element from right
+    Update working array as one less element from right.
 
 ```
 
@@ -28,19 +28,14 @@ For each element in array:
 - At last pass, since working array is only first one minimum element (which is in it's correct position), no need to process that pass
 
 ```cpp title="C++"
-void bubbleSort(int arr[], int n)
-{
+void bubbleSort(int arr[], int n) {
     // n-1 passes
-    for (int i = 0; i < n - 1; i++)
-    {
+    for (int i = 0; i < n - 1; i++) {
         // Working subarray is arr[0] to arr[n-1-i]
         int lastWorkingIdx = n - 1 - i;
-
         // Comparing arr[j] with arr[j+1] and keeping loop index in bounds
-        for (int j = 0; j <= lastWorkingIdx - 1; j++)
-        {
-            if (arr[j] > arr[j + 1])
-            {
+        for (int j = 0; j <= lastWorkingIdx - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
                 swap(arr[j], arr[j + 1]);
             }
         }
@@ -55,24 +50,19 @@ void bubbleSort(int arr[], int n)
 Thus, if the array is completely or nearly sorted, then we will need one or very few passes via this optimization
 
 ```cpp
-void bubbleSort(int arr[], int n)
-{
-    for (int i = 0; i < n - 1; i++)
-    {
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
         // Inside (i+1)th pass
         int lastWorkingIdx = n - 1 - i;
-        // To track whether swaps occured during this pass
+        // To track whether swaps occurred during this pass
         bool swapped = false;
-        for (int j = 0; j <= lastWorkingIdx - 1; j++)
-        {
-            if (arr[j] > arr[j + 1])
-            {
+        for (int j = 0; j <= lastWorkingIdx - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
                 swap(arr[j], arr[j + 1]);
-                swapped = true; // Update flag
+                swapped = true;  // Update flag
             }
         }
-        if (!swapped)
-        {
+        if (!swapped) {
             // Sorted, so exit (no more passes needed)
             return;
         }

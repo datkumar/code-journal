@@ -27,23 +27,21 @@ Although some people refer to this no-args constructor as the default constructo
 <summary><strong>Default Constructor example in C++</strong></summary>
 
 ```cpp title="C++ Default Constructor"
-class Person
-{
-private:
+class Person {
+  private:
     int age;
 
-public:
+  public:
     // The no-args constructor
-    Person() {
+    Person () {
         cout << "Initializing new Person" << endl;
         this->age = 18;
     }
 
-    int getAge() { return this->age; }
+    int getAge () { return this->age; }
 };
 
-int main()
-{
+int main () {
     Person p1;
     cout << "p1 age: " << p1.getAge() << endl;
 
@@ -81,8 +79,7 @@ class Person {
 }
 
 class Demo {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Person p = new Person();
         System.out.println("p age: " + p.getAge());
     }
@@ -112,36 +109,34 @@ Below examples show how to call default constuctor from inside of a parameterize
 </summary>
 
 ```cpp title="C++ Parameterized Constructor"
-class Person
-{
-private:
+class Person {
+  private:
     string name;
     int age;
 
-public:
-    Person() {
+  public:
+    Person () {
         cout << "Inside Default Constructor" << endl;
         this->name = "Unknown";
         this->age = 18;
     }
 
-    Person(string name, int age) {
+    Person (string name, int age) {
         cout << "Inside Parameterized Constructor" << endl;
         this->name = name;
         this->age = age;
     }
 
-    Person(string name) : Person() {
+    Person (string name) : Person() {
         cout << "Default constructor was called from this Parameterized Constructor" << endl;
         this->name = name;
     }
 
-    int getAge() { return this->age; }
-    string getName() { return this->name; }
+    int getAge () { return this->age; }
+    string getName () { return this->name; }
 };
 
-int main()
-{
+int main () {
     Person p1;
     cout << "p1: name=" << p1.getName() << ", age=" << p1.getAge() << "\n\n";
 
@@ -223,8 +218,7 @@ class Person
 }
 
 class Demo {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Person p1 = new Person();
         System.out.println("p1: name=" + p1.getName() + ", age=" + p1.getAge() + "\n");
 
@@ -262,37 +256,35 @@ Refer [Copy-initialization](https://en.cppreference.com/w/cpp/language/copy_init
 <summary><strong>Copy Constructor example in C++</strong></summary>
 
 ```cpp title="C++ Copy Constructor"
-class Person
-{
-private:
+class Person {
+  private:
     string name;
     int age;
 
-public:
-    Person(string name, int age) {
+  public:
+    Person (string name, int age) {
         cout << "Inside Parameterized Constructor" << endl;
         this->name = name;
         this->age = age;
     }
 
-    Person(const Person &obj) {
-        cout << "Inside Reference Copy Constructor"<<endl;
+    Person (const Person &obj) {
+        cout << "Inside Reference Copy Constructor" << endl;
         this->name = obj.name;
         this->age = obj.age;
     }
 
-    Person(const Person *objPtr) {
-        cout << "Inside Pointer Copy Constructor"<<endl;
+    Person (const Person *objPtr) {
+        cout << "Inside Pointer Copy Constructor" << endl;
         this->name = objPtr->name;
         this->age = objPtr->age;
     }
 
-    int getAge() { return this->age; }
-    string getName() { return this->name; }
+    int getAge () { return this->age; }
+    string getName () { return this->name; }
 };
 
-int main()
-{
+int main () {
     Person p1("Ramesh", 25);
     cout << "p1: name=" << p1.getName() << ", age=" << p1.getAge() << "\n\n";
 
@@ -363,8 +355,7 @@ class Person {
 }
 
 class Demo {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Person p1 = new Person("Ramesh", 25);
         System.out.println("p1: name=" + p1.getName() + ", age=" + p1.getAge() + "\n");
 
@@ -391,7 +382,7 @@ You can overload the assignment operator (`=`) to create a copy of an object sim
 
 ```cpp
 // Assignment Operator Overload
-MyClass& operator=(const MyClass &obj) {
+MyClass& operator=(const MyClass& obj) {
     if (this != &obj) {
         // Assign data member values of 'obj' to current object i.e. 'this' fields
     }
@@ -405,47 +396,45 @@ MyClass& operator=(const MyClass &obj) {
 <summary><strong>C++ Copy assignment operator example</strong></summary>
 
 ```cpp
-class Person
-{
-private:
+class Person {
+  private:
     string name;
     int age;
 
-public:
-    Person(string name, int age) : name(name), age(age) {
+  public:
+    Person (string name, int age) : name(name), age(age) {
         cout << "Inside Parameterized Constructor" << endl;
     }
 
     // Reference Copy Constructor
-    Person(const Person &obj) : name(obj.name), age(obj.age) {
+    Person (const Person &obj) : name(obj.name), age(obj.age) {
         cout << "Inside Reference Copy Constructor" << endl;
     }
 
     // Assignment Operator Overload
-    Person& operator=(const Person &obj) {
+    Person &operator=(const Person &obj) {
         cout << "Inside Assignment Operator Overload" << endl;
-        if (this != &obj)  { // Avoid self-assignment
+        if (this != &obj) {  // Avoid self-assignment
             this->name = obj.name;
             this->age = obj.age;
         }
         return *this;
     }
 
-    int getAge() const { return this->age; }
-    string getName() const { return this->name; }
+    int getAge () const { return this->age; }
+    string getName () const { return this->name; }
 };
 
-int main()
-{
+int main () {
     Person p1("Ramesh", 25);
     cout << "p1: Address=" << &p1 << ", name=" << p1.getName() << ", age=" << p1.getAge() << "\n\n";
     Person p2("Suresh", 30);
     cout << "p2: Address=" << &p2 << ", name=" << p2.getName() << ", age=" << p2.getAge() << "\n\n";
 
-    Person p3 = p2; // Copy constructor when newly created object
+    Person p3 = p2;  // Copy constructor when newly created object
     cout << "p3: Address=" << &p3 << ", name=" << p3.getName() << ", age=" << p3.getAge() << "\n\n";
 
-    p3 = p1; // Assignment operator overload when re-assignement
+    p3 = p1;  // Assignment operator overload when re-assignement
     cout << "p3: Address=" << &p3 << ", name=" << p3.getName() << ", age=" << p3.getAge() << "\n\n";
 
     return 0;
@@ -478,18 +467,17 @@ It is often considered a more efficient and cleaner way to initialize class memb
 Note that the **order of initializing** members in the should be the **same as** the order in which the data members have been **declared**
 
 ```cpp
-class Person
-{
-private:
+class Person {
+  private:
     string name;
     int age;
 
-public:
-    Person() : name("Unknown"), age(18) { // Default values
+  public:
+    Person () : name("Unknown"), age(18) {  // Default values
         cout << "Default Constructor body" << endl;
     }
 
-    Person(string name, int age) : name(name), age(age) { // Parameter values
+    Person (string name, int age) : name(name), age(age) {  // Parameter values
         cout << "Parameterized Constructor body" << endl;
     }
 
@@ -505,27 +493,25 @@ The reason for no conflict is that the scope of method parameters and method bod
 <summary><strong>C++ Member Initializer List example </strong></summary>
 
 ```cpp title="Member Initializer List example"
-class Person
-{
-private:
+class Person {
+  private:
     string name;
     int age;
 
-public:
-    Person() : name("Unknown"), age(18) {
+  public:
+    Person () : name("Unknown"), age(18) {
         cout << "Default Constructor body" << endl;
     }
 
-    Person(string name, int age) : name(name), age(age) {
+    Person (string name, int age) : name(name), age(age) {
         cout << "Parameterized Constructor body" << endl;
     }
 
-    int getAge() const { return this->age; }
-    string getName() const { return this->name; }
+    int getAge () const { return this->age; }
+    string getName () const { return this->name; }
 };
 
-int main()
-{
+int main () {
     // Default Constructor + Stack allocation:
     Person p1;
     cout << "p1: name=" << p1.getName() << ", age=" << p1.getAge() << "\n\n";

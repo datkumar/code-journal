@@ -12,10 +12,8 @@ tags: [cpp]
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
     cout << "Application code is being executed 🔥🔥🔥" << endl;
-
     return 0;
 }
 ```
@@ -24,10 +22,8 @@ int main()
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
     cout << "Testing ✅✅✅" << endl;
-
     return 0;
 }
 ```

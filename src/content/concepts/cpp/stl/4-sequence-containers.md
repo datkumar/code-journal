@@ -74,98 +74,93 @@ They provide a **wrapper interface** for Sequential containers
 <summary><code>forward_list</code> demo</summary>
 
 ```cpp title="forward_list_demo"
-void printList(forward_list<int> &ll)
-{
-  for (auto &num : ll)
-  {
-      cout << num << " -> ";
+void printList(forward_list<int> &ll) {
+  for (auto &num : ll) {
+    cout << num << " -> ";
   }
   cout << "X" << endl;
 }
 
-int main()
-{
-    forward_list<int> ll{7, 1, 3, 5};
-    printList(ll);
-    // 7 -> 1 -> 3 -> 5 -> X
+int main() {
+  forward_list<int> ll{7, 1, 3, 5};
+  printList(ll);
+  // 7 -> 1 -> 3 -> 5 -> X
 
-    cout << "First element: " << ll.front() << endl;
-    // First element: 7
+  cout << "First element: " << ll.front() << endl;
+  // First element: 7
 
-    ll.push_front(10), ll.push_front(20);
-    printList(ll);
-    // 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
+  ll.push_front(10), ll.push_front(20);
+  printList(ll);
+  // 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
 
-    ll.emplace_front(11), ll.emplace_front(22);
-    printList(ll);
-    // 22 -> 11 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
+  ll.emplace_front(11), ll.emplace_front(22);
+  printList(ll);
+  // 22 -> 11 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
 
-    ll.pop_front();
-    printList(ll);
-    // 11 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
+  ll.pop_front();
+  printList(ll);
+  // 11 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
 
-    // same as ll.push_front(420)
-    ll.insert_after(ll.before_begin(), 420);
-    printList(ll);
-    // 420 -> 11 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
+  // same as ll.push_front(420)
+  ll.insert_after(ll.before_begin(), 420);
+  printList(ll);
+  // 420 -> 11 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
 
-    ll.insert_after(ll.begin(), 111);
-    printList(ll);
-    // 420 -> 111 -> 11 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
+  ll.insert_after(ll.begin(), 111);
+  printList(ll);
+  // 420 -> 111 -> 11 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
 
-    // Inserting at end of list: O(N) time
-    // Step 1: Finding location of last element
-    auto itr = ll.before_begin(); // handles empty list case
-    while (next(itr) != ll.end())
-    {
-        itr++;
-    }
-    cout << "Last element: " << *itr << endl;
-    // Last element: 5
-    // Step 2: Insert after the last element
-    ll.insert_after(itr, 999);
-    printList(ll);
-    // 420 -> 111 -> 11 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> 999 -> X
+  // Inserting at end of list: O(N) time
+  // Step 1: Finding location of last element
+  auto itr = ll.before_begin(); // handles empty list case
+  while (next(itr) != ll.end()) {
+    itr++;
+  }
+  cout << "Last element: " << *itr << endl;
+  // Last element: 5
+  // Step 2: Insert after the last element
+  ll.insert_after(itr, 999);
+  printList(ll);
+  // 420 -> 111 -> 11 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> 999 -> X
 
-    // same as ll.pop_front()
-    ll.erase_after(ll.before_begin());
-    printList(ll);
-    // 111 -> 11 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> 999 -> X
+  // same as ll.pop_front()
+  ll.erase_after(ll.before_begin());
+  printList(ll);
+  // 111 -> 11 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> 999 -> X
 
-    ll.erase_after(ll.begin());
-    printList(ll);
-    // 111 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> 999 -> X
+  ll.erase_after(ll.begin());
+  printList(ll);
+  // 111 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> 999 -> X
 
-    // Deleting from end of list: O(N) time
-    // Step 1: Find location of second-last element
-    itr = ll.before_begin();
-    while (next(next(itr)) != ll.end())
-    {
-        itr++;
-    }
-    cout << "Second-last element: " << *itr << endl;
-    // Step 2: Delete the element after second-last element
-    ll.erase_after(itr);
-    printList(ll);
+  // Deleting from end of list: O(N) time
+  // Step 1: Find location of second-last element
+  itr = ll.before_begin();
+  while (next(next(itr)) != ll.end()) {
+    itr++;
+  }
+  cout << "Second-last element: " << *itr << endl;
+  // Step 2: Delete the element after second-last element
+  ll.erase_after(itr);
+  printList(ll);
 
-    // insert_after(pos, count, val)
-    ll.insert_after(ll.before_begin(), 3, 69);
-    printList(ll);
-    // 69 -> 69 -> 69 -> 111 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
+  // insert_after(pos, count, val)
+  ll.insert_after(ll.before_begin(), 3, 69);
+  printList(ll);
+  // 69 -> 69 -> 69 -> 111 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
 
-    vector<int> v1{-5, -2, -8};
-    // insert(pos, start, end)
-    ll.insert_after(ll.before_begin(), v1.begin(), v1.end());
-    printList(ll);
-    // -5 -> -2 -> -8 -> 69 -> 69 -> 69 -> 111 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
+  vector<int> v1{-5, -2, -8};
+  // insert(pos, start, end)
+  ll.insert_after(ll.before_begin(), v1.begin(), v1.end());
+  printList(ll);
+  // -5 -> -2 -> -8 -> 69 -> 69 -> 69 -> 111 -> 20 -> 10 -> 7 -> 1 -> 3 -> 5 -> X
 
-    ll.clear();
-    ll.emplace_front(101);
-    ll.emplace_after(ll.begin(), 512);
-    printList(ll);
-    // 101 -> 512 -> X
+  ll.clear();
+  ll.emplace_front(101);
+  ll.emplace_after(ll.begin(), 512);
+  printList(ll);
+  // 101 -> 512 -> X
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -211,81 +206,77 @@ int main()
 </summary>
 
 ```cpp title="list_demo"
-void printList(list<int> &dl)
-{
-    cout << "X <-> ";
-    for (auto &num : dl)
-    {
-        cout << num << " <-> ";
-    }
-    cout << "X" << endl;
+void printList(list<int> &dl) {
+  cout << "X <-> ";
+  for (auto &num : dl) {
+    cout << num << " <-> ";
+  }
+  cout << "X" << endl;
 }
 
-int main()
-{
-    list<int> dl{7, 1, 4, 3, 5};
-    printList(dl);
-    // X <-> 7 <-> 1 <-> 4 <-> 3 <-> 5 <-> X
+int main() {
+  list<int> dl{7, 1, 4, 3, 5};
+  printList(dl);
+  // X <-> 7 <-> 1 <-> 4 <-> 3 <-> 5 <-> X
 
-    cout << "First element: " << dl.front() << endl;
-    // First element: 7
-    cout << "Last element: " << dl.back() << endl;
-    // Last element: 5
+  cout << "First element: " << dl.front() << endl;
+  // First element: 7
+  cout << "Last element: " << dl.back() << endl;
+  // Last element: 5
 
-    cout << "Reverse: ";
-    // Reverse traversal
-    for (auto itr = dl.rbegin(); itr != dl.rend(); itr++)
-    {
-        cout << *itr << ", ";
-    }
-    cout << endl;
-    // Reverse: 5, 3, 4, 1, 7,
+  cout << "Reverse: ";
+  // Reverse traversal
+  for (auto itr = dl.rbegin(); itr != dl.rend(); itr++) {
+    cout << *itr << ", ";
+  }
+  cout << endl;
+  // Reverse: 5, 3, 4, 1, 7,
 
-    dl.push_front(10);
-    dl.emplace_front(20);
-    printList(dl);
-    // X <-> 20 <-> 10 <-> 7 <-> 1 <-> 4 <-> 3 <-> 5 <-> X
+  dl.push_front(10);
+  dl.emplace_front(20);
+  printList(dl);
+  // X <-> 20 <-> 10 <-> 7 <-> 1 <-> 4 <-> 3 <-> 5 <-> X
 
-    dl.push_back(100);
-    dl.emplace_back(200);
-    printList(dl);
-    // X <-> 20 <-> 10 <-> 7 <-> 1 <-> 4 <-> 3 <-> 5 <-> 100 <-> 200 <-> X
+  dl.push_back(100);
+  dl.emplace_back(200);
+  printList(dl);
+  // X <-> 20 <-> 10 <-> 7 <-> 1 <-> 4 <-> 3 <-> 5 <-> 100 <-> 200 <-> X
 
-    dl.pop_front();
-    printList(dl);
-    // X <-> 10 <-> 7 <-> 1 <-> 4 <-> 3 <-> 5 <-> 100 <-> 200 <-> X
+  dl.pop_front();
+  printList(dl);
+  // X <-> 10 <-> 7 <-> 1 <-> 4 <-> 3 <-> 5 <-> 100 <-> 200 <-> X
 
-    dl.pop_back();
-    printList(dl);
-    // X <-> 10 <-> 7 <-> 1 <-> 4 <-> 3 <-> 5 <-> 100 <-> X
+  dl.pop_back();
+  printList(dl);
+  // X <-> 10 <-> 7 <-> 1 <-> 4 <-> 3 <-> 5 <-> 100 <-> X
 
-    auto thirdPosition = next(next(dl.begin()));
-    dl.insert(thirdPosition, 55);
-    printList(dl);
-    // X <-> 10 <-> 7 <-> 55 <-> 1 <-> 4 <-> 3 <-> 5 <-> 100 <-> X
+  auto thirdPosition = next(next(dl.begin()));
+  dl.insert(thirdPosition, 55);
+  printList(dl);
+  // X <-> 10 <-> 7 <-> 55 <-> 1 <-> 4 <-> 3 <-> 5 <-> 100 <-> X
 
-    auto secondLastPosition = prev(prev(dl.end()));
-    dl.insert(secondLastPosition, 77);
-    printList(dl);
-    // X <-> 10 <-> 7 <-> 55 <-> 1 <-> 4 <-> 3 <-> 77 <-> 5 <-> 100 <-> X
+  auto secondLastPosition = prev(prev(dl.end()));
+  dl.insert(secondLastPosition, 77);
+  printList(dl);
+  // X <-> 10 <-> 7 <-> 55 <-> 1 <-> 4 <-> 3 <-> 77 <-> 5 <-> 100 <-> X
 
-    // insert(pos,count,val)
-    dl.insert(dl.begin(), 3, -8);
-    printList(dl);
-    // X <-> -8 <-> -8 <-> -8 <-> 10 <-> 7 <-> 55 <-> 1 <-> 4 <-> 3 <-> 77 <-> 5 <-> 100 <-> X
+  // insert(pos,count,val)
+  dl.insert(dl.begin(), 3, -8);
+  printList(dl);
+  // X <-> -8 <-> -8 <-> -8 <-> 10 <-> 7 <-> 55 <-> 1 <-> 4 <-> 3 <-> 77 <-> 5 <-> 100 <-> X
 
-    vector<int> v1{128, 64, 256};
-    // insert(pos,start,end)
-    dl.insert(dl.begin(), v1.begin(), v1.end());
-    printList(dl);
-    // X <-> 128 <-> 64 <-> 256 <-> -8 <-> -8 <-> -8 <-> 10 <-> 7 <-> 55 <-> 1 <-> 4 <-> 3 <-> 77 <-> 5 <-> 100 <-> X
+  vector<int> v1{128, 64, 256};
+  // insert(pos,start,end)
+  dl.insert(dl.begin(), v1.begin(), v1.end());
+  printList(dl);
+  // X <-> 128 <-> 64 <-> 256 <-> -8 <-> -8 <-> -8 <-> 10 <-> 7 <-> 55 <-> 1 <-> 4 <-> 3 <-> 77 <-> 5 <-> 100 <-> X
 
-    dl.erase(dl.begin());
-    // above line same as dl.pop_front();
-    printList(dl);
-    // X <-> 64 <-> 256 <-> -8 <-> -8 <-> -8 <-> 10 <-> 7 <-> 55 <-> 1 <-> 4 <-> 3 <-> 77 <-> 5 <-> 100 <-> X
+  dl.erase(dl.begin());
+  // above line same as dl.pop_front();
+  printList(dl);
+  // X <-> 64 <-> 256 <-> -8 <-> -8 <-> -8 <-> 10 <-> 7 <-> 55 <-> 1 <-> 4 <-> 3 <-> 77 <-> 5 <-> 100 <-> X
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -363,8 +354,8 @@ int main()
 
   ```cpp
   template<
-      class T,
-      class Container = deque<T>
+    class T,
+    class Container = deque<T>
   > class queue;
   ```
 
@@ -395,9 +386,9 @@ int main()
 
   ```cpp
   template<
-      class T,
-      class Container = vector<T>,
-      class Compare = less<typename Container::value_type>
+    class T,
+    class Container = vector<T>,
+    class Compare = less<typename Container::value_type>
   > class priority_queue;
   ```
 

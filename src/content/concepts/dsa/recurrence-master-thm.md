@@ -17,11 +17,11 @@ The factorial function is defined as:
 
 \\( f(n) = \begin{cases} 1 & \text{if n = 0} \\\\ n \ast f(n-1) & \text{if n > 0} \end{cases} \\)
 
-And the recurrence relation can be written as
+And the recurrence relation can be written as:
 
 \\( \boldsymbol{F\_{n} = n \ast F\_{n-1}} \space\space \text{with} \space\space F_0 = 1 \\)
 
-Here, the order is 1 and number of initial terms is also 1
+Here, the order is **1** and number of initial terms is also **1**
 
 ## 2. Fibonacci number
 
@@ -29,11 +29,11 @@ The n<sup>th</sup> fibonacci number is given by function:
 
 \\( f(n) = \begin{cases} 0 & \text{if n = 0} \\\\ 1 & \text{if n = 1} \\\\ f(n-1) + f(n-2) & \text{if n > 1} \end{cases} \\)
 
-And the recurrence relation can be written as
+And the recurrence relation can be written as:
 
 \\( \boldsymbol{F\_{n} = F\_{n-1} + F\_{n-2}} \space\space \text{with} \space\space F_0 = 0, \space F_1 = 1 \\)
 
-Here, the order is 2 and number of initial terms is also 2
+Here, the order is **2** and number of initial terms is also **2**
 
 ---
 
@@ -45,49 +45,53 @@ The next recursive call is on a decremented input value
 
 ### Examples of decreasing functions
 
-- Example 1
+**Example 1**:
 
-  ```cpp
-  void func(int n){               // T(n)
-      if(n > 0){
-          cout << n << endl;      // 1
-          func(n - 1);            // T(n-1)
-      }
-  }
-  ```
+```cpp
+void func(int n) {          // T(n)
+    if (n > 0) {
+        cout << n << endl; // 1
+        func(n - 1);       // T(n-1)
+    }
+}
+```
 
-  The recurrence relation for above recursive function is: \\[T(n) = T(n-1) + 1 \space\space\text{and assuming}\space T(0)=1 \\]
+The recurrence relation for above recursive function is: \\[T(n) = T(n-1) + 1 \space\space\text{and assuming}\space T(0)=1 \\]
 
-- Example 2
+<br>
 
-  ```cpp
-  void func(int n){                       // T(n)
-      if(n > 0){
-          for(int i = 0; i < n; i++){
-              cout << n << endl;          // n
-          }
-          func(n - 1);                    // T(n-1)
-      }
-  }
-  ```
+**Example 2**:
 
-  The recurrence relation of above recursive function is: \\[T(n) = T(n-1) + n \space\space\text{and assuming}\space T(0)=1 \\]
+```cpp
+void func(int n) {                    // T(n)
+    if (n > 0) {
+        for (int i = 0; i < n; i++) {
+            cout << n << endl;        // n
+        }
+        func(n - 1);                  // T(n-1)
+    }
+}
+```
 
-- Example 3
+The recurrence relation of above recursive function is: \\[T(n) = T(n-1) + n \space\space\text{and assuming}\space T(0)=1 \\]
 
-  ```cpp
-  void func(int n){                       // T(n)
-      if(n > 0){
-          for(int i = 0; i < n; i *= 2){
-              cout << n << endl;          // log(n)
-          }
-          func(n - 1);                    // T(n-1)
-          func(n - 1);                    // T(n-1)
-      }
-  }
-  ```
+<br>
 
-  The recurrence relation of above recursive function is: \\[T(n) = 2T(n-1) + log(n) \space\space\text{and assuming}\space T(0)=1 \\]
+**Example 3**:
+
+```cpp
+void func(int n) {                          // T(n)
+    if (n > 0) {
+        for (int i = 0; i < n; i *= 2) {
+            cout << n << endl;              // log(n)
+        }
+        func(n - 1);                        // T(n-1)
+        func(n - 1);                        // T(n-1)
+    }
+}
+```
+
+The recurrence relation of above recursive function is: \\[T(n) = 2T(n-1) + log(n) \space\space\text{and assuming}\space T(0)=1 \\]
 
 ---
 
@@ -129,47 +133,53 @@ The next recursive call is on a factored input value
 
 ### Examples of Dividing functions
 
-- Example 1
+**Example 1**:
 
-  ```cpp
-  void func(int n){               // T(n)
-      if(n > 1){
-          cout << n << endl;      // 1
-          func(n / 2);            // T(n/2)
-      }
-  }
-  ```
+```cpp
+void func(int n) {            // T(n)
+    if (n > 1) {
+        cout << n << endl;    // 1
+        func(n / 2);          // T(n/2)
+    }
+}
+```
 
-  The recurrence relation for above recursive function is: \\[T(n) = T \left(\frac{n}{2} \right) + 1 \space\space\text{and assuming}\space T(1)=1 \\]
+The recurrence relation for above recursive function is: \\[T(n) = T \left(\frac{n}{2} \right) + 1 \space\space\text{and assuming}\space T(1)=1 \\]
 
-- Example 2
+<br>
 
-  ```cpp
-  void func(int n){                         // T(n)
-      if(n > 1){
-          for(int i = 0; i < n; i *= 2){
-              cout << n << endl;            // log(n)
-          }
-          func(n/3);                        // T(n/3)
-          func(n/3);                        // T(n/3)
-      }
-  }
-  ```
+**Example 2**:
 
-  The recurrence relation of above recursive function is: \\[T(n) = 2T \left(\frac{n}{3} \right) + logn \space\space\text{and assuming}\space T(1)=1 \\]
+```cpp
+void func(int n) {                        // T(n)
+    if (n > 1) {
+        for (int i = 0; i < n; i *= 2) {
+            cout << n << endl;            // log(n)
+        }
+        func(n / 3);                      // T(n/3)
+        func(n / 3);                      // T(n/3)
+    }
+}
+```
 
-- Example 3
+The recurrence relation of above recursive function is: \\[T(n) = 2T \left(\frac{n}{3} \right) + logn \space\space\text{and assuming}\space T(1)=1 \\]
 
-  ```cpp
-  void func(int n){               // T(n)
-      if(n > 2){
-          cout << n << endl;      // 1
-          func(sqrt(n));          // T(sqrt(n))
-      }
-  }
-  ```
+<br>
 
-  The recurrence relation of above recursive function is: \\[T(n) = T( \sqrt{n}) + 1 \space\space\text{and assuming}\space T(2)=1 \\]
+**Example 3**:
+
+```cpp
+void func(int n) {            // T(n)
+    if (n > 2) {
+        cout << n << endl;    // 1
+        func(sqrt(n));        // T(sqrt(n))
+    }
+}
+```
+
+The recurrence relation of above recursive function is: \\[T(n) = T( \sqrt{n}) + 1 \space\space\text{and assuming}\space T(2)=1 \\]
+
+---
 
 ## Master Theorem for evaluating Dividing functions
 

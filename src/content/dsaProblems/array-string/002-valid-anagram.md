@@ -31,20 +31,22 @@ returns `true` as the letters of `anagram` can be rearranged to form `nagaram`
 - We don't need to maintain two arrays/maps. We can just **increment** counts while **first string's** traversal and **decrement** them in **second string's** traversal This also prevents overflow if high character counts.
 
 ```cpp
-int charCounts[26];             // <- fixed space
+bool isAnagram(string str1, string str2) {
+    int charCounts[26];             // <- fixed space
 
-for(char &c: str1){             // <- O(N)
-    charCounts[c-'a']++;
-}
-for(char &c: str2){             // <- O(N)
-    charCounts[c-'a']--;
-}
-for(int &cnt: charCounts){      // <- O(N)
-    if(cnt != 0){
-        return false;
+    for (char &c : str1) {          // <- O(N)
+        charCounts[c - 'a']++;
     }
+    for (char &c : str2) {          // <- O(N)
+        charCounts[c - 'a']--;
+    }
+    for (int &cnt : charCounts) {   // <- O(N)
+        if (cnt != 0) {
+            return false;
+        }
+    }
+    return true;
 }
-return true;
 ```
 
 Time \\( = 3 \cdot O(N) = O(N) \\)

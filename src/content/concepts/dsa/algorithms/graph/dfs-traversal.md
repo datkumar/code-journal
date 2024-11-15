@@ -15,8 +15,6 @@ DFS(Adj, node):
     For all neighbours of 'node':
         If a neighbour 'nb' of 'node' is unvisited:
             DFS(Adj, nb)
-
-
 ```
 
 To traverse a **disconnected** graph, run this component exploration from **every unvisited node as the source**
@@ -27,12 +25,13 @@ Refer [Adjacency List Graph representation](/code-journal/dsa/dsa/graph-represen
 
 ```cpp
 // Explore an unvisited neighbor of current node
-void dfs(
+// Explore an unvisited neighbor of current node
+void dfs (
     vector<vector<int>> const &Adj,
     vector<char> &visited,
     vector<int> &componentTraversal,
-    const int currentNode)
-{
+    const int currentNode
+) {
     // Mark current node as visited
     visited[currentNode] = true;
     // Append current node into the traversed nodes of present component
@@ -47,8 +46,7 @@ void dfs(
     }
 }
 
-const vector<vector<int>> dfsOfGraph(vector<vector<int>> const &Adj)
-{
+const vector<vector<int>> dfsOfGraph(vector<vector<int>> const &Adj) {
     int V = Adj.size();
     vector<vector<int>> graphTraversal; // Stores answer
 
@@ -163,8 +161,8 @@ void dfs(
     vector<vector<int>> const &Adj,
     vector<char> &visited,
     vector<int> &componentTraversal,
-    const int currentNode)
-{
+    const int currentNode
+) {
     visited[currentNode] = true;
     cout << "\t" << currentNode << " visited.";
     componentTraversal.push_back(currentNode);
@@ -176,8 +174,7 @@ void dfs(
     }
 }
 
-const vector<vector<int>> dfsOfGraph(vector<vector<int>> const &Adj)
-{
+const vector<vector<int>> dfsOfGraph(vector<vector<int>> const &Adj) {
     int V = Adj.size();
     vector<vector<int>> graphTraversal;
     vector<char> visited(V, false);

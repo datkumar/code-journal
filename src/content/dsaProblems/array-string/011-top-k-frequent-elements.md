@@ -13,13 +13,13 @@ Given an integer array `nums` and an integer `k`, return the `k` **most frequent
 ### 1. Hashing + Sorting
 
 ```txt
-Construct frequency map of numbers in input
+Construct frequency map of numbers in input.
 
-Convert the key-value pairings into a array of 2 elements {count, number}
+Convert the key-value pairings into a array of 2 elements {count, number}.
 
-Sort that array descending by comparing "count" in each pair
+Sort that array descending by comparing "count" in each pair.
 
-Return "number" part of the first "k" pairs as answer
+Return "number" part of the first "k" pairs as answer.
 ```
 
 | Metric | Complexity                           |
@@ -67,23 +67,20 @@ Also, '\\(k\\)' will be '\\(m\\)' at most
 <summary><strong>C++ code</strong></summary>
 
 ```cpp
-vector<int> topKFrequent(vector<int> &nums, int k)
-{
+vector<int> topKFrequent (vector<int> &nums, int k) {
     // {number : count} map
     unordered_map<int, int> freq;
     // Construct frequency map
     for (int number : nums) {
         freq[number]++;
     }
-
-    // Max-heap where elements compared by count
-    priority_queue< pair<int, int> > maxHp;
+    // Construct Max-heap where elements compared by count
+    priority_queue<pair<int, int> > maxHp;
     for (auto &[number, count] : freq) {
         maxHp.push({count, number});
     }
-
     vector<int> ans;
-    // Get top K elements from heap
+    // Retrieve K top elements from heap
     while (k--) {
         // Pick off element at top of heap and add to answer
         ans.push_back(maxHp.top().second);
@@ -151,8 +148,7 @@ Traversing from end and taking k=2 elements, ans=[1,2]
 <summary><strong>C++ code</strong></summary>
 
 ```cpp
-vector<int> topKFrequent(vector<int> &nums, int k)
-{
+vector<int> topKFrequent (vector<int> &nums, int k) {
     // {number : count} map
     unordered_map<int, int> freq;
     for (int number : nums) {
@@ -171,16 +167,15 @@ vector<int> topKFrequent(vector<int> &nums, int k)
     vector<int> ans;
     for (int i = n; i >= 0; i--) {
         // Skip processing bucket if it's empty
-        if (buckets[i].empty())
+        if (buckets[i].empty()) {
             continue;
-
+        }
         // Append elemets of the bucket into answer (till k total items)
-        for (int number : buckets[i])
-         {
+        for (int number : buckets[i]) {
             ans.push_back(number);
-
-            if (ans.size() == k)
+            if (ans.size() == k) {
                 return ans;
+            }
         }
     }
     return ans;

@@ -21,10 +21,10 @@ The actual running time (or space) of an algorithm is not a good measure for eva
 
    ```cpp
    int ans = 0;
-   for (int i = 0; i < N; i++) {           // i: 0 to N
-       for (int j = N; j > i; j--) {       // j: N to i
-           ans += i + j;
-       }
+   for (int i = 0; i < N; i++) {      // i: 0 to N
+      for (int j = N; j > i; j--) {   // j: N to i
+         ans += i + j;
+      }
    }
    ```
 
@@ -67,8 +67,7 @@ The actual running time (or space) of an algorithm is not a good measure for eva
 
    ```cpp
    int ans = 0;
-   for(int i = 1; ans < N; i++)
-   {
+   for(int i = 1; ans < N; i++) {
        ans += i;
    }
    ```

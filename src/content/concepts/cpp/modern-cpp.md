@@ -63,27 +63,21 @@ cout << "Product: " << product << endl;
 
   // Creates variables x,y,z of type int, double, string respectively
   auto [x, y, z] = myTuple;
-  cout << x << " " << y << " " << z << endl;
 
-  /* Output:
-  420 3.14159 Hello World
-  */
+  cout << x << " " << y << " " << z << endl;
+  // Output: 420 3.14159 Hello World
   ```
 
   **Maps** and extracting references:
 
   ```cpp
-  map<int,string> mp{
-    {5, "aeyo"},
-    {1, "bruh"},
-    {9, "dawg"},
-    {5, "gotem"},
-    {4, "nope"},
+  map<int, string> mp{
+    {5, "aeyo"}, {1, "bruh"}, {9, "dawg"}, {5, "gotem"}, {4, "nope"},
   };
 
   // Uses reference to each key,value entry in map
-  for(auto &[key, val] : mp){
-    cout<< key << " -> "<< val << endl;
+  for (auto &[key, val] : mp) {
+    cout << key << " -> " << val << endl;
   }
 
   /* Output:
@@ -97,20 +91,20 @@ cout << "Product: " << product << endl;
   **Custom Data types**:
 
   ```cpp
-  struct Point{
-    int x,y;
+  struct Point {
+    int x, y;
     Point(int n1, int n2) : x(n1), y(n2) {}
   };
 
-  int main(){
-    auto myPair = make_pair( Point(2,3), 'z');
+  int main() {
+    auto myPair = make_pair(Point(2, 3), 'z');
 
     auto &[myPoint, alphabet] = myPair;
-    cout<< myPoint.x <<" "<< myPoint.y <<" "<< alphabet <<endl;
+    cout << myPoint.x << " " << myPoint.y << " " << alphabet << endl;
     // 2 3 z
 
     auto &[x_coord, y_coord] = myPoint;
-    cout<< x_coord <<" "<< y_coord <<endl;
+    cout << x_coord << " " << y_coord << endl;
     // 2 3
 
     return 0;

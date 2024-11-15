@@ -3,13 +3,13 @@ title: Switch-case in C++
 tags: [cpp]
 ---
 
-When initalizing separate variables inside switch cases, wrap the case code inside `{_}` braces
+When initializing separate variables inside switch cases, wrap the case code inside `{_}` braces
 
 Refer [this answer](https://stackoverflow.com/a/11578973)
 
 ```cpp
 double areaSwitchCase(int choice, vector<double> arr) {
-    switch(choice){
+    switch (choice) {
         // Circle
         case 1: {
             double r = arr[0];
@@ -20,7 +20,7 @@ double areaSwitchCase(int choice, vector<double> arr) {
             double l = arr[0], b = arr[1];
             return l * b;
         }
-        default:{
+        default: {
             return 0;
         }
     }

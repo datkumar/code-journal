@@ -15,16 +15,15 @@ For example, if input array is `[4,5,9,3,10,4,7,6,1,9,5]` , the longest consecut
 > Sorting would bring the **equal/consecutive elements closer** to each other
 
 ```cpp
-bool equalOrOneMore(int first, int second) {
+bool equalOrOneMore (int first, int second) {
     return (second == first || second == first + 1);
 }
 
-int longestConsecutive(vector<int>& nums)
-{
+int longestConsecutive (vector<int>& nums) {
     int n = nums.size();
 
     // Edge-case (one or no elements)
-    if(n <= 1)  return n;
+    if (n <= 1) return n;
 
     // Sort array elements
     sort(nums.begin(), nums.end());
@@ -32,26 +31,23 @@ int longestConsecutive(vector<int>& nums)
     int i = 0;
     int maxSeqLength = 1;
     // Traverse array elements
-    while(i < n-1)
-    {
+    while (i < n - 1) {
         // Sequence possible
-        if(equalOrOneMore(nums[i], nums[i+1]))
-        {
+        if (equalOrOneMore(nums[i], nums[i + 1])) {
             int seqLength = 1;
             // Start exploring sequence ahead
-            while(i < n-1 && equalOrOneMore(nums[i], nums[i+1]))
-            {
+            while (i < n - 1 && equalOrOneMore(nums[i], nums[i + 1])) {
                 // Consecutive next element (value is one more than last seen)
-                if(nums[i+1] == nums[i] + 1) {
+                if (nums[i + 1] == nums[i] + 1) {
                     // Include the element into consecutive sequence
                     seqLength++;
                 }
-                i++; // Move exploration ahead in current sequence
+                i++;  // Move exploration ahead in current sequence
             }
             // Sequence formed. Compare and update max length
             maxSeqLength = max(seqLength, maxSeqLength);
         }
-        i++; // Keep traversing ahead
+        i++;  // Keep traversing ahead
     }
     return maxSeqLength;
 }
@@ -81,21 +77,17 @@ The consecutive sequences formed are:
 > **All elements** in a sequence have a **predecessor** on the left (whose value is one lesser than element), **except for the first** element (starting value of sequence)
 
 ```cpp
-int longestConsecutive(vector<int> &nums)
-{
+int longestConsecutive (vector<int> &nums) {
     // Store unique numbers of input in a set
     unordered_set<int> uniqueNums(nums.begin(), nums.end());
-
     int maxSeqLength = 0;
-    for(int val: uniqueNums)
-    {
+    for (int val : uniqueNums) {
         // Non-predecessor element (starting of sequence)
-        if(!uniqueNums.count(val - 1))
-        {
+        if (!uniqueNums.count(val - 1)) {
             int seqLength = 1;
             int curr = val;
             // Keep finding next consecutive element to append into sequence
-            while(uniqueNums.count(curr + 1)) {
+            while (uniqueNums.count(curr + 1)) {
                 curr++;
                 seqLength++;
             }

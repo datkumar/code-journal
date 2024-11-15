@@ -16,22 +16,25 @@ tags: [dsa, algorithm, sorting]
 ```txt
 Sorting working array:
 
-    Keep recursively splitting current array into two halves (till only one element present)
+    Keep recursively splitting current array into two halves (till only one element present).
 
-    Merge the two sorted halves
+    Merge the two sorted halves.
+
 ```
 
 ```txt
 Merging two sorted halves:
 
-    Create new temporary array to accomodate the merged result of two halves
+    Create new temporary array to accomodate the merged result of two halves.
 
     Begin comparing from the start of both halves:
 
-        Whichever is smaller insert, append it into the temporary array and update positions ahead
+        Whichever is smaller insert, append it into the temporary array and update positions ahead.
 
-    Copy the elements fron the temporary array into original array's postions
-    Delete the temporary array
+    Copy the elements fron the temporary array into original array's postions.
+
+    Delete the temporary array.
+
 ```
 
 ## Code
@@ -40,37 +43,32 @@ Merging two sorted halves:
 // Merges the two adjacent sorted halves
 // First subarray: arr[0] to arr[mid]
 // Second subarray: arr[mid+1] to arr[high]
-void merge(int arr[], int low, int mid, int high)
-{
-    int left = low;      // Tracks index in first subarray
-    int right = mid + 1; // Tracks index in second subarray
-    int k = 0;           // Tracks index in merged subarray (where next picked element goes)
+void merge(int arr[], int low, int mid, int high) {
+    int left = low;       // Tracks index in first subarray
+    int right = mid + 1;  // Tracks index in second subarray
+    int k =
+        0;  // Tracks index in merged subarray (where next picked element goes)
 
     // Create temporary array to accomodate the merged result
     int *temp = new int[high - low + 1];
 
     // Bounds-checking when moving the index pointers
-    while (left <= mid && right <= high)
-    {
-        if (arr[left] <= arr[right])
-        {
+    while (left <= mid && right <= high) {
+        if (arr[left] <= arr[right]) {
             // Pick from first subarray and update indices
             temp[k++] = arr[left++];
-        }
-        else
-        {
+        } else {
             // Pick from second subarray and update indices
             temp[k++] = arr[right++];
         }
     }
 
-    // Copy remaining elements (elements could remain in either one of the subarrays)
-    while (left <= mid)
-    {
+    // Copy remaining elements (elements could remain in either one of the
+    // subarrays)
+    while (left <= mid) {
         temp[k++] = arr[left++];
     }
-    while (right <= high)
-    {
+    while (right <= high) {
         // NOTE: Not writing this particular loop also works
         temp[k++] = arr[right++];
     }
@@ -79,21 +77,18 @@ void merge(int arr[], int low, int mid, int high)
     // one more than last index of merged, so (i < k) in below loop
 
     // Copy sorted elements of temporary array into original array
-    for (int i = 0; i < k; i++)
-    {
+    for (int i = 0; i < k; i++) {
         arr[low + i] = temp[i];
     }
     // De-allocate space used for temporary array
     delete[] temp;
 }
 
-void mergeSort(int arr[], int low, int high)
-{
+void mergeSort(int arr[], int low, int high) {
     // Current input: arr[low] to arr[high]
 
     // Terminating base case: Only ONE (or none) element in current array
-    if (low >= high)
-    {
+    if (low >= high) {
         return;
     }
 
@@ -123,19 +118,15 @@ void mergeSort(int arr[], int low, int high)
 ### Time Complexity
 
 ```cpp
-void merge(int arr[], int low, int mid, int high)
-{
+void merge(int arr[], int low, int mid, int high) {
     // Place elements one-by-one from the two arrays into temp[] -> (n)
     // Copy temp[] into arr[]                                    -> (n)
 }
 
-void mergeSort(int arr[], int low, int high)        // T(n)
-{
+void mergeSort(int arr[], int low, int high) {      // T(n)
     // Base case check and finding mid              // (1)
-
     mergeSort(arr, low, mid);                       // T(n/2)
     mergeSort(arr, mid + 1, high);                  // T(n/2)
-
     merge(arr, low, mid, high);                     // 2n
 }
 ```
@@ -161,8 +152,7 @@ This time complexity is same for ALL cases i.e. the same amount of work is done 
 ### Stability
 
 ```cpp
-while (left <= mid && right <= high)
-{
+while (left <= mid && right <= high) {
     if (arr[left] <= arr[right])
         temp[k++] = arr[left++];
     else
