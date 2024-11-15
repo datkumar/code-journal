@@ -28,8 +28,8 @@ const initializeMathJax = () => {
   };
 };
 
-// Init MathJax on page load
-document.addEventListener("astro:page-load", initializeMathJax);
-
 // Reapply MathJax after Astro swaps the page
 document.addEventListener("astro:after-swap", initializeMathJax);
+
+// Init MathJax on page load
+document.addEventListener("astro:page-load", initializeMathJax);

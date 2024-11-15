@@ -1,11 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import MarkdownLayout from "../layouts/MarkdownLayout.astro";
 
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout>
+<BaseLayout tabTitle="Page not found">
   <h2>Sorry, page not found.</h2>
   <div><a href={baseUrl}>Return to start</a></div>
 </BaseLayout>

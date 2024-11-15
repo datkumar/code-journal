@@ -1,6 +1,4 @@
 ---
-import ThemeSlider from "../components/ThemeSlider.astro";
-
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
@@ -8,7 +6,8 @@ const baseUrl = import.meta.env.BASE_URL;
   li {
     list-style-type: none;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 22px;
+    font-family: monospace;
   }
 
   a {
@@ -22,38 +21,118 @@ const baseUrl = import.meta.env.BASE_URL;
     font-size: 100%;
   }
 
-  .outer {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
+  .home-link {
+    margin-right: 0.5rem;
   }
 
-  .inner {
+  .topic-link {
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .navlinks-container {
     display: flex;
     flex-direction: row;
-    gap: 1em;
+    gap: 1rem;
   }
 
   @media (max-width: 768px) {
-    .outer {
-      flex-direction: column;
-      gap: 0.5em;
+    .nav-container {
+      /* flex-direction: column; */
+      gap: 0.5rem;
     }
+  }
+
+  .ic-sun,
+  .ic-moon {
+    height: 20px;
+  }
+
+  #theme-slider-container {
+    /* position: absolute; */
+    /* position: fixed; */
+    /* top: 10px;
+    right: 10px; */
+    /* Float on top of other content */
+    /* z-index: 500; */
+    /* height: 50px; */
+  }
+
+  #theme-toggle {
+    display: none; /* Hide checkbox input */
+  }
+
+  .slider-label {
+    background-color: var(--themeSliderBgColor);
+    width: 48px;
+    height: 20px;
+    border-radius: 25px;
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .slider-ball {
+    background-color: white;
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 40px;
+    top: 10px;
+    /* left: 5px;
+    top: 10px; */
+    border-radius: 50%;
+    transition: transform 0.1s linear;
+  }
+
+  #theme-toggle:checked + .slider-label .slider-ball {
+    transform: translateX(-32px);
   }
 </style>
 
 <header transition:persist>
-  <ThemeSlider />
-  <nav role="navigation" class="outer">
-    <div>
-      <li>
-        <a href=`${baseUrl}`> Code Journal </a>
+  <nav role="navigation" class="nav-container">
+    <!-- NavLinks -->
+    <div class="navlinks-container">
+      <li class="home-link">
+        <a href=`${baseUrl}`
+          ><img
+            src=`${baseUrl}/icons/favicon.svg`
+            height="23"
+            alt="favicon"
+          /></a
+        >
       </li>
+      <li class="topic-link"><a href=`${baseUrl}/dsa`>DSA</a></li>
+      <li class="topic-link"><a href=`${baseUrl}/dev`>Dev</a></li>
+      <li class="topic-link"><a href=`${baseUrl}/core`>Core</a></li>
     </div>
-    <div class="inner">
-      <li><a href=`${baseUrl}/dsa`>DSA</a></li>
-      <li><a href=`${baseUrl}/dev`>Dev</a></li>
-      <li><a href=`${baseUrl}/core`>Core</a></li>
+    <!-- Theme Slider -->
+    <div id="theme-slider-container">
+      <input id="theme-toggle" type="checkbox" />
+      <label for="theme-toggle" class="slider-label">
+        <img
+          class="ic-sun"
+          height="20"
+          src=`${baseUrl}/icons/sun.svg`
+          alt="sun-icon"
+        />
+        <img
+          class="ic-moon"
+          height="20"
+          src=`${baseUrl}/icons/moon.svg`
+          alt="moon-icon"
+        />
+        <span class="slider-ball"></span>
+      </label>
     </div>
   </nav>
 </header>
