@@ -48,22 +48,24 @@ The `<chrono>` library provides a more accurate and versatile way to measure tim
 
 ```cpp
 #include <chrono>
+#include <iomanip>
 #include <iostream>
 using namespace std;
 
-int main() {
-    auto start = chrono::steady_clock::now(); // Start time
+int main () {
+    cout << "START\n" << endl;
+    auto start = chrono::steady_clock::now();
 
     // Your code block to be benchmarked
     for (int i = 0; i < 1e9; ++i) {
         // Do some work here
     }
 
-    auto end = chrono::steady_clock::now(); // End time
-
-    auto seconds_elapsed = chrono::duration_cast<chrono::duration<double>>(end - start).count();
-
-    cout << "Time taken: " << seconds_elapsed << " sec" << endl;
+    auto end = chrono::steady_clock::now();
+    auto elapsed_seconds = chrono::duration_cast<chrono::duration<double>>(end - start).count();
+    cout << "\nEND" << endl;
+    cout << fixed << setprecision(6);
+    cout << "Time taken: " << elapsed_seconds << " sec" << endl;
 
     return 0;
 }

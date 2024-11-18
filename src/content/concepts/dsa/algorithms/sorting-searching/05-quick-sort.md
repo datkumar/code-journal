@@ -15,28 +15,19 @@ tags: [dsa, algorithm, sorting]
 
 ```txt
 Sorting working array:
-
     Partition array around a pivot element.
-
     Sort the two partitions recursively independently.
 ```
 
 ```txt
 Partitioning:
-
-    (Assuming last element of current array as pivot).
-
+    (Assuming last element of current array as pivot.)
     Start traversing current array from start uptil before pivot:
-
         When you find an element less than pivot:
-
             Move left part ahead by one.
             Send that element to end of left part.
-
-
     At end, we will have left part, joining it is right part, and then pivot at last.
     Swap pivot with first element of right part so array becomes partitioned around pivot.
-
 ```
 
 ## Code

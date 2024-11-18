@@ -19,5 +19,14 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# Custom files
-.playground/
+# Custom files:
+
+# Ignore everything in .playground folder and its subfolders
+.playground/**
+# Do not ignore the folder structure
+!.playground/
+!.playground/**/
+# Do not ignore these files in any subfolder of .playground
+!.playground/**/Makefile
+!.playground/**/.clang-format
+!.playground/**/notes.md

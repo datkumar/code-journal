@@ -25,7 +25,6 @@ Refer [Adjacency List Graph representation](/code-journal/dsa/dsa/graph-represen
 
 ```cpp
 // Explore an unvisited neighbor of current node
-// Explore an unvisited neighbor of current node
 void dfs (
     vector<vector<int>> const &Adj,
     vector<char> &visited,
