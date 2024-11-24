@@ -1,13 +1,13 @@
 ---
-import { getCollection} from "astro:content";
+import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 
 const nodeConcepts = (await getCollection("concepts")).filter((item) =>
-  item.data.tags.includes("node")
+  item.data.tags.includes("nodejs")
 );
 
 const baseUrl = import.meta.env.BASE_URL;
-const folderSlug = "dev/node";
+const folderSlug = "dev/nodejs";
 ---
 
 <BaseLayout tabTitle="NodeJs">

@@ -5,7 +5,7 @@ import MarkdownLayout from "../../../layouts/MarkdownLayout.astro";
 
 export async function getStaticPaths() {
   const nodeConcepts = (await getCollection("concepts")).filter((item) =>
-    item.data.tags.includes("node")
+    item.data.tags.includes("nodejs")
   );
   return nodeConcepts.map((entry) => ({
     params: { slug: entry.slug },

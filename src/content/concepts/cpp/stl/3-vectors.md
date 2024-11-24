@@ -123,7 +123,24 @@ iota(v1.begin()+2, v1.end()-3, 20);
 // { 0, 0, 20, 21, 22, 23, 24, 0, 0, 0 }
 ```
 
-### Initialising 2D vector
+### `fill()` vs `memset()` in C++
+
+|  Criteria | `memset()`                                                                                                  | `fill()`                                                                                     |
+| --------: | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Signature | `memset(void *obj, int ch, size_t N)`                                                                       | `<Itr,T> void fill(Itr first, Itr last, const T& val)`                                       |
+|   Meaning | Sets `N` bytes of `obj` to `ch`                                                                             | Assigns the value `val` to all elements in range `[first, last)`                             |
+|    Values | Used when ALL bytes of element can be the same byte, such as `0` or `-1`                                    | Accepts all valid values of the data-type                                                    |
+| Data-type | Mostly used with `int` or `char` arrays                                                                     | Portable for vectors of various data types                                                   |
+| Execution | Works at the byte level, setting each byte present to the given byte value. Thus no type-safety per element | Has an underlying loop initializing each element to the given value. So type-safe assignment |
+|    Import | `#include <cstring>`                                                                                        | `#include <vector>`                                                                          |
+|     Speed | It's slightly faster as it's written in assembler                                                           | Basic looping, so slightly slower than `memset`                                              |
+|   Example | `memset(arr, -1, n * sizeof(int));`                                                                         | `fill(arr.begin(), arr.end(), 42);`                                                          |
+
+Below picture would illustrate why `memset` makes sense for values `0` or `-1` when we want to set a certain number of bytes as the same byte-value
+
+![`int` value representation for `memset`](/code-journal/diagrams/memset-int.svg)
+
+### Initializing a 2D vector
 
 ```cpp
 vector<vector<int>> mat(3, vector<int>(4, -1));

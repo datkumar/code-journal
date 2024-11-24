@@ -12,7 +12,7 @@ export const devLinks: NavLinkData[] = [
   { title: "HTML, CSS", url: "html-css" },
   { title: "Javascript, Typescript", url: "js-ts" },
   { title: "Astro", url: "astro" },
-  { title: "NodeJs", url: "node" },
+  { title: "NodeJs", url: "nodejs" },
   { title: "React, NextJs", url: "react-next" },
   { title: "Flutter, Dart", url: "flutter-dart" },
   { title: "Java", url: "java" },

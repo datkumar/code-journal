@@ -5,7 +5,7 @@ tags: [dsa, algorithm, graph]
 
 ## Algorithm
 
-Depth-First Search (DFS) traversal of Graph keeps going **d** till there's a dead end. Then it **backtracks** to other neighbours of the last visited node. It uses the **Stack** data structure as it's **recursive**
+Depth-First Search (DFS) traversal of Graph keeps going **deeper** till there's a dead end. Then it **backtracks** to other neighbours of the recently visited node. It uses the **Stack** data structure as it's **recursive**
 
 Below is the approach for DFS traversal of a **connected component**:
 
