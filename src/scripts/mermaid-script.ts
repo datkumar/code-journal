@@ -9,8 +9,8 @@ async function renderDiagrams(graphs: HTMLCollectionOf<Element>) {
     // Only "base" theme can be modified
     theme: "base",
     themeVariables: {
-      lineColor: "#5f00ed",
-      primaryColor: "#e4ddf0",
+      lineColor: "#0f755f",
+      primaryColor: "#eae3fc",
     },
   });
 

@@ -13,7 +13,7 @@ Polymorphism is mainly of two types:
 
 Since the **compiler can definitively determine which function to call** based on the information available at the time of compilation, it's called static polymorphism. Static polymorphism is achieved via method overloading or operator overloading
 
-### (a) Method Overloading
+### Method Overloading
 
 We can have multiple methods with the exact **same name** but **different signatures** and the compiler is able to decide which method to call.
 
@@ -58,7 +58,7 @@ int add(int a, int b) { return a + b; }
 
 There is typically no inheritance of classes involved in overloading
 
-### (b) Operator Overloading (C++)
+### Operator Overloading (C++)
 
 ```cpp
 class Point {

@@ -8,10 +8,11 @@ const nodeConcepts = (await getCollection("concepts")).filter((item) =>
 
 const baseUrl = import.meta.env.BASE_URL;
 const folderSlug = "dev/nodejs";
+const title = "Node.js";
 ---
 
-<BaseLayout tabTitle="NodeJs">
-  <h2>NodeJs</h2>
+<BaseLayout tabTitle={title}>
+  <h2>{title}</h2>
   <ol>
     {
       nodeConcepts.map((entry) => (

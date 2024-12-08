@@ -1,0 +1,29 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+
+import ConceptTags from "../../../components/ConceptTags.astro";
+
+export async function getStaticPaths() {
+  const gitConcepts = (await getCollection("concepts")).filter((item) =>
+    item.data.tags.includes("git")
+  );
+  return gitConcepts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: entry,
+  }));
+}
+
+type Props = CollectionEntry<"concepts">;
+const pageEntry = Astro.props;
+
+const { Content } = await pageEntry.render();
+---
+
+<BaseLayout tabTitle={pageEntry.data.title}>
+  <ArticleLayout title={pageEntry.data.title}>
+    <ConceptTags tags={pageEntry.data.tags} />
+    <Content />
+  </ArticleLayout>
+</BaseLayout>

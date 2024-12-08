@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const linuxConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("linux")
+);
+
+const baseUrl = import.meta.env.BASE_URL;
+const folderSlug = "dev/linux";
+const title = "Linux";
+---
+
+<BaseLayout tabTitle={title}>
+  <h1>{title}</h1>
+  <ul>
+    {
+      linuxConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

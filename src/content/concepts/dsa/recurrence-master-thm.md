@@ -15,11 +15,20 @@ A recurrence relation is an equation that recursively defines elements in a sequ
 
 The factorial function is defined as:
 
-\\( f(n) = \begin{cases} 1 & \text{if n = 0} \\\\ n \ast f(n-1) & \text{if n > 0} \end{cases} \\)
+$$
+f(n) =
+\begin{cases}
+1 & \text{if n = 0} \\\\ n \ast f(n-1) & \text{if n > 0}
+\end{cases}
+$$
 
 And the recurrence relation can be written as:
 
-\\( \boldsymbol{F\_{n} = n \ast F\_{n-1}} \space\space \text{with} \space\space F_0 = 1 \\)
+$$
+\bbox[4pt,border:1px solid #3baaf5]{
+    F\_{n} = n \cdot F\_{n-1}
+} \space\space \text{with} \space\space F_0 = 1
+$$
 
 Here, the order is **1** and number of initial terms is also **1**
 
@@ -27,27 +36,29 @@ Here, the order is **1** and number of initial terms is also **1**
 
 The n<sup>th</sup> fibonacci number is given by function:
 
-\\( f(n) = \begin{cases} 0 & \text{if n = 0} \\\\ 1 & \text{if n = 1} \\\\ f(n-1) + f(n-2) & \text{if n > 1} \end{cases} \\)
+$$f(n) = \begin{cases} 0 & \text{if n = 0} \\\\ 1 & \text{if n = 1} \\\\ f(n-1) + f(n-2) & \text{if n > 1} \end{cases}$$
 
 And the recurrence relation can be written as:
 
-\\( \boldsymbol{F\_{n} = F\_{n-1} + F\_{n-2}} \space\space \text{with} \space\space F_0 = 0, \space F_1 = 1 \\)
+$$
+\bbox[4pt,border:1px solid #3baaf5]{
+    F\_{n} = F\_{n-1} + F\_{n-2}
+} \space\space \text{with} \space\space F_0 = 0, \space F_1 = 1
+$$
 
 Here, the order is **2** and number of initial terms is also **2**
 
 ---
 
-In below examples, \\( T(n) \\) is the time required to execute as a function of the input size \\(n\\)
+In below examples, $T(n)$ is the time required to execute as a function of the input size \\(n\\)
 
 ## Decreasing functions
 
-The next recursive call is on a decremented input value
+These are recursive functions where the next recursive call is on a **decremented input** value
 
-### Examples of decreasing functions
+Here are a few examples of decreasing functions:
 
-**Example 1**:
-
-```cpp
+```cpp title="Example 1"
 void func(int n) {          // T(n)
     if (n > 0) {
         cout << n << endl; // 1
@@ -60,9 +71,7 @@ The recurrence relation for above recursive function is: \\[T(n) = T(n-1) + 1 \s
 
 <br>
 
-**Example 2**:
-
-```cpp
+```cpp title="Example 2"
 void func(int n) {                    // T(n)
     if (n > 0) {
         for (int i = 0; i < n; i++) {
@@ -77,9 +86,7 @@ The recurrence relation of above recursive function is: \\[T(n) = T(n-1) + n \sp
 
 <br>
 
-**Example 3**:
-
-```cpp
+```cpp title="Example 3"
 void func(int n) {                          // T(n)
     if (n > 0) {
         for (int i = 0; i < n; i *= 2) {
@@ -101,41 +108,50 @@ Refer [Abdul Bari video](https://youtu.be/CyknhZbfMqc?si=85BGCrrSXTn04OKE)
 
 Given any recurrence relation of the form:
 
-\\[ \boldsymbol{T(n) = aT(n - b) + f(n)} \\]
+$$
+\bbox[10pt,border:3px solid red]{
+    \boldsymbol{T(n) \space=\space aT(n - b) + f(n)}
+}
+$$
 
-\\[ \text{such that}\space\space a,b > 0 \space\text{and}\space \boldsymbol{f(n) = O(n^k)} \space\text{where}\space k \ge 0 \\]
+such that:
+
+$$
+a,b > 0 \space\space\text{and}\space\space
+\bbox[4pt,border:1px solid #3baaf5]{
+    f(n) = O(n^k)
+}\space\text{where}\space k \ge 0
+$$
 
 It can be solved with the following cases:
 
-**Case 1**:&emsp; \\( \boldsymbol{(a < 1)} \implies T(n) = \boldsymbol{O(f(n))} = O(n^k) \\)
-
-**Case 2**:&emsp; \\( \boldsymbol{(a = 1)} \implies T(n) = \boldsymbol{O( f(n) \ast n ) } = O(n^{k+1}) \\)
-
-**Case 3**:&emsp; \\( \boldsymbol{(a > 1)} \implies T(n) = \boldsymbol{O( f(n) \ast a^{n/b} )} = O( n^k \cdot a^{n/b} ) \\)
+| Case      | $T(n)$ solution                                                                        |
+| --------- | -------------------------------------------------------------------------------------- |
+| $$a < 1$$ | $O(f(n)) = O(n^k)$                                                                     |
+| $$a = 1$$ | $O\left(f(n) \cdot n \right) = O(n^{k+1})$                                             |
+| $$a > 1$$ | $O\left(f(n) \cdot a^{n/b} \right) = O( f(n) \cdot a^{n/b} ) = O( n^k \cdot a^{n/b} )$ |
 
 ### Examples of decreasing function evaluated by Master theorem
 
-1. \\( T(n) = T(n-1) + 1 \implies O(n) \\)
-1. \\( T(n) = T(n-1) + n \implies O(n^2) \\)
-1. \\( T(n) = T(n-1) + n^2 \implies O(n^3) \\)
-1. \\( T(n) = T(n-1) + logn \implies O(n\cdot logn) \\)
-1. \\( T(n) = T(n-3) + 1 \implies O(n) \\)
-1. \\( T(n) = T(n-10) + n \implies O(n^2) \\)
-1. \\( T(n) = 2T(n-1) + 1 \implies O(2^n) \\)
-1. \\( T(n) = 3T(n-2) + n \implies O(n \cdot 3^{n/2}) \implies O( n \cdot ({\sqrt 3})^n ) \\)
-1. \\( T(n) = \frac{1}{3}T(n-2) + logn \implies O(logn) \\)
+- \\( T(n) = T(n-1) + 1 \implies O(n) \\)
+- \\( T(n) = T(n-1) + n \implies O(n^2) \\)
+- \\( T(n) = T(n-1) + n^2 \implies O(n^3) \\)
+- \\( T(n) = T(n-1) + logn \implies O(n\cdot logn) \\)
+- \\( T(n) = T(n-3) + 1 \implies O(n) \\)
+- \\( T(n) = T(n-10) + n \implies O(n^2) \\)
+- \\( T(n) = 2T(n-1) + 1 \implies O(2^n) \\)
+- \\( T(n) = 3T(n-2) + n \implies O(n \cdot 3^{n/2}) \implies O( n \cdot ({\sqrt 3})^n ) \\)
+- \\( T(n) = \frac{1}{3}T(n-2) + logn \implies O(logn) \\)
 
 ---
 
 ## Dividing functions
 
-The next recursive call is on a factored input value
+These are recursive functions where the next recursive call is on a **factored input** value
 
-### Examples of Dividing functions
+Here are a few examples of dividing functions:
 
-**Example 1**:
-
-```cpp
+```cpp title="Example 1"
 void func(int n) {            // T(n)
     if (n > 1) {
         cout << n << endl;    // 1
@@ -148,9 +164,7 @@ The recurrence relation for above recursive function is: \\[T(n) = T \left(\frac
 
 <br>
 
-**Example 2**:
-
-```cpp
+```cpp title="Example 2"
 void func(int n) {                        // T(n)
     if (n > 1) {
         for (int i = 0; i < n; i *= 2) {
@@ -166,9 +180,7 @@ The recurrence relation of above recursive function is: \\[T(n) = 2T \left(\frac
 
 <br>
 
-**Example 3**:
-
-```cpp
+```cpp title="Example 3"
 void func(int n) {            // T(n)
     if (n > 2) {
         cout << n << endl;    // 1
@@ -187,35 +199,87 @@ Refer [Abdul Bari video](https://youtu.be/OynWkEj0S-s?si=9hzLKP7lwPSS2XOL) and [
 
 Given any recurrence relation of the form:
 
-\\[ \boldsymbol{T(n) = aT \left(\frac{n}{b} \right) + f(n)} \\]
+$$
+\bbox[10pt,border:3px solid red]{
+    \boldsymbol{T(n) \space=\space aT \left(\frac{n}{b} \right) + f(n)}
+}
+$$
 
-\\[ \text{such that}\space\space a\ge1,\space b > 1 \space\text{and}\space \boldsymbol{f(n) = \Theta(n^k \cdot log^p(n))} \space\text{where}\space k \ge 0 \\]
+such that:
 
-Here:
+$$
+a\ge1,\space b > 1 \space\space \text{and} \space\space
+\bbox[4pt,border:2px solid #3baaf5]{
+    f(n) = \boldsymbol{\Theta \left( n^k \cdot log^p(n) \right)}
+}\space\space \text{where} \space\space  k \ge 0
+$$
 
-- '\\(n\\)' is the **input size**
-- '\\(a\\)' is the **number of subproblems** in the recursion
-- '\\(b\\)' is the **factor by which the subproblem size is reduced** in each recursive call
-- '\\( f(n) \\)' is the **work to split/recombine** the problem
-- The **critical exponent**: \\(c\_{crit} = log_b(a) = \frac{ log(\text{number of subproblems}) }{ log(\text{relative subproblem size}) } \\)
+- $n$ is the **input size**
+- \\(a\\) is the **number of subproblems** in the recursion
+- \\(b\\) is the **factor by which the subproblem size is reduced** in each recursive call
+- \\( f(n) \\) is the **work to split/recombine** the subproblems
+- The **critical exponent** $c_{crit}$ is given by below formula. Let's cal it $c$ for short:
 
-It can be solved with the following cases:
+  $$
+  \bbox[7pt,border:1px solid #3baaf5]{
+      c = c_{crit} = log_b(a)
+      = \frac{ log(\text{number of subproblems}) }{ log(\text{relative subproblem size}) }
+  }
+  $$
 
-**Case 1**:&emsp; \\( \boldsymbol{log_b(a) > k} \implies T(n) = \boldsymbol{ \Theta( n^{log_b(a)} ) } \\)
+The solution for the $T(n)$ dividing recurrence is given by:
 
-**Case 2**:&emsp; \\( \boldsymbol{log_b(a) = k} \\) :
+<style>
+table hr{
+    margin: 0.75rem 0;
+    height: 1px;
+    border: none;
+}
+dt, dd{
+    padding: 0.25rem;
+}
+</style>
 
-&emsp;(**2a**)&emsp; \\( \boldsymbol{p > -1} \implies T(n) = \boldsymbol{ \Theta( n^k \cdot log^{p+1}(n) ) } \\)
+<table>
+<tr>
+    <th>Case</th>
+    <th>$T(n)$ solution</th>
+</tr>
 
-&emsp;(**2b**)&emsp; \\( \boldsymbol{p = -1} \implies T(n) = \boldsymbol{ \Theta( n^k \cdot log^{2}(n) ) } = \Theta(n^k \cdot log(log(n))) \\)
+<tr>
+    <td>$$c > k$$</td>
+    <td><code>(1)</code> $T(n) = \boldsymbol{\Theta (n^c)}$</td>
+</tr>
 
-&emsp;(**2c**)&emsp; \\( \boldsymbol{p < -1} \implies T(n) = \boldsymbol{ \Theta(n^k) } \\)
+<tr>
+    <td>$$c = k$$</td>
+    <td>
+        <dl>
+            <dt><code>(2a)</code> $\boldsymbol{p > -1} \space:$</dt>
+            <dd>$T(n) = \boldsymbol{\Theta \left( n^k \cdot log^{p+1}(n) \right)}$</dd>
+            <hr>
+            <dt><code>(2b)</code> $\boldsymbol{p = -1} \space:$</dt>
+            <dd>$T(n) = \Theta \left( n^k \cdot log(logn) \right) = \boldsymbol{ \Theta \left( n^k \cdot log^{2}n \right) }$</dd>
+            <hr>
+            <dt><code>(2c)</code> $\boldsymbol{p < -1} \space:$</dt>
+            <dd>$T(n) = \boldsymbol{\Theta (n^k)}$</dd>
+        </dl>
+    </td>
+</tr>
 
-**Case 3**:&emsp; \\( \boldsymbol{log_b(a) < k} \\) :
-
-&emsp;(**3a**)&emsp; \\( \boldsymbol{p \ge 0} \implies T(n) = \boldsymbol{ \Theta(f(n)) = \Theta(n^k \cdot log^p(n)) } \\)
-
-&emsp;(**3b**)&emsp; \\( \boldsymbol{p < 0} \implies T(n) = \boldsymbol{ \Theta(n^k) } \\)
+<tr>
+    <td>$$c < k$$</td>
+    <td>
+        <dl>
+            <dt><code>(3a)</code> $\boldsymbol{p \ge 0} \space:$</dt>
+            <dd>$T(n) = \boldsymbol{ f(n)  = \Theta \left( n^k \cdot log^p(n) \right) }$</dd>
+            <hr>
+            <dt><code>(3b)</code> $\boldsymbol{p < 0} \space:$</dt>
+            <dd>$T(n) = \boldsymbol{ \Theta (n^k) } $</dd>
+        </dl>
+    </td>
+</tr>
+</table>
 
 ---
 

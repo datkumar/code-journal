@@ -28,8 +28,7 @@ These are the four pillars of Object-Oriented Programming:
   - Abstract Data Type (ADT) of a data-structure only defines which properties and methods it has, not how they should be implemented
 
 ```java title="Stack ADT"
-public interface StackADT<T>
-{
+public interface StackADT<T> {
     boolean isEmpty();
     int size();
     void push(T element);

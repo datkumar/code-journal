@@ -1,7 +1,8 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 import ConceptTags from "../../../components/ConceptTags.astro";
-import MarkdownLayout from "../../../layouts/MarkdownLayout.astro";
 
 export async function getStaticPaths() {
   const htmlConcepts = (await getCollection("concepts")).filter((item) =>
@@ -30,7 +31,9 @@ const pageEntry = Astro.props;
 const { Content } = await pageEntry.render();
 ---
 
-<MarkdownLayout {...pageEntry.data}>
-  <ConceptTags tags={pageEntry.data.tags} />
-  <Content />
-</MarkdownLayout>
+<BaseLayout tabTitle={pageEntry.data.title}>
+  <ArticleLayout title={pageEntry.data.title}>
+    <ConceptTags tags={pageEntry.data.tags} />
+    <Content />
+  </ArticleLayout>
+</BaseLayout>

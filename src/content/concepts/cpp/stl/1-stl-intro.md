@@ -5,6 +5,8 @@ tags: [cpp, stl]
 
 **Importing** the library: `#include <bits/stdc++.h>`
 
+This is a non-standard header file found specific to **GCC** typically found in the `bits` directory under the GCC include path. It imports a bunch of standard C++ library headers like `<iostream>`, `<vector>`, `<algorithm>` etc. typically used in programming contests. This library can also be pre-compiled to make your local runtimes faster
+
 The **Standard Template Library** (STL) is a set of C++ template classes and functions to provide several common programming data structures and algorithms
 
 The main components of the C++ STL include:

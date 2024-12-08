@@ -51,7 +51,7 @@ Throw exception when queue underflow or overflow occurs
 
 </details>
 
-### Code
+### Implementation Code
 
 ```cpp
 // Definition of a Node for the linked-list used by the Queue internally

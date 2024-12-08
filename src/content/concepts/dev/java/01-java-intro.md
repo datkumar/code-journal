@@ -9,7 +9,7 @@ It was created by **James Gosling** and Patrick Naughton, employees of **Sun Mic
 
 ## Features of Java
 
-### 1. Platform-indepedent
+### 1. Platform-independent
 
 Java source code is compiled into bytecode and that same bytecode can be run on any machine having a JVM. Thus, java is **write-once, run anywhere**.
 
@@ -69,14 +69,14 @@ The Java Runtime Environment (JRE) is an implementation of JVM. It provides a ru
 
 ```java title="Demo.java"
 public class Demo {
-
+    // This psvm() method is the starting point of execution
     public static void main(String[] args) {
         System.out.println("Hello World");
     }
 }
 ```
 
-```sh title="bash"
+```sh title="Running a Java program"
 javac Demo.java
 # Compiles source code file Demo.java and generates Demo.class bytecode file
 

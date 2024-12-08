@@ -9,18 +9,21 @@ export const dsaLinks: NavLinkData[] = [
 ];
 
 export const devLinks: NavLinkData[] = [
+  { title: "Git", url: "git" },
+  { title: "Linux", url: "linux" },
+  { title: "Java", url: "java" },
+  { title: "Golang", url: "go" },
   { title: "HTML, CSS", url: "html-css" },
   { title: "Javascript, Typescript", url: "js-ts" },
-  { title: "Astro", url: "astro" },
   { title: "NodeJs", url: "nodejs" },
   { title: "React, NextJs", url: "react-next" },
+  { title: "Astro", url: "astro" },
   { title: "Flutter, Dart", url: "flutter-dart" },
-  { title: "Java", url: "java" },
 ];
 
 export const coreLinks: NavLinkData[] = [
-  { title: "DBMS", url: "dbms" },
   { title: "OOP", url: "oop" },
+  { title: "DBMS", url: "dbms" },
   { title: "OS", url: "os" },
 ];
 

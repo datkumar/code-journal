@@ -34,42 +34,32 @@
 }
 
 body {
-  background-color: var(--bgColor);
-  color: var(--textColor);
-  font-family: system-ui, sans-serif;
-  font-size: 16px;
-  font-weight: normal;
-  line-height: 1.5em;
-
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   max-width: 900px;
   min-height: 100vh;
   min-height: 100vsh; /* for newer browsers */
-  overflow-wrap: break-word;
-  overflow-x: auto;
   margin: 0 auto;
   padding: 30px 40px;
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.5em;
+  overflow-wrap: break-word;
+  overflow-x: auto;
 }
 
 body > footer {
   margin-top: auto;
 }
 
-img {
-  max-height: 800px;
-  max-width: 800px;
-}
-
 /* Media Queries */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   body {
     padding: 20px;
-  }
-  img {
-    max-height: 500px;
-    max-width: 500px;
   }
 }
 
@@ -84,12 +74,12 @@ pre {
 code {
   background-color: var(--codeBgColor);
   color: var(--codeColor);
-  padding: 0.15rem 0.3rem;
-  border-radius: 0.3rem;
-  white-space: nowrap;
-
+  padding: 2px 4px;
   font-family: monospace;
-  font-size: 90%;
+  vertical-align: baseline;
+  font-size: 80%;
+  border-radius: 5px;
+  white-space: nowrap;
 }
 
 pre code {
@@ -169,23 +159,20 @@ li p {
 blockquote {
   background-color: var(--quoteBgColor);
   border-left: 12px solid var(--quoteHighlightColor);
+  border-radius: 0.5rem;
   color: var(--quoteTextColor);
-  margin: 0.5em 0px;
-  padding: 10px 13px;
+  padding: 5px 13px;
+  margin: 1em 0px;
 }
 
-mjx-container {
-  max-width: 900px;
-}
-
-blockquote mjx-container {
-  /* overflow: scroll; */
-  overflow-x: scroll;
-  padding-bottom: 1.5rem;
+img {
+  max-width: 90%;
+  margin: 0.5em auto;
+  align-self: center;
 }
 
 /* 
-  Tables
+  Tables 
 */
 
 table {
