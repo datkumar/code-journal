@@ -26,3 +26,5 @@ double areaSwitchCase(int choice, vector<double> arr) {
     }
 }
 ```
+
+For fun, also check out [Duff's device](https://belaycpp.com/2021/11/18/duffs-device-in-2021/)

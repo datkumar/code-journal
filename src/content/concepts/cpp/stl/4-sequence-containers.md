@@ -30,7 +30,7 @@ They provide a **wrapper interface** for Sequential containers
 
 - [`stack`](#stack) - provides Stack (LIFO)
 - [`queue`](#queue) - provides Queue (FIFO)
-- [`priority_queue`](#heap) - provides Heap (Max-Heap by deafult)
+- [`priority_queue`](#heap) - provides Heap (Max-Heap by default)
 
 ---
 

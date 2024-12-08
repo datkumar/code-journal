@@ -25,7 +25,7 @@ const siteDescription = "A site to organize and showcase my coding notes";
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href=`${baseUrl}/icons/favicon.svg` />
 
-    <!-- Page's Browser Tab title -->
+    <!-- Browser tab title for the page -->
     <title>{tabTitle}</title>
     <meta name="description" content={siteDescription} />
 
@@ -44,14 +44,9 @@ const siteDescription = "A site to organize and showcase my coding notes";
 
   <body class="markdown-body">
     <Header />
-
     <main>
-      <slot>
-        <!-- Actual content unique to the page (with fallback content) -->
-        This page is empty
-      </slot>
+      <slot>This page is empty.</slot>
     </main>
-
     <Footer />
   </body>
 </html>

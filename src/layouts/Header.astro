@@ -39,6 +39,7 @@ const baseUrl = import.meta.env.BASE_URL;
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    align-items: center;
   }
 
   @media (max-width: 768px) {
@@ -60,7 +61,7 @@ const baseUrl = import.meta.env.BASE_URL;
     right: 10px; */
     /* Float on top of other content */
     /* z-index: 500; */
-    /* height: 50px; */
+    /* height: 80px; */
   }
 
   #theme-toggle {
@@ -69,7 +70,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
   .slider-label {
     background-color: var(--themeSliderBgColor);
-    width: 48px;
+    width: 50px;
     height: 20px;
     border-radius: 25px;
     padding: 12px;
@@ -83,10 +84,10 @@ const baseUrl = import.meta.env.BASE_URL;
   .slider-ball {
     background-color: white;
     position: absolute;
-    height: 24px;
-    width: 24px;
-    left: 40px;
-    top: 10px;
+    height: 26px;
+    width: 26px;
+    left: 41px;
+    top: 9px;
     /* left: 5px;
     top: 10px; */
     border-radius: 50%;
@@ -106,7 +107,7 @@ const baseUrl = import.meta.env.BASE_URL;
         <a href=`${baseUrl}`
           ><img
             src=`${baseUrl}/icons/favicon.svg`
-            height="23"
+            height="25"
             alt="favicon"
           /></a
         >
@@ -119,18 +120,8 @@ const baseUrl = import.meta.env.BASE_URL;
     <div id="theme-slider-container">
       <input id="theme-toggle" type="checkbox" />
       <label for="theme-toggle" class="slider-label">
-        <img
-          class="ic-sun"
-          height="20"
-          src=`${baseUrl}/icons/sun.svg`
-          alt="sun-icon"
-        />
-        <img
-          class="ic-moon"
-          height="20"
-          src=`${baseUrl}/icons/moon.svg`
-          alt="moon-icon"
-        />
+        <img class="ic-sun" src=`${baseUrl}/icons/sun.svg` alt="sun-icon" />
+        <img class="ic-moon" src=`${baseUrl}/icons/moon.svg` alt="moon-icon" />
         <span class="slider-ball"></span>
       </label>
     </div>

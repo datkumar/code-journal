@@ -19,9 +19,7 @@ We define the class once and then create as many object of it as we need. Object
 
 ---
 
-## Java example
-
-```java
+```java title="Java example"
 // Class definition of a person
 class Person {
     // Data member
@@ -49,11 +47,7 @@ class Demo {
 }
 ```
 
-## C++ example
-
-In C++, a `class` and `struct` are technically almost the same with the only difference being that the members are `private` by default inside a `class` and `public` by default inside a `struct`. But semantically, structs are used just as a combined block of data and classes are used for OOP features
-
-```cpp
+```cpp title="C++ example"
 class Person {
   private:
     string name;  // Data member
@@ -83,3 +77,5 @@ int main () {
     return 0;
 }
 ```
+
+In C++, a `class` and `struct` are technically almost the same with the only difference being that the members are `private` by default inside a `class` and `public` by default inside a `struct`. But semantically, structs are used just as a combined block of data and classes are used for OOP features

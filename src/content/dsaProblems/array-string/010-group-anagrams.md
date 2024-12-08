@@ -73,7 +73,7 @@ vector<vector<string>> groupAnagrams (vector<string> &strs) {
 
 Regardless of the order in which characters are processed within the loop, the **final hash value `H` will be the same for all anagrams**. This is because the **order of multiplication doesn't affect the final result** when dealing with modulo operations.
 
-Hash functions are provided by deafult in Java, but in C++, we need to provide our own hash function where the data-type of key is not a primitive data-type
+Hash functions are provided by default in Java, but in C++, we need to provide our own hash function where the data-type of key is not a primitive data-type
 
 The step of sorting letters of word in first method has been replaced with calculating the hash value of the word. In our `getHash()` function below, we are iterating over the letters of word i.e. \\( O(m) \\) time to calculate hash of a word, and thereby \\( O(n \cdot m) \\) time to calculate hash of all words
 

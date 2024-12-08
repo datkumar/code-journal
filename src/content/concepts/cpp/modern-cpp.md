@@ -35,9 +35,9 @@ cout << "Product: " << product << endl;
 
 ## Smart Pointers
 
-- `unique_ptr` : Only ONE pointer allowed to access the object
-- `shared_ptr` : Multiple pointers can access the object. Reference counter maintained
-- `weak_ptr` : Similar to `shared_ptr` but no reference counter maintained. Pointer doesn't have strong hold of objects. Prevents deadlocks
+- [`unique_ptr`](https://en.cppreference.com/w/cpp/memory/unique_ptr) : Only ONE pointer allowed to access the object
+- [`shared_ptr`](https://en.cppreference.com/w/cpp/memory/shared_ptr) : Multiple pointers can access the object. Reference counter maintained
+- [`weak_ptr`](https://en.cppreference.com/w/cpp/memory/weak_ptr) : Similar to `shared_ptr` but no reference counter maintained. Pointer doesn't have strong hold of objects. Prevents deadlocks
 
 ## Structured Binding
 

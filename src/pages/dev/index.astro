@@ -1,12 +1,20 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-
 import { devLinks } from "../../utils/data";
+
 const baseUrl = import.meta.env.BASE_URL;
+const title = "Development";
 ---
 
-<BaseLayout tabTitle="Dev">
-  <h1>Development</h1>
+<style>
+  h2 {
+    margin-block: 1.25rem;
+    font-size: 20px;
+  }
+</style>
+
+<BaseLayout tabTitle={title}>
+  <h1>{title}</h1>
   <ul>
     {
       devLinks.map((entry) => (

@@ -1,8 +1,9 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import ConceptTags from "../../components/ConceptTags.astro";
 import DsaProblemTags from "../../components/DsaProblemTags.astro";
-import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
 
 export async function getStaticPaths() {
   const dsaConcepts = (await getCollection("concepts")).filter((item) =>
@@ -36,20 +37,22 @@ const pageEntry = Astro.props;
 const { Content } = await pageEntry.render();
 ---
 
-<MarkdownLayout {...pageEntry.data}>
-  {
-    pageEntry.collection === "dsaProblems" && (
-      <DsaProblemTags
-        links={pageEntry.data.links}
-        techniques={pageEntry.data.techniques}
-        level={pageEntry.data.level}
-      />
-    )
-  }
-  {
-    pageEntry.collection === "concepts" && (
-      <ConceptTags tags={pageEntry.data.tags} />
-    )
-  }
-  <Content />
-</MarkdownLayout>
+<BaseLayout tabTitle={pageEntry.data.title}>
+  <ArticleLayout title={pageEntry.data.title}>
+    {
+      pageEntry.collection === "dsaProblems" && (
+        <DsaProblemTags
+          links={pageEntry.data.links}
+          techniques={pageEntry.data.techniques}
+          level={pageEntry.data.level}
+        />
+      )
+    }
+    {
+      pageEntry.collection === "concepts" && (
+        <ConceptTags tags={pageEntry.data.tags} />
+      )
+    }
+    <Content />
+  </ArticleLayout>
+</BaseLayout>

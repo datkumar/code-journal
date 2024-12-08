@@ -31,7 +31,7 @@ Return "number" part of the first "k" pairs as answer.
 
 As **"Top K"** frequent elements asked, we should think of **heap**
 
-The heap should be such that the highest frequency elements placed first and then the lower frequncey ones. In other words, a **max-heap** with the **comparison basis as frequency of the number** in input array
+The heap should be such that the highest frequency elements placed first and then the lower frequency ones. In other words, a **max-heap** with the **comparison basis as frequency of the number** in input array
 
 ```txt
 Construct frequency map of numbers in input
@@ -170,7 +170,7 @@ vector<int> topKFrequent (vector<int> &nums, int k) {
         if (buckets[i].empty()) {
             continue;
         }
-        // Append elemets of the bucket into answer (till k total items)
+        // Append elements of the bucket into answer (till k total items)
         for (int number : buckets[i]) {
             ans.push_back(number);
             if (ans.size() == k) {

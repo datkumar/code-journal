@@ -13,7 +13,8 @@ export default defineConfig({
   },
   integrations: [
     expressiveCode({
-      themes: ["catppuccin-latte", "aurora-x"],
+      // themes: ["catppuccin-latte", "aurora-x"],
+      themes: ["slack-ochin", "aurora-x"],
       themeCssSelector: (theme) => `[data-theme='${theme.type}']`,
       styleOverrides: {
         codeFontFamily: "ui-monospace, monospace",

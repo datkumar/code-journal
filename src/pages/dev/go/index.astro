@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const goConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("go")
+);
+
+const baseUrl = import.meta.env.BASE_URL;
+const folderSlug = "dev/go";
+const title = "Golang";
+---
+
+<BaseLayout tabTitle={title}>
+  <h2>{title}</h2>
+  <ul>
+    {
+      goConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

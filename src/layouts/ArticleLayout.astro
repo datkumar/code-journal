@@ -1,0 +1,50 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!-- Have to make it global as by-default, styles are only scoped for the component, NOT to it's slots -->
+<style is:global>
+  #article-content h1 {
+    line-height: 2rem;
+  }
+
+  #article-content img {
+    display: block;
+    margin: 0.5em auto;
+    max-width: 95%;
+  }
+
+  #article-content img {
+    max-width: 95%;
+    padding: 5px;
+    background-color: white;
+    /* overflow-x: auto; */
+  }
+
+  #article-content code {
+    white-space: pre-wrap; /* Preserves spacing but allows wrapping */
+    word-wrap: break-word; /* Breaks long strings */
+    overflow-wrap: anywhere; /* Additional support for breaking words anywhere */
+  }
+
+  #article-content mjx-container {
+    /* display: inline-block; */
+    padding: 0.5rem;
+    overflow-x: auto;
+    overflow-y: auto;
+    /* scroll-behavior: auto; */
+  }
+
+  #article-content blockquote mjx-container {
+    padding-bottom: 0.5rem;
+  }
+</style>
+
+<div id="article-content">
+  <h1>{title}</h1>
+  <slot />
+</div>

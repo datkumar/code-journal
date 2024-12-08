@@ -37,17 +37,17 @@ Throw exception when stack underflow or overflow occurs
 <details>
 <summary><strong>Expand to see diagrams</strong></summary>
 
-**`push(val)` operation**
+**`push(val)` operation**:
 
 ![push operation](/code-journal/diagrams/stack-ll-push.svg)
 
-**`pop()` operation**
+**`pop()` operation**:
 
 ![pop() operation](/code-journal/diagrams/stack-ll-pop.svg)
 
 </details>
 
-### Code
+### Implementation Code
 
 ```cpp
 // Definition of a Node for the linked-list used by the Stack internally
