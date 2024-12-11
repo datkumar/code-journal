@@ -13,3 +13,9 @@ export const containsSomeTag = (
   // Check if at least one tag in query is present in entry
   return queryTags.some((tag) => entryTags.includes(tag));
 };
+
+export const compareStrings = (first: string, second: string): number => {
+  if (first < second) return -1;
+  if (first > second) return 1;
+  return 0;
+};

@@ -12,7 +12,7 @@
   --codeColor: #115d83;
   /* Blockquotes */
   --quoteHighlightColor: var(--accentColor);
-  --quoteBgColor: hsla(44, 100%, 44%, 0.655);
+  --quoteBgColor: hsla(27, 94%, 50%, 0.19);
   /* --quoteTextColor: rgb(115, 88, 13); */
   --quoteTextColor: black;
 }
@@ -21,12 +21,12 @@
   --bgColor: rgb(35, 35, 36);
   --textColor: #d9e8eb;
   --accentColor: #eec05c;
-  --themeSliderBgColor: #0c3778;
+  --themeSliderBgColor: #1c1449;
   --linkColor: #1fd9ba;
   --lineColor: #717070;
   /* Code */
-  --codeBgColor: #434b54;
-  --codeColor: #5fc6d4;
+  --codeBgColor: #595b5c;
+  --codeColor: #7bd8efe2;
   /* Blockquotes */
   --quoteHighlightColor: var(--accentColor);
   --quoteBgColor: hsla(183, 12%, 70%, 0.573);

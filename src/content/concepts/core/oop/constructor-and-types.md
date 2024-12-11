@@ -1,5 +1,5 @@
 ---
-title: Constructors and their types
+title: Types of Constructors
 tags: [oop, java, cpp]
 ---
 
@@ -477,7 +477,7 @@ class Person {
         cout << "Default Constructor body" << endl;
     }
 
-    Person (string name, int age) : name(name), age(age) {  // Parameter values
+    Person (string _name, int _age) : name(_name), age(_age) {  // Parameter values
         cout << "Parameterized Constructor body" << endl;
     }
 
@@ -503,7 +503,7 @@ class Person {
         cout << "Default Constructor body" << endl;
     }
 
-    Person (string name, int age) : name(name), age(age) {
+    Person (string _name, int _age) : name(_name), age(_age) {
         cout << "Parameterized Constructor body" << endl;
     }
 

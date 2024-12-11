@@ -24,7 +24,7 @@ An input string is valid if:
 ()[([]){}]    Valid
 ```
 
-## Stack solution
+## Solution: Stack
 
 > Being a **LIFO** data structure, we can know which was the **latest inserted** element. We use this property to know if there was a matching opening brace last inserted for current closing brace
 
@@ -38,7 +38,7 @@ An input string is valid if:
 
 - At the end, all pairs would clear out and stack should become empty in the case of balanced pairs. If **stack isn't empty at the end, then the input is unbalanced**.
 
-```cpp
+```cpp title="C++"
 bool isValid (string str) {
     // Odd length strings are invalid
     if (str.size() & 1) return false;
@@ -72,10 +72,10 @@ bool isValid (string str) {
 }
 ```
 
-## Time
+**Time taken**:
 
 We are iterating all string characters once, so \\( O(n) \\) time complexity
 
-## Space
+**Space used**:
 
 At most, there would be \\( n \\) characters present inside stack. This would occur when all characters are opening braces. Hence, the space complexity is \\( O(n) \\)

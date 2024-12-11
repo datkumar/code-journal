@@ -6,9 +6,13 @@ level: 1
 links: [https://leetcode.com/problems/valid-palindrome/]
 ---
 
+## Problem Statement
+
 A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
 Given a string `str`, return `true` if it is a palindrome, or `false` otherwise.
+
+## Solution
 
 ```txt
 Maintain 2 pointers (one at start and one at end of string)

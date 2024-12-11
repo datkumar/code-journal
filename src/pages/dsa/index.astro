@@ -1,8 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { containsSomeTag } from "../../utils/helper-functions";
+import { compareStrings, containsSomeTag } from "../../utils/helper-functions";
 import { problemDifficulties } from "../../utils/data";
+import type { CollectionEntry } from "astro:content";
 
 const dsaConcepts = (await getCollection("concepts")).filter(
   (item) =>
@@ -27,6 +28,26 @@ const stlEntries = (await getCollection("concepts")).filter((item) =>
 );
 
 const dsaProblems = await getCollection("dsaProblems");
+
+const stackQueueHeapProbs: CollectionEntry<"dsaProblems">[] = [];
+const listProbs: CollectionEntry<"dsaProblems">[] = [];
+const arrayStringProbs: CollectionEntry<"dsaProblems">[] = [];
+
+for (const entry of dsaProblems) {
+  if (containsSomeTag(entry.data.ds, ["stack", "queue", "heap"])) {
+    stackQueueHeapProbs.push(entry);
+    continue;
+  }
+  if (containsSomeTag(entry.data.ds, ["list"])) {
+    listProbs.push(entry);
+    continue;
+  }
+  arrayStringProbs.push(entry);
+}
+
+// dsaProblems.filter((entry) =>
+//   containsSomeTag(entry.data.ds, ["stack", "queue", "heap"])
+// );
 
 const baseUrl = import.meta.env.BASE_URL;
 ---
@@ -76,11 +97,13 @@ const baseUrl = import.meta.env.BASE_URL;
   <h2>C++ primer</h2>
   <ul>
     {
-      stlEntries.map((entry) => (
-        <li>
-          <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
-        </li>
-      ))
+      stlEntries
+        .sort((a, b) => compareStrings(a.slug, b.slug))
+        .map((entry) => (
+          <li>
+            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+          </li>
+        ))
     }
     <li><a rel="stylesheet" href={`${baseUrl}/cpp`}>More C++</a></li>
   </ul>
@@ -126,12 +149,11 @@ const baseUrl = import.meta.env.BASE_URL;
 
   <!-- PROBLEMS: -->
 
-  <h2>Arrays & Strings</h2>
+  <h2>Arrays, Strings</h2>
   <ul>
     {
-      dsaProblems
-        .sort((a, b) => a.data.level - b.data.level)
-        .filter((entry) => containsSomeTag(entry.data.ds, ["array", "string"]))
+      arrayStringProbs
+        .sort((a, b) => compareStrings(a.slug, b.slug))
         .map((entry) => {
           return (
             <li class="problem-item">
@@ -146,11 +168,8 @@ const baseUrl = import.meta.env.BASE_URL;
   <h2>Stack, Queues, Heaps</h2>
   <ul>
     {
-      dsaProblems
+      stackQueueHeapProbs
         .sort((a, b) => a.data.level - b.data.level)
-        .filter((entry) =>
-          containsSomeTag(entry.data.ds, ["stack", "queue", "heap"])
-        )
         .map((entry) => {
           return (
             <li class="problem-item">
@@ -165,9 +184,8 @@ const baseUrl = import.meta.env.BASE_URL;
   <h2>Linked Lists</h2>
   <ul>
     {
-      dsaProblems
+      listProbs
         .sort((a, b) => a.data.level - b.data.level)
-        .filter((entry) => containsSomeTag(entry.data.ds, ["list"]))
         .map((entry) => {
           return (
             <li class="problem-item">

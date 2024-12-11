@@ -12,18 +12,20 @@ Given an integer array `nums`, return an array `answer` such that `answer[i]` is
 
 The product of any prefix or suffix of `nums` is **guaranteed to fit in a 32-bit integer**. Try solving it without using the division operation `/`
 
-## 1. Using Division operation (violating instructions)
+## Solutions
 
-### Cases to observe
+### 1. Using Division (violates instructions)
+
+**Cases to observe**:
 
 1. **Two or more zero elements**: All products will be zero
 2. **One zero element**: All products will be zero except at the zero element's position
 3. **No zero elements**: The product at each postition will be combined product of all elements divided by current element (we'll use the division operator)
 
 <details>
-<summary><strong>C++ code</strong></summary>
+<summary><strong>Implementation Code</strong></summary>
 
-```cpp
+```cpp title="C++"
 vector<int> productExceptSelf (vector<int> &nums) {
     int n = nums.size();
     // Find the zero element (stop when zero count reaches 2)
@@ -81,7 +83,7 @@ vector<int> productExceptSelf (vector<int> &nums) {
 | Time   | \\( O(N) \\) ... 3 traversals at worst |
 | Space  | \\( O(1) \\)                           |
 
-## 2. Maintain Prefix and Suffix product arrays
+### 2. Maintain Prefix and Suffix product arrays
 
 Product of all elements except self means product of elements to it's left multiplied by the product of elements to it's right
 
@@ -107,9 +109,9 @@ Each element in answer array will be the product of corresponding values in pref
 | Space  | \\( O(N) \\) ... Extra space for `prefix[]` , `suffix[]` |
 
 <details>
-<summary><strong>C++ code</strong></summary>
+<summary><strong>Implementation Code</strong></summary>
 
-```cpp
+```cpp title="C++"
 vector<int> productExceptSelf (vector<int> &nums) {
     int n = nums.size();
 
@@ -155,9 +157,9 @@ Traverse input array from right:
 | Space  | \\( O(1) \\) ... Only `ans[]` , no extra space |
 
 <details>
-<summary><strong>C++ code</strong></summary>
+<summary><strong>Implementation Code</strong></summary>
 
-```cpp
+```cpp title="C++"
 vector<int> productExceptSelf (vector<int> &nums) {
     int n = nums.size();
 

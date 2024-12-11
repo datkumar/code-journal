@@ -35,12 +35,12 @@ Input: board =
 Output: true
 ```
 
-## Hashing
+## Solution: Hashing
 
 - To ensure the elements in each **row, column, square** are unique, maintain a **set** for each
 - To track the elements in squares, maintain a `3x3` grid where each cell contains the digits in a square. The square grid cell that an element at `[x][y]` index position in input board will go to will be given by calculating `[x/3][y/3]`
 
-```cpp
+```cpp title="C++"
 bool isValidSudoku (vector<vector<char>> &board) {
     // Type alias for set of uniqie digits
     using uniqueDigits = unordered_set<int>;
@@ -82,11 +82,11 @@ bool isValidSudoku (vector<vector<char>> &board) {
 }
 ```
 
-### Time
+**Time taken**:
 
 Traversing each cell of board takes \\( O(N^2) \\) time and each access or insert operation into the hash-set takes \\( O(1) \\) time on average. Thus, overall time complexity is \\( O(N^2) \\)
 
-### Space
+**Space used**:
 
 - The row and column sets would have at-most \\( N \\) elements filled at each of the \\( N \\) total rows and columns i.e. \\( O(N^2) \\) space over all elements
 - The grid for each square would have dimensions \\( \sqrt{N} \ast \sqrt{N} \\) and will contain at-most \\( N \\) elements at each cell of grid i.e. \\( O(N^2) \\) space over all elements
