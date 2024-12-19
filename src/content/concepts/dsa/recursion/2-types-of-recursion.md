@@ -1,6 +1,6 @@
 ---
 title: Types of Recursion
-tags: [dsa]
+tags: [dsa, recursion]
 ---
 
 To know how recurion calls are traced, refer [VisuAlgo](https://visualgo.net/en/recursion)

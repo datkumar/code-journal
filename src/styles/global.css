@@ -21,7 +21,7 @@
   --bgColor: rgb(35, 35, 36);
   --textColor: #d9e8eb;
   --accentColor: #eec05c;
-  --themeSliderBgColor: #1c1449;
+  --themeSliderBgColor: #042346;
   --linkColor: #1fd9ba;
   --lineColor: #717070;
   /* Code */
@@ -60,6 +60,7 @@ body > footer {
 @media only screen and (max-width: 768px) {
   body {
     padding: 20px;
+    font-size: 14px;
   }
 }
 

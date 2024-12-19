@@ -5,34 +5,45 @@ import { compareStrings, containsSomeTag } from "../../utils/helper-functions";
 import { problemDifficulties } from "../../utils/data";
 import type { CollectionEntry } from "astro:content";
 
+const stlEntries = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("stl")
+);
+
 const dsaConcepts = (await getCollection("concepts")).filter(
   (item) =>
     item.data.tags.includes("dsa") && !item.data.tags.includes("algorithm")
 );
+const recursionConcepts: CollectionEntry<"concepts">[] = [];
+const miscDsaConceptts: CollectionEntry<"concepts">[] = [];
+for (const entry of dsaConcepts) {
+  if (containsSomeTag(entry.data.tags, ["recursion"])) {
+    recursionConcepts.push(entry);
+  } else {
+    miscDsaConceptts.push(entry);
+  }
+}
 
 const algorithms = (await getCollection("concepts")).filter((item) =>
   item.data.tags.includes("algorithm")
 );
 
-const sortSearchAlgos = algorithms.filter(
-  (item) =>
-    item.data.tags.includes("sorting") ||
-    item.data.tags.includes("binary-search")
-);
-const graphAlgos = algorithms.filter((item) =>
-  item.data.tags.includes("graph")
-);
-
-const stlEntries = (await getCollection("concepts")).filter((item) =>
-  item.data.tags.includes("stl")
-);
+const graphAlgos: CollectionEntry<"concepts">[] = [];
+const sortSearchAlgos: CollectionEntry<"concepts">[] = [];
+for (const entry of algorithms) {
+  if (containsSomeTag(entry.data.tags, ["sorting", "binary-search"])) {
+    sortSearchAlgos.push(entry);
+    continue;
+  }
+  if (containsSomeTag(entry.data.tags, ["graph"])) {
+    graphAlgos.push(entry);
+    continue;
+  }
+}
 
 const dsaProblems = await getCollection("dsaProblems");
-
 const stackQueueHeapProbs: CollectionEntry<"dsaProblems">[] = [];
 const listProbs: CollectionEntry<"dsaProblems">[] = [];
 const arrayStringProbs: CollectionEntry<"dsaProblems">[] = [];
-
 for (const entry of dsaProblems) {
   if (containsSomeTag(entry.data.ds, ["stack", "queue", "heap"])) {
     stackQueueHeapProbs.push(entry);
@@ -112,10 +123,21 @@ const baseUrl = import.meta.env.BASE_URL;
 
   <h2>Theory and prerequisites</h2>
 
-  <h3>Concepts</h3>
+  <h3>Misc</h3>
   <ul>
     {
-      dsaConcepts.map((entry) => (
+      miscDsaConceptts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <h3>Recursion</h3>
+  <ul>
+    {
+      recursionConcepts.map((entry) => (
         <li>
           <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
         </li>
