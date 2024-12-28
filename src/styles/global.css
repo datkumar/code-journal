@@ -12,16 +12,16 @@
   --codeColor: #115d83;
   /* Blockquotes */
   --quoteHighlightColor: var(--accentColor);
-  --quoteBgColor: hsla(27, 94%, 50%, 0.19);
+  --quoteBgColor: hsla(27, 93%, 54%, 0.432);
   /* --quoteTextColor: rgb(115, 88, 13); */
   --quoteTextColor: black;
 }
 
 :root[data-theme="dark"] {
-  --bgColor: rgb(35, 35, 36);
+  --bgColor: rgb(30, 30, 31);
   --textColor: #d9e8eb;
   --accentColor: #eec05c;
-  --themeSliderBgColor: #042346;
+  --themeSliderBgColor: #0b325e;
   --linkColor: #1fd9ba;
   --lineColor: #717070;
   /* Code */

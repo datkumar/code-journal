@@ -91,6 +91,9 @@
     "syncstream": "cpp",
     "thread": "cpp",
     "typeindex": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "generator": "cpp",
+    "print": "cpp",
+    "text_encoding": "cpp"
   }
 }

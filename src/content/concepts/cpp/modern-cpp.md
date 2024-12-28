@@ -5,6 +5,33 @@ tags: [cpp]
 
 ## `auto` keyword for type inference
 
+```cpp
+struct Point {
+    int x, y;
+    char name;
+    Point (char _name, int _x, int _y) : name(_name), x(_x), y(_y) {}
+};
+
+int main () {
+    auto a = 5;                   // int
+    const auto b = 3.14;          // const double
+    auto pr = make_pair(2, 'K');  // pair<int,char>
+    auto s = "Hello World";       // const char*
+    auto arr = new int[5];        // int*
+    auto pt = Point('A', 3, 5);   // Point
+
+    auto nums = vector<int>{1, 2, 3, 4};  // vector<int>
+    cout << "[ ";
+    for (const auto &x : nums) {  // const int&
+        cout << x << ", ";
+    }
+    cout << "]" << endl;  // [ 1, 2, 3, 4, ]
+
+    return 0;
+}
+
+```
+
 ## Lambda functions
 
 **Syntax**: `[capture_list] (params) {...} (args)`

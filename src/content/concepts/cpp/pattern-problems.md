@@ -1,5 +1,5 @@
 ---
-title: Patterns problems to practice loops
+title: Patterns problems (loops)
 tags: [cpp, loops]
 ---
 

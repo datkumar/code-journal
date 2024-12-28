@@ -3,21 +3,11 @@ title: Flutter BLoC
 tags: [flutter]
 ---
 
-[https://www.topcoder.com/thrive/articles/getting-started-with-flutter-bloc](https://www.topcoder.com/thrive/articles/getting-started-with-flutter-bloc)
-
-[Bloc examples](https://bloclibrary.dev/#/?id=flutter)
-
-[**Bloc vs Cubit**](https://medium.flutterdevs.com/bloc-v-s-cubit-in-flutter-application-6caa2825b26a)
-
-[Cubit, a simple solution for app state management in Flutter](https://blog.flutterando.com.br/cubit-a-simple-solution-for-app-state-management-in-flutter-66ab5279ef73)
-
----
-
 ## What is BLoC?
 
-In large complex applications, you should not mix your **UI** and **Data Logic** together in one place. There should be an intermediary between the two for the separation of concerns and a more organized codebase
+In large complex applications, you should not mix your **UI** and **Data Logic** together in one place. There should be an intermediary between the two for the **separation of concerns** and a more organized codebase
 
-BLoC is an acronym for **_business logic components_**. BLoC was created with three guiding principles in mind:
+BLoC is an acronym for **Business-Logic Components**. BLoC was created with three guiding principles in mind:
 
 - **Simple**: Easy to grasp and can be used by developers of all skill levels.
 - **Powerful**: Assist in the creation of remarkable, sophisticated applications by breaking them down into smaller components.
@@ -38,12 +28,9 @@ graph LR;
   repo ---> |response | bloc
   repo ---> |request| data[(Data sources)]
   data ---> |response| repo
-
 ```
 
----
-
-### Events
+## Events
 
 Events are **input** to a bloc, they’re usually added as a **result of user activities** like button pushes, or lifecycle events like page loads. You can model your event as anything, from a primitive data type, such as an integer, to any complex abstracted classes.
 
@@ -53,7 +40,7 @@ class LoginEvent extends AuthEvent {}
 class LogoutEvent extends AuthEvent {}
 ```
 
-### States
+## States
 
 States are an **output** of a bloc, they represent the application state. The **UI components listen to a state change and redraw a portion of themselves** based on the current state. The state can also be modeled as anything from a primitive data type, such as an integer, to any complex abstracted classes.
 
@@ -63,7 +50,7 @@ class UnAuthenticatedState extends AuthState {}
 class AuthenticatedState extends AuthState {}
 ```
 
-### Bloc
+## Bloc
 
 A bloc uses an event to trigger a state change. Blocs are event receivers that **_turn incoming events into outgoing states_**. It emits a state when an event occurs
 
@@ -121,7 +108,7 @@ class AuthCubit extends Cubit<AuthState> {
 }
 ```
 
-To emit a new state, you will have to call a function on the cubit object, each cubit can emit a new state using the emit method as follows:
+To emit a new state, you will have to call a function on the cubit object, each cubit can emit a new state using the emit method as below:
 
 ```dart
 AuthCubit(): super(UnAuthenticatedState());
@@ -129,9 +116,9 @@ void login() => emit(AuthenticatedState());
 void logout() => emit(UnAuthenticatedState());
 ```
 
-> As the `emit()` method is protected, it should **only be used within a cubit**.
+As the `emit()` method is protected, it should **only be used within a cubit**
 
----
+Consider an example of `CounterCubit`:
 
 ```dart title="counter_cubit.dart"
 class CounterCubit extends Cubit<int> {
@@ -191,8 +178,72 @@ At this point we have successfully separated our presentational layer from our b
 
 ---
 
-## Tutorials
+## `BlocListener` vs `BlocBuilder` vs `BlocConsumer`
 
-- [Bloc State Management for Flutter Developers - From Beginner to Advanced in 11 Hours](https://youtu.be/Mn254cnduOY?si=XREhN1O4sOM36RjD)
-- [FireShip](https://youtu.be/3tm-R7ymwhc?si=q8qvn_ReMq9Xd5tG&t=530)
-- [Akshit Madan Bloc playlist](https://www.youtube.com/playlist?list=PL9n0l8rSshSkzasAAyVMozHQu8-LdWxI0)
+### `BlocListener`
+
+- Invokes the `listener` in response to `state` changes in the bloc
+- Should be used for functionality that needs to occur only in response to a `state` change (**navigation**, show `SnackBar` or `Dialog`)
+- The `listener` is guaranteed to only be called once for each `state` change unlike the `builder` in `BlocBuilder`
+- Use `BlocListener` if you want to **do** anything in response to state changes
+
+```dart
+BlocListener<BlocA, BlocAState>(
+  listener: (context, state) {
+    // do stuff here based on BlocA's state
+  },
+  child: Container(),
+  value: blocA,  // ONLY to provide a bloc that is otherwise not accessible via BlocProvider and the current BuildContext
+  listenWhen: (previous, current) {...}, // More granular control over when listener is called
+)
+```
+
+### `BlocBuilder`
+
+- handles building a widget in response to new `states`
+- If the `bloc` parameter is omitted, `BlocBuilder` will automatically perform a lookup using `BlocProvider` and the current `BuildContext`
+- You can use a `BlocBuilder` inside a `BlocListener`
+
+```dart
+BlocBuilder<BlocA, BlocAState>(
+  builder: (context, state) {
+    return someWidget // some widget based on BlocA's state
+  },
+  bloc: blocA, // ONLY to provide a bloc that is otherwise not accessible via BlocProvider and the current BuildContext
+  buildWhen: (previous, current) {...}, // optional for more granular control over how often BlocBuilder rebuilds
+)
+```
+
+### `BlocConsumer`
+
+- Exposes a `builder` and `listener` in order react to new `state`
+- Analogous to a nested `BlocListener` and `BlocBuilder` but reduces the amount of boilerplate needed
+- Should ONLY be used when it is necessary to BOTH **rebuild UI and execute other reactions** to state changes in the bloc
+
+```dart
+BlocConsumer<BlocA, BlocAState>(
+  listener: (context, state) {
+    // do stuff here based on BlocA's state
+  },
+  builder: (context, state) {
+    return someWidget; // some widget based on BlocA's state
+  },
+  // Optional for more granular control over when listener and builder are called
+  listenWhen: (previous, current) {...},
+  buildWhen: (previous, current) {...}
+)
+```
+
+> `listener` executes ONLY when some state is emitted, `builder` executes always
+
+---
+
+## References
+
+- [Getting Started with Flutter BLoC | topcoder](https://www.topcoder.com/thrive/articles/getting-started-with-flutter-bloc)
+- [Bloc concepts](https://bloclibrary.dev/bloc-concepts/)
+- [Bloc Architecture](https://bloclibrary.dev/bloc-concepts/)
+- **Tutorials**:
+  - [Bloc State Management - From Beginner to Advanced in 11 Hours](https://youtu.be/Mn254cnduOY?si=XREhN1O4sOM36RjD)
+  - [Flutter State Management - The Grand Tour | Fireship](https://youtu.be/3tm-R7ymwhc?si=q8qvn_ReMq9Xd5tG&t=530)
+  - [Akshit Madan Bloc playlist](https://www.youtube.com/playlist?list=PL9n0l8rSshSkzasAAyVMozHQu8-LdWxI0)

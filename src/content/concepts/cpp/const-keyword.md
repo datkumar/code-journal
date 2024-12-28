@@ -1,5 +1,5 @@
 ---
-title: The 'const' keyword in C++
+title: Constants in C++
 tags: [cpp]
 ---
 
@@ -98,5 +98,7 @@ const string &ref = NAME;  // Reference to constant string
 
 - `const_cast`: This operator should be used cautiously, as it can bypass the constness of a value and potentially lead to unexpected behavior. Use it only when absolutely necessary and understand the potential risks.
 - **Smart Pointers**: Consider using smart pointers like `unique_ptr` and `shared_ptr` to manage memory ownership and prevent memory leaks. They can handle const correctness automatically.
+
+Also refer [`constexpr`](https://en.cppreference.com/w/cpp/language/constexpr)
 
 By effectively using `const` in your C++ code, you'll enhance code reliability, maintainability, and potentially improve performance.

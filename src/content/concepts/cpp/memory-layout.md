@@ -1,5 +1,5 @@
 ---
-title: Memory layout during program execution
+title: Memory layout during execution of program
 tags: [cpp]
 ---
 

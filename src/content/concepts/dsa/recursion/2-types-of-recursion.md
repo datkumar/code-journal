@@ -3,7 +3,7 @@ title: Types of Recursion
 tags: [dsa, recursion]
 ---
 
-To know how recurion calls are traced, refer [VisuAlgo](https://visualgo.net/en/recursion)
+To see how recursion calls are traced, refer [VisuAlgo](https://visualgo.net/en/recursion)
 and [this example](/code-journal/dsa/dsa/recurrence-master-thm#tracing-recursion-calls)
 
 ## 1. Tail Recursion

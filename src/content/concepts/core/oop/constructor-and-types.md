@@ -11,9 +11,9 @@ Constructors have the **same name as the class** name
 
 Constructors have **no have return type**, not even `void`
 
-> Constructors **can be overloaded**, i.e. a class can have multiple constructors with different parameter lists
+> Constructors can be **overloaded**, i.e. a class can have multiple constructors with different parameter lists
 
-Constructors aren't inherited as they are specifically tied to the initialization of an object's state within that particular class and not concerned with subclasses. Thus constructors **cannot be overriden**
+Constructors aren't inherited as they are specifically tied to the initialization of an object's state within that particular class and not concerned with subclasses. Thus constructors **cannot be overridden**
 
 ## 1. Default Constructor
 
@@ -95,9 +95,9 @@ p age: 18
 
 ## 2. Parameterized Constructor
 
-We declare some parameters inside constructor definition and the data members are initialized pased on the values of these parameters. During object creation, we pass the appropriate respective arguments
+We declare some parameters inside constructor definition and the data members are initialized passed on the values of these parameters. During object creation, we pass the appropriate respective arguments
 
-> We can call a particular constructor from inside another constructor, which is known as **Constructor Chaining**. However, the call to other constructor **must be the first instruction** within it
+> We can call a particular constructor from inside another constructor, which is known as **Constructor Chaining**. However, the call to other constructor must be the **first instruction** within it
 
 When you define any constructor within the class, the default constructor provided by compiler is **not called** nor is there any automatic constructor chaining occuring during object creation. We have to explicitly define such beahviour
 
