@@ -86,6 +86,8 @@ Here are a few references to learn more:
   - [Why is Git not considered a "block chain"?](https://stackoverflow.com/questions/46192377/why-is-git-not-considered-a-block-chain)
   - The [`git hash-object`](https://git-scm.com/docs/git-hash-object) command
   - [Understanding Merkle Trees, the quintessence of Git, Bitcoin, and DynamoDB](https://medium.com/geekculture/understanding-merkle-trees-f48732772199)
+  - [Git’s database internals I: packed object store](https://github.blog/open-source/git/gits-database-internals-i-packed-object-store/)
+  - [The Packfile - Git Community Book](https://shafiul.github.io/gitbook/7_the_packfile.html)
 
 - **YouTube**:
 

@@ -12,11 +12,11 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/markdown-remark": "^5.3.0",
-    "astro": "^4.16.9",
-    "astro-expressive-code": "^0.37.0",
-    "mermaid": "^10.9.2",
-    "typescript": "^5.6.3",
+    "@astrojs/markdown-remark": "^6.3.1",
+    "astro": "^5.7.2",
+    "astro-expressive-code": "^0.37.1",
+    "mermaid": "^10.9.3",
+    "typescript": "^5.8.3",
     "unist-util-visit": "^5.0.0"
   }
 }

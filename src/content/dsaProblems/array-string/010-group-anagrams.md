@@ -28,7 +28,7 @@ An acceptable output could be like:
 
 > **Note**: All anagrams would have the same **frequency count**. Thus, their sorted letters would also be the same
 
-## Hashing + Sorting
+## Solution: Hashing + Sorting
 
 We'll use Hashmap with **keys** as the **sorted letters of word**. All anagrams present in input array that match it will be grouped together as value of that key
 
@@ -49,7 +49,7 @@ Total time \\( = O(n) + O(n \cdot m \cdot logm) + O(1) + O(n) = O(n \cdot m \cdo
 | Time   | \\( O(n \cdot m \cdot logm) \\) |
 | Space  | \\( O(n) \\) ... Frequency map  |
 
-```cpp
+```cpp title="C++"
 vector<vector<string>> groupAnagrams (vector<string> &strs) {
     // { sorted_anagram : entries_which_match_that }
     unordered_map<string, vector<string>> ump;
@@ -82,7 +82,7 @@ The step of sorting letters of word in first method has been replaced with calcu
 | Time   | \\( O(n \cdot m ) \\)    |
 | Space  | \\( O(n) \\) ... Hashmap |
 
-```cpp
+```cpp title="C++"
 const int BASE = 997;
 const long long MOD = 101103107109113LL;
 // Rolling-hash function with predefined base and modulo

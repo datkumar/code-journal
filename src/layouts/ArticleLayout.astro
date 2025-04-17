@@ -25,15 +25,21 @@ const { title } = Astro.props;
     /* overflow-x: auto; */
   }
 
-  #article-content code {
-    white-space: pre-wrap; /* Preserves spacing but allows wrapping */
-    word-wrap: break-word; /* Breaks long strings */
-    overflow-wrap: anywhere; /* Additional support for breaking words anywhere */
+  #article-content p {
+    text-align: justify;
+  }
+
+  #article-content .mermaid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-block: 0.5rem;
   }
 
   #article-content mjx-container {
     /* display: inline-block; */
-    padding: 0.5rem;
+    padding: 0.25rem;
     overflow-x: auto;
     overflow-y: auto;
     /* scroll-behavior: auto; */

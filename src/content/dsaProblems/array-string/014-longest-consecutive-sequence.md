@@ -6,15 +6,22 @@ level: 2
 links: [https://leetcode.com/problems/longest-consecutive-sequence/]
 ---
 
+## Problem Statement
+
 Given an unsorted array of integers `nums`, return the **length** of the **longest consecutive sequence** that can be formed. A consecutive sequence is a list of numbers where each element is one more than it's previous one (no duplicates)
 
 For example, if input array is `[4,5,9,3,10,4,7,6,1,9,5]` , the longest consecutive sequence is `[3,4,5,6,7]` and return it's length `5` as answer
 
-## 1. Sorting
+## Solutions
+
+### 1. Sorting
 
 > Sorting would bring the **equal/consecutive elements closer** to each other
 
-```cpp
+<details>
+<summary><strong>Implementation Code</strong></summary>
+
+```cpp title="C++"
 bool equalOrOneMore (int first, int second) {
     return (second == first || second == first + 1);
 }
@@ -53,14 +60,16 @@ int longestConsecutive (vector<int>& nums) {
 }
 ```
 
-Time taken is \\( O(n \cdot logn) \\) for sorting + \\( O(n) \\) for traversing array elements
+</details>
+
+Time taken is \\( O(n \cdot logn) \\) for sorting and \\( O(n) \\) for traversing array elements
 
 | Metric | Complexity               |
 | ------ | ------------------------ |
 | Time   | \\( O(N \cdot logN ) \\) |
 | Space  | \\( O(1) \\)             |
 
-## 2. Union-Find approach
+### 2. Union-Find approach
 
 Consider input `nums=[4,5,9,3,10,4,7,6,1,9,5]`
 
@@ -76,7 +85,10 @@ The consecutive sequences formed are:
 
 > **All elements** in a sequence have a **predecessor** on the left (whose value is one lesser than element), **except for the first** element (starting value of sequence)
 
-```cpp
+<details>
+<summary><strong>Implementation Code</strong></summary>
+
+```cpp title="C++"
 int longestConsecutive (vector<int> &nums) {
     // Store unique numbers of input in a set
     unordered_set<int> uniqueNums(nums.begin(), nums.end());
@@ -99,7 +111,9 @@ int longestConsecutive (vector<int> &nums) {
 }
 ```
 
-**Time**:
+</details>
+
+**Time taken**:
 
 - To construct set, there are \\( n \\) insertions, each taking \\( O(1) \\) time on average i.e. \\( O(n) \\) for all insertions
 - We are starting the inner sequence-exploratory loop only when we find the start of a sequence and it goes on till end of that sequence. Thus, each array element is traversed once by the outer loop and once when it's respective sequence is explored i.e. \\( O(2n) \\)

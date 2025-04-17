@@ -1,10 +1,17 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import type { CollectionEntry } from "astro:content";
 
 const javaConceptEntries = (await getCollection("concepts")).filter((entry) =>
   entry.data.tags.includes("java")
 );
+const oopEntries: CollectionEntry<"concepts">[] = [];
+const nonOopEntries: CollectionEntry<"concepts">[] = [];
+javaConceptEntries.forEach((entry) => {
+  if (entry.data.tags.includes("oop")) oopEntries.push(entry);
+  else nonOopEntries.push(entry);
+});
 
 const baseUrl = import.meta.env.BASE_URL;
 const title = "Java";
@@ -14,7 +21,14 @@ const title = "Java";
   <h1 class="heading">{title}</h1>
   <ul>
     {
-      javaConceptEntries.map((entry) => (
+      nonOopEntries.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/dev/java/${entry.slug}`}>{entry.data.title}</a>
+        </li>
+      ))
+    }
+    {
+      oopEntries.map((entry) => (
         <li>
           <a href={`${baseUrl}/dev/java/${entry.slug}`}>{entry.data.title}</a>
         </li>

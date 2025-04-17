@@ -10,6 +10,8 @@ links: [https://leetcode.com/problems/top-k-frequent-elements]
 
 Given an integer array `nums` and an integer `k`, return the `k` **most frequent** elements. You may return the answer in **any order**.
 
+## Solutions
+
 ### 1. Hashing + Sorting
 
 ```txt
@@ -64,9 +66,9 @@ Also, '\\(k\\)' will be '\\(m\\)' at most
 | Space  | \\( O(n) \\)                                                                          |
 
 <details>
-<summary><strong>C++ code</strong></summary>
+<summary><strong>Implementation Code</strong></summary>
 
-```cpp
+```cpp title="C++"
 vector<int> topKFrequent (vector<int> &nums, int k) {
     // {number : count} map
     unordered_map<int, int> freq;
@@ -145,9 +147,9 @@ Traversing from end and taking k=2 elements, ans=[1,2]
 | Space  | \\( O(n) \\) |
 
 <details>
-<summary><strong>C++ code</strong></summary>
+<summary><strong>Implementation Code</strong></summary>
 
-```cpp
+```cpp title="C++"
 vector<int> topKFrequent (vector<int> &nums, int k) {
     // {number : count} map
     unordered_map<int, int> freq;

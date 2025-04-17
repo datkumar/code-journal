@@ -6,13 +6,16 @@ const cppConceptEntries = (await getCollection("concepts")).filter((entry) =>
   entry.data.tags.includes("cpp")
 );
 
-const stlEntries = [];
-const nonStlEntries = [];
+const stlCppEntries = [];
+const oopCppEntries = [];
+const otherCppEntries = [];
 for (const entry of cppConceptEntries) {
   if (entry.data.tags.includes("stl")) {
-    stlEntries.push(entry);
+    stlCppEntries.push(entry);
+  } else if (entry.data.tags.includes("oop")) {
+    oopCppEntries.push(entry);
   } else {
-    nonStlEntries.push(entry);
+    otherCppEntries.push(entry);
   }
 }
 
@@ -24,17 +27,27 @@ const baseUrl = import.meta.env.BASE_URL;
   <h2>STL</h2>
   <ul>
     {
-      stlEntries.map((entry) => (
+      stlCppEntries.map((entry) => (
         <li>
           <a href={`${baseUrl}/cpp/${entry.slug}`}>{entry.data.title}</a>
         </li>
       ))
     }
   </ul>
-  <h2>Other</h2>
+  <h2>OOP</h2>
   <ul>
     {
-      nonStlEntries.map((entry) => (
+      oopCppEntries.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/cpp/${entry.slug}`}>{entry.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+  <h2>Misc.</h2>
+  <ul>
+    {
+      otherCppEntries.map((entry) => (
         <li>
           <a href={`${baseUrl}/cpp/${entry.slug}`}>{entry.data.title}</a>
         </li>

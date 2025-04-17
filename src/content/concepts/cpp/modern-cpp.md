@@ -1,9 +1,36 @@
 ---
 title: Modern C++ features
-tags: [cpp, modern-cpp]
+tags: [cpp]
 ---
 
 ## `auto` keyword for type inference
+
+```cpp
+struct Point {
+    int x, y;
+    char name;
+    Point (char _name, int _x, int _y) : name(_name), x(_x), y(_y) {}
+};
+
+int main () {
+    auto a = 5;                   // int
+    const auto b = 3.14;          // const double
+    auto pr = make_pair(2, 'K');  // pair<int,char>
+    auto s = "Hello World";       // const char*
+    auto arr = new int[5];        // int*
+    auto pt = Point('A', 3, 5);   // Point
+
+    auto nums = vector<int>{1, 2, 3, 4};  // vector<int>
+    cout << "[ ";
+    for (const auto &x : nums) {  // const int&
+        cout << x << ", ";
+    }
+    cout << "]" << endl;  // [ 1, 2, 3, 4, ]
+
+    return 0;
+}
+
+```
 
 ## Lambda functions
 
@@ -11,7 +38,7 @@ tags: [cpp, modern-cpp]
 
 Use `[capture_list] (params) -> returnType {...} (args)` if you want to explicitly specify return-type
 
-```cpp
+```cpp title="Lambda functions"
 // Define and call
 [](int a, int b){ cout << "Sum: " << a + b << endl; }(3, 6);
 // Sum: 9
@@ -35,6 +62,8 @@ cout << "Product: " << product << endl;
 
 ## Smart Pointers
 
+These pointers safely handle automatic memory deallocation for objects that are no longer being referenced
+
 - [`unique_ptr`](https://en.cppreference.com/w/cpp/memory/unique_ptr) : Only ONE pointer allowed to access the object
 - [`shared_ptr`](https://en.cppreference.com/w/cpp/memory/shared_ptr) : Multiple pointers can access the object. Reference counter maintained
 - [`weak_ptr`](https://en.cppreference.com/w/cpp/memory/weak_ptr) : Similar to `shared_ptr` but no reference counter maintained. Pointer doesn't have strong hold of objects. Prevents deadlocks
@@ -46,7 +75,7 @@ cout << "Product: " << product << endl;
 - Can either create references to items in the structure or create new variables of values copied from the structure
 - **Syntax**:
 
-  ```cpp
+  ```cpp title="Structured binding"
   // For creating new variables from the structure
   auto [var1, var2, ...] = structured_data;
 
@@ -56,9 +85,7 @@ cout << "Product: " << product << endl;
 
 - **Examples**:
 
-  **Tuples** and creating new variable copies:
-
-  ```cpp
+  ```cpp title="Tuples, extracting copy of variables"
   tuple<int, double, string> myTuple(420, 3.14159, "Hello World");
 
   // Creates variables x,y,z of type int, double, string respectively
@@ -68,9 +95,7 @@ cout << "Product: " << product << endl;
   // Output: 420 3.14159 Hello World
   ```
 
-  **Maps** and extracting references:
-
-  ```cpp
+  ```cpp title="Maps, extracting references"
   map<int, string> mp{
     {5, "aeyo"}, {1, "bruh"}, {9, "dawg"}, {5, "gotem"}, {4, "nope"},
   };
@@ -88,9 +113,7 @@ cout << "Product: " << product << endl;
   */
   ```
 
-  **Custom Data types**:
-
-  ```cpp
+  ```cpp title="Custom data-types"
   struct Point {
     int x, y;
     Point(int n1, int n2) : x(n1), y(n2) {}

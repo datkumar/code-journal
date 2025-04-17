@@ -1,6 +1,6 @@
 ---
 title: Recurrence relations and Master theorem
-tags: [dsa]
+tags: [dsa, recursion]
 ---
 
 ## Recurrence relation

@@ -1,32 +1,53 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { containsSomeTag } from "../../utils/helper-functions";
+import { compareStrings, containsSomeTag } from "../../utils/helper-functions";
 import { problemDifficulties } from "../../utils/data";
-
-const dsaConcepts = (await getCollection("concepts")).filter(
-  (item) =>
-    item.data.tags.includes("dsa") && !item.data.tags.includes("algorithm")
-);
-
-const algorithms = (await getCollection("concepts")).filter((item) =>
-  item.data.tags.includes("algorithm")
-);
-
-const sortSearchAlgos = algorithms.filter(
-  (item) =>
-    item.data.tags.includes("sorting") ||
-    item.data.tags.includes("binary-search")
-);
-const graphAlgos = algorithms.filter((item) =>
-  item.data.tags.includes("graph")
-);
+import type { CollectionEntry } from "astro:content";
 
 const stlEntries = (await getCollection("concepts")).filter((item) =>
   item.data.tags.includes("stl")
 );
 
+const dsaConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("dsa")
+);
+const recursionConcepts: CollectionEntry<"concepts">[] = [];
+const sortSearchConcepts: CollectionEntry<"concepts">[] = [];
+const graphTreeConcepts: CollectionEntry<"concepts">[] = [];
+const miscDsaConcepts: CollectionEntry<"concepts">[] = [];
+
+for (const entry of dsaConcepts) {
+  if (containsSomeTag(entry.data.tags, ["recursion"])) {
+    recursionConcepts.push(entry);
+  } else if (containsSomeTag(entry.data.tags, ["graph", "tree"])) {
+    graphTreeConcepts.push(entry);
+  } else if (containsSomeTag(entry.data.tags, ["sorting", "binary-search"])) {
+    sortSearchConcepts.push(entry);
+  } else {
+    miscDsaConcepts.push(entry);
+  }
+}
+
 const dsaProblems = await getCollection("dsaProblems");
+const stackQueueHeapProbs: CollectionEntry<"dsaProblems">[] = [];
+const listProbs: CollectionEntry<"dsaProblems">[] = [];
+const arrayStringProbs: CollectionEntry<"dsaProblems">[] = [];
+for (const entry of dsaProblems) {
+  if (containsSomeTag(entry.data.ds, ["stack", "queue", "heap"])) {
+    stackQueueHeapProbs.push(entry);
+    continue;
+  }
+  if (containsSomeTag(entry.data.ds, ["list"])) {
+    listProbs.push(entry);
+    continue;
+  }
+  arrayStringProbs.push(entry);
+}
+
+// dsaProblems.filter((entry) =>
+//   containsSomeTag(entry.data.ds, ["stack", "queue", "heap"])
+// );
 
 const baseUrl = import.meta.env.BASE_URL;
 ---
@@ -76,12 +97,19 @@ const baseUrl = import.meta.env.BASE_URL;
   <h2>C++ primer</h2>
   <ul>
     {
-      stlEntries.map((entry) => (
-        <li>
-          <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
-        </li>
-      ))
+      stlEntries
+        .sort((a, b) => compareStrings(a.slug, b.slug))
+        .map((entry) => (
+          <li>
+            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+          </li>
+        ))
     }
+    <li>
+      <a rel="stylesheet" href={`${baseUrl}/cpp/cpp/modern-cpp`}
+        >Modern C++ features</a
+      >
+    </li>
     <li><a rel="stylesheet" href={`${baseUrl}/cpp`}>More C++</a></li>
   </ul>
 
@@ -89,10 +117,10 @@ const baseUrl = import.meta.env.BASE_URL;
 
   <h2>Theory and prerequisites</h2>
 
-  <h3>Concepts</h3>
+  <h3>Misc</h3>
   <ul>
     {
-      dsaConcepts.map((entry) => (
+      miscDsaConcepts.map((entry) => (
         <li>
           <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
         </li>
@@ -100,10 +128,10 @@ const baseUrl = import.meta.env.BASE_URL;
     }
   </ul>
 
-  <h3>Sorting and Searching algorithms</h3>
+  <h3>Recursion</h3>
   <ul>
     {
-      sortSearchAlgos.map((entry) => (
+      recursionConcepts.map((entry) => (
         <li>
           <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
         </li>
@@ -111,14 +139,27 @@ const baseUrl = import.meta.env.BASE_URL;
     }
   </ul>
 
-  <h3>Graph algorithms</h3>
+  <h3>Sorting and Searching</h3>
   <ul>
     {
-      graphAlgos.map((entry) => (
+      sortSearchConcepts.map((entry) => (
         <li>
           <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
         </li>
       ))
+    }
+  </ul>
+
+  <h3>Graphs and Trees</h3>
+  <ul>
+    {
+      graphTreeConcepts
+        .sort((a, b) => compareStrings(a.slug, b.slug))
+        .map((entry) => (
+          <li>
+            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+          </li>
+        ))
     }
   </ul>
 
@@ -126,12 +167,11 @@ const baseUrl = import.meta.env.BASE_URL;
 
   <!-- PROBLEMS: -->
 
-  <h2>Arrays & Strings</h2>
+  <h2>Arrays, Strings</h2>
   <ul>
     {
-      dsaProblems
-        .sort((a, b) => a.data.level - b.data.level)
-        .filter((entry) => containsSomeTag(entry.data.ds, ["array", "string"]))
+      arrayStringProbs
+        .sort((a, b) => compareStrings(a.slug, b.slug))
         .map((entry) => {
           return (
             <li class="problem-item">
@@ -146,11 +186,8 @@ const baseUrl = import.meta.env.BASE_URL;
   <h2>Stack, Queues, Heaps</h2>
   <ul>
     {
-      dsaProblems
+      stackQueueHeapProbs
         .sort((a, b) => a.data.level - b.data.level)
-        .filter((entry) =>
-          containsSomeTag(entry.data.ds, ["stack", "queue", "heap"])
-        )
         .map((entry) => {
           return (
             <li class="problem-item">
@@ -165,9 +202,8 @@ const baseUrl = import.meta.env.BASE_URL;
   <h2>Linked Lists</h2>
   <ul>
     {
-      dsaProblems
+      listProbs
         .sort((a, b) => a.data.level - b.data.level)
-        .filter((entry) => containsSomeTag(entry.data.ds, ["list"]))
         .map((entry) => {
           return (
             <li class="problem-item">

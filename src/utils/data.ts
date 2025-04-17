@@ -9,12 +9,12 @@ export const dsaLinks: NavLinkData[] = [
 ];
 
 export const devLinks: NavLinkData[] = [
+  { title: "Java", url: "java" },
+  { title: "Javascript, Typescript", url: "js-ts" },
+  { title: "Golang", url: "go" },
   { title: "Git", url: "git" },
   { title: "Linux", url: "linux" },
-  { title: "Java", url: "java" },
-  { title: "Golang", url: "go" },
   { title: "HTML, CSS", url: "html-css" },
-  { title: "Javascript, Typescript", url: "js-ts" },
   { title: "NodeJs", url: "nodejs" },
   { title: "React, NextJs", url: "react-next" },
   { title: "Astro", url: "astro" },

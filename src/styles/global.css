@@ -12,21 +12,21 @@
   --codeColor: #115d83;
   /* Blockquotes */
   --quoteHighlightColor: var(--accentColor);
-  --quoteBgColor: hsla(44, 100%, 44%, 0.655);
+  --quoteBgColor: hsla(27, 93%, 54%, 0.432);
   /* --quoteTextColor: rgb(115, 88, 13); */
   --quoteTextColor: black;
 }
 
 :root[data-theme="dark"] {
-  --bgColor: rgb(35, 35, 36);
+  --bgColor: rgb(30, 30, 31);
   --textColor: #d9e8eb;
   --accentColor: #eec05c;
-  --themeSliderBgColor: #0c3778;
+  --themeSliderBgColor: #0b325e;
   --linkColor: #1fd9ba;
   --lineColor: #717070;
   /* Code */
-  --codeBgColor: #434b54;
-  --codeColor: #5fc6d4;
+  --codeBgColor: #595b5c;
+  --codeColor: #7bd8efe2;
   /* Blockquotes */
   --quoteHighlightColor: var(--accentColor);
   --quoteBgColor: hsla(183, 12%, 70%, 0.573);
@@ -60,6 +60,7 @@ body > footer {
 @media only screen and (max-width: 768px) {
   body {
     padding: 20px;
+    font-size: 14px;
   }
 }
 
@@ -161,7 +162,7 @@ blockquote {
   border-left: 12px solid var(--quoteHighlightColor);
   border-radius: 0.5rem;
   color: var(--quoteTextColor);
-  padding: 5px 13px;
+  padding: 8px 13px;
   margin: 1em 0px;
 }
 

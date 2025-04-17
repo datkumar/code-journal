@@ -3,8 +3,6 @@ title: Handy DSA hacks
 tags: [dsa]
 ---
 
-<!-- TODO: Write content -->
-
 Referred from [Sean Prashad tips](https://seanprashad.com/leetcode-patterns/) and the [EPI book](https://www.amazon.in/Elements-Programming-Interviews-Insiders-Guide/dp/1479274836)
 
 ## Arrays
@@ -46,6 +44,15 @@ Strings are essentially an array of characters so most of the array hacks would 
 - When you have to find **ALL possible** solutions such as all valid ways (subsequences /subsets / subarrays / permutations), that is when you would traverse the **entire recursion tree**
 - When you have to **optimize** by finding the **largest** or **smallest** solution out of possible ones, then you'd have to go for a **DP** methodology
 - In cases where you can make a **locally optimal decision** and know it would be included without having to check with other solutions, **greedy** approaches would work well there
+
+### Subarrays, Substrings, Subsets, Subsequences
+
+|                  | Sub-array, Sub-string | Subset | Subsequence |
+| ---------------: | :-------------------: | :----: | :---------: |
+|       Contiguous |        Yes ✅         | No ❌  |    No ❌    |
+| Order maintained |        Yes ✅         | No ❌  |   Yes ✅    |
+
+Subsets are used in accordance with sets where all elements are unique. The ordering of elements doesn't matter in set or subset. For the other two, duplicates are allowed if input also contains duplicates
 
 <!-- Pre-computation (re-arrange/sort, lookup, bit-magic) -->
 <!-- Graphs & Trees -->

@@ -5,7 +5,7 @@ tags: [cpp, stl, algorithms]
 
 ## References
 
-- [`<algorithm>` library CPP reference](https://en.cppreference.com/w/cpp/algorithm)
+- [`<algorithm>` library C++ reference](https://en.cppreference.com/w/cpp/algorithm)
 - [GFG: Algorithm Library Functions in C++ STL](https://www.geeksforgeeks.org/algorithms-library-c-stl/)
 
 I prefer `C++17`

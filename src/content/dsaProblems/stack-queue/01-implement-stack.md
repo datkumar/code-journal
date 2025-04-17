@@ -10,12 +10,6 @@ links:
   ]
 ---
 
-<style>
-    img{
-        margin-bottom: 10px;
-    }
-</style>
-
 ## Stack ADT
 
 The `Stack` class must provide the following functionality (assuming elements of `int` data-type) :
@@ -49,7 +43,7 @@ Throw exception when stack underflow or overflow occurs
 
 ### Implementation Code
 
-```cpp
+```cpp title="C++"
 // Definition of a Node for the linked-list used by the Stack internally
 class Node {
   private:

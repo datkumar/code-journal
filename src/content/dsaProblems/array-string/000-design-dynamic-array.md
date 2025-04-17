@@ -27,7 +27,7 @@ If we call `pushback(int n)` but the array is full, we should resize the array f
 
 Also refer this GFG article: [Implement your own Vector class](https://www.geeksforgeeks.org/how-to-implement-our-own-vector-class-in-c/)
 
-```cpp
+```cpp title="C++"
 class DynamicArray {
   private:
     int *arr;      // Points to block of heap memory containing array elements

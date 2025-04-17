@@ -47,9 +47,9 @@ return false
 ```
 
 <details>
-<summary><strong>C++ code</strong></summary>
+<summary><strong>Implementation Code</strong></summary>
 
-```cpp
+```cpp title="C++"
 bool containsDuplicate(vector<int> &nums) {
     sort(nums.begin(), nums.end());
 
@@ -87,11 +87,9 @@ return false
 ```
 
 <details>
-<summary>
-    <strong>C++ code</strong>
-</summary>
+<summary><strong>Implementation Code</strong></summary>
 
-```cpp
+```cpp title="C++"
 bool containsDuplicate (vector<int> &nums) {
     unordered_set<int> uniqueNums;
     for (auto &curr : nums) {

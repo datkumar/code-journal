@@ -50,9 +50,9 @@ For each element traversed in array:
 | Space  | \\( O(N)\\) ... for Hashmap |
 
 <details>
-<summary><strong>C++ code</strong></summary>
+<summary><strong>Implementation Code</strong></summary>
 
-```cpp
+```cpp title="C++"
 vector<int> twoSum(vector<int> &nums, int target) {
     // {number : index} map
     unordered_map<int, int> ump;
@@ -74,7 +74,9 @@ vector<int> twoSum(vector<int> &nums, int target) {
 
 ---
 
-> **Variant**: **Multiple** occurences and solutions. **Count** how many solutions: [GFG](https://www.geeksforgeeks.org/problems/count-pairs-with-given-sum5022/1)
+## Variant 1
+
+> **Multiple** occurences and solutions. **Count** how many solutions: [GFG](https://www.geeksforgeeks.org/problems/count-pairs-with-given-sum5022/1)
 
 Since the same value element can be present at multiple indices and we only have to return total number of pairs, we can maintain a **frequency-count map** that tracks how how many places one value exists in array
 
@@ -100,9 +102,9 @@ The cases we need to handle are:
 | Space  | \\( O(N)\\) ... for Hashmap                               |
 
 <details>
-<summary><strong>C++ code</strong></summary>
+<summary><strong>Implementation Code</strong></summary>
 
-```cpp
+```cpp title="C++"
 int getPairsCount (int arr[], int n, int target) {
     // {number : count} map
     unordered_map<int, int> freq;
@@ -149,7 +151,9 @@ int getPairsCount (int arr[], int n, int target) {
 
 ---
 
-> **Variant**: Input array is **sorted**, with one solution: [LeetCode](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)
+## Variant 2
+
+> Input array is **sorted**, with one solution: [LeetCode](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)
 
 ### 1. Binary search
 
@@ -173,9 +177,9 @@ In worst case, we have to go till last pair. So the time taken:
 | Space  | \\( O(1) \\)            |
 
 <details>
-<summary><strong>C++ code</strong></summary>
+<summary><strong>Implementation Code</strong></summary>
 
-```cpp
+```cpp title="C++"
 // Return index if key found, else -1
 int binarySearch (vector<int> &arr, int key, int low, int high) {
     while (low <= high) {
@@ -234,9 +238,9 @@ At each step, one of the two pointers is moving closer to the other. At worst, t
 | Space  | \\( O(1) \\) |
 
 <details>
-<summary><strong>C++ code</strong></summary>
+<summary><strong>Implementation Code</strong></summary>
 
-```cpp
+```cpp title="C++"
 vector<int> twoSum (vector<int> &nums, int target) {
     int n = nums.size();
     int left = 0, right = n - 1;

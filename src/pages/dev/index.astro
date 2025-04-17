@@ -16,11 +16,16 @@ const title = "Development";
 <BaseLayout tabTitle={title}>
   <h1>{title}</h1>
   <ul>
+    <h2>
+      <li>
+        <a href={`${baseUrl}/cpp`}>C++</a>
+      </li>
+    </h2>
     {
       devLinks.map((entry) => (
         <h2>
           <li>
-            <a href={`${baseUrl}/dev/${entry.url}`.toString()}>{entry.title}</a>
+            <a href={`${baseUrl}/dev/${entry.url}`}>{entry.title}</a>
           </li>
         </h2>
       ))
