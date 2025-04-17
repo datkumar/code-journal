@@ -9,34 +9,23 @@ const stlEntries = (await getCollection("concepts")).filter((item) =>
   item.data.tags.includes("stl")
 );
 
-const dsaConcepts = (await getCollection("concepts")).filter(
-  (item) =>
-    item.data.tags.includes("dsa") && !item.data.tags.includes("algorithm")
+const dsaConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("dsa")
 );
 const recursionConcepts: CollectionEntry<"concepts">[] = [];
-const miscDsaConceptts: CollectionEntry<"concepts">[] = [];
+const sortSearchConcepts: CollectionEntry<"concepts">[] = [];
+const graphTreeConcepts: CollectionEntry<"concepts">[] = [];
+const miscDsaConcepts: CollectionEntry<"concepts">[] = [];
+
 for (const entry of dsaConcepts) {
   if (containsSomeTag(entry.data.tags, ["recursion"])) {
     recursionConcepts.push(entry);
+  } else if (containsSomeTag(entry.data.tags, ["graph", "tree"])) {
+    graphTreeConcepts.push(entry);
+  } else if (containsSomeTag(entry.data.tags, ["sorting", "binary-search"])) {
+    sortSearchConcepts.push(entry);
   } else {
-    miscDsaConceptts.push(entry);
-  }
-}
-
-const algorithms = (await getCollection("concepts")).filter((item) =>
-  item.data.tags.includes("algorithm")
-);
-
-const graphAlgos: CollectionEntry<"concepts">[] = [];
-const sortSearchAlgos: CollectionEntry<"concepts">[] = [];
-for (const entry of algorithms) {
-  if (containsSomeTag(entry.data.tags, ["sorting", "binary-search"])) {
-    sortSearchAlgos.push(entry);
-    continue;
-  }
-  if (containsSomeTag(entry.data.tags, ["graph"])) {
-    graphAlgos.push(entry);
-    continue;
+    miscDsaConcepts.push(entry);
   }
 }
 
@@ -116,6 +105,11 @@ const baseUrl = import.meta.env.BASE_URL;
           </li>
         ))
     }
+    <li>
+      <a rel="stylesheet" href={`${baseUrl}/cpp/cpp/modern-cpp`}
+        >Modern C++ features</a
+      >
+    </li>
     <li><a rel="stylesheet" href={`${baseUrl}/cpp`}>More C++</a></li>
   </ul>
 
@@ -126,7 +120,7 @@ const baseUrl = import.meta.env.BASE_URL;
   <h3>Misc</h3>
   <ul>
     {
-      miscDsaConceptts.map((entry) => (
+      miscDsaConcepts.map((entry) => (
         <li>
           <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
         </li>
@@ -145,10 +139,10 @@ const baseUrl = import.meta.env.BASE_URL;
     }
   </ul>
 
-  <h3>Sorting and Searching algorithms</h3>
+  <h3>Sorting and Searching</h3>
   <ul>
     {
-      sortSearchAlgos.map((entry) => (
+      sortSearchConcepts.map((entry) => (
         <li>
           <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
         </li>
@@ -156,14 +150,16 @@ const baseUrl = import.meta.env.BASE_URL;
     }
   </ul>
 
-  <h3>Graph algorithms</h3>
+  <h3>Graphs and Trees</h3>
   <ul>
     {
-      graphAlgos.map((entry) => (
-        <li>
-          <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
-        </li>
-      ))
+      graphTreeConcepts
+        .sort((a, b) => compareStrings(a.slug, b.slug))
+        .map((entry) => (
+          <li>
+            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+          </li>
+        ))
     }
   </ul>
 

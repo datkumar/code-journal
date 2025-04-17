@@ -162,7 +162,7 @@ blockquote {
   border-left: 12px solid var(--quoteHighlightColor);
   border-radius: 0.5rem;
   color: var(--quoteTextColor);
-  padding: 5px 13px;
+  padding: 8px 13px;
   margin: 1em 0px;
 }
 

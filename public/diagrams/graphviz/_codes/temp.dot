@@ -8,46 +8,22 @@
  * VSCode Extension: Graphviz Interactive Preview 
  * Link: https://marketplace.visualstudio.com/items?itemName=tintinweb.graphviz-interactive-preview
  */
-graph {
-    rankdir = LR;
+digraph {
+    // rankdir = LR;
     node [shape = circle; width = 0.5; height = 0.5; fixedsize = true;];
     
-    // Nodes separated into subgraphs:
+    subgraph {0; 1; 2; 3; 4;}    
+    0 -> 1;
+    0 -> 4;
+    1 -> 2;
+    2 -> 4;
+    3 -> 2;
+
+    subgraph { 5; 6; 7;}
+    6 -> 5;
+    5 -> 7;
     
-    subgraph {
-        8;
-    }
+    subgraph { 8;}
+
     
-    subgraph {
-        0;
-        1;
-        2;
-        5;
-        7;
-        9;
-    }
-    
-    subgraph {
-        3;
-        4;
-        6;
-        9;
-        10;
-        11;
-    }
-    
-    // Edges:
-    0 -- 1;
-    0 -- 2;
-    0 -- 5;
-    1 -- 2;
-    1 -- 5;
-    2 -- 5;
-    3 -- 4;
-    3 -- 6;
-    3 -- 10;
-    4 -- 11;
-    5 -- 7;
-    5 -- 9;
-    6 -- 11;
 }
