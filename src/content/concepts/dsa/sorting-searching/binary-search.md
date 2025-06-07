@@ -110,7 +110,9 @@ The recurrence relation would be:
 
 \\[ T(n) = T(n/2) + \Theta(1) \\]
 
-Solving it via [Master Theorem for Dividing functions](/code-journal/dsa/dsa/recurrence-master-thm#master-theorem-for-evaluating-dividing-functions) gives us:
+Solving it via [Master Theorem for Dividing functions](/code-journal/dsa/dsa/recursion/4-recurrence-master-thm#master-theorem-for-evaluating-dividing-functions) gives us:
+
+/code-journal/dsa/dsa/recursion/4-recurrence-master-thm
 
 \\[ T(n) = \Theta(log(n)) \\]
 

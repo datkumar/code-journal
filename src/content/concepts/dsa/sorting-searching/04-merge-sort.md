@@ -135,7 +135,7 @@ Thus, the recurrence relation is: (note that the **work at each step is being sp
 
 \\[ T(n) = 2 \cdot T \left(\frac{n}{2}\right) + \Theta(n) \\]
 
-It comes under **Case (2a)** of [Master Theorem for dividing functions](/code-journal/dsa/dsa/recurrence-master-thm#master-theorem-for-evaluating-dividing-functions)
+It comes under **Case (2a)** of [Master Theorem for dividing functions](/code-journal/dsa/dsa/recursion/4-recurrence-master-thm#master-theorem-for-evaluating-dividing-functions)
 
 On solving, we get the time complexity as:
 

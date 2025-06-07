@@ -127,7 +127,7 @@ The cases for running time of Quick-sort are:
 
    \\[ T(n) = 2 \cdot T \left(\frac{n}{2}\right) + \Theta(n) \\]
 
-   By **Case (2a)** of [Master Theorem for dividing functions](/code-journal/dsa/dsa/recurrence-master-thm#master-theorem-for-evaluating-dividing-functions), it comes out to be:
+   By **Case (2a)** of [Master Theorem for dividing functions](/code-journal/dsa/dsa/recursion/4-recurrence-master-thm#master-theorem-for-evaluating-dividing-functions), it comes out to be:
 
    \\[ T(n) = O(n \cdot log_2 n) \\]
 
@@ -139,7 +139,7 @@ The cases for running time of Quick-sort are:
 
    \\[ \therefore \space T(n) = T(n-1) + \Theta(n) \\]
 
-   By **Case (2)** of [Master Theorem for decreasing functions](/code-journal/dsa/dsa/recurrence-master-thm#master-theorem-for-evaluating-decreasing-functions), it comes out to be:
+   By **Case (2)** of [Master Theorem for decreasing functions](/code-journal/dsa/dsa/recursion/4-recurrence-master-thm#master-theorem-for-evaluating-decreasing-functions), it comes out to be:
 
    \\[ T(n) = O(n^2) \\]
 
