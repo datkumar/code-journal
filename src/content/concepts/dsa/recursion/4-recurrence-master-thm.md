@@ -7,7 +7,7 @@ tags: [dsa, recursion]
 
 A recurrence relation is an equation that recursively defines elements in a sequence of numbers as a function of the preceeding one(s)
 
-**Order**: The order of a recurrence relation refers to the highest difference between the subscripts of the term being defined and the preceding terms used in the equation. It essentially tells you **how far back you need to look** in the sequence to calculate the n<sup>th</sup> term
+**Order**: The order of a recurrence relation refers to the highest difference between the subscripts of the term being defined and the preceding terms used in the equation. It essentially tells you **how far back you need to look** in the sequence to calculate the $n^{th}$ term
 
 **Initial Terms**: These are the **starting seed values** of the sequence you need to kick off the calculations using the recurrence relation.
 
@@ -25,32 +25,32 @@ $$
 And the recurrence relation can be written as:
 
 $$
-\bbox[4pt,border:1px solid #3baaf5]{
-    F\_{n} = n \cdot F\_{n-1}
-} \space\space \text{with} \space\space F_0 = 1
+\boxed{F_n = n \cdot F_{n-1}} \quad \text{with} \quad F_0 = 1
 $$
 
-Here, the order is **1** and number of initial terms is also **1**
+Here, the order is $1$ and number of initial terms is also $1$
 
 ## 2. Fibonacci number
 
-The n<sup>th</sup> fibonacci number is given by function:
+The $n^{th}$ fibonacci number is given by function:
 
-$$f(n) = \begin{cases} 0 & \text{if n = 0} \\\\ 1 & \text{if n = 1} \\\\ f(n-1) + f(n-2) & \text{if n > 1} \end{cases}$$
+$$
+f(n) = \begin{cases} 0 & \text{if n = 0} \\\\ 1 & \text{if n = 1} \\\\ f(n-1) + f(n-2) & \text{if n > 1} \end{cases}
+$$
 
 And the recurrence relation can be written as:
 
 $$
-\bbox[4pt,border:1px solid #3baaf5]{
-    F\_{n} = F\_{n-1} + F\_{n-2}
+\boxed{
+    F_{n} = F_{n-1} + F_{n-2}
 } \space\space \text{with} \space\space F_0 = 0, \space F_1 = 1
 $$
 
-Here, the order is **2** and number of initial terms is also **2**
+Here, the order is $2$ and number of initial terms is also $2$
 
 ---
 
-In below examples, $T(n)$ is the time required to execute as a function of the input size \\(n\\)
+In below examples, $T(n)$ is the time required to execute as a function of the input size $n$
 
 ## Decreasing functions
 
@@ -67,7 +67,11 @@ void func(int n) {          // T(n)
 }
 ```
 
-The recurrence relation for above recursive function is: \\[T(n) = T(n-1) + 1 \space\space\text{and assuming}\space T(0)=1 \\]
+The recurrence relation for above recursive function is:
+
+$$
+T(n) = T(n-1) + 1 \space\space\text{and assuming}\space T(0)=1
+$$
 
 <br>
 
@@ -82,9 +86,11 @@ void func(int n) {                    // T(n)
 }
 ```
 
-The recurrence relation of above recursive function is: \\[T(n) = T(n-1) + n \space\space\text{and assuming}\space T(0)=1 \\]
+The recurrence relation of above recursive function is:
 
-<br>
+$$
+T(n) = T(n-1) + n \space\space\text{and assuming}\space T(0)=1
+$$
 
 ```cpp title="Example 3"
 void func(int n) {                          // T(n)
@@ -98,7 +104,11 @@ void func(int n) {                          // T(n)
 }
 ```
 
-The recurrence relation of above recursive function is: \\[T(n) = 2T(n-1) + log(n) \space\space\text{and assuming}\space T(0)=1 \\]
+The recurrence relation of above recursive function is:
+
+$$
+T(n) = 2T(n-1) + log(n) \space\space\text{and assuming}\space T(0)=1
+$$
 
 ---
 
@@ -109,7 +119,7 @@ Refer [Abdul Bari video](https://youtu.be/CyknhZbfMqc?si=85BGCrrSXTn04OKE)
 Given any recurrence relation of the form:
 
 $$
-\bbox[10pt,border:3px solid red]{
+\boxed{
     \boldsymbol{T(n) \space=\space aT(n - b) + f(n)}
 }
 $$
@@ -118,7 +128,7 @@ such that:
 
 $$
 a,b > 0 \space\space\text{and}\space\space
-\bbox[4pt,border:1px solid #3baaf5]{
+\boxed{
     f(n) = O(n^k)
 }\space\text{where}\space k \ge 0
 $$
@@ -133,15 +143,15 @@ It can be solved with the following cases:
 
 ### Examples of decreasing function evaluated by Master theorem
 
-- \\( T(n) = T(n-1) + 1 \implies O(n) \\)
-- \\( T(n) = T(n-1) + n \implies O(n^2) \\)
-- \\( T(n) = T(n-1) + n^2 \implies O(n^3) \\)
-- \\( T(n) = T(n-1) + logn \implies O(n\cdot logn) \\)
-- \\( T(n) = T(n-3) + 1 \implies O(n) \\)
-- \\( T(n) = T(n-10) + n \implies O(n^2) \\)
-- \\( T(n) = 2T(n-1) + 1 \implies O(2^n) \\)
-- \\( T(n) = 3T(n-2) + n \implies O(n \cdot 3^{n/2}) \implies O( n \cdot ({\sqrt 3})^n ) \\)
-- \\( T(n) = \frac{1}{3}T(n-2) + logn \implies O(logn) \\)
+- $T(n) = T(n-1) + 1 \implies O(n)$
+- $T(n) = T(n-1) + n \implies O(n^2)$
+- $T(n) = T(n-1) + n^2 \implies O(n^3)$
+- $T(n) = T(n-1) + \log n \implies O(n \cdot \log n)$
+- $T(n) = T(n-3) + 1 \implies O(n)$
+- $T(n) = T(n-10) + n \implies O(n^2)$
+- $T(n) = 2T(n-1) + 1 \implies O(2^n)$
+- $T(n) = 3T(n-2) + n \implies O(n \cdot 3^{n/2}) \implies O(n \cdot (\sqrt{3})^n)$
+- $T(n) = \frac{1}{3}T(n-2) + \log n \implies O(\log n)$
 
 ---
 
@@ -160,7 +170,11 @@ void func(int n) {            // T(n)
 }
 ```
 
-The recurrence relation for above recursive function is: \\[T(n) = T \left(\frac{n}{2} \right) + 1 \space\space\text{and assuming}\space T(1)=1 \\]
+The recurrence relation for above recursive function is:
+
+$$
+T(n) = T \left(\frac{n}{2} \right) + 1 \space\space\text{and assuming}\space T(1)=1
+$$
 
 <br>
 
@@ -176,7 +190,11 @@ void func(int n) {                        // T(n)
 }
 ```
 
-The recurrence relation of above recursive function is: \\[T(n) = 2T \left(\frac{n}{3} \right) + logn \space\space\text{and assuming}\space T(1)=1 \\]
+The recurrence relation of above recursive function is:
+
+$$
+T(n) = 2T \left(\frac{n}{3} \right) + logn \space\space\text{and assuming}\space T(1)=1
+$$
 
 <br>
 
@@ -189,7 +207,11 @@ void func(int n) {            // T(n)
 }
 ```
 
-The recurrence relation of above recursive function is: \\[T(n) = T( \sqrt{n}) + 1 \space\space\text{and assuming}\space T(2)=1 \\]
+The recurrence relation of above recursive function is:
+
+$$
+T(n) = T( \sqrt{n}) + 1 \space\space\text{and assuming}\space T(2)=1
+$$
 
 ---
 
@@ -200,7 +222,7 @@ Refer [Abdul Bari video](https://youtu.be/OynWkEj0S-s?si=9hzLKP7lwPSS2XOL) and [
 Given any recurrence relation of the form:
 
 $$
-\bbox[10pt,border:3px solid red]{
+\boxed{
     \boldsymbol{T(n) \space=\space aT \left(\frac{n}{b} \right) + f(n)}
 }
 $$
@@ -209,21 +231,24 @@ such that:
 
 $$
 a\ge1,\space b > 1 \space\space \text{and} \space\space
-\bbox[4pt,border:2px solid #3baaf5]{
+\boxed{
     f(n) = \boldsymbol{\Theta \left( n^k \cdot log^p(n) \right)}
 }\space\space \text{where} \space\space  k \ge 0
 $$
 
 - $n$ is the **input size**
-- \\(a\\) is the **number of subproblems** in the recursion
-- \\(b\\) is the **factor by which the subproblem size is reduced** in each recursive call
-- \\( f(n) \\) is the **work to split/recombine** the subproblems
+- $a$ is the **number of subproblems** in the recursion
+- $b$ is the **factor by which the subproblem size is reduced** in each recursive call
+- $ f(n) $ is the **work to split/recombine** the subproblems
 - The **critical exponent** $c_{crit}$ is given by below formula. Let's cal it $c$ for short:
 
   $$
-  \bbox[7pt,border:1px solid #3baaf5]{
-      c = c_{crit} = log_b(a)
-      = \frac{ log(\text{number of subproblems}) }{ log(\text{relative subproblem size}) }
+  \boxed{
+      c = c_{crit} = log_b(a) =
+      \frac
+        {log(\text{number of subproblems}) }
+        { log(\text{relative subproblem size})
+    }
   }
   $$
 
@@ -235,6 +260,7 @@ table hr{
     height: 1px;
     border: none;
 }
+
 dt, dd{
     padding: 0.25rem;
 }
@@ -242,42 +268,126 @@ dt, dd{
 
 <table>
 <tr>
-    <th>Case</th>
-    <th>$T(n)$ solution</th>
+<th>Case</th>
+<th>
+
+$T(n)$ solution
+
+</th>
+
 </tr>
 
 <tr>
-    <td>$$c > k$$</td>
-    <td><code>(1)</code> $T(n) = \boldsymbol{\Theta (n^c)}$</td>
+<td>
+
+$$c > k$$
+
+</td>
+<td>
+
+$ \text{Case \textbf{1}:} $
+
+$$
+T(n) = \boldsymbol{\Theta (n^c)}
+$$
+
+</td></tr>
+
+<tr>
+<td>
+
+$$c = k$$
+
+</td>
+<td>
+<dl>
+
+<dt>
+
+$ \text{Case \textbf{(2a)}:} \quad\space \boldsymbol{p > -1} $
+
+</dt>
+
+<dd>
+
+$$
+T(n) = \boldsymbol{\Theta \left( n^k \cdot log^{p+1}(n) \right)}
+$$
+
+</dd>
+
+<br>
+
+<dt>
+
+$ \text{Case \textbf{(2b)}:} \quad\space \boldsymbol{p = -1} $
+
+<dd>
+
+$$T(n) = \Theta \left( n^k \cdot log(logn) \right) = \boldsymbol{ \Theta \left( n^k \cdot log^{2}n \right) }$$
+
+</dd>
+
+<br>
+
+<dt>
+
+$ \text{Case \textbf{(2c)}:} \quad\space \boldsymbol{p < -1} $
+
+</dt>
+
+<dd>
+
+$$
+T(n) = \boldsymbol{\Theta (n^k)}
+$$
+
+</dd>
+
+</dl>
+</td>
 </tr>
 
 <tr>
-    <td>$$c = k$$</td>
-    <td>
-        <dl>
-            <dt><code>(2a)</code> $\boldsymbol{p > -1} \space:$</dt>
-            <dd>$T(n) = \boldsymbol{\Theta \left( n^k \cdot log^{p+1}(n) \right)}$</dd>
-            <hr>
-            <dt><code>(2b)</code> $\boldsymbol{p = -1} \space:$</dt>
-            <dd>$T(n) = \Theta \left( n^k \cdot log(logn) \right) = \boldsymbol{ \Theta \left( n^k \cdot log^{2}n \right) }$</dd>
-            <hr>
-            <dt><code>(2c)</code> $\boldsymbol{p < -1} \space:$</dt>
-            <dd>$T(n) = \boldsymbol{\Theta (n^k)}$</dd>
-        </dl>
-    </td>
-</tr>
+<td>
 
-<tr>
-    <td>$$c < k$$</td>
-    <td>
-        <dl>
-            <dt><code>(3a)</code> $\boldsymbol{p \ge 0} \space:$</dt>
-            <dd>$T(n) = \boldsymbol{ f(n)  = \Theta \left( n^k \cdot log^p(n) \right) }$</dd>
-            <hr>
-            <dt><code>(3b)</code> $\boldsymbol{p < 0} \space:$</dt>
-            <dd>$T(n) = \boldsymbol{ \Theta (n^k) } $</dd>
-        </dl>
-    </td>
+$$c < k$$
+
+</td>
+
+<td>
+<dl>
+<dt>
+
+$ \text{Case \textbf{(3a)}:} \quad\space \boldsymbol{p \ge 0} $
+
+</dt>
+
+<dd>
+
+$$
+T(n) = \boldsymbol{ f(n)  = \Theta \left( n^k \cdot log^p(n) \right) }
+$$
+
+</dd>
+
+<br>
+
+<dt>
+
+$ \text{Case \textbf{(3a)}:} \quad\space \boldsymbol{p < 0 } $
+
+</dt>
+<dd>
+
+$$
+T(n) = \boldsymbol{ \Theta (n^k) }
+$$
+
+</dd>
+
+</dl>
+</td>
 </tr>
 </table>
 
@@ -297,7 +407,11 @@ void func(int n){                           // T(n)
 }
 ```
 
-The recurrence relation of above recursive function is: \\[T(n) = T(n-1) + log(n) \space\space\text{and assuming}\space T(0)=1 \\]
+The recurrence relation of above recursive function is:
+
+$$
+T(n) = T(n-1) + log(n) \space\space\text{and assuming}\space T(0)=1
+$$
 
 We can trace the recusive calls in a tree as:
 
@@ -327,12 +441,12 @@ linkStyle 6 stroke-width:3px, stroke-dasharray:6;
 
 So, the total time would be:
 
-\\( T(n) = 1 + log(1) + log(2) + ... + log(n-2) + log(n-1) + log(n) \\)
+$ T(n) = 1 + log(1) + log(2) + ... + log(n-2) + log(n-1) + log(n) $
 
-\\( T(n) = 1 + log \left(1 \cdot 2 \cdot ... \cdot (n-2) \cdot (n-1) \cdot n \right) \\)
+$ T(n) = 1 + log \left(1 \cdot 2 \cdot ... \cdot (n-2) \cdot (n-1) \cdot n \right) $
 
-\\( T(n) = 1 + log(n!) \\)
+$ T(n) = 1 + log(n!) $
 
-\\( \text{We know } log(n!) \text{ is } O(n\cdot logn) \\) ... See [here](/code-journal/dsa/dsa/algorithm-complexity#asymptotic-notations)
+$ \text{We know } log(n!) \text{ is } O(n\cdot logn) $ ... See [here](/code-journal/dsa/dsa/algorithm-complexity#asymptotic-notations)
 
-\\( \therefore T(n) = O(n\cdot logn) \\)
+$ \therefore T(n) = O(n\cdot logn) $

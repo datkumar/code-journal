@@ -84,14 +84,14 @@ bool isValidSudoku (vector<vector<char>> &board) {
 
 **Time taken**:
 
-Traversing each cell of board takes \\( O(N^2) \\) time and each access or insert operation into the hash-set takes \\( O(1) \\) time on average. Thus, overall time complexity is \\( O(N^2) \\)
+Traversing each cell of board takes $ O(N^2) $ time and each access or insert operation into the hash-set takes $ O(1) $ time on average. Thus, overall time complexity is $ O(N^2) $
 
 **Space used**:
 
-- The row and column sets would have at-most \\( N \\) elements filled at each of the \\( N \\) total rows and columns i.e. \\( O(N^2) \\) space over all elements
-- The grid for each square would have dimensions \\( \sqrt{N} \ast \sqrt{N} \\) and will contain at-most \\( N \\) elements at each cell of grid i.e. \\( O(N^2) \\) space over all elements
+- The row and column sets would have at-most $ N $ elements filled at each of the $ N $ total rows and columns i.e. $ O(N^2) $ space over all elements
+- The grid for each square would have dimensions $ \sqrt{N} \ast \sqrt{N} $ and will contain at-most $ N $ elements at each cell of grid i.e. $ O(N^2) $ space over all elements
 
-| Metric | Complexity      |
-| ------ | --------------- |
-| Time   | \\( O(N^2 ) \\) |
-| Space  | \\( O(N^2) \\)  |
+| Metric | Complexity  |
+| ------ | ----------- |
+| Time   | $ O(N^2 ) $ |
+| Space  | $ O(N^2) $  |

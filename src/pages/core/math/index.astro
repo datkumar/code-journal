@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const mathConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("math")
+);
+
+const baseUrl = import.meta.env.BASE_URL;
+const folderSlug = "core/math";
+---
+
+<BaseLayout tabTitle="Math">
+  <h1>OS</h1>
+  <ul>
+    {
+      mathConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

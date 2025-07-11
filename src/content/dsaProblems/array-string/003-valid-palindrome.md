@@ -27,10 +27,10 @@ While they don't meet:
 
 ```
 
-| Metric | Complexity                                         |
-| ------ | -------------------------------------------------- |
-| Time   | \\( O(n) \\) ... one-pass over string's characters |
-| Space  | \\( O(1) \\)                                       |
+| Metric | Complexity                                     |
+| ------ | ---------------------------------------------- |
+| Time   | $ O(n) $ ... one-pass over string's characters |
+| Space  | $ O(1) $                                       |
 
 ```cpp
 bool isPalindrome (string str) {

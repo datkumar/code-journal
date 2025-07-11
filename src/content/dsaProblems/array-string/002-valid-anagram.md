@@ -22,7 +22,7 @@ returns `true` as the letters of `anagram` can be rearranged to form `nagaram`
 
 ## Solutions
 
-**Edge case**: When String **lengths unequal** \\( \implies \\) **NOT** anagrams
+**Edge case**: When String **lengths unequal** $ \implies $ **NOT** anagrams
 
 ### 1. Track Character counts
 
@@ -49,12 +49,12 @@ bool isAnagram(string str1, string str2) {
 }
 ```
 
-Time \\( = 3 \cdot O(N) = O(N) \\)
+Time $ = 3 \cdot O(N) = O(N) $
 
-| Metric | Complexity                   |
-| ------ | ---------------------------- |
-| Time   | \\( O(N) \\)                 |
-| Space  | \\( O(1) \\) ... fixed space |
+| Metric | Complexity               |
+| ------ | ------------------------ |
+| Time   | $ O(N) $                 |
+| Space  | $ O(1) $ ... fixed space |
 
 ### 2. Sorting
 
@@ -66,12 +66,12 @@ sort(str2);                 // O(NlogN)
 return (str1 == str2);      // O(N) for comparing character-by-character
 ```
 
-Time \\( = 2 \cdot O(N \cdot logN ) + O(N) = O(N \cdot logN ) \\)
+Time $ = 2 \cdot O(N \cdot logN ) + O(N) = O(N \cdot logN ) $
 
-| Metric | Complexity                      |
-| ------ | ------------------------------- |
-| Time   | \\( O(N \cdot logN ) \\)        |
-| Space  | \\( O(1) \\) ... no extra space |
+| Metric | Complexity                  |
+| ------ | --------------------------- |
+| Time   | $ O(N \cdot logN ) $        |
+| Space  | $ O(1) $ ... no extra space |
 
 The complexity depends on the underlying sorting method used. We have assumed a good sorting time of `O(NlogN)` and no extra space
 

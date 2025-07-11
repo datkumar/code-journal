@@ -197,3 +197,10 @@ th {
 table {
   margin-bottom: 2rem;
 }
+
+/* KATEX MATH  */
+
+.katex-html .boxpad {
+  display: inline-block;
+  padding: 1em;
+}

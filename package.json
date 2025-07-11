@@ -13,9 +13,11 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/markdown-remark": "^6.3.2",
-    "astro": "^5.9.1",
+    "astro": "^5.11.0",
     "astro-expressive-code": "^0.37.1",
     "mermaid": "^10.9.3",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
     "typescript": "^5.8.3",
     "unist-util-visit": "^5.0.0"
   }

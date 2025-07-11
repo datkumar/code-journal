@@ -15,10 +15,10 @@ links:
 The `Stack` class must provide the following functionality (assuming elements of `int` data-type) :
 
 - Follows **LIFO** approach (last-in element is first-out)
-- `bool isEmpty()` : Check whether stack is empty in \\( O(1) \\) time
-- `void push(int val)` : Insert an element on top of stack in \\( O(1) \\) time
-- `void pop()` : Remove topmost element of stack in \\( O(1) \\) time
-- `int peek()` : Return topmost element of stack in \\( O(1) \\) time
+- `bool isEmpty()` : Check whether stack is empty in $ O(1) $ time
+- `void push(int val)` : Insert an element on top of stack in $ O(1) $ time
+- `void pop()` : Remove topmost element of stack in $ O(1) $ time
+- `int peek()` : Return topmost element of stack in $ O(1) $ time
 
 Throw exception when stack underflow or overflow occurs
 

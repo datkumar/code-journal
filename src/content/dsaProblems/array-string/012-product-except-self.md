@@ -78,10 +78,10 @@ vector<int> productExceptSelf (vector<int> &nums) {
 
 <br>
 
-| Metric | Complexity                             |
-| ------ | -------------------------------------- |
-| Time   | \\( O(N) \\) ... 3 traversals at worst |
-| Space  | \\( O(1) \\)                           |
+| Metric | Complexity                         |
+| ------ | ---------------------------------- |
+| Time   | $ O(N) $ ... 3 traversals at worst |
+| Space  | $ O(1) $                           |
 
 ### 2. Maintain Prefix and Suffix product arrays
 
@@ -103,10 +103,10 @@ Each element in answer array will be the product of corresponding values in pref
   - `prefix[i] = prefix[i-1] * nums[i-1]`
   - `suffix[i] = suffix[i+1] * nums[i+1]`
 
-| Metric | Complexity                                               |
-| ------ | -------------------------------------------------------- |
-| Time   | \\( O(N) \\) ... 3 traversals                            |
-| Space  | \\( O(N) \\) ... Extra space for `prefix[]` , `suffix[]` |
+| Metric | Complexity                                           |
+| ------ | ---------------------------------------------------- |
+| Time   | $ O(N) $ ... 3 traversals                            |
+| Space  | $ O(N) $ ... Extra space for `prefix[]` , `suffix[]` |
 
 <details>
 <summary><strong>Implementation Code</strong></summary>
@@ -151,10 +151,10 @@ Traverse input array from right:
     Multiply the existing prefix value in answer with the suffix product value
 ```
 
-| Metric | Complexity                                     |
-| ------ | ---------------------------------------------- |
-| Time   | \\( O(N) \\) ... 2 traversals                  |
-| Space  | \\( O(1) \\) ... Only `ans[]` , no extra space |
+| Metric | Complexity                                 |
+| ------ | ------------------------------------------ |
+| Time   | $ O(N) $ ... 2 traversals                  |
+| Space  | $ O(1) $ ... Only `ans[]` , no extra space |
 
 <details>
 <summary><strong>Implementation Code</strong></summary>

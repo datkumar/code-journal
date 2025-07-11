@@ -62,12 +62,12 @@ int longestConsecutive (vector<int>& nums) {
 
 </details>
 
-Time taken is \\( O(n \cdot logn) \\) for sorting and \\( O(n) \\) for traversing array elements
+Time taken is $ O(n \cdot logn) $ for sorting and $ O(n) $ for traversing array elements
 
-| Metric | Complexity               |
-| ------ | ------------------------ |
-| Time   | \\( O(N \cdot logN ) \\) |
-| Space  | \\( O(1) \\)             |
+| Metric | Complexity           |
+| ------ | -------------------- |
+| Time   | $ O(N \cdot logN ) $ |
+| Space  | $ O(1) $             |
 
 ### 2. Union-Find approach
 
@@ -115,10 +115,10 @@ int longestConsecutive (vector<int> &nums) {
 
 **Time taken**:
 
-- To construct set, there are \\( n \\) insertions, each taking \\( O(1) \\) time on average i.e. \\( O(n) \\) for all insertions
-- We are starting the inner sequence-exploratory loop only when we find the start of a sequence and it goes on till end of that sequence. Thus, each array element is traversed once by the outer loop and once when it's respective sequence is explored i.e. \\( O(2n) \\)
+- To construct set, there are $ n $ insertions, each taking $ O(1) $ time on average i.e. $ O(n) $ for all insertions
+- We are starting the inner sequence-exploratory loop only when we find the start of a sequence and it goes on till end of that sequence. Thus, each array element is traversed once by the outer loop and once when it's respective sequence is explored i.e. $ O(2n) $
 
-| Metric | Complexity               |
-| ------ | ------------------------ |
-| Time   | \\( O(N ) \\)            |
-| Space  | \\( O(N) \\) ... for set |
+| Metric | Complexity           |
+| ------ | -------------------- |
+| Time   | $ O(N ) $            |
+| Space  | $ O(N) $ ... for set |

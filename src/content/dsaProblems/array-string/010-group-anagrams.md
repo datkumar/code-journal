@@ -32,22 +32,22 @@ An acceptable output could be like:
 
 We'll use Hashmap with **keys** as the **sorted letters of word**. All anagrams present in input array that match it will be grouped together as value of that key
 
-If input contains '\\(n\\)' strings of average length '\\(m\\)' and let '\\(k\\)'
-be the number of groups, which is \\(n\\) at worst
+If input contains '$n$' strings of average length '$m$' and let '$k$'
+be the number of groups, which is $n$ at worst
 
 **Time taken**:
 
-- \\( O(n) \\) to iterate through input strings
-- \\( O(m \cdot logm) \\) to sort each word i.e. \\( O(n \cdot m \cdot logm) \\) to sort all words
-- \\( O(1) \\) for appending word entry into map
-- When we construct answer at end, we will iterate through the constructed map with anagram groups of all elements of input i.e. \\( O(k) = O(n) \\) at worst
+- $ O(n) $ to iterate through input strings
+- $ O(m \cdot logm) $ to sort each word i.e. $ O(n \cdot m \cdot logm) $ to sort all words
+- $ O(1) $ for appending word entry into map
+- When we construct answer at end, we will iterate through the constructed map with anagram groups of all elements of input i.e. $ O(k) = O(n) $ at worst
 
-Total time \\( = O(n) + O(n \cdot m \cdot logm) + O(1) + O(n) = O(n \cdot m \cdot logm) \\)
+Total time $ = O(n) + O(n \cdot m \cdot logm) + O(1) + O(n) = O(n \cdot m \cdot logm) $
 
-| Metric | Complexity                      |
-| ------ | ------------------------------- |
-| Time   | \\( O(n \cdot m \cdot logm) \\) |
-| Space  | \\( O(n) \\) ... Frequency map  |
+| Metric | Complexity                  |
+| ------ | --------------------------- |
+| Time   | $ O(n \cdot m \cdot logm) $ |
+| Space  | $ O(n) $ ... Frequency map  |
 
 ```cpp title="C++"
 vector<vector<string>> groupAnagrams (vector<string> &strs) {
@@ -75,12 +75,12 @@ Regardless of the order in which characters are processed within the loop, the *
 
 Hash functions are provided by default in Java, but in C++, we need to provide our own hash function where the data-type of key is not a primitive data-type
 
-The step of sorting letters of word in first method has been replaced with calculating the hash value of the word. In our `getHash()` function below, we are iterating over the letters of word i.e. \\( O(m) \\) time to calculate hash of a word, and thereby \\( O(n \cdot m) \\) time to calculate hash of all words
+The step of sorting letters of word in first method has been replaced with calculating the hash value of the word. In our `getHash()` function below, we are iterating over the letters of word i.e. $ O(m) $ time to calculate hash of a word, and thereby $ O(n \cdot m) $ time to calculate hash of all words
 
-| Metric | Complexity               |
-| ------ | ------------------------ |
-| Time   | \\( O(n \cdot m ) \\)    |
-| Space  | \\( O(n) \\) ... Hashmap |
+| Metric | Complexity           |
+| ------ | -------------------- |
+| Time   | $ O(n \cdot m ) $    |
+| Space  | $ O(n) $ ... Hashmap |
 
 ```cpp title="C++"
 const int BASE = 997;

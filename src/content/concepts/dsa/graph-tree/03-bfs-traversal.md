@@ -245,10 +245,10 @@ const vector<vector<int>> bfsOfGraph(vector<vector<int>> const &Adj) {
 
 ## Algorithm Analysis
 
-| Metric | Complexity      |
-| ------ | --------------- |
-| Time   | \\( O(V+E ) \\) |
-| Space  | \\( O(V) \\)    |
+| Metric | Complexity  |
+| ------ | ----------- |
+| Time   | $ O(V+E ) $ |
+| Space  | $ O(V) $    |
 
 > BFS is suitable when the node we're searching is located **close to the source** at a small depth
 
@@ -256,12 +256,12 @@ const vector<vector<int>> bfsOfGraph(vector<vector<int>> const &Adj) {
 
 For each unvisted node, we are checking each of it's neighbours. Thus, each node is being visited once and it's neighbours then explored once.
 
-In **undirected** graph, the edges are bidirectional i.e. for an edge, the two nodes are present as each other's neighbours. So overall time would be \\( O(V+2E ) \\) . However, in **directed** graph, there is no double-counting so it's time is \\( O(V+E ) \\)
+In **undirected** graph, the edges are bidirectional i.e. for an edge, the two nodes are present as each other's neighbours. So overall time would be $ O(V+2E ) $ . However, in **directed** graph, there is no double-counting so it's time is $ O(V+E ) $
 
 ### Space
 
-The `visited[]` array takes \\( O(V) \\) space
+The `visited[]` array takes $ O(V) $ space
 
-Each node is appended into **queue** only once. At worst, there would be around \\( O(V) \\) elements in queue. This case can occur when all nodes other than the source are direct neighbours of the source node.
+Each node is appended into **queue** only once. At worst, there would be around $ O(V) $ elements in queue. This case can occur when all nodes other than the source are direct neighbours of the source node.
 
-We are ignoring the \\( O(V) \\) used to store the final answer and the \\( O(V+E ) \\) space of Adjacency List
+We are ignoring the $ O(V) $ used to store the final answer and the $ O(V+E ) $ space of Adjacency List

@@ -74,8 +74,8 @@ bool isValid (string str) {
 
 **Time taken**:
 
-We are iterating all string characters once, so \\( O(n) \\) time complexity
+We are iterating all string characters once, so $ O(n) $ time complexity
 
 **Space used**:
 
-At most, there would be \\( n \\) characters present inside stack. This would occur when all characters are opening braces. Hence, the space complexity is \\( O(n) \\)
+At most, there would be $ n $ characters present inside stack. This would occur when all characters are opening braces. Hence, the space complexity is $ O(n) $

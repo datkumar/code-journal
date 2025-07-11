@@ -66,34 +66,34 @@ The inner loop (shifting of elements) can also be written as:
 
 ## Algorithm Analysis
 
-|   Metric   |              Value              | Remarks                                       |
-| :--------: | :-----------------------------: | --------------------------------------------- |
-|  **Time**  | \\( O(n^2) \text{ to } O(n) \\) | Depends on number of shifts needed (Adaptive) |
-| **Space**  |          \\( O(1) \\)           | In-place sorting                              |
-| **Stable** |               ✅                | Only shifting, no swaps                       |
-| **Online** |               ✅                | Processes unsorted input part by part         |
+|   Metric   |            Value            | Remarks                                       |
+| :--------: | :-------------------------: | --------------------------------------------- |
+|  **Time**  | $ O(n^2) \text{ to } O(n) $ | Depends on number of shifts needed (Adaptive) |
+| **Space**  |          $ O(1) $           | In-place sorting                              |
+| **Stable** |             ✅              | Only shifting, no swaps                       |
+| **Online** |             ✅              | Processes unsorted input part by part         |
 
 ### Time Complexity
 
 |   Case    | Time Complexity |       Occurs when       |
 | :-------: | :-------------: | :---------------------: |
-| **Best**  |  \\( O(n) \\)   | Sorted or nearly sorted |
-| **Worst** | \\( O(n^2) \\)  |     Reverse-sorted      |
-|  **Avg**  | \\( O(n^2) \\)  |        Unsorted         |
+| **Best**  |    $ O(n) $     | Sorted or nearly sorted |
+| **Worst** |   $ O(n^2) $    |     Reverse-sorted      |
+|  **Avg**  |   $ O(n^2) $    |        Unsorted         |
 
 Since we are shifting all greater elements one place ahead, the worst case would be when we have to shift all the elements in sorted part ahead (at each step), i.e. each incoming element would be smaller than all elements in sorted part. So, the **worst-case** would occur when the array is **reverse-sorted**. Calculating worst case time:
 
-- Total \\( (n-1) \\) passes at most
+- Total $ (n-1) $ passes at most
 
-- For each \\(i^{th}\\) pass, we would shift \\( i \\) elements
+- For each $i^{th}$ pass, we would shift $ i $ elements
 
-- At most, there will be \\( 1 \\) shifts in the first pass, \\( 2 \\) in the second and so on till \\( (n-1) \\) shifts in the last pass and so on:
+- At most, there will be $ 1 $ shifts in the first pass, $ 2 $ in the second and so on till $ (n-1) $ shifts in the last pass and so on:
 
-  \\( = 1 + 2 + ... + (n-1) = \frac{( n-1)(n)}{2} = O(n^2) \\) shifts
+  $ = 1 + 2 + ... + (n-1) = \frac{( n-1)(n)}{2} = O(n^2) $ shifts
 
-- So, total time \\( = O(n^2) \\)
+- So, total time $ = O(n^2) $
 
-Conversely, the **best-case** would be when there is no shifting at all, which would occur when the array is **sorted**. So, we will do \\( (n-1) \\) passes, with no shifts at any pass. So \\( O(n) \\) time
+Conversely, the **best-case** would be when there is no shifting at all, which would occur when the array is **sorted**. So, we will do $ (n-1) $ passes, with no shifts at any pass. So $ O(n) $ time
 
 ### Stability
 
@@ -133,18 +133,18 @@ void insertionSort(int arr[], int n) {
 }
 ```
 
-- **Time**: Same as iterative i.e. \\( O(n^2) \\)
-- **Space**: \\( O(n) \\) for all the recursive calls (which can be optimised by compiler as they're _tail-recursive_)
+- **Time**: Same as iterative i.e. $ O(n^2) $
+- **Space**: $ O(n) $ for all the recursive calls (which can be optimised by compiler as they're _tail-recursive_)
 
 ## Optimization
 
-We can use **Binary-search to find the position of the newly picked element** in the sorted part. It would reduce the search time from \\( O(n) \\) to \\( O(logn) \\) ; but the shifting of elements would take \\( O(n) \\) regardless, making the overall time still remain as \\( O(n^2) \\)
+We can use **Binary-search to find the position of the newly picked element** in the sorted part. It would reduce the search time from $ O(n) $ to $ O(logn) $ ; but the shifting of elements would take $ O(n) $ regardless, making the overall time still remain as $ O(n^2) $
 
 ## Insertion-sort for Linked-Lists vs Arrays
 
-|       Operation       | Array                                                                                            | Linked-List                                                                                  |
-| :-------------------: | ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
-| **Shifting elements** | Since we have to shift each greater element ahead one-by-one, it can take upto \\( O(n) \\) time | Since we just have to modify two links, this operation takes \\( O(1) \\) time               |
-|   **Searching gap**   | Using Binary-search in sorted subarray reduces the time to \\( O(logn) \\)                       | No random element access. We have to use linear-search which can take upto \\( O(n) \\) time |
+|       Operation       | Array                                                                                        | Linked-List                                                                              |
+| :-------------------: | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Shifting elements** | Since we have to shift each greater element ahead one-by-one, it can take upto $ O(n) $ time | Since we just have to modify two links, this operation takes $ O(1) $ time               |
+|   **Searching gap**   | Using Binary-search in sorted subarray reduces the time to $ O(logn) $                       | No random element access. We have to use linear-search which can take upto $ O(n) $ time |
 
-Thus, both Arrays and Linked-Lists have intermediate operations in Insertion-sort that can take \\( O(n) \\) time in worst-case, making the overall worst-case time complexity as \\( O(n^2) \\) for both
+Thus, both Arrays and Linked-Lists have intermediate operations in Insertion-sort that can take $ O(n) $ time in worst-case, making the overall worst-case time complexity as $ O(n^2) $ for both

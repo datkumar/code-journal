@@ -108,12 +108,12 @@ void mergeSort(int arr[], int low, int high) {
 
 ## Algorithm Analysis
 
-|   Metric   |          Value          | Remarks                                                  |
-| :--------: | :---------------------: | -------------------------------------------------------- |
-|  **Time**  | \\( O(n \cdot logn) \\) | Same work done in ALL cases (NOT Adaptive)               |
-| **Space**  |      \\( O(n) \\)       | For temporary array and call stack                       |
-| **Stable** |           ✅            | For equal elements, left subarray's element picked first |
-| **Online** |           ❌            | Needs entire input at once                               |
+|   Metric   |        Value        | Remarks                                                  |
+| :--------: | :-----------------: | -------------------------------------------------------- |
+|  **Time**  | $ O(n \cdot logn) $ | Same work done in ALL cases (NOT Adaptive)               |
+| **Space**  |      $ O(n) $       | For temporary array and call stack                       |
+| **Stable** |         ✅          | For equal elements, left subarray's element picked first |
+| **Online** |         ❌          | Needs entire input at once                               |
 
 ### Time Complexity
 
@@ -133,21 +133,25 @@ void mergeSort(int arr[], int low, int high) {      // T(n)
 
 Thus, the recurrence relation is: (note that the **work at each step is being split equally** over two halves)
 
-\\[ T(n) = 2 \cdot T \left(\frac{n}{2}\right) + \Theta(n) \\]
+$$
+T(n) = 2 \cdot T \left(\frac{n}{2}\right) + \Theta(n)
+$$
 
 It comes under **Case (2a)** of [Master Theorem for dividing functions](/code-journal/dsa/dsa/recursion/4-recurrence-master-thm#master-theorem-for-evaluating-dividing-functions)
 
 On solving, we get the time complexity as:
 
-\\[ T(n) = \Theta(n \cdot log_2 n ) \\]
+$$
+T(n) = \Theta(n \cdot log_2 n )
+$$
 
 This time complexity is same for ALL cases i.e. the same amount of work is done for ALL cases
 
 ### Space Complexity
 
-- We use extra space to store the **temporary array**. The `temp[]` array will contain at most \\( n \\) elements when we are merging two subarrays of size \\( (n/2) \\) each; occuring at the topmost call in recursion tree
-- Also, recursion uses call stack memory. As the work is being **split over equal halves** at each step, the recursion trace would be a **balanced binary tree** and it's height would be \\( log_2 n \\), signifying the max depth of recursion calls at any time
-- So, total space \\( = O(n) + O(log_2 n) = O(n) \\)
+- We use extra space to store the **temporary array**. The `temp[]` array will contain at most $ n $ elements when we are merging two subarrays of size $ (n/2) $ each; occuring at the topmost call in recursion tree
+- Also, recursion uses call stack memory. As the work is being **split over equal halves** at each step, the recursion trace would be a **balanced binary tree** and it's height would be $ log_2 n $, signifying the max depth of recursion calls at any time
+- So, total space $ = O(n) + O(log_2 n) = O(n) $
 
 ### Stability
 
@@ -165,5 +169,6 @@ Note that **for similar value elements, we are picking the ones in left half fir
 ## Applications of Merge Sort
 
 1. **External sorting**: When the input is too large to fit into memmory, it can be sorted in chunks and those chunks can be merged later
-1. **Sorting Linked Lists**: Merge-sort is suited for linked lists as there is no need to create an extra \\( O(n) \\) sized array and ths time taken \\( \Theta(n \cdot logn ) \\)
+1. **Sorting Linked Lists**: Merge-sort is suited for linked lists as there is no need to create an extra $ O(n) $ sized array and ths time taken $ \Theta(n \cdot logn ) $
 1. To find Inversion Count
+   $$

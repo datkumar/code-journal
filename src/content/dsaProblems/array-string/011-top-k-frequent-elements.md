@@ -24,10 +24,10 @@ Sort that array descending by comparing "count" in each pair.
 Return "number" part of the first "k" pairs as answer.
 ```
 
-| Metric | Complexity                           |
-| ------ | ------------------------------------ |
-| Time   | \\( O(n \cdot logn ) \\) ... Sorting |
-| Space  | \\( O(n) \\) ... Frequency map       |
+| Metric | Complexity                       |
+| ------ | -------------------------------- |
+| Time   | $ O(n \cdot logn ) $ ... Sorting |
+| Space  | $ O(n) $ ... Frequency map       |
 
 ### 2. Hashing + Heap
 
@@ -48,22 +48,22 @@ From the constructed heap, till "k" iterations:
 Return answer
 ```
 
-Assuming there are '\\(m\\)' unique elements, which is at worst '\\(n\\)'.
+Assuming there are '$m$' unique elements, which is at worst '$n$'.
 
-Also, '\\(k\\)' will be '\\(m\\)' at most
+Also, '$k$' will be '$m$' at most
 
 **Time:**
 
-- \\( O(n) \\) to traverse array elements and construct frequency map
-- \\( m \\) insertions into max-heap is \\( O(m \cdot logm) \\) , which will be \\( O(n \cdot logn) \\) at worst
-- \\( k \\) elements popped from max-heap takes \\( O(k \cdot logm) \\) , which will be \\( O(n \cdot logn) \\) at worst
+- $ O(n) $ to traverse array elements and construct frequency map
+- $ m $ insertions into max-heap is $ O(m \cdot logm) $ , which will be $ O(n \cdot logn) $ at worst
+- $ k $ elements popped from max-heap takes $ O(k \cdot logm) $ , which will be $ O(n \cdot logn) $ at worst
 
-**Space:** &nbsp; \\( n \\) elements at worst in frequency map and heap and answer i.e. \\( O(2n) \\)
+**Space:** &nbsp; $ n $ elements at worst in frequency map and heap and answer i.e. $ O(2n) $
 
-| Metric | Complexity                                                                            |
-| ------ | ------------------------------------------------------------------------------------- |
-| Time   | \\( O(n + k \cdot logm ) \\) &nbsp; which at worst is &nbsp; \\( O(n \cdot logn ) \\) |
-| Space  | \\( O(n) \\)                                                                          |
+| Metric | Complexity                                                                    |
+| ------ | ----------------------------------------------------------------------------- |
+| Time   | $ O(n + k \cdot logm ) $ &nbsp; which at worst is &nbsp; $ O(n \cdot logn ) $ |
+| Space  | $ O(n) $                                                                      |
 
 <details>
 <summary><strong>Implementation Code</strong></summary>
@@ -96,9 +96,9 @@ vector<int> topKFrequent (vector<int> &nums, int k) {
 
 ### 3. Hashing + Buckets
 
-The frequency count of any number in the input can range between: \\( 0 \text{ to } n \\)
+The frequency count of any number in the input can range between: $ 0 \text{ to } n $
 
-> We can create \\( n \\) **buckets** where each bucket represents elements having that count. The **index** of the bucket will be the frequency count of it's elements
+> We can create $ n $ **buckets** where each bucket represents elements having that count. The **index** of the bucket will be the frequency count of it's elements
 
 ```txt
 Construct frequency map
@@ -135,16 +135,16 @@ Traversing from end and taking k=2 elements, ans=[1,2]
 
 **Time:**
 
-- \\( O(n) \\) to traverse array elements and construct frequency map
-- \\( m \\) insertions into respective buckets is \\( O(m) \\) , which will be \\( O(n) \\) at worst
-- Traverse buckets and append elements into answer: would be \\( O(n) \\) amortized
+- $ O(n) $ to traverse array elements and construct frequency map
+- $ m $ insertions into respective buckets is $ O(m) $ , which will be $ O(n) $ at worst
+- Traverse buckets and append elements into answer: would be $ O(n) $ amortized
 
-**Space:** &nbsp; \\( n \\) elements at worst in frequency map and \\( n \\) buckets and combined elements of all buckets would be \\( n \\) at worst
+**Space:** &nbsp; $ n $ elements at worst in frequency map and $ n $ buckets and combined elements of all buckets would be $ n $ at worst
 
-| Metric | Complexity   |
-| ------ | ------------ |
-| Time   | \\( O(n) \\) |
-| Space  | \\( O(n) \\) |
+| Metric | Complexity |
+| ------ | ---------- |
+| Time   | $ O(n) $   |
+| Space  | $ O(n) $   |
 
 <details>
 <summary><strong>Implementation Code</strong></summary>
