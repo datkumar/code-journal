@@ -11,8 +11,7 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: "shiki",
     remarkPlugins: [mermaid, remarkMath],
-    // rehypePlugins: [rehypeKatex],
-    rehypePlugins: [[rehypeKatex, { strict: false }]],
+    rehypePlugins: [rehypeKatex],
   },
   integrations: [
     expressiveCode({

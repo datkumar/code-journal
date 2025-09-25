@@ -3,7 +3,7 @@ title: CPU Scheduling Algorithms
 tags: [os]
 ---
 
-<!-- TODO: Write content -->
+<!-- TODO: CPU Sdheduling algos: FCFS, SJF, Round-Robin,... -->
 
 1. FCFS
 1. SJF

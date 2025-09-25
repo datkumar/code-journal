@@ -92,7 +92,7 @@ $$
 
 **Note**: If $ a < 2 $ , then **zero** ways to select as there won't be any pair formed. At $ a = 1, \space a(a-1)/2 = 0 $ . Thus, that edge-case gets handled. If count < 1, it's even not even added into frequency map
 
-2. Picking **two diffent values** to form sum pair
+1. Picking **two diffent values** to form sum pair
 
    Let $ \space a, b \space $ be the frequencies of the elements that add up to target
 

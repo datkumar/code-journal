@@ -22,7 +22,7 @@ To traverse a **disconnected** graph, run this component exploration from **ever
 
 ## BFS traversal on Adjacency List
 
-Refer [Adjacency List Graph representation](/code-journal/dsa/dsa/graph-representations#2-adjacency-list-best)
+Refer [Adjacency List Graph representation](/code-journal/dsa/dsa/graph-tree/02-graph-representations#2-adjacency-list-best)
 
 ```cpp
 // Traverse the component level-by-level starting from source node
@@ -254,7 +254,7 @@ const vector<vector<int>> bfsOfGraph(vector<vector<int>> const &Adj) {
 
 ### Time
 
-For each unvisted node, we are checking each of it's neighbours. Thus, each node is being visited once and it's neighbours then explored once.
+For each unvisited node, we are checking each of it's neighbours. Thus, each node is being visited once and it's neighbours then explored once.
 
 In **undirected** graph, the edges are bidirectional i.e. for an edge, the two nodes are present as each other's neighbours. So overall time would be $ O(V+2E ) $ . However, in **directed** graph, there is no double-counting so it's time is $ O(V+E ) $
 

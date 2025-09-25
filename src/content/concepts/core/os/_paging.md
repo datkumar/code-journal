@@ -1,6 +1,6 @@
 ---
-title: Paging, Thrashing
+title: Virtual Memory
 tags: [os]
 ---
 
-<!-- TODO: Write content -->
+<!-- TODO: Virtual Memory: Paging, Thrashing -->

@@ -3,7 +3,7 @@ title: ACID properties of RDBMS Transaction
 tags: [dbms]
 ---
 
-<!-- TODO: Write content -->
+<!-- TODO: Write about ACID props -->
 
 - Atomicity
 - Consistency

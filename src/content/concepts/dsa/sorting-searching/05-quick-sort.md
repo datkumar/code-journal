@@ -109,61 +109,73 @@ void quickSort(int arr[], int low, int high) {      // T(n)
 }
 ```
 
-Let '$x$' be the number of elements **smaller** than the pivot. The next two recursive calls cover all elements **other than pivot**, i.e. combined, they have one less element than number of total elements in current call i.e. $ (n-1) $
+Let $x$ be the number of elements **smaller** than the pivot. The next two recursive calls cover all elements **other than pivot**, i.e. combined, they have one less element than number of total elements in current call i.e. $ (n-1) $
 
 So, time taken can be represented by recurrence relation:
 
 $$
-T(n) = T(x) + T(n-1-x) + \Theta(n)
+\boxed{
+    T(n) = T(x) + T(n-1-x) + \Theta(n)
+}
 $$
 
 The cases for running time of Quick-sort are:
 
-1. **Best Case**: Pivot is **median** at each partition for **balanced partitioning**
+1. <u><b>Best Case</b></u>: Pivot is **median** at each partition for **balanced partitioning**
 
    When the chosen pivot is median of working array at each step, the array gets partitioned into equal subarrays for next recursive calls with the pivot placed at exact middle. The next two recursive calls will have equal depth and the binary tree of function calls will be a balanced one. Mathematically:
 
-$$
-x \approx (n-1-x) \implies x \approx \frac{n}{2}
-$$
+   $$
+   x \approx (n-1-x) \implies x \approx \frac{n}{2}
+   $$
 
-And so, the recurrence relation becomes (resembling that of merge sort):
+   And so, the recurrence relation becomes (resembling that of merge sort):
 
-$$
-T(n) = 2 \cdot T \left(\frac{n}{2}\right) + \Theta(n)
-$$
+   $$
+   T(n) = 2 \cdot T \left(\frac{n}{2}\right) + \Theta(n)
+   $$
 
-By **Case (2a)** of [Master Theorem for dividing functions](/code-journal/dsa/dsa/recursion/4-recurrence-master-thm#master-theorem-for-evaluating-dividing-functions), it comes out to be:
+   By **Case (2a)** of [Master Theorem for dividing functions](/code-journal/dsa/dsa/recursion/4-recurrence-master-thm#master-theorem-for-evaluating-dividing-functions), it comes out to be:
 
-$$
-T(n) = O(n \cdot log_2 n)
-$$
+   $$
+   \boxed{
+       T(n) = O(n \cdot log_2 n)
+   }
+   $$
 
-2. **Worst Case**: Pivot's placed at **either end** of current array, causing **unbalanced partitioning**
+2. <u><b>Worst Case</b></u>: Pivot's placed at **either end** of current array, causing **unbalanced partitioning**
 
    Say we're taking the last element of working array as pivot. Now, if the input array given to us is **sorted or reverse-sorted**, the pivot's sorted position at each step would be at either end of working array. The partition array's sizes would be an empty subarray and the other subarray containing all elements excluding pivot. The tree of recursion calls in this unbalanced partitioning would be like a linked-list. Mathematically, one of the two terms will be empty, and the other one would take up all of remaining work:
 
-$$
-T(n) = T(0) + T(n-1) + \Theta(n)
-$$
+   $$
+   T(n) = T(0) + T(n-1) + \Theta(n)
+   $$
 
-$$
-\therefore \space T(n) = T(n-1) + \Theta(n)
-$$
+   $$
+   \therefore \space T(n) = T(n-1) + \Theta(n)
+   $$
 
-By **Case (2)** of [Master Theorem for decreasing functions](/code-journal/dsa/dsa/recursion/4-recurrence-master-thm#master-theorem-for-evaluating-decreasing-functions), it comes out to be:
+   By **Case (2)** of [Master Theorem for decreasing functions](/code-journal/dsa/dsa/recursion/4-recurrence-master-thm#master-theorem-for-evaluating-decreasing-functions), it comes out to be:
 
-$$
-T(n) = O(n^2)
-$$
+   $$
+   \boxed{
+       T(n) = O(n^2)
+   }
+   $$
 
-3. **Average Case**:
+3. <u><b>Average Case</b></u>:
 
    See [proof from Wikipedia](https://en.wikipedia.org/wiki/Quicksort#Using_recurrences) to know how we get the average case performance of quick-sort as:
 
-$$
-2n \cdot ln(n) \approx 1.39 n \cdot log_2 (n)
-$$
+   $$
+   2n \cdot ln(n) \approx 1.39 n \cdot log_2 (n)
+   $$
+
+   $$
+   \therefore \space \boxed{
+       T(n) = O(n \cdot \log n)
+   }
+   $$
 
 This means that, on average, quicksort performs only about **39%** worse than in its best case. In this sense, it is **closer to the best case** than the worst case
 
@@ -216,6 +228,3 @@ if (
     swap(arr[i], arr[j]);
 }
 ```
-
-$$
-$$

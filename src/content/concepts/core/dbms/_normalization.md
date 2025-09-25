@@ -3,4 +3,4 @@ title: Normazlization in DBMS
 tags: [dbms]
 ---
 
-<!-- TODO: write content -->
+<!-- TODO: Normaliztion, Normal Forms etc  -->

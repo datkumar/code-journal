@@ -1,6 +1,6 @@
 const rootElement = document.documentElement;
 const themeCheckbox = document.getElementById(
-  "theme-toggle"
+  "theme-toggle",
 ) as HTMLInputElement;
 
 const getSystemTheme = () => {

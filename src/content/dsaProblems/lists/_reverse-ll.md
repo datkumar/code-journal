@@ -6,4 +6,4 @@ level: 0
 links: [https://leetcode.com/problems/reverse-linked-list/]
 ---
 
-<!-- TODO: Reverse LL Iterative + Recursive -->
+<!-- TODO: DSA LL: Reverse LL (Iterative + Recursive) -->

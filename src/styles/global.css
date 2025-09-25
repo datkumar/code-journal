@@ -39,7 +39,8 @@ body {
   flex-direction: column;
   max-width: 900px;
   min-height: 100vh;
-  min-height: 100vsh; /* for newer browsers */
+  min-height: 100vsh;
+  /* for newer browsers */
   margin: 0 auto;
   padding: 30px 40px;
   background-color: var(--bgColor);
@@ -52,7 +53,7 @@ body {
   overflow-x: auto;
 }
 
-body > footer {
+body>footer {
   margin-top: auto;
 }
 
@@ -199,6 +200,12 @@ table {
 }
 
 /* KATEX MATH  */
+
+
+.katex-html {
+  /* inline spacing */
+  margin-inline: 5px;
+}
 
 .katex-html .boxpad {
   display: inline-block;

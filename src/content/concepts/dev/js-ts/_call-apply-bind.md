@@ -3,7 +3,7 @@ title: call, apply bind
 tags: [js]
 ---
 
-<!-- TODO: write content -->
+<!-- TODO: JS function methods: call, apply, bind -->
 
 Sources:
 
