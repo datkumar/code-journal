@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
-
 import expressiveCode from "astro-expressive-code";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import { mermaid } from "./src/utils/mermaid";
 
 // https://astro.build/config
@@ -9,7 +10,8 @@ export default defineConfig({
   base: "/code-journal",
   markdown: {
     syntaxHighlight: "shiki",
-    remarkPlugins: [mermaid],
+    remarkPlugins: [mermaid, remarkMath],
+    rehypePlugins: [rehypeKatex],
   },
   integrations: [
     expressiveCode({

@@ -27,10 +27,10 @@ for each element in array:                      <- O(N)
 return false
 ```
 
-| Metric | Complexity                      |
-| ------ | ------------------------------- |
-| Time   | \\( O(N^2) \\)                  |
-| Space  | \\( O(1) \\) ... no extra space |
+| Metric | Complexity                  |
+| ------ | --------------------------- |
+| Time   | $ O(N^2) $                  |
+| Space  | $ O(1) $ ... no extra space |
 
 ### 2. Sorting
 
@@ -64,12 +64,12 @@ bool containsDuplicate(vector<int> &nums) {
 
 </details>
 
-Time Complexity: \\( = O(N \cdot logN) + O(N) = O(N \cdot logN) \\)
+Time Complexity: $ = O(N \cdot logN) + O(N) = O(N \cdot logN) $
 
-| Metric | Complexity                      |
-| ------ | ------------------------------- |
-| Time   | \\( O(N \cdot logN ) \\)        |
-| Space  | \\( O(1) \\) ... no extra space |
+| Metric | Complexity                  |
+| ------ | --------------------------- |
+| Time   | $ O(N \cdot logN ) $        |
+| Space  | $ O(1) $ ... no extra space |
 
 ### 3. Hashing
 
@@ -107,9 +107,9 @@ bool containsDuplicate (vector<int> &nums) {
 
 <br>
 
-| Metric | Complexity                                       |
-| ------ | ------------------------------------------------ |
-| Time   | \\( O(N) \\) ... on avg.                         |
-| Space  | \\( O(N) \\) ... worst-case, when all are unique |
+| Metric | Complexity                                   |
+| ------ | -------------------------------------------- |
+| Time   | $ O(N) $ ... on avg.                         |
+| Space  | $ O(N) $ ... worst-case, when all are unique |
 
 Above time complexity is for `unordered_set` in C++. However, if you use `set`, the **insertion** and **find** operations would take `O(logN)` time in **worst-case**. So, the final complexity would be `O(N*logN)`

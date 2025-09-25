@@ -26,12 +26,12 @@ For each element in array:
             return pair
 ```
 
-Time \\( = (N-1) + (N-2) + ... + 1 = O(N^2) \\)
+Time $= (N-1) + (N-2) + ... + 1 = O(N^2) $
 
-| Metric | Complexity     |
-| ------ | -------------- |
-| Time   | \\( O(N^2) \\) |
-| Space  | \\( O(1) \\)   |
+| Metric | Complexity |
+| ------ | ---------- |
+| Time   | $ O(N^2) $ |
+| Space  | $ O(1) $   |
 
 ### 2. Hashing
 
@@ -44,10 +44,10 @@ For each element traversed in array:
     Add current element to map.
 ```
 
-| Metric | Complexity                  |
-| ------ | --------------------------- |
-| Time   | \\( O(N) \\)                |
-| Space  | \\( O(N)\\) ... for Hashmap |
+| Metric | Complexity              |
+| ------ | ----------------------- |
+| Time   | $ O(N) $                |
+| Space  | $ O(N)$ ... for Hashmap |
 
 <details>
 <summary><strong>Implementation Code</strong></summary>
@@ -84,22 +84,26 @@ The cases we need to handle are:
 
 1. Picking **same value twice** to form sum pair
 
-   When the target value is twice that of a value present in array, we need number of ways we can select 2 items from total frequency of that value. Let \\(a\\) be the frequency count of the element
+   When the target value is twice that of a value present in array, we need number of ways we can select 2 items from total frequency of that value. Let $a$ be the frequency count of the element
 
-   \\[ \therefore \text{ways to select } = {^a}{C_2} = a(a-1)/2 \\]
+$$
+\therefore \text{ways to select } = {^a}{C_2} = a(a-1)/2
+$$
 
-   **Note**: If \\( a < 2 \\) , then **zero** ways to select as there won't be any pair formed. At \\( a = 1, \space a(a-1)/2 = 0 \\) . Thus, that edge-case gets handled. If count < 1, it's even not even added into frequency map
+**Note**: If $ a < 2 $ , then **zero** ways to select as there won't be any pair formed. At $ a = 1, \space a(a-1)/2 = 0 $ . Thus, that edge-case gets handled. If count < 1, it's even not even added into frequency map
 
-2. Picking **two diffent values** to form sum pair
+1. Picking **two diffent values** to form sum pair
 
-   Let \\( \space a, b \space \\) be the frequencies of the elements that add up to target
+   Let $ \space a, b \space $ be the frequencies of the elements that add up to target
 
-   \\[ \therefore \text{ways to select } = {^a}{C_1} \cdot {^b}{C_1} = a \cdot b \\]
+$$
+\therefore \text{ways to select } = {^a}{C_1} \cdot {^b}{C_1} = a \cdot b
+$$
 
-| Metric | Complexity                                                |
-| ------ | --------------------------------------------------------- |
-| Time   | \\( O(2 \cdot N) \\) ... Traversing array & frequency map |
-| Space  | \\( O(N)\\) ... for Hashmap                               |
+| Metric | Complexity                                            |
+| ------ | ----------------------------------------------------- |
+| Time   | $ O(2 \cdot N) $ ... Traversing array & frequency map |
+| Space  | $ O(N)$ ... for Hashmap                               |
 
 <details>
 <summary><strong>Implementation Code</strong></summary>
@@ -165,16 +169,16 @@ For each element in array:
 
 In worst case, we have to go till last pair. So the time taken:
 
-\\( = log(n-1) + log(n-2) + ... + log(1) \\)
+$ = log(n-1) + log(n-2) + ... + log(1) $
 
-\\( = log[ (n-1) \ast (n-2) ... \ast 1] \\)
+$ = log[ (n-1) \ast (n-2) ... \ast 1] $
 
-\\( = log[(n-1)!] \approx O(n \cdot logn) \\) ... refer [here](/code-journal/dsa/dsa/algorithm-complexity#asymptotic-notations)
+$ = log[(n-1)!] \approx O(n \cdot logn) $ ... refer [here](/code-journal/dsa/dsa/algorithm-complexity#asymptotic-notations)
 
-| Metric | Complexity              |
-| ------ | ----------------------- |
-| Time   | \\( O(N \cdot logN) \\) |
-| Space  | \\( O(1) \\)            |
+| Metric | Complexity          |
+| ------ | ------------------- |
+| Time   | $ O(N \cdot logN) $ |
+| Space  | $ O(1) $            |
 
 <details>
 <summary><strong>Implementation Code</strong></summary>
@@ -230,12 +234,12 @@ While they are within bounds:
 
 ```
 
-At each step, one of the two pointers is moving closer to the other. At worst, they will meet, thereby covering all elements once i.e. \\( O(n) \\) time
+At each step, one of the two pointers is moving closer to the other. At worst, they will meet, thereby covering all elements once i.e. $ O(n) $ time
 
-| Metric | Complexity   |
-| ------ | ------------ |
-| Time   | \\( O(N) \\) |
-| Space  | \\( O(1) \\) |
+| Metric | Complexity |
+| ------ | ---------- |
+| Time   | $ O(N) $   |
+| Space  | $ O(1) $   |
 
 <details>
 <summary><strong>Implementation Code</strong></summary>

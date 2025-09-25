@@ -77,46 +77,61 @@ Some validations we assume:
 
 ## Algorithm Analysis
 
-| Metric | Complexity       |
-| ------ | ---------------- |
-| Time   | \\( O(logN ) \\) |
-| Space  | \\( O(1) \\)     |
+| Metric | Complexity   |
+| ------ | ------------ |
+| Time   | $ O(logN ) $ |
+| Space  | $ O(1) $     |
 
 **After each step, the working array size is halved**. We will keep on iterating till either the element is found or the working array becomes empty
 
 1. **Best Case**
 
-   In **best case**, the key is found at first pass itself, i.e. when the **key is present at midpoint** of input array. The time taken would be \\(O(1)\\) in best case
+   In **best case**, the key is found at first pass itself, i.e. when the **key is present at midpoint** of input array. The time taken would be $\underline{O(1)}$ in best case
 
 2. **Worst Case**
 
    In **worst case**, we will exhaust our working array to **single element**. It would occur at elements that would never be midpoints in the passses such as the **first and last element** of input array as the keys
 
-   The working array size shrinks as: \\( n, (n/2), (n/4), (n/8), ..., 1 \\)
+   The working array size shrinks as: $n, (n/2), (n/4), (n/8), ..., 1$
 
-   Let the process go on till `k` passes. The search space sizes would be: \\( \frac{n}{2^0} , \frac{n}{2^1}, \frac{n}{2^2}, \frac{n}{2^3}, ... , \frac{n}{2^k} \\)
+   Let the process go on till `k` passes. The search space sizes would be:
 
-   \\(\therefore \frac{n}{2^k} = 1 \implies n = 2^k \\)
+   $$
+   \frac{n}{2^0} , \frac{n}{2^1}, \frac{n}{2^2}, \frac{n}{2^3}, ... , \frac{n}{2^k}
+   $$
 
-   \\(\therefore log_2(n) = k \text{ ... apply log base 2 on both sides } \\)
+   $$
+   \therefore \frac{n}{2^k} = 1 \implies n = 2^k
+   $$
+
+   $$
+   \therefore \space
+   \boxed{k = log_2(n) }  \text{ ... apply } \log_2 \text{on both sides }
+   $$
 
 3. **Average Case**
 
-   See [GFG article](https://www.geeksforgeeks.org/complexity-analysis-of-binary-search/) to know how we get average case complexity as \\( O(log(n)) \\)
+   See [GFG article](https://www.geeksforgeeks.org/complexity-analysis-of-binary-search/) to know how we get average case complexity as $\boxed{ O(log(n)) }$
 
 ### Recurrence relation
 
 The recurrence relation would be:
 
-\\[ T(n) = T(n/2) + \Theta(1) \\]
+$$
+T(n) = T \left( \frac{n}{2} \right) + \Theta(1)
+$$
 
-Solving it via [Master Theorem for Dividing functions](/code-journal/dsa/dsa/recurrence-master-thm#master-theorem-for-evaluating-dividing-functions) gives us:
+Solving it via [Master Theorem for Dividing functions](/code-journal/dsa/dsa/recursion/4-recurrence-master-thm#master-theorem-for-evaluating-dividing-functions) gives us:
 
-\\[ T(n) = \Theta(log(n)) \\]
+$$
+\boxed{
+    T(n) = \Theta(\log n)
+}
+$$
 
 ### Space
 
-Binary search doesn't need any auxiliary space i.e. \\( O(1) \\) but the stack space can be upto the max depth of recurion, which is upto \\( O(logN) \\)
+Binary search doesn't need any auxiliary space i.e. $ O(1) $ but the stack space can be upto the max depth of recurion, which is upto $ O(logN) $
 
 ---
 

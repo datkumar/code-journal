@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const electronicsConcepts = (await getCollection("concepts")).filter((item) =>
+  item.data.tags.includes("electronics")
+);
+
+const baseUrl = import.meta.env.BASE_URL;
+const folderSlug = "core/electronics";
+---
+
+<BaseLayout tabTitle="Digital Electronics">
+  <h1>Digital Electronics</h1>
+  <ul>
+    {
+      electronicsConcepts.map((entry) => (
+        <li>
+          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+            {entry.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

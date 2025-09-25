@@ -3,7 +3,7 @@ title: Event bubbling and capturing
 tags: [js]
 ---
 
-<!-- TODO: write details -->
+<!-- TODO: JS Events: Bubbling and Capturing -->
 
 Vids:
 

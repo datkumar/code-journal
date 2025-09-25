@@ -23,7 +23,7 @@ For each element in array:
 
 ## Code
 
-- After each \\(i^{th}\\) pass, the \\(i^{th}\\) **minimum** element gets placed at it's correct **sorted position**
+- After each $i^{th}$ pass, the $i^{th}$ **minimum** element gets placed at it's correct **sorted position**
 - At last index's pass, since working array is only last one element (which is also minimum itself), no need to process that pass
 
 ```cpp title="C++"
@@ -51,28 +51,28 @@ void selectionSort(int arr[], int n) {
 
 ## Algorithm Analysis
 
-|   Metric   |     Value      | Remarks                               |
-| :--------: | :------------: | ------------------------------------- |
-|  **Time**  | \\( O(n^2) \\) | Same work in ALL cases (NOT Adaptive) |
-| **Space**  |  \\( O(1) \\)  | In-place sorting                      |
-| **Stable** |       ❌       | Can be made stable by shifting        |
-| **Online** |       ❌       | Needs entire input at once            |
+|   Metric   |   Value    | Remarks                               |
+| :--------: | :--------: | ------------------------------------- |
+|  **Time**  | $ O(n^2) $ | Same work in ALL cases (NOT Adaptive) |
+| **Space**  |  $ O(1) $  | In-place sorting                      |
+| **Stable** |     ❌     | Can be made stable by shifting        |
+| **Online** |     ❌     | Needs entire input at once            |
 
 ### Time Complexity
 
-- Total \\( (n-1) \\) passes
+- Total $ (n-1) $ passes
 
-- For each \\(i^{th}\\) element in array, we are traversing and comparing with next \\((n-i)\\) elements
+- For each $i^{th}$ element in array, we are traversing and comparing with next $(n-i)$ elements
 
 - Thus, the **same work** is done in **ALL cases** (best, worst, average)
 
-- There are \\( (n-1) \\) comparisions in the first pass, \\( (n-2) \\) in the second and so on till only \\(1\\) comparison in the last pass and so on:
+- There are $ (n-1) $ comparisions in the first pass, $ (n-2) $ in the second and so on till only $1$ comparison in the last pass and so on:
 
-  \\( = (n-1) + (n-2) + ... + 2 + 1 = \frac{( n-1)(n)}{2} = O(n^2) \\) comparisons
+  $ = (n-1) + (n-2) + ... + 2 + 1 = \frac{( n-1)(n)}{2} = O(n^2) $ comparisons
 
-- Also, \\(1\\) swap after each pass and thereby total \\( (n-1) = O(n) \\) swaps
+- Also, $1$ swap after each pass and thereby total $ (n-1) = O(n) $ swaps
 
-So, total time \\( = O(n^2) + O(n) = O(n^2) \\)
+So, total time $ = O(n^2) + O(n) = O(n^2) $
 
 ### Stability
 

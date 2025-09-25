@@ -5,7 +5,7 @@ type NavLinkData = {
 
 export const dsaLinks: NavLinkData[] = [
   { title: "DSA", url: "dsa" },
-  { title: "C++", url: "cpp" },
+  { title: "C/C++", url: "c-cpp" },
 ];
 
 export const devLinks: NavLinkData[] = [
@@ -25,6 +25,8 @@ export const coreLinks: NavLinkData[] = [
   { title: "OOP", url: "oop" },
   { title: "DBMS", url: "dbms" },
   { title: "OS", url: "os" },
+  { title: "Math", url: "math" },
+  { title: "Digital Electronics", url: "electronics" },
 ];
 
 export const problemDifficulties = [

@@ -21,7 +21,7 @@ To traverse a **disconnected** graph, run this component exploration from **ever
 
 ## DFS traversal on Adjacency List
 
-Refer [Adjacency List Graph representation](/code-journal/dsa/dsa/graph-representations#2-adjacency-list-best)
+Refer [Adjacency List Graph representation](/code-journal/dsa/dsa/graph-tree/02-graph-representations#2-adjacency-list-best)
 
 ```cpp
 // Explore an unvisited neighbor of current node
@@ -199,21 +199,21 @@ const vector<vector<int>> dfsOfGraph(vector<vector<int>> const &Adj) {
 
 ## Algorithm Analysis
 
-| Metric | Complexity      |
-| ------ | --------------- |
-| Time   | \\( O(V+E ) \\) |
-| Space  | \\( O(V) \\)    |
+| Metric | Complexity  |
+| ------ | ----------- |
+| Time   | $ O(V+E ) $ |
+| Space  | $ O(V) $    |
 
 ### Time
 
-At each node, we are iterating over all it's neighbours and making a recursive call at the first univisted neighbour found. Note that there would be \\( O(V) \\) **recursive calls in total**.
+At each node, we are iterating over all it's neighbours and making a recursive call at the first univisted neighbour found. Note that there would be $ O(V) $ **recursive calls in total**.
 
-The time to iterate over all the neighbours of each node would be \\( O(V+2E ) \\) in an **undirected** and \\( O(V+E ) \\) in a **directed** graph
+The time to iterate over all the neighbours of each node would be $ O(V+2E ) $ in an **undirected** and $ O(V+E ) $ in a **directed** graph
 
 ### Space
 
-The `visited[]` array takes \\( O(V) \\) space
+The `visited[]` array takes $ O(V) $ space
 
-The worst-case space used by the recursion call stack depends on the max depth of recursive calls. The worst case would occur when we are traversing almost all the nodes depth-wise in one-direction without backtracking, i.e. when the graph is like a linked-list. All the nodes would be present in the call-stack at one point i.e. \\( O(V) \\) space
+The worst-case space used by the recursion call stack depends on the max depth of recursive calls. The worst case would occur when we are traversing almost all the nodes depth-wise in one-direction without backtracking, i.e. when the graph is like a linked-list. All the nodes would be present in the call-stack at one point i.e. $ O(V) $ space
 
-We are ignoring the \\( O(V) \\) used to store the final answer and the \\( O(V+E ) \\) space of Adjacency List
+We are ignoring the $ O(V) $ used to store the final answer and the $ O(V+E ) $ space of Adjacency List

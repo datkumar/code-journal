@@ -24,7 +24,7 @@ For each element in array:
 
 ## Code
 
-- After each \\(i^{th}\\) pass, the \\(i^{th}\\) **maximum** element gets placed at it's correct **sorted position**
+- After each $i^{th}$ pass, the $i^{th}$ **maximum** element gets placed at it's correct **sorted position**
 - At last pass, since working array is only first one minimum element (which is in it's correct position), no need to process that pass
 
 ```cpp title="C++"
@@ -72,34 +72,34 @@ void bubbleSort(int arr[], int n) {
 
 ## Algorithm Analysis
 
-|   Metric   |              Value              | Remarks                                                  |
-| :--------: | :-----------------------------: | -------------------------------------------------------- |
-|  **Time**  | \\( O(n^2) \text{ to } O(n) \\) | Using flag optimises for nearly-sorted arrays (Adaptive) |
-| **Space**  |          \\( O(1) \\)           | In-place sorting                                         |
-| **Stable** |               ✅                | No swapping for similar adjacent elements                |
-| **Online** |               ❌                | Needs entire input at once                               |
+|   Metric   |            Value            | Remarks                                                  |
+| :--------: | :-------------------------: | -------------------------------------------------------- |
+|  **Time**  | $ O(n^2) \text{ to } O(n) $ | Using flag optimises for nearly-sorted arrays (Adaptive) |
+| **Space**  |          $ O(1) $           | In-place sorting                                         |
+| **Stable** |             ✅              | No swapping for similar adjacent elements                |
+| **Online** |             ❌              | Needs entire input at once                               |
 
 ### Time Complexity
 
-- Total \\( (n-1) \\) passes at most
+- Total $ (n-1) $ passes at most
 
-- For each \\(i^{th}\\) element in array, we are traversing and comparing with next \\((n-i)\\) elements
+- For each $i^{th}$ element in array, we are traversing and comparing with next $(n-i)$ elements
 
-- At most, there will be \\( (n-1) \\) comparisions in the first pass, \\( (n-2) \\) in the second and so on till only \\(1\\) comparison in the last pass and so on:
+- At most, there will be $ (n-1) $ comparisions in the first pass, $ (n-2) $ in the second and so on till only $1$ comparison in the last pass and so on:
 
-  \\( = (n-1) + (n-2) + ... + 2 + 1 = \frac{( n-1)(n)}{2} = O(n^2) \\) comparisons
+  $ = (n-1) + (n-2) + ... + 2 + 1 = \frac{( n-1)(n)}{2} = O(n^2) $ comparisons
 
-- At most, a swap will occur at each comparison, so in total \\( = O(n^2) \\) swaps
+- At most, a swap will occur at each comparison, so in total $ = O(n^2) $ swaps
 
-- So, total time \\( = O(n^2) + O(n) = O(n^2) \\)
+- So, total time $ = O(n^2) + O(n) = O(n^2) $
 
-- In best case, the array is completely sorted. We will do one pass, with \\( (n-1) \\) comparisons, the flag will become true and then we'll exit. So \\( O(n) \\) time
+- In best case, the array is completely sorted. We will do one pass, with $ (n-1) $ comparisons, the flag will become true and then we'll exit. So $ O(n) $ time
 
 |   Case    | Time Complexity | Occurs when             |
 | :-------: | :-------------: | ----------------------- |
-| **Best**  |  \\( O(n) \\)   | Sorted or nearly sorted |
-| **Worst** | \\( O(n^2) \\)  | Reverse-sorted          |
-|  **Avg**  | \\( O(n^2) \\)  | Unsorted                |
+| **Best**  |    $ O(n) $     | Sorted or nearly sorted |
+| **Worst** |   $ O(n^2) $    | Reverse-sorted          |
+|  **Avg**  |   $ O(n^2) $    | Unsorted                |
 
 ### Stability
 

@@ -15,12 +15,12 @@ links:
 The `Queue` class must provide the following functionality (assuming elements of `int` data-type) :
 
 - Follows **FIFO** approach (first-in element is first-out)
-- `bool isEmpty()` : Check whether queue is empty in \\( O(1) \\) time
-- `void enque(int val)` : Insert element at end of queue in \\( O(1) \\) time
-- `void deque()` : Remove element from start of queue in \\( O(1) \\) time
-- `int first()` : Return first (front) element of queue in \\( O(1) \\) time
-- `int last()` : Return last (rear) element of queue in \\( O(1) \\) time
-- `int getSize()` : Return number of elements present in queue in \\( O(1) \\) time
+- `bool isEmpty()` : Check whether queue is empty in $ O(1) $ time
+- `void enque(int val)` : Insert element at end of queue in $ O(1) $ time
+- `void deque()` : Remove element from start of queue in $ O(1) $ time
+- `int first()` : Return first (front) element of queue in $ O(1) $ time
+- `int last()` : Return last (rear) element of queue in $ O(1) $ time
+- `int getSize()` : Return number of elements present in queue in $ O(1) $ time
 
 Throw exception when queue underflow or overflow occurs
 

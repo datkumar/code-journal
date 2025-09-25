@@ -3,7 +3,7 @@ title: Graph Representation
 tags: [dsa, graph]
 ---
 
-Given a graph (**undirected unweighted**) containing '\\(V\\)' number of **vertices** (with node numbers as `0` to `V-1`) and '\\(E\\)' number of **edges**, we can store the graph in the following ways:
+Given a graph (**undirected unweighted**) containing $V$ number of **vertices** (with node numbers as `0` to `V-1`) and $E$ number of **edges**, we can store the graph in the following ways:
 
 The input format will be:
 
@@ -77,7 +77,7 @@ In arrays, we have to **check bounds** and in the case of dynamic arrays, **expl
 
 In C++, the number of columns in static 2D array should be known at compile-time. So we have to allocate matrix as `Adj[][V_MAX]` with `V_MAX` initialized beforehand
 
-**Space required** is &nbsp; \\( O( V\_{max}^2 ) \\) &nbsp; out of which we only use &nbsp; \\(O(V^2)\\)
+**Space required** is &nbsp; $ O( V\_{max}^2 ) $ &nbsp; out of which we only use &nbsp; $O(V^2)$
 
 > Note: **Extra space has to be allocated** than what is used
 
@@ -131,9 +131,9 @@ int main() {
 
 ![Adjacency matrix via Dynamic array](/code-journal/diagrams/adj-matrix-dynamic-array.svg)
 
-**Space required**: '\\(V\\)' number of pointers where each pointer points to a '\\(V\\)' sized integer array
+**Space required**: '$V$' number of pointers where each pointer points to a '$V$' sized integer array
 
-\\( \implies (V \ast V) + V = O(V^2) \\)
+$ \implies (V \ast V) + V = O(V^2) $
 
 > Note: We **have to manually deallocate rows of matrix** to free-up heap memory
 
@@ -197,7 +197,7 @@ int main() {
 
 ![Adjacency Matrix via vectors](/code-journal/diagrams/adj-matrix-vector.svg)
 
-**Space required**: \\( O( V^2 ) \\)
+**Space required**: $ O( V^2 ) $
 
 ```cpp
 void printMatrix(vector<vector<int>> const &Adj) {
@@ -237,7 +237,7 @@ int main() {
 }
 ```
 
-> In summary, we can say **Adjacency matrix** takes up overall \\( O(n^2) \\) **space**. Traversing each of it's cells would also take up \\( O(n^2) \\) **traversal time**. It is suited for **dense graphs** where most of the cells would be filled. But one advantage is that we have **fast random access** i.e. we can check `Adj[u][v]` in \\( O(1) \\) time to **know if edge exists** from `u` to `v`
+> In summary, we can say **Adjacency matrix** takes up overall $ O(n^2) $ **space**. Traversing each of it's cells would also take up $ O(n^2) $ **traversal time**. It is suited for **dense graphs** where most of the cells would be filled. But one advantage is that we have **fast random access** i.e. we can check `Adj[u][v]` in $ O(1) $ time to **know if edge exists** from `u` to `v`
 
 ### Tweaking the Adjacency matrix
 
@@ -330,18 +330,18 @@ Filled Graph:
 
 **Space required**:
 
-- We have \\( (V) \\) lists (one neighbour list per node)
-- Each list contains the neighboring nodes. Since the graph is **undirected**, if an edge exists between node `u` and `v`, then `v` will be appended into the neigbour list of `u` and vice-versa too, i.e. **entries added in two places per undirected edge**. So, in total, there will be \\( (2 \ast E) \\) neigbour entries
+- We have $ (V) $ lists (one neighbour list per node)
+- Each list contains the neighboring nodes. Since the graph is **undirected**, if an edge exists between node `u` and `v`, then `v` will be appended into the neigbour list of `u` and vice-versa too, i.e. **entries added in two places per undirected edge**. So, in total, there will be $ (2 \ast E) $ neigbour entries
 
-**Total space** \\( \implies O(V + 2E) \\)
+**Total space** $ \implies O(V + 2E) $
 
-> **Adjacency List** takes up \\( O(V+E) \\) space which is **almost linear** while Adjacency Matrix takes up quadratic space. Similar complexities for traversals too. Thus, Adjacency list is suited for **sparse graphs**, which make up most of the graphs in real-world. Note that there is **no fast random-acess** (we have to traverse the neighbors list of nodes one-by-one).
+> **Adjacency List** takes up $ O(V+E) $ space which is **almost linear** while Adjacency Matrix takes up quadratic space. Similar complexities for traversals too. Thus, Adjacency list is suited for **sparse graphs**, which make up most of the graphs in real-world. Note that there is **no fast random-acess** (we have to traverse the neighbors list of nodes one-by-one).
 
 ### Tweaking the Adjacency List
 
 - **Directed vs Undirected graphs**:
 
-  When there is directed edge from node `u` to node `v`, only append `v` into the neigbours list of `u` and **NOT vice-versa**. The space required in directed graphs would be \\( O(V+E) \\) as there's only one entry per directed edge
+  When there is directed edge from node `u` to node `v`, only append `v` into the neigbours list of `u` and **NOT vice-versa**. The space required in directed graphs would be $ O(V+E) $ as there's only one entry per directed edge
 
 - **Weighted vs Unweighted graphs**:
 
@@ -354,7 +354,7 @@ Filled Graph:
 
 - **Fast random access**:
 
-  Sometimes, we may need fast random access, typically when answering multiple queries. For that, we can **store the neighbors in a set** (`set` or `unordered_set`) instead of a `vector`. We can check if one node is present as a neighbor of another in \\( O(1) \\) time
+  Sometimes, we may need fast random access, typically when answering multiple queries. For that, we can **store the neighbors in a set** (`set` or `unordered_set`) instead of a `vector`. We can check if one node is present as a neighbor of another in $ O(1) $ time
 
   ```cpp
   // Declaration (assuming unweighted)
@@ -366,7 +366,7 @@ Filled Graph:
   }
   ```
 
-  Also, you can **maintain the neighbors in sorted manner** to allow \\(O(logn)\\) lookup via **binary search**
+  Also, you can **maintain the neighbors in sorted manner** to allow $O(logn)$ lookup via **binary search**
 
 ---
 

@@ -3,9 +3,9 @@ title: Graph Theory terminology
 tags: [dsa, graph, tree]
 ---
 
-## Sections
+**List of Sections**:
 
-### PART 1: [**Graphs**](#graphs)
+**PART 1**: [**Graphs**](#graph)
 
 - [Graph](#graph)
 - [Edge](#edge)
@@ -25,7 +25,7 @@ tags: [dsa, graph, tree]
   - [Bipartite Graph](#bipartite-graph)
 - [Topological Sort](#topological-sort)
 
-### PART 2: [**Trees**](#trees)
+**PART 2**: [**Trees**](#trees)
 
 - [Tree](#tree)
   - [Forest](#forest)
@@ -42,22 +42,26 @@ tags: [dsa, graph, tree]
 - [Heap](#heap)
 - [More types of Trees](#more-types-of-trees)
 
-# Graphs
-
 ## Graph
 
 An ordered pair of a set of **vertices** $\text{'V'}$ and a set of **edges** $\text{'E'}$ represented as:
 
-$$G = (V, E)$$
+$$
+\boxed{
+  G = (V, E)
+}
+$$
 
-An **ordered** pair is represented as $(a, b)$ and an **unordered** pair as $\\{a, b\\}$
+An **ordered** pair is represented as $(a, b)$ and an **unordered** pair as $\{a, b\}$. Note that:
 
-Note that $\\{a, b\\} = \\{b, a\\}$ however $(a, b) \neq (a, b) $
+$$
+\underline{ \{a, b\} = \{b, a\} } \quad \text{but} \quad  \boxed { (a, b) \neq (a, b) }
+$$
 
 ## Edge
 
 - A **directed** edge from vertex $u$ to vertex $v$ is **one-directional** link denoted by $(u,v)$
-- An **undirected** edge between vertex $u$ and vertex $v$ is **bi-directional** link and denoted by either of $\\{u, v\\}$ OR $\\{u, v\\}$
+- An **undirected** edge between vertex $u$ and vertex $v$ is **bi-directional** link and denoted by either of $\{u, v\}$ OR $\{v, u\}$
 
 ![Graph Edge types](/code-journal/diagrams/graph-edge-types.svg)
 
@@ -69,19 +73,27 @@ Consider below example of a **directed graph**:
 
 The above graph would be mathematically represented as $G = (V, E)$ where:
 
-$$ \text{ V = { 0, 1, 2, 3, 4, 5, 6, 7, 8 } }$$
+$$
+V = \{ 0, 1, 2, 3, 4, 5, 6, 7, 8 \}
+$$
 
-$$\text{ E = { (0,1), (1,2), (2,4), (0,4), (4,3), (3,2), (6,5), (5,7) } }$$
+$$
+E = \{ (0,1), (1,2), (2,4), (0,4), (4,3), (3,2), (6,5), (5,7) \}
+$$
 
 If all the edges were undirected, $G$ would become an **undirected graph** with $V$ staying the same but $E$ would become:
 
-$$\text{ E = { {0,1}, {1,2}, {2,4}, {0,4}, {4,3}, {3,2}, {6,5}, {5,7} } }$$
+$$
+E = \left\{ \space
+  \{0,1\}, \{1,2\}, \{2,4\}, \{0,4\}, \{4,3\}, \{3,2\}, \{6,5\}, \{5,7\}
+\space \right\}
+$$
 
 ### Edge Weight
 
 ![Graph Edge Weight](/code-journal/diagrams/graph-edge-types-weight.svg)
 
-Edges can have some weight or **cost** associated for traversing from one vertex to another through the edge between them. In below diagram, $w$ is the weight of the directed/undirected edge between vertex $u$ and $v$.
+Edges can have some weight or **cost** associated for traversing from one vertex to another through the edge between them. In below diagram, $w$ is the weight of the directed/undirected edge between vertex $u$ and vertex $v$
 
 A directed/undirected graph with no weight mentioned for all edges is considered as all edges having the same **unit weight**
 
@@ -99,9 +111,15 @@ The **minimum** number of edges is **zero** for both undirected and directed gra
 
 The **maximum** number of possible edges are:
 
-- **Undirected Graph**: An edge is a connection between two vertices. So,number of ways to connect each vertex to another would be $ ^n{C}\_2 = \frac{n(n-1)}{2} $
+- **Undirected Graph**: An edge is a connection between two vertices. So,number of ways to connect each vertex to another would be:
 
-- **Directed Graph**: Since each undirected edge entry $\\{a,b\\}$ in undirected graph could translate into two differing edge possibilities $(a,b)$ and $(b,a)$ in directed graph, the max possible edges would be **double** that of undirected graph i.e. $n(n-1)$
+$$
+\boxed{
+{}^n{C}_2 = \dfrac{n(n-1)}{2}
+}
+$$
+
+- **Directed Graph**: Since each undirected edge entry $\\{a,b\\}$ in undirected graph could translate into two differing edge possibilities $(a,b)$ and $(b,a)$ in directed graph, the max possible edges would be **double** that of undirected graph i.e. $\boxed{ n(n-1) }$
 
 ## Degree (or Valency) of Vertex
 
@@ -116,7 +134,11 @@ Degree of Vertex in **Undirected Graph**:
 
 Note that for each edge being added in the graph, the total sum of degrees of all the vertices is being incremented by $+2$ . Thus the sum of degrees of all vertices must always be an even number. The **degree sum formula** states as:
 
-$$ { \sum \_{v \in V} \deg(v) = 2 \cdot |E| } $$
+$$
+\boxed{
+\sum_{v \in V} \deg(v) \space = \space 2 \cdot |E|
+}
+$$
 
 The formula implies that in any undirected graph, the number of vertices with odd degree is even. This statement (and the degree sum formula) is known as the handshaking lemma. The name comes from a popular mathematical problem, which is to prove that in any group of people, the number of people who have shaken hands with an odd number of other people from the group is even. As referred from [Wikipedia](<https://en.wikipedia.org/wiki/Degree_(graph_theory)>)
 
@@ -238,7 +260,11 @@ One often writes $G = (A, B, E)$ to denote a bipartite graph whose partition has
 
 The degree sum formula for a bipartite graph states that:
 
-$${ \displaystyle \sum _{a \in A} deg(a) =\sum _{b \in B} deg(b) = |E| }$$
+$$
+\boxed{
+\sum_{a \in A} deg(a) \space=\space \sum_{b \in B} deg(b) \space=\space |E|
+}
+$$
 
 Some more characteristics of bipartite graphs:
 
@@ -252,7 +278,7 @@ A **Complete Bipartite** graph on $m$ and $n$ vertices, denoted by $K_{n,m}$ is 
 
 ## Topological Sort
 
-A [Topological sort](https://en.wikipedia.org/wiki/Topological_sorting) of a _directed_ graph is a **linear ordering** of its vertices such that for every directed edge $(u,v)$ from vertex $u$ to vertex $v$, $u$ comes **before** $v$ in the ordering
+A [Topological sort](https://en.wikipedia.org/wiki/Topological_sorting) of a _directed_ graph is a **linear ordering** of its vertices such that for every directed edge $(u,v)$ from vertex $u$ to vertex $v$, then the vertex $u$ comes **before** $v$ in the ordering
 
 For instance, the vertices of the graph may represent tasks to be performed, and the edges may represent constraints that one task must be performed before another; in this application, a topological ordering is just a valid sequence for the tasks
 
@@ -413,33 +439,31 @@ Properties of Binary Trees
 
 ## Binary Search Tree
 
-![An Example BST ](/code-journal/diagrams/bst-example.svg)
-
-A [Binary Search Tree](https://en.wikipedia.org/wiki/Binary_search_tree) (**BST**), also called an **ordered** or **sorted** binary tree, is a rooted binary tree data structure with the key of each internal node being greater than all the keys in the respective node's `left` subtree and less than the ones in its `right` subtree.
-
-Here's the structure property of every BST node:
+A [Binary Search Tree](https://en.wikipedia.org/wiki/Binary_search_tree) (**BST**), also called an **ordered** or **sorted** binary tree, is a rooted binary tree data structure with the key of each internal node being greater than all the keys in the respective node's `left` subtree and less than the ones in its `right` subtree. Here's the structure property of each BST node:
 
 ![Structure of BST Node](/code-journal/diagrams/bst-node-structure.svg)
 
 We generally avoid inserting duplicates of the same value in the BST, but you can set equal values to be assigned to only one side subtree of the BST at every insertion, such as equal value nodes being inserted only in left subtree making the left child property as $\leq$ the current node value
 
-Below is example of a BST:
+![An Example BST ](/code-journal/diagrams/bst-example.svg)
 
-BSTs allow **binary search** for fast lookup, addition, and removal of data items. Since the nodes in a BST are laid out so that each comparison skips about half of the remaining tree, the lookup performance is proportional to that of $log_2(n)$
+- BSTs allow **binary search** for fast lookup, addition, and removal of data items. Since the nodes in a BST are laid out so that each comparison skips about half of the remaining tree, the lookup performance is proportional to that of $log_2(n)$
 
-For a given BST with $n$ nodes, all operations such as **Search, Insertion & Deletion** take $O(logn)$ time on **average**, where the tree is completely or somewhat nearly **balanced**. However, if the tree is highly **skewed**, these operations can take $O(n)$ in the **worst** case. In other words, the time complexity of operations on the BST is **linear** with respect to the **height** $h$ of the tree i.e. $O(h)$
+- For a given BST with $n$ nodes, all operations such as **Search, Insertion & Deletion** take $O(logn)$ time on **average**, where the tree is completely or somewhat nearly **balanced**. However, if the tree is highly **skewed**, these operations can take $O(n)$ in the **worst** case. In other words, the time complexity of operations on the BST is **linear** with respect to the **height** $h$ of the tree i.e. $O(h)$
 
-**Inorder** traversal of a BST prints a **sorted** sequence of values.
+- **Inorder** traversal of a BST prints a **sorted** sequence of values.
 
-BST corresponds to each execution of **Quicksort**: the initial **pivot** is the **root** node; the pivot of the left half is the root of the left subtree, the pivot of the right half is the root of the right subtree, and so on. The number of comparisons of the execution of quicksort equals the number of comparisons during the construction of the BST by a sequence of insertions. So, the average number of comparisons for randomized quicksort equals the average cost of constructing a BST when the values inserted $(x*{1},x*{2},\ldots ,x\_{n})$ form a random permutation.
+- BST corresponds to each execution of **Quicksort**:
+
+  The initial **pivot** is the **root** node; the pivot of the left half is the root of the left subtree, the pivot of the right half is the root of the right subtree, and so on. The number of comparisons of the execution of quicksort equals the number of comparisons during the construction of the BST by a sequence of insertions. So, the average number of comparisons for randomized quicksort equals the average cost of constructing a BST when the values inserted $(x_1, x_2, \ldots , x_n)$ form a random permutation.
 
 To address the issue of the BST becoming skewed after some insertions which might increase the time complexity of operations from $O(logn)$ to $O(n)$, **self-balancing** mechanisms are introduced that balance the BST structure of nodes after each or a couple of insertions/deletions. There are several self-balanced BSTs, including [T-trees](https://en.wikipedia.org/wiki/T-tree) , [Treaps](https://en.wikipedia.org/wiki/Treap) , [Red-Black trees](https://en.wikipedia.org/wiki/Red-black_tree) , [B-trees](https://en.wikipedia.org/wiki/B-tree) , [2–3 trees](https://en.wikipedia.org/wiki/2%E2%80%933_tree) and [Splay trees](https://en.wikipedia.org/wiki/Splay_tree)
 
 Both AVL and Red-Black trees use [tree rotation](https://en.wikipedia.org/wiki/Tree_rotation) to balance the BST
 
-**AVL** Trees are named after it's two Soviet inventors Georgy **A**delson-**V**elsky and Evgenii **L**andis is the first self-balancing binary search tree data structure to be invented. They have **strict balancing** scheme with more **frequent rotations**, which might take slightly longer time for insertion/deletion, but give the **best search efficiency**, as the height is minimum (strictly balanced). They store a **balancing-factor** value (-1,0,1) at every node and apply single or double rotation to fix each balancing violation. AVL Trees are used in **read-heavy** applications.
+- **AVL** Trees are named after it's two Soviet inventors Georgy **A**delson-**V**elsky and Evgenii **L**andis is the first self-balancing binary search tree data structure to be invented. They have **strict balancing** scheme with more **frequent rotations**, which might take slightly longer time for insertion/deletion, but give the **best search efficiency**, as the height is minimum (strictly balanced). They store a **balancing-factor** value (-1,0,1) at every node and apply single or double rotation to fix each balancing violation. AVL Trees are used in **read-heavy** applications.
 
-On the other hand, **Red-Black** trees have comparatively **relaxed balancing** scheme with **fewer rotations** for each insertion/deletion, resulting in slightly longer heights and a but longer search times compared to AVL trees. They store a **color bit** at each node and perform recoloring & rotations to fix the violations. Red-Black trees are used in **write-heavy** applications
+- On the other hand, **Red-Black** trees have comparatively **relaxed balancing** scheme with **fewer rotations** for each insertion/deletion, resulting in slightly longer heights and a but longer search times compared to AVL trees. They store a **color bit** at each node and perform recoloring & rotations to fix the violations. Red-Black trees are used in **write-heavy** applications
 
 ## Heap
 
@@ -470,7 +494,7 @@ After an element is inserted into or deleted from a heap, the heap property may 
 
 As we can build a heap from an array without requiring extra memory (for the nodes, for example), [**HeapSort**](https://en.wikipedia.org/wiki/Heapsort#Variations) can be used to sort an array in-place.
 
-Construction of a binary (or $d$-ary) heap out of a given array of elements, also known as **heapify** may be performed in linear time i.e. $O(n)$ amortized, using the classic Floyd algorithm.
+Construction of a binary (or $d$-ary) heap out of a given array of elements, also known as **heapify** may be performed in linear time i.e. $O(n)$ amortized, via [Floyd's algorithm](https://en.wikipedia.org/wiki/Binary_heap#Building_a_heap).
 
 There are other types of heaps also such as [Fibonacci Heap](https://en.wikipedia.org/wiki/Fibonacci_heap) , [Binomial Heap](https://en.wikipedia.org/wiki/Binomial_heap) etc
 
