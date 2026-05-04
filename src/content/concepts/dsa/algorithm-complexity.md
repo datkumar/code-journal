@@ -130,7 +130,7 @@ Refer [Abdul Bari video](https://youtu.be/A03oI0znAoc?si=YoBhnMxYnzoE71sb)
 
 - $a_m n^m + a\_{m-1} n^{m-1} + ... \in O(n^m) \space \text{ i.e. upper bound of polynomial is the highest power term}$
 
-- $\text{For any constant $k$, } k \in O(1)$
+- For any constant $k$ , $k \in O(1)$
 
 </details>
 

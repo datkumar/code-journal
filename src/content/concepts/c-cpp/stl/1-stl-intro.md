@@ -18,12 +18,12 @@ The main components of the C++ STL include:
 - A container is a holder object that stores a collection of elements. They are implemented as class templates, which allows great flexibility in the types supported as elements.
 - The container manages the storage space for its elements and provides member functions to access them, either directly or through iterators (reference objects with similar properties to pointers).
 - Types of Containers:
-  - [Sequence Containers and Adaptors](/code-journal/cpp/cpp/stl/4-sequence-containers)
-  - [Associative Containers](/code-journal/cpp/cpp/stl/5-associative-containers)
+  - [Sequence Containers and Adaptors](/code-journal/c-cpp/c-cpp/stl/4-sequence-containers)
+  - [Associative Containers](/code-journal/c-cpp/c-cpp/stl/5-associative-containers)
 
 ## 2. Algorithms
 
-Algorithms are functions that operate over the data stored in containers. The STL provides a wide range of algorithms for tasks such as sorting, searching, and modifying elements in containers. See [STL Algorithms](/code-journal/cpp/cpp/stl/6-algorithms)
+Algorithms are functions that operate over the data stored in containers. The STL provides a wide range of algorithms for tasks such as sorting, searching, and modifying elements in containers. See [STL Algorithms](/code-journal/c-cpp/c-cpp/stl/6-algorithms)
 
 ## 3. Iterators
 

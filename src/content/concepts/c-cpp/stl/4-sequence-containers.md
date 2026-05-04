@@ -6,7 +6,7 @@ tags: [cpp, stl]
 ## Sequence Containers
 
 - [`array`](https://en.cppreference.com/w/cpp/container/array) - Static arrays
-- [`vector`](/code-journal/dsa/cpp/stl/3-vectors) - Dynamic arrays
+- [`vector`](/code-journal/dsa/c-cpp/stl/3-vectors) - Dynamic arrays
 - [`forward_list`](#singly-linked-list) - Singly linked-list
 - [`list`](#doubly-linked-list) - Doubly linked-list
 - [`deque`](#double-ended-queue) - Double-ended queue
@@ -31,12 +31,6 @@ They provide a **wrapper interface** for sequential containers. These are:
 - [`stack`](#stack) - provides Stack (LIFO)
 - [`queue`](#queue) - provides Queue (FIFO)
 - [`priority_queue`](#heap) - provides Heap (max-heap by default)
-
----
-
-## Vectors
-
-For vectors, refer [here](/code-journal/dsa/cpp/stl/3-vectors)
 
 ---
 

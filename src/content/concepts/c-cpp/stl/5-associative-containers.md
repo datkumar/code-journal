@@ -17,7 +17,7 @@ Commonly used associative containers are:
 - The data types of these two items need not be similar. Custom types also allowed
 - **Initialization**: `{item1, item2}`
 - **Access items**: **`.first`** , **`.second`**
-- You can also use [structured binding](/code-journal/cpp/cpp/modern-cpp#structured-binding) to access pair elements:
+- You can also use [structured binding](/code-journal/c-cpp/c-cpp/modern-cpp#structured-binding) to access pair elements:
 
   ```cpp
   pair<int, char> p{5, 'm'};

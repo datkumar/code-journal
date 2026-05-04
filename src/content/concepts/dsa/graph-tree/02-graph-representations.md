@@ -77,7 +77,7 @@ In arrays, we have to **check bounds** and in the case of dynamic arrays, **expl
 
 In C++, the number of columns in static 2D array should be known at compile-time. So we have to allocate matrix as `Adj[][V_MAX]` with `V_MAX` initialized beforehand
 
-**Space required** is &nbsp; $ O( V\_{max}^2 ) $ &nbsp; out of which we only use &nbsp; $O(V^2)$
+**Space required** is &nbsp; $O(V_{max}^2)$ &nbsp; out of which we only use &nbsp; $O(V^2)$
 
 > Note: **Extra space has to be allocated** than what is used
 
@@ -85,7 +85,7 @@ In C++, the number of columns in static 2D array should be known at compile-time
 // Define Maximum number of nodes in graph
 const int V_MAX = 100;
 
-// Print (V x V) cells of  (V x V_MAX) Adjacency Matrix
+// Print (V * V) cells of  (V * V_MAX) Adjacency Matrix
 void printMatrix(int Adj[][V_MAX], const int V) {
     for (int row = 0; row < V; row++) {
         for (int col = 0; col < V; col++) {
@@ -362,7 +362,7 @@ Filled Graph:
 
   // Checking if edge exists from node 'a' to 'b'
   if (Adj[a].count(b)) {
-      cout << "Edge exist";
+      cout << "Edge exists";
   }
   ```
 
@@ -416,4 +416,4 @@ for (int node = 1; node <= V; node++) {
 
 [CS Academy - Graph representation](https://csacademy.com/lesson/graph_representation)
 
-[The Boost Graph Library](https://www.boost.org/doc/libs/1_84_0/libs/graph/doc/index.html)
+[The Boost Graph Library](https://www.boost.org/doc/libs/latest/libs/graph/doc/index.html)

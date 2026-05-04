@@ -46,7 +46,7 @@ It stores **static and global variables**. It is further categorised into 2 part
 - There is **no contiguous allocation** of memory guaranteed on the heap
 - The heap memory is typically accessed via **pointers**. The pointers are created in stack section and they point to data in heap memory i.e. **indirect access** of heap memory
 - Heap section is common to all the shared libraries and dynamically loaded modules in a process.
-- Modern C++ features like [smart pointers](/code-journal/cpp/cpp/modern-cpp/#smart-pointers) simplify the hassle of explicit management of heap memory
+- Modern C++ features like [smart pointers](/code-journal/c-cpp/c-cpp/modern-cpp/#smart-pointers) simplify the hassle of explicit management of heap memory
 
 ### Stack vs Heap memory
 
@@ -73,10 +73,10 @@ It stores **static and global variables**. It is further categorised into 2 part
 
 ## References
 
-- [CS 225 | Stack and Heap memory](https://courses.engr.illinois.edu/cs225/fa2022/resources/stack-heap/)
-- [Alex Hyett | Stack vs Heap Memory - Simple Explanation](https://youtu.be/5OJRqkYbK-4?si=7b9991HqaajdFP8n)
-- [The Cherno | Stack vs Heap Memory in C++](https://youtu.be/wJ1L2nSIV1s?si=ssRN5xR9bu5B0PnV)
-- [mycodeschool | Pointers and dynamic memory - stack vs heap](https://youtu.be/_8-ht2AKyH4?si=sbf2vJ65_oHFpa2N)
+- [Stack and Heap memory | UIUC CS225](https://courses.engr.illinois.edu/cs225/fa2022/resources/stack-heap/)
+- [Stack vs Heap Memory - Simple Explanation | Alex Hyett](https://youtu.be/5OJRqkYbK-4?si=7b9991HqaajdFP8n)
+- [Stack vs Heap Memory in C++ | The Cherno](https://youtu.be/wJ1L2nSIV1s?si=ssRN5xR9bu5B0PnV)
+- [Pointers and dynamic memory - stack vs heap | mycodeschool](https://youtu.be/_8-ht2AKyH4?si=sbf2vJ65_oHFpa2N)
 - [Demystifying memory, code, and data size!](https://mirzafahad.github.io/2021-05-08-text-data-bss/)
-- [GFG | Memory Layout of C Programs](https://www.geeksforgeeks.org/memory-layout-of-c-program/)
+- [Memory Layout of C Programs | GFG](https://www.geeksforgeeks.org/memory-layout-of-c-program/)
 - [Understanding Memory Layout](https://www.linkedin.com/pulse/understanding-memory-layout-stack-heap-bss-data-text-segments-shah/)
