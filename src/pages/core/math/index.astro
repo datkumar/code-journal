@@ -11,12 +11,12 @@ const folderSlug = "core/math";
 ---
 
 <BaseLayout tabTitle="Math">
-  <h1>OS</h1>
+  <h1>Math</h1>
   <ul>
     {
       mathConcepts.map((entry) => (
         <li>
-          <a href={`${baseUrl}/${folderSlug}/${entry.slug}/`}>
+          <a href={`${baseUrl}/${folderSlug}/${entry.id}/`}>
             {entry.data.title}
           </a>
         </li>

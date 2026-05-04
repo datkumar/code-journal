@@ -23,10 +23,10 @@ I prefer `C++17`
 
 ### Comparison functions
 
-|                                             Function                                             |                                     Use                                     |
-| :----------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
-|           [`greater<T>`](https://en.cppreference.com/w/cpp/utility/functional/greater)           |       Checks whether the first argument is _greater_ than the second        |
-|              [`less<T>`](https://en.cppreference.com/w/cpp/utility/functional/less)              |        Checks whether the first argument is _lesser_ than the second        |
+|                                             Function                                             | Use                                                                         |
+| :----------------------------------------------------------------------------------------------: | --------------------------------------------------------------------------- |
+|           [`greater<T>`](https://en.cppreference.com/w/cpp/utility/functional/greater)           | Checks whether the first argument is _greater_ than the second              |
+|              [`less<T>`](https://en.cppreference.com/w/cpp/utility/functional/less)              | Checks whether the first argument is _lesser_ than the second               |
 | [`lexicographical_compare`](https://en.cppreference.com/w/cpp/algorithm/lexicographical_compare) | Check whether the first range is _lexicographically lesser_ than the second |
 
 ## Binary search (on partitioned/sorted ranges)

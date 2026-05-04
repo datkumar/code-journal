@@ -152,7 +152,6 @@ In **Directed Graph**, we have in-degree and out-degree of a vertex:
 ### Walk, Trail, Path, Cycle
 
 - **Walk**: A [walk](<https://en.wikipedia.org/wiki/Path_(graph_theory)>) is a sequence of vertices where each adjacent pair of vertices is connected by an edge. Even if we are mentioning vertices in the sequence we are traveling over edges connecting those vertices.
-
   - You can visit the same vertex multiple times by going over the same edge multiple times too.
   - If a walk starts and ends at the same vertex, it's called a **closed walk**, else it's an **open walk**. The **length** of the walk is the number of edges we traversed during the walk
 
@@ -357,7 +356,6 @@ A Binary Tree is a tree where each node has has **at most two children**, referr
 - A full binary tree (sometimes referred to as a **proper**, **plane**, or **strict** binary tree) is a tree in which every node has **either $0$ or $2$ children**. Every node is either an **internal** node having **exactly 2** children or a **leaf** node with **zero** children
 - Note that there is no restriction on the depth at which various leaf node might be present
 - Another way of defining a full binary tree is a recursive definition. A full binary tree is either:
-
   - A single vertex (a single node as the root node)
   - A tree whose root node has two subtrees, both of which are full binary trees
 
@@ -439,7 +437,7 @@ Properties of Binary Trees
 
 ## Binary Search Tree
 
-A [Binary Search Tree](https://en.wikipedia.org/wiki/Binary_search_tree) (**BST**), also called an **ordered** or **sorted** binary tree, is a rooted binary tree data structure with the key of each internal node being greater than all the keys in the respective node's `left` subtree and less than the ones in its `right` subtree. Here's the structure property of each BST node:
+A [Binary Search Tree (BST)](https://en.wikipedia.org/wiki/Binary_search_tree), also called an **ordered** or **sorted** binary tree, is a rooted binary tree data structure with the key of each internal node being greater than all the keys in the respective node's `left` subtree and less than the ones in its `right` subtree. Here's the structure property of each BST node:
 
 ![Structure of BST Node](/code-journal/diagrams/bst-node-structure.svg)
 

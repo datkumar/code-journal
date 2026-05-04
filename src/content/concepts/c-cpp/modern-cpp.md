@@ -5,6 +5,8 @@ tags: [cpp]
 
 ## `auto` keyword for type inference
 
+CPP Reference: [Placeholder type specifiers](https://en.cppreference.com/w/cpp/language/auto.html)
+
 ```cpp
 struct Point {
     int x, y;
@@ -33,6 +35,8 @@ int main () {
 ```
 
 ## Lambda functions
+
+CPP Reference: [Lambda expressions](https://en.cppreference.com/w/cpp/language/lambda.html)
 
 **Syntax**: `[capture_list] (params) {...} (args)`
 
@@ -69,6 +73,8 @@ These pointers safely handle automatic memory deallocation for objects that are 
 - [`weak_ptr`](https://en.cppreference.com/w/cpp/memory/weak_ptr) : Similar to `shared_ptr` but no reference counter maintained. Pointer doesn't have strong hold of objects. Prevents deadlocks
 
 ## Structured Binding
+
+CPP Reference: [Structured binding declaration](https://en.cppreference.com/w/cpp/language/structured_binding.html)
 
 - Introduced in `C++17`, structured bindings provide a concise and expressive way to **unpack elements** of structured objects (arrays, tuples, maps etc.) and user-defined classes into separate variables. It's similar to **destructuring** in Javascript
 - **Type safety**: Variables are implicitly deduced to the correct types

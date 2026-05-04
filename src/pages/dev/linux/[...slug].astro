@@ -1,5 +1,5 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 import ConceptTags from "../../../components/ConceptTags.astro";
@@ -9,7 +9,7 @@ export async function getStaticPaths() {
     item.data.tags.includes("linux")
   );
   return linuxConcepts.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: entry,
   }));
 }
@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"concepts">;
 const pageEntry = Astro.props;
 
-const { Content } = await pageEntry.render();
+const { Content } = await render(pageEntry);
 ---
 
 <BaseLayout tabTitle={pageEntry.data.title}>

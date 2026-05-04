@@ -88,7 +88,7 @@ const string &ref = NAME;  // Reference to constant string
 
 ## General Guidelines
 
-- **Favor `const`**: By default, consider making variables, parameters, and return values const unless there's a specific reason to modify them. This promotes **immutability** and prevents unintended side-teffects.
+- **Favor `const`**: By default, consider making variables, parameters, and return values const unless there's a specific reason to modify them. This promotes **immutability** and prevents unintended side-effects.
 
 - **Clarity and Encapsulation**: Using `const` effectively can improve code clarity by signaling to the reader that certain values or objects are not meant to be changed. It also strengthens encapsulation by restricting access to internal data.
 

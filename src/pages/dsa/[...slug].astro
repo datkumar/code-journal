@@ -1,5 +1,5 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import ConceptTags from "../../components/ConceptTags.astro";
@@ -10,7 +10,7 @@ export async function getStaticPaths() {
     item.data.tags.includes("dsa")
   );
   const dsaConceptRoutes = dsaConcepts.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: entry,
   }));
 
@@ -18,13 +18,13 @@ export async function getStaticPaths() {
     item.data.tags.includes("stl")
   );
   const stlConceptRoutes = stlConcepts.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: entry,
   }));
 
   const dsaProblems = await getCollection("dsaProblems");
   const dsaProblemRoutes = dsaProblems.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: entry,
   }));
 
@@ -34,7 +34,7 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"dsaProblems" | "concepts">;
 
 const pageEntry = Astro.props;
-const { Content } = await pageEntry.render();
+const { Content } = await render(pageEntry);
 ---
 
 <BaseLayout tabTitle={pageEntry.data.title}>

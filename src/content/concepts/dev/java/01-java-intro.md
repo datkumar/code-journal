@@ -93,7 +93,7 @@ A separate `.class` file is generated for each class defined within the files(s)
 - Primitive types (except arrays of them), local variables, method parameter (references) and reference variables can be stored in the Stack memory
 - Strings, Arrays and Objects are stored in the Heap memeory with their reference being stored in the Stack (there is no explicit memory management via pointers in Java). The allocated data in heap is deallocated by the garbage collector when it is no longer being used
 
-Also refer [memory layout of C/C++ program execution](/code-journal/cpp/cpp/memory-layout)
+Also refer [memory layout of C/C++ program execution](/code-journal/c-cpp/c-cpp/memory-layout)
 
 Helpful articles: [Baeldung](https://www.baeldung.com/java-stack-heap), [DigitalOcean](https://www.digitalocean.com/community/tutorials/java-heap-space-vs-stack-memory)
 

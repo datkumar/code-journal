@@ -11,14 +11,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/markdown-remark": "^6.3.7",
-    "astro": "^5.14.0",
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/markdown-remark": "^7.1.1",
+    "astro": "^6.2.2",
     "astro-expressive-code": "^0.37.1",
-    "mermaid": "^10.9.3",
+    "mermaid": "^10.9.5",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
-    "typescript": "^5.8.3",
-    "unist-util-visit": "^5.0.0"
+    "typescript": "^5.9.3",
+    "unist-util-visit": "^5.1.0"
+  },
+  "devDependencies": {
+    "astro-broken-links-checker": "^1.1.0"
   }
 }
