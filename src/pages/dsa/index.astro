@@ -98,10 +98,10 @@ const baseUrl = import.meta.env.BASE_URL;
   <ul>
     {
       stlEntries
-        .sort((a, b) => compareStrings(a.slug, b.slug))
+        .sort((a, b) => compareStrings(a.id, b.id))
         .map((entry) => (
           <li>
-            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+            <a href={`${baseUrl}/dsa/${entry.id}`}>{entry.data.title}</a>
           </li>
         ))
     }
@@ -122,7 +122,7 @@ const baseUrl = import.meta.env.BASE_URL;
     {
       miscDsaConcepts.map((entry) => (
         <li>
-          <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+          <a href={`${baseUrl}/dsa/${entry.id}`}>{entry.data.title}</a>
         </li>
       ))
     }
@@ -133,7 +133,7 @@ const baseUrl = import.meta.env.BASE_URL;
     {
       recursionConcepts.map((entry) => (
         <li>
-          <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+          <a href={`${baseUrl}/dsa/${entry.id}`}>{entry.data.title}</a>
         </li>
       ))
     }
@@ -144,7 +144,7 @@ const baseUrl = import.meta.env.BASE_URL;
     {
       sortSearchConcepts.map((entry) => (
         <li>
-          <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+          <a href={`${baseUrl}/dsa/${entry.id}`}>{entry.data.title}</a>
         </li>
       ))
     }
@@ -154,10 +154,10 @@ const baseUrl = import.meta.env.BASE_URL;
   <ul>
     {
       graphTreeConcepts
-        .sort((a, b) => compareStrings(a.slug, b.slug))
+        .sort((a, b) => compareStrings(a.id, b.id))
         .map((entry) => (
           <li>
-            <a href={`${baseUrl}/dsa/${entry.slug}`}>{entry.data.title}</a>
+            <a href={`${baseUrl}/dsa/${entry.id}`}>{entry.data.title}</a>
           </li>
         ))
     }
@@ -171,12 +171,12 @@ const baseUrl = import.meta.env.BASE_URL;
   <ul>
     {
       arrayStringProbs
-        .sort((a, b) => compareStrings(a.slug, b.slug))
+        .sort((a, b) => compareStrings(a.id, b.id))
         .map((entry) => {
           return (
             <li class="problem-item">
               {problemDifficulties[entry.data.level].icon}&ensp;
-              <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
+              <a href={`${baseUrl}/dsa/${entry.id}/`}>{entry.data.title}</a>
             </li>
           );
         })
@@ -192,7 +192,7 @@ const baseUrl = import.meta.env.BASE_URL;
           return (
             <li class="problem-item">
               {problemDifficulties[entry.data.level].icon}&ensp;
-              <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
+              <a href={`${baseUrl}/dsa/${entry.id}/`}>{entry.data.title}</a>
             </li>
           );
         })
@@ -208,7 +208,7 @@ const baseUrl = import.meta.env.BASE_URL;
           return (
             <li class="problem-item">
               {problemDifficulties[entry.data.level].icon}&ensp;
-              <a href={`${baseUrl}/dsa/${entry.slug}/`}>{entry.data.title}</a>
+              <a href={`${baseUrl}/dsa/${entry.id}/`}>{entry.data.title}</a>
             </li>
           );
         })

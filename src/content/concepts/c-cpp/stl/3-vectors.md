@@ -169,7 +169,6 @@ cout << "}" << endl;
 **More functions:**
 
 - `.insert()`: Inserts element(s) at specific postition. Takes `O(N)` time on average
-
   - `.insert(pos,val)`: Inserts element `val` at position `pos`
   - `.insert(pos,reps,val)`: Inserts `reps` number of copies of `val` starting from position `pos`
   - `.insert(pos,start,end)`: Inserts all elements of `[start, end)` at position `pos`
@@ -202,7 +201,7 @@ cout << "}" << endl;
 **Better alternatives**:
 
 - If the size is known at compile-time: use [`bistset<N>`](https://en.cppreference.com/w/cpp/container/vector_bool) as suggested by [C++ Reference](https://en.cppreference.com/w/cpp/utility/bitset)
-- For dynamic sizes: you can use `vector<char>` or [`boost::dynamic_bitset`](https://www.boost.org/doc/libs/1_84_0/libs/dynamic_bitset/dynamic_bitset.html)
+- For dynamic sizes: you can use `vector<char>` or [`boost::dynamic_bitset`](https://www.boost.org/doc/libs/latest/libs/dynamic_bitset/doc/html/dynamic_bitset/index.html)
 
 ---
 
