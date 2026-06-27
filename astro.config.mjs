@@ -1,9 +1,10 @@
-import { defineConfig } from "astro/config";
-import expressiveCode from "astro-expressive-code";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import { mermaid } from "./src/utils/mermaid";
+import { unified } from "@astrojs/markdown-remark";
 import astroBrokenLinksChecker from "astro-broken-links-checker";
+import expressiveCode from "astro-expressive-code";
+import { defineConfig } from "astro/config";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
+import { mermaid } from "./src/utils/mermaid";
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,8 +12,12 @@ export default defineConfig({
   base: "/code-journal",
   markdown: {
     syntaxHighlight: "shiki",
-    remarkPlugins: [mermaid, remarkMath],
-    rehypePlugins: [rehypeKatex],
+    processor: unified({
+      // markdown processor
+      remarkPlugins: [mermaid, remarkMath],
+      // HTML processor
+      rehypePlugins: [rehypeKatex],
+    }),
   },
   integrations: [
     // Check broken links at build-time
@@ -23,8 +28,8 @@ export default defineConfig({
     }),
     // Syntax Highlighting
     expressiveCode({
-      themes: ["light-plus", "aurora-x"],
-      // themes: ["min-light", "aurora-x"],
+      themes: ["min-light", "aurora-x"],
+      // themes: ["light-plus", "aurora-x"],
       themeCssSelector: (theme) => `[data-theme='${theme.type}']`,
       styleOverrides: {
         codeFontFamily: "ui-monospace, monospace",

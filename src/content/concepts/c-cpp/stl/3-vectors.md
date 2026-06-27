@@ -24,8 +24,8 @@ Present inside the `<vector>` header, vectors are dynamic arrays with the abilit
 
 - **`[idx]`** - Access element at index `idx`
 - **`.at(idx)`** - Access element at index `idx`, with bounds-checking
-- **`.front()`** – Access **first** element
-- **`.back()`** – Access **last** element
+- **`.front()`** - Access **first** element
+- **`.back()`** - Access **last** element
 
 ## Size functions
 

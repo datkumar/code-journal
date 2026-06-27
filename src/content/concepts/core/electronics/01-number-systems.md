@@ -88,7 +88,7 @@ The dot between integer and fractional part, which we call a _decimal point_ in 
 
 Some commonly used values are summarized in a table below:
 
-| $x$  | $2x$ | $8x$ | $16x$ | $2^x$   | $8^x$   | $16^x$  | $2^{-x}$  | $5^{x}$ |
+| $n$  | $2n$ | $8n$ | $16n$ | $2^n$   | $8^n$   | $16^n$  | $2^{-n}$  | $5^{n}$ |
 | ---- | ---- | ---- | ----- | ------- | ------- | ------- | --------- | ------- |
 | $1$  | $2$  | $8$  | $16$  | $2$     | $8$     | $16$    | $0.5$     | $5$     |
 | $2$  | $4$  | $16$ | $32$  | $4$     | $64$    | $256$   | $0.25$    | $25$    |
@@ -109,9 +109,9 @@ Some commonly used values are summarized in a table below:
 
 Some observations:
 
-- $8^x = (2^3)^x = (2)^{3x}$
-- $16^x = (2^4)^x = (2)^{4x}$
-- $2^{-x} = \dfrac{1}{2^x} = \left(\frac{1}{2}\right)^x = (0.5)^x$
+- $8^n = (2^3)^n = (2)^{3n}$
+- $16^n = (2^4)^n = (2)^{4n}$
+- $2^{-n} = \dfrac{1}{2^n} = \left(\frac{1}{2}\right)^n = (0.5)^n$
 
 ---
 
@@ -128,14 +128,12 @@ Consider a number say **53.40625**. In **decimal** system, it would be written a
 - Break down the given decimal number into integer and fractional parts. The procedures to follow are different for those two parts
 
 - For the **integer part**:
-
   - At each iteration, we would be dividing the current dividend by the base $b$ as well as noting the quotient and remainder (see the two columns in left part of above image). Initially, the dividend is the whole integer part of given number
   - Divide the current dividend by the base $b$. Note the quotient and remainder. This quotient becomes the dividend for the next step
   - Keep iterating such base $b$ divisions till the dividend becomes zero
   - Now note the remainders starting from bottom to top. This forms the base $b$ representation of the integer part
 
 - For the **fractional part**:
-
   - At each iteration, we would be multiplying the fractional part by base $b$ and note the digit obtained on left side of the radix point (see the two columns in right part of above image). Initially, the fractional part we'll be starting with is the fractional part of given number
   - The fractional part obtained on right side of the radix would become the input for next iteration
   - Keep iterating such base $b$ multiplications until the fractional part becomes zero or till you reach a sufficient digits of precision

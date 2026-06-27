@@ -195,7 +195,7 @@ A [Complete graph](https://en.wikipedia.org/wiki/Complete_graph) is a simple und
 
 ![Complete Graphs](/code-journal/diagrams/complete-graphs.svg)
 
-$K_n$ has $\frac{n(n-1)}{2}$ edges (i.e. maximum possible edges as shown above), and also it's $(n–1)$ regular, meaning each vertex has a degree of $(n–1)$
+$K_n$ has $\frac{n(n-1)}{2}$ edges (i.e. maximum possible edges as shown above), and also it's $(n-1)$ regular, meaning each vertex has a degree of $(n-1)$
 
 ### Cycle Graph
 
@@ -455,7 +455,7 @@ We generally avoid inserting duplicates of the same value in the BST, but you ca
 
   The initial **pivot** is the **root** node; the pivot of the left half is the root of the left subtree, the pivot of the right half is the root of the right subtree, and so on. The number of comparisons of the execution of quicksort equals the number of comparisons during the construction of the BST by a sequence of insertions. So, the average number of comparisons for randomized quicksort equals the average cost of constructing a BST when the values inserted $(x_1, x_2, \ldots , x_n)$ form a random permutation.
 
-To address the issue of the BST becoming skewed after some insertions which might increase the time complexity of operations from $O(logn)$ to $O(n)$, **self-balancing** mechanisms are introduced that balance the BST structure of nodes after each or a couple of insertions/deletions. There are several self-balanced BSTs, including [T-trees](https://en.wikipedia.org/wiki/T-tree) , [Treaps](https://en.wikipedia.org/wiki/Treap) , [Red-Black trees](https://en.wikipedia.org/wiki/Red-black_tree) , [B-trees](https://en.wikipedia.org/wiki/B-tree) , [2–3 trees](https://en.wikipedia.org/wiki/2%E2%80%933_tree) and [Splay trees](https://en.wikipedia.org/wiki/Splay_tree)
+To address the issue of the BST becoming skewed after some insertions which might increase the time complexity of operations from $O(logn)$ to $O(n)$, **self-balancing** mechanisms are introduced that balance the BST structure of nodes after each or a couple of insertions/deletions. There are several self-balanced BSTs, including [T-trees](https://en.wikipedia.org/wiki/T-tree) , [Treaps](https://en.wikipedia.org/wiki/Treap) , [Red-Black trees](https://en.wikipedia.org/wiki/Red-black_tree) , [B-trees](https://en.wikipedia.org/wiki/B-tree) , [2-3 trees](https://en.wikipedia.org/wiki/2%E2%80%933_tree) and [Splay trees](https://en.wikipedia.org/wiki/Splay_tree)
 
 Both AVL and Red-Black trees use [tree rotation](https://en.wikipedia.org/wiki/Tree_rotation) to balance the BST
 
