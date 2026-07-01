@@ -161,6 +161,9 @@ Here are a few references to learn more:
   - [Understanding Merkle Trees, the quintessence of Git, Bitcoin, and DynamoDB](https://medium.com/geekculture/understanding-merkle-trees-f48732772199)
   - [Git’s database internals I: packed object store](https://github.blog/open-source/git/gits-database-internals-i-packed-object-store/)
   - [The Packfile - Git Community Book](https://shafiul.github.io/gitbook/7_the_packfile.html)
+  - [Deconstructing a git commit](https://krishnabiradar.com/blogs/deconstructing-a-git-commit)
+  - [Merkle Tree 101](https://ghost.oxen.ai/merkle-tree-101/)
+  - [Understanding Merkle Trees](https://medium.com/geekculture/understanding-merkle-trees-f48732772199)
 
 - **YouTube**:
   - [Merkle Tree with real world examples | Gaurav Sen](https://youtu.be/qHMLy5JjbjQ?si=QG0OwYNexQWs1fAQ)

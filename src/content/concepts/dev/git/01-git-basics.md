@@ -12,11 +12,15 @@ tags: [git]
 - [Git Status](#git-status)
 - [Staging Area](#staging-area)
 - [Git Commit](#git-commit)
+  - [Amend Commit](#amend-commit)
 - [Git Log](#git-log)
+- [Gitignore](#gitignore)
 
 ## About Git
 
-[Git](https://git-scm.com/) is a free and open-source **distributed version control system** (D-VCS) designed to handle everything from small to very large projects with speed and efficiency. It was developed by [Linus Torvalds](https://www.google.com/search?a&q=linus+torvalds), the creator of Linux in 2005 to avoid using BitKeeper. The [Pro Git](https://git-scm.com/book/en/v2) book is a great reference book for learning Git. I also like [Primagen's Git course](https://www.boot.dev/courses/learn-git) on boot.dev
+[Git](https://git-scm.com/) is a free and open-source **distributed version control system** (D-VCS) for source code management (SCM) designed to handle everything from small to very large projects with speed and efficiency. It was created by [Linus Torvalds](https://www.google.com/search?a&q=linus+torvalds), the creator of the Linux kernel, in 2005 after the Linux kernel project lost access to the free BitKeeper license.
+
+Git comes pre-installed on most Linux distributions but if absent, you can refer the [Installation page](https://git-scm.com/install/linux). The [Pro Git](https://git-scm.com/book/en/v2) book is an excellent reference for learning Git and I also highly recommend [Primagen's Git course](https://www.boot.dev/courses/learn-git) on boot.dev
 
 ## Types of commands
 
@@ -25,7 +29,7 @@ Git is a complex software with a variety of commands available to interact with 
 - **Porcelain commands**: These are high-level commands like `add`, `status`, `commit`, `push`, `pull`, `log`
 - **Plumbing commands**: These are low-level commands like `apply`, `commit-tree`, `hash-object`
 
-Most of the times, devs would be using just the porcelain commands in day-to-day work
+Most of the times, devs would be using just the porcelain commands in day-to-day work. Also refer the handy [Reference](https://git-scm.com/docs) and [Cheatsheet](https://git-scm.com/cheat-sheet) for most common operations
 
 ## Git Config
 
@@ -56,34 +60,45 @@ The contents of the <code>.git/</code> folder can be seen via &ensp;<code>tree -
 </summary>
 
 ```sh title="Contents of initialized .git/ folder"
+tree -F .git
 .git/
 ├── branches/
-├── config
-├── description
+├── COMMIT_EDITMSG*
+├── config*
+├── description*
+├── FETCH_HEAD
 ├── HEAD
 ├── hooks/
-│  ├── applypatch-msg.sample*
-│  ├── commit-msg.sample*
-│  ├── fsmonitor-watchman.sample*
-│  ├── post-update.sample*
-│  ├── pre-applypatch.sample*
-│  ├── pre-commit.sample*
-│  ├── pre-merge-commit.sample*
-│  ├── pre-push.sample*
-│  ├── pre-rebase.sample*
-│  ├── pre-receive.sample*
-│  ├── prepare-commit-msg.sample*
-│  ├── push-to-checkout.sample*
-│  ├── sendemail-validate.sample*
-│  └── update.sample*
+│   ├── applypatch-msg.sample*
+│   ├── commit-msg.sample*
+│   ...
+├── index
 ├── info/
-│  └── exclude
+│   └── exclude*
+├── logs/
+│   ├── HEAD*
+│   └── refs/
+│       ├── heads/
+│       │   └── main*
+│       └── remotes/
+│           └── origin/
+│               ├── add_classics
+│               └── main
+├── MERGE_RR
 ├── objects/
-│  ├── info/
-│  └── pack/
-└── refs/
-   ├── heads/
-   └── tags/
+│   ...
+│   ├── info/
+│   └── pack/
+├── ORIG_HEAD
+├── refs/
+│   ├── heads/
+│   │   └── main
+│   ├── remotes/
+│   │   └── origin/
+│   │       ├── add_classics
+│   │       └── main
+│   └── tags/
+└── rr-cache/
 ```
 
 </details>
@@ -108,13 +123,13 @@ Git has something called the **staging area** or **index**. This is an intermedi
 
 It's possible to quickly stage some of your files and commit them without committing all of the other modified files in your working directory or having to list them. Without staging, every file in the repository would be included in every commit, but that's often not what you want.
 
-<img alt="Git staging area" height="250px" src="https://git-scm.com/images/about/index1@2x.png">
+<img alt="Git Staging area" height="250px" width="auto" src="https://git-scm.com/images/about/index1@2x.png">
 
 To convert `untracked` changes into `staged` changes, we add respective file(s) to staging area via the [`git add`](https://git-scm.com/docs/git-add) command as shown below. Verify it with `git status`. This command can be run multiple times before making your commit
 
 ```sh title="Stage Changes"
 # Syntax:
-git add <filePath | pattern>
+git add FILE_PATTERN
 # Examples:
 git add README.md       # Single README.md file in current directory
 git add docs/*.txt      # All .txt files inside "docs" directory
@@ -153,14 +168,7 @@ You can also stage all files and commit them in a single step by passing the `-a
 git commit -a "your message"
 ```
 
-If you wish to **change the commit message** in your recently-made commit, you can do it as shown below. Since commit message is also included for the inputs to computing the commit hash, changing just the commit message also changes the commit hash (git replaces existing latest commit with the modified one)
-
 You can also create a [commit with multiple authors](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors).
-
-```sh title="Change commit message"
-# Changes the commit message of latest commit on current branch
-git commit --amend -m "updated better message"
-```
 
 Git assigns each commit a **unique hash**, that identifies:
 
@@ -168,6 +176,18 @@ Git assigns each commit a **unique hash**, that identifies:
 - When the changes were made (timestamp)
 - Who made those changes (author, commiter)
 - Commit message
+
+### Amend Commit
+
+If you wish to modify the latest commit in terms of the file changes or even just the commit message, you pass the `--amend` flag to `git commit`. Note that amending commits creates a new commit replacing the existing latest commit since the above inputs for the commit hash have changed. This changes history and should not be used with public histories
+
+```sh title="Amend Last Commit"
+# Update last commit with new commit message
+git commit --amend -m "updated better message"
+
+# Update last commit but keep same commit message
+git commit --amend --noedit
+```
 
 ---
 
@@ -187,7 +207,7 @@ git log --oneline
 # View commits history as graph of merges
 git log --graph --oneline
 # View patch text for just the latest commit ("git show" is better)
-git log -n 1 -p
+git log -p -n 1
 ```
 
 Each entry in the output mentions the commit's hash, author, creation time and message
@@ -197,3 +217,46 @@ For convenience, you can often refer to a commit using a **shortened prefix** of
 If you wish to see better about what exact changes were made in a commit, use [`git show`](https://git-scm.com/docs/git-show)
 
 By default, `git log` only shows history for current branch. Use `git log BRANCH_NAME` to see history of specific branch or use `--all` (or `-a`) to show for all branches.
+
+---
+
+## Gitignore
+
+Git sees every file in your working copy as one of three things:
+
+- **Tracked**: Files previously staged or committed to the repository.
+- **Untracked**: Files present in your working directory that have not been staged or committed
+- **Ignored**: Files that Git has been explicitly instructed to overlook
+
+To ignore files, create a [`.gitignore`](https://git-scm.com/docs/gitignore) file at the root of your repository. This file contains **patterns** that Git matches against file names to determine which files to exclude from tracking. While the `.gitignore` file itself is typically committed to the repository so the ignore rules are shared with your team, the files matching its patterns remain invisible to Git's tracking system.
+
+```sh title="Sample .gitignore file"
+# Ignores this specific file at the root level:
+config.local.json
+# Ignores the 'temp/' directory and everything inside it:
+temp/
+# Ignores 'output' folders nested at any depth like 'dist/output/', 'src/build/output/':
+**/output/
+# Ignores all files ending in .log anywhere in the project:
+*.log
+# Negation by "!" indicates to NOT exclude the "important-logs/debug.log" file:
+!important-logs/debug.log
+# This ignores 'notes.txt' at the root, but NOT something like 'docs/notes.txt':
+/notes.txt
+# Ignores .env file, but only inside the 'config/' directory:
+config/.env
+# Common ignores are libraries, build artifacts, system files, editor settings:
+node_modules/
+dist/
+.vscode
+.DS_Store
+```
+
+You can even have multiple `.gitignore` files across your nested folders to make ignore patterns more organized instead of cluttering up the root `.gitignore`. Each `.gitignore` file's exclude behavior applies to that directory and subdirectories within it. You also have the option of a global `.gitignore` file to apply ignores across all your projects
+
+If you accidentally staged a file and then added it to your `.gitignore`, it won't be ignored by Git. You must remove it from the index manually:
+
+```sh title="Unstage and Ignore a staged file"
+# You can unstage a single or multiple files, folders or pattern:
+git rm --cached FILE_PATTERN
+```

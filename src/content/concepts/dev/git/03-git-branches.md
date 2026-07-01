@@ -13,11 +13,17 @@ tags: [git]
 - [Merging Branches](#merging-branches)
   - [The Merge Commit](#the-merge-commit)
   - [How is the Merge Commit computed?](#how-is-the-merge-commit-computed)
-  - [Merge Conflicts](#merge-conflicts)
+- [Merge Conflicts](#merge-conflicts)
+  - [Mergetool](#mergetool)
+  - [Preferring one side's changes](#preferring-one-sides-changes)
 - [Fast-Forward Merge](#fast-forward-merge)
 - [Rebasing](#rebasing)
   - [Conflicts during Rebase](#conflicts-during-rebase)
+  - [Interactive Rebase](#interactive-rebase)
 - [Deciding to Merge or Rebase](#deciding-to-merge-or-rebase)
+- [Squashing](#squashing)
+- [Rerere](#rerere)
+- [Delete Branch](#delete-branch)
 
 ## What is a Git Branch?
 
@@ -81,7 +87,7 @@ git switch -c BRANCH_NAME
 git checkout -b BRANCH_NAME
 ```
 
-The `checkout` command can also be used to switch into a certain commit within the history or restore certain files' state from older history too:
+The `checkout` command can also be useThe git rerere functionality is a bit of a hidden feature. The name stands for “reuse recorded resolution” and, as the name implies, it allows you to ask Git to remember how you’ve resolved a hunk conflict so that the next time it sees the same conflict, Git can resolve it for you automatically.d to switch into a certain commit within the history or restore certain files' state from older history too:
 
 ```sh title="Other uses of 'checkout'"
 # Switch into a commit (puts 'HEAD' in detached if not latest commit of any branch)
@@ -128,29 +134,43 @@ git log COMMIT_HASH
 git log --oneline --graph --all
 ```
 
-A branch is a type of ref in Git. A [`ref`](https://git-scm.com/book/en/v2/Git-Internals-Git-References) is a human-readable alias or pointer that resolves to a specific commit hash. All branches are refs, but all refs are not branches; they are also used for `tags` and `remotes`. These are located at `.git/refs` directory and the file content is the commit hash they're aliasing.
+To view the full refs instead of just the branch name in your commit log, add the `--decorate=full` flag
 
-To view the full refs instead of just the branch name: `git log --decorate=full`
+A branch is a type of ref in Git. A [ref](https://git-scm.com/book/en/v2/Git-Internals-Git-References) is a human-readable alias or pointer that resolves to a specific commit hash. All branches are refs, but all refs are not branches; they are also used for `tags` and `remotes`. These are located at `.git/refs` directory and the file content is the commit hash they're aliasing. A branch is a mutable pointer to a commit while a [tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) is an immutable pointer to a commit.
 
-```sh title="Viewing a ref"
+```sh title="View refs"
 la .git/refs
 # heads  remotes  tags
 
+cat .git/HEAD
+# ref: refs/heads/main
+
 # View the local "main" branch's ref ("heads/" folder used for local branches)
 cat .git/refs/heads/main
-# ff8968b37f174b475eeca4c54daa34cc01de8198
+# 555b3124d683077c23afc26a3f2333e2e3786c94
+
+# Full ref of branches shown instead of just branch names
+git log --oneline --decorate=full
+# 555b312 (HEAD -> refs/heads/main, refs/remotes/origin/main) G: Updated Movie list
+# a23ad5f F: Merge branch 'add_classics'
+# 8340a1c E: Filled contents.md
+# 8b65cb1 D: add classics
+# a8438bf C: add quotes
+# 23f52f6 B: add titles
+# 3af19e9 A: add contents.md
 ```
 
 ### Rename branch
 
 The default branch in Git is named `master` and it gets created when you do `git init`. You can set the `defaultBranch` option under `init` section in your Git config file to define default branch name for new repos being created. You can also rename an existing branch by passing the `-m` or `--move` flag to `git branch` as follows
 
-GitHub recently changed it's default branch name from `master` to `main`, which is why they have `git branch -M main` among their steps in creating new repo; `-M` flag is aliased as `--move --force` for force rename
-
 ```sh title="Rename branch"
 # Move/rename a branch, together with its config and reflog
 git branch -m OLD_NAME NEW_NAME
+git branch -m feature feature-pagination
 ```
+
+GitHub recently changed it's default branch name from `master` to `main`, thereby, they have `git branch -M main` among their steps in creating new repo; `-M` flag is aliased as `--move --force` for force rename
 
 ---
 
@@ -222,7 +242,7 @@ Some might think it would first apply all changes of first parent branch i.e. of
 - If all goes well, it would result in the merge commit `M` being created and the current branch's pointers i.e. `main`, `HEAD` moving ahead to that merge commit.
 - However, a lot of times, the tree-way merge operation does not succeed automatically, resulting in **merge conflicts**. This could happen when, say both parent commit snapshots have modified the same file in the same region. In such cases, you would have to resolve those conflicts and then continue with making the merge commit
 
-When the merge operation succeeds without conflicts, Git would open the system's default editor (decided by `EDITOR` environment variable) to allow you to enter the merge commit's message. Default message for our example would be `Merge branch 'feature'`. It would also say which strategy it used for the merge operation (`ort` is the optimized modern strategy over older `recursive` one)
+When the merge operation succeeds without conflicts, Git would open the system's default editor (decided by `EDITOR` environment variable) to allow you to enter the merge commit's message. Default message for our example would be `Merge branch 'feature'`. It would also say which strategy it used for the merge operation (`ort` here is the optimized modern strategy over older `recursive` one)
 
 ```sh title="Merge operation when there are no conflicts"
 $ git merge feature
@@ -234,17 +254,29 @@ Merge made by the 'ort' strategy.
 
 You need a way to combine the **divergent histories** of the two branches you are merging (`main` and `feature`), into a single one, which is why the merge commit is created. Beyond the merge base `B`, the changes diverged where `main` branch had commit `C` and `feature` had commits `D`, `E` which would be combined into a single resulting merge commit
 
-### Merge Conflicts
+## Merge Conflicts
 
 While merging, if there are any merge conflicts, you would have to resolve them before the merge can succeed. The **non-conflicting** changes would get **staged automatically** and git would wait for you to resolve conflicts for the files containing merge conflicts, before making the final merge commit.
 
 The merge command's output would indicate that merge operation failed and which files have conflicts
 
-```sh
+```sh title="Conflict while merging"
 $ git merge feature
-Auto-merging content.txt
-CONFLICT (content): Merge conflict in content.txt
+Auto-merging notes.txt
+CONFLICT (content): Merge conflict in notes.txt
 Automatic merge failed; fix conflicts and then commit the result.
+
+$ git status
+On branch main
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both modified:   notes.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 In the files which have any merge conflict, you would see both versions of the contents for which Git is confused about. The non-conflicting regions of the file would appear as-is. It is recommended to use a text editor or IDE to visually compare and decide which parts you want in the final merged version. Below example shows how the contents would look like in a file that contains merge conflicts
@@ -259,7 +291,7 @@ At this point, you have three options to resolve conflict at each of the section
 2. Use the incoming branch's change only i.e. the `theirs` section (`feature` part here)
 3. Use a combination of both versions or your own modified result. For this, you'll have to manually edit the contents over the conflicted section and remove those conflict section markers too.
 
-```txt
+```txt title="File Merge conflict example"
 A
 B
 <<<<<<< HEAD
@@ -270,7 +302,9 @@ E
 >>>>>>> feature
 ```
 
-There are a bunch of [`mergetool`](https://git-scm.com/docs/git-mergetool) options for helping you to resolve conflicts:
+### Mergetool
+
+There are a bunch of [`mergetool`](https://git-scm.com/docs/git-mergetool) options which you can set as the editor for helping you to open and resolve conflicts:
 
 ```sh title="Using 'mergetool' to resolve conflicts"
 # View list of mergetool editors:
@@ -288,9 +322,11 @@ git mergetool
 
 There is also [`git diff`](https://git-scm.com/docs/git-diff) or [`difftool`](https://git-scm.com/docs/git-diff) if you wish to only view where the merge conflicts are
 
-While resolving conflicts, if you wish to take entire of `ours` version for a particular conflicting file or for all conflicting file you would do so as follows:
+### Preferring one side's changes
 
-```sh title="Preferring current branch's changes during merge conflict"
+While resolving conflicts, if you wish to take entire of `ours` version for one or more of the conflicting files, you would do so by providing those files to `checkout --ours` as shown below. Similarly if you wanted to use the incoming branch's version use `--theirs` instead of `--ours` i.e. `git checkout --theirs FILE_PATTERN`. Make sure to stage your resolved file edits (`git add .`) and finally make a commit (`git commit -m "some message"`) to ensure the merge operation succeeds and a merge commit is made.
+
+```sh title="Taking current (HEAD) branch's changes during conflict"
 # Syntax:
 git checkout --ours FILE_PATTERN
 # To take existing branch's version for SPECIFIC conflicting files
@@ -299,18 +335,15 @@ git checkout --ours file1.txt file2.md
 git checkout --ours .
 ```
 
-Similarly if you wanted to use the incoming branch's version use `git checkout --theirs FILE_PATTERN` instead and specify file pattern. Make sure to stage (`git stage FILE_PATTERN`)your resolved file edits and finally make a commit (`git commit "Merge message"`) to ensure the merge operation succeeds
+In VSCode:
+
+- "Accept Incoming Change" refers to `git checkout --theirs`
+- "Accept Current Change" refers to `git checkout --ours`
 
 If at any point during resolving the merge conflicts you feel that you do not want to complete the merge operation, you can `abort` the merge operation as follows. It would set you back into the state you were in before initiating the merge operation
 
 ```sh title="Abort Merge operation"
 git merge --abort
-```
-
-After you are done with merging the `feature` branch into `main`, if you are done with the `feature` branch's work and won't be needing to work in the `feature` branch again, you may delete the branch as follows (local copy, not talking about remotes):
-
-```sh title="Delete (local) branch"
-git branch -d feature
 ```
 
 ## Fast-forward Merge
@@ -324,7 +357,7 @@ There is a simpler case of merging branches called the [**fast-forward merge**](
 $ git merge feature
 Updating b49a2a9..4aa9bc2
 Fast-forward
- content.txt | 2 ++
+ notes.txt | 2 ++
  1 file changed, 2 insertions(+)
 ```
 
@@ -375,14 +408,14 @@ If you attempted to merge `main` branch while you're in `feature` branch (as sho
 
 Rebase does things a bit differently:
 
-- It first identifies the **tip of the `main` branch** you're rebasing your current `feature` branch onto i.e. the latest commit `D` of `main`. Then, it uses that tip commit as the **temporary new base** for the rebase process. Before starting, the parent of the first commit `E` of your `feature` branch was commit `B`. Now the parent of `E` was updated to be the the tip commit `B` of `main`
+- It first identifies the **tip of the `main` branch** you're rebasing your current `feature` branch onto i.e. the latest commit `D` of `main`. Then, it uses that tip commit as the **temporary new base** for the rebase process. Before starting, the parent of the first commit `E` of your `feature` branch was the commit `B`. Now the parent of commit `E` was updated to be the the tip commit `D` of `main`
 - Then it **replays each commit's patch** from your `feature` branch over this temporary base, **one-by-one** i.e. first commit `E`'s changes applied over the new base `D`, then commit `F`'s changes over it
-- Since the parent commit changes, the commit hash would also need to be computed and would change; this would happen for each commit of your `feature` branch (see in figure how `E'` and `F'` are the updated commits after rebase operation)
+- Since the parent commit changes, the commit hash would also need to be computed and would change; this would happen for each commit of your `feature` branch. See in figure how `E'` and `F'` are the updated commits after rebase operation
 
 Notice the `git log` output below for the example in figure before and after `feature` branch was rebased onto `main`. Earlier, the commit `E` having hash `cd3686b` had parent as commit `B` with hash `6fd2b08`. However, after rebasing, the hash of commit `E` changed to `c72020b` with updated commit message `E resolved` and it's parent commit hash also changed to `e2bab05` i.e. the commit `D`. Similarly, the commit `F` also changed its commit hash from `5be80ae` to `32ba737` after and parent commit became the updated `E resolved` one
 
 ```sh title="Branch histories before and after rebase"
-# Histories of both branches BEFORE rebasing
+# Histories of both branches BEFORE rebasing:
 on ⎇ feature
 $ git log --oneline --graph --parents --all
 * e2bab05 10b71ef (main) D
@@ -393,7 +426,7 @@ $ git log --oneline --graph --parents --all
 * 6fd2b08 c5870e9 B
 * c5870e9 A
 
-# Histories of both branches AFTER rebasing
+# Histories of both branches AFTER rebasing:
 on ⎇ feature
 $ git log --oneline --graph --parents --all
 * 32ba737 c72020b (HEAD -> feature) F resolved
@@ -410,44 +443,33 @@ The rebase operation did not affect the `main` branch. After rebase operation fi
 
 ### Conflicts during Rebase
 
-Since rebase applies each commit's patch from your `feature` branch one-by-one over the tip of `main` branch, there could arise merge conflicts while applying patches/changes of each commit. When the rebase operation starts, Git would continue applying patches and stop at the first problematic commit that contains merge conflicts. Then you have these three options:
+Since rebase applies **each commit's patch** from your `feature` branch one-by-one over the tip of `main` branch, there could arise merge conflicts while applying patches/changes of each commit. When the rebase operation starts, Git would continue applying patches and **stop at the first problematic commit** that contains merge conflicts. Then you have these three options:
 
-1. Resolve the merge conflict at each such conflicting commits. For the files whose conflicts you've resolved, stage them via `git add` so Git can mark it as resolved. After resolving all conflicts, continue rebase to the next commit of your branch. After resolving all conflicts, continue rebase to the next commit of your branch:
+1. **Resolve** the merge conflict at each such conflicting commits. For the files whose conflicts you've resolved, stage them via `git add` so Git can mark it as resolved. After resolving all conflicts, continue rebase to the next commit of your branch:
 
    ```sh title="Continue rebase after resolving a commit's conflicts"
    # Applies resolved commit and moves to next conflicting commit (if none, it finishes)
    git rebase --continue
    ```
 
-2. Skip that particular commit that was causing conflict. Git will pretend this commit never happened and won't apply its patches.
+2. **Skip** that particular commit that was causing conflict. Git will pretend this commit never happened and won't apply its patches.
 
    ```sh title="Ignore a commit during rebase"
    # Exclude applying current commit's patches
    git rebase --skip
    ```
 
-3. Abort the rebase operation entirely. Won't apply any commit's patches and would go back to the initial state before rebase was started
+3. **Abort** the rebase operation entirely. Git will NOT apply ANY commit's patches and would go back to the initial state before rebase was started
 
    ```sh title="Abort Rebase operation entirely"
    git rebase --abort
    ```
 
-You may also use interactive rebase by passing the `-i` or `--interactive` flag. Interactive rebase lets you edit history by telling Git how to replay each commit onto a new base. Git opens a todo list of actions, ordered from oldest to newest commit, where you may reorder commits or modify them using actions like `pick(p)`, `drop(d)`, `reword(r)`, `edit(e)`, `squash(s)`, `fixup(f)`, `exec(x)` and `break(b)`. Since commits are replayed, any modified commit receives a new commit hash.
-
-You may also use **interactive rebase** by passing the `-i` or `--interactive` flag. Interactive rebase lets you edit history by telling Git how to replay each commit onto a new base. Git opens a todo list of actions where you may specify the order, modify commits via various actions like `pick(p)`, `drop(d)`, `reword(r)`, `edit(e)`, `squash(s)`, `fixup(f)`, `exec(x)` and `break(b)`
-
-```sh title="Interactive Rebase"
-# Interactively rebase all commits after 'main'
-git rebase -i main
-# Interactively rebase all commits after COMMIT_HASH
-git rebase -i COMMIT_HASH
-# Interactively rebase the last 3 commits
-git rebase -i HEAD~3
-```
+Since commits are replayed, any modified commit receives a new commit hash.
 
 Below is how the merge conflict looked like while applying the first commit `E` which had hash `cd3686b`:
 
-```txt title="Rebase conflict example"
+```txt title="File Rebase conflict example"
 A
 B
 <<<<<<< HEAD
@@ -458,20 +480,43 @@ E
 >>>>>>> cd3686b (E)
 ```
 
-Git has checked-out into the tip of `main` i.e. `D` which is our new base. That's why the `HEAD` section shows the patches of this base `D` over the previous merge-base `B`. Over this checked-out base, Git is attempting to apply patches of the first commit `E` of our `feature` branch, which has hash `cd3686b`
+When rebasing `feature` branch onto `main`, Git has done `checkout` into the tip commit `D` of `main` branch having hash `e2bab05`, which is our new base. That's why the output of `git branch` shows we're in neither branch; `HEAD` is detached and points directly to tip commit `e2bab05` of `main`. Over this new temporarily checked-out base, Git attempts to apply patches of the first commit `E` of our `feature` branch, which has hash `cd3686b`. Below output shows the results after each conflicting commit `E` and `F` has been resolved, applied and rebase has finished successfully:
 
-Below output shows the results after each conflicting commit `E` and `F` has been resolved, applied and rebase has finished successfully:
-
-```sh title="Rebase operation completed after resolving conflicts"
+```sh title="Rebase operation completed after resolving each commit"
+# Attempt to rebase current "feature" branch onto "main" (fails due to conflicts)
 on ⎇ feature
 $ git rebase main
-Auto-merging content.txt
-CONFLICT (content): Merge conflict in content.txt
+Auto-merging notes.txt
+CONFLICT (content): Merge conflict in notes.txt
 error: could not apply cd3686b... E
 Could not apply cd3686b... # E
 
+# Notice we're currently in NEITHER branch
+# HEAD is detached and points directly to tip commit "e2bab05" of "main"
+on ⎇ HEAD (e2bab05) (REBASING 1/2) [=]
+$ git branch
+* (no branch, rebasing feature)
+  feature
+  main
+
+on ⎇ HEAD (e2bab05) (REBASING 1/2) [=]
+$ git status
+interactive rebase in progress; onto e2bab05
+Last command done (1 command done):
+   pick cd3686b # E
+No commands remaining.
+You are currently rebasing branch 'feature' on 'e2bab05'.
+  (fix conflicts and then run "git rebase --continue")
+  (use "git rebase --skip" to skip this patch)
+  (use "git rebase --abort" to check out the original branch)
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+        both modified:      notes.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+
 # Resolve conflicts in editor and stage them. Then continue rebase to next commit
-# We have to do this for EACH commit of `feature` branch
+# We have to do this for EACH commit of "feature" branch
 
 on ⎇ HEAD (e2bab05) (REBASING 1/2) [=]
 $ git add .
@@ -480,12 +525,12 @@ on ⎇ HEAD (e2bab05) (REBASING 1/2) [+]
 $ git rebase --continue
 [detached HEAD c72020b] E resolved
  1 file changed, 2 insertions(+), 2 deletions(-)
-Auto-merging content.txt
-CONFLICT (content): Merge conflict in content.txt
+Auto-merging notes.txt
+CONFLICT (content): Merge conflict in notes.txt
 error: could not apply 5be80ae... F
 Could not apply 5be80ae... # F
 
-on ⎇ HEAD (c72020b) (REBASING 2/2) [=]
+on c HEAD (c72020b) (REBASING 2/2) [=]
 $ git add .
 
 git-prac-rebase on ⎇ HEAD (c72020b) (REBASING 2/2) [+]
@@ -493,14 +538,243 @@ $ git rebase --continue
 [detached HEAD 32ba737] F resolved
  1 file changed, 1 insertion(+), 1 deletion(-)
 Successfully rebased and updated refs/heads/feature.
+# We've successfully resolved all conflicts and rebased "feature" branch onto "main"
+```
+
+> During `rebase` operation, the convention of `--ours` and `--theirs` is **flipped** compared to `merge` operation because Git first checks out into the tip of the branch we're rebasing onto ours. In other words, `--theirs` would mean our current branch before starting `rebase` and `--ours` means the other branch we're rebasing our branch onto
+
+If no changes of the `theirs` branch's commit were selected to be applied during rebase, Git might just **drop** that commit for you
+
+### Interactive Rebase
+
+You may also do [interactive rebase](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) by passing the `-i` or `--interactive` flag. Interactive rebase lets you edit history by telling Git **how to replay each commit onto a new base**. Note that the commit point we pass to interactive rebase such as `COMMIT_HASH` or `HEAD~n` would be the updated base and we would be modifying history for the commits that come **after** it
+
+```sh title="Interactive Rebase"
+# Interactively rebase all commits onto 'main' branch
+git rebase -i main
+# Interactively rebase all commits after this COMMIT_HASH commit
+git rebase -i COMMIT_HASH
+# Interactively rebase last 3 commits from your current position
+git rebase -i HEAD~3
+```
+
+Git opens a **todo list of actions** listing the existing commits to be applied onto the new base and shows you a list of operations that you could apply at each commit such as `pick(p)`, `drop(d)`, `reword(r)`, `edit(e)`, `squash(s)`, `fixup(f)`, `exec(x)`, `break(b)`. Initially all the commits are listed as `pick` before you modify. The temporary todo file (opened in your `$EDITOR`) to edit history is usually `.git/rebase-merge/git-rebase-todo`. Also, at one or more points, it might open editor asking the commit message for the resulting modified commits (usually file `.git/COMMIT_EDITMSG`)
+
+```sh title="git-rebase-todo (rebasing onto commit 6fd2b08)"
+pick a26bfa2 # some commit msg
+pick b3aafbe # other commit msg
+pick c72020b # some other commit msg
+
+# Rebase 6fd2b08..c72020b onto 6fd2b08 (3 commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+#                    commit's log message, unless -C is used, in which case
+#                    keep only this commit's message; -c is same as -C but
+#                    opens the editor
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+#         create a merge commit using the original merge commit's
+#         message (or the oneline, if no original merge commit was
+#         specified); use -c <commit> to reword the commit message
+# u, update-ref <ref> = track a placeholder for the <ref> to be updated
+#                       to this position in the new commits. The <ref> is
+#                       updated at the end of the rebase
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+```
+
+## Squashing
+
+Squashing refers to combining multiple commits into a single commit. You would have the changes made by all the squashed commits but you'd lose individual checkpoints of individual commits to easily go back to (can retrieve via `reflog` and some plumbing). Note that squashing rewrites history, so it is a destructive operation. You should never squash or do rewrite history on shared branches like `main`, but it's perfectly fine to do it on your own branch
+
+During development, you could be making multiple small incremental commits of changes on your branch before reaching a satisfactory state that is ready to be merged. Some teams might prefer that you squash these incremental commits into a single final commit and then push that to your remote branch to be later merged into the shared branch like `main`. Keeping a single final commit also makes it easier to later revert it if needed. GitHub even provides the "Squash and Merge" option while merging a PR, which allows you to keep incremental commits for your branch but a squashed single commit in the shared branch.
+
+![Git Squash](/code-journal/diagrams/git-squash.svg)
+
+The most common way to squash commits is via **interactive rebase**. You'd pass the commit point by either hash or steps from `HEAD`, which acts as the temporary base, and we would edit history for the commits that come after it. Notice in figure above how we would squash the last 3 commits `F`, `G`, `H` into a single combined `F'`. We'd pass the start point as 3 commits behind where `HEAD` currently is and rewrite history after it
+
+```sh title="Start Squash operation"
+# Commit history BEFORE Squashing:
+git-squash on ⎇ feature
+$ git log --oneline --parents
+# b840b47 38f1a53 (HEAD -> feature) H
+# 38f1a53 775b0b0 G
+# 775b0b0 fb15ae7 F
+# fb15ae7 4bfb263 E
+# 4bfb263 a3c65d0 D
+# a3c65d0 a5fc5fb C
+# a5fc5fb 4110ec2 (main) B
+# 4110ec2 A
+
+# Start interactive rebase from 3 commits behind where HEAD currently is
+git-squash on ⎇ feature
+$ git rebase -i HEAD~3
+# hint: Waiting for your editor to close the file...
+```
+
+It would open the todo-list file in your editor for defining the operations to apply for modifying history. Initially, all the existing commits are listed as `pick`
+
+```sh title="git-rebase-todo (BEFORE)"
+pick 775b0b0 # F
+pick 38f1a53 # G
+pick b840b47 # H
+```
+
+We edit the file and change the last two commits to squash `s` instead of pick `p` so that both would be melded into the first commit's changes itself.
+
+```sh title="git-rebase-todo (AFTER)"
+p 775b0b0 # F
+s 38f1a53 # G
+s b840b47 # H
+```
+
+Finally, after the operations are applied, you would be prompted to enter the commit message for the modified combined commit. The default commit message would list the commit messages of the individual commits we merged
+
+```sh title="COMMIT_EDITMSG (BEFORE)"
+# This is a combination of 3 commits.
+# This is the 1st commit message:
+F
+# This is the commit message #2:
+G
+# This is the commit message #3:
+H
+```
+
+```sh title="COMMIT_EDITMSG (AFTER)"
+# This is a combination of 3 commits.
+F' squashed
+```
+
+After our interactive rebase finishes, we'd see the final squashed commit `29f9bb2` with our updated commit message `F' squashed`
+
+```sh title="After Squash operation finishes"
+git-squash on ⎇ feature
+$ git rebase -i HEAD~3
+# [detached HEAD 29f9bb2] F' squashed
+#  Date: Fri Jul 10 10:38:17 2026 +0530
+#  1 file changed, 3 insertions(+)
+# Successfully rebased and updated refs/heads/feature.
+
+# Commit history AFTER Squashing:
+git-squash on ⎇ feature took 5m19s
+$ git log --oneline --parents
+# 29f9bb2 fb15ae7 (HEAD -> feature) F' squashed
+# fb15ae7 4bfb263 E
+# 4bfb263 a3c65d0 D
+# a3c65d0 a5fc5fb C
+# a5fc5fb 4110ec2 (main) B
+# 4110ec2 A
+
+git-squash on ⎇ feature
+$ git reflog
+# 29f9bb2 (HEAD -> feature) HEAD@{0}: rebase (finish): returning to refs/heads/feature
+# 29f9bb2 (HEAD -> feature) HEAD@{1}: rebase (squash): F' squashed
+# 722c86a HEAD@{2}: rebase (squash): # This is a combination of 2 commits.
+# 775b0b0 HEAD@{3}: rebase (start): checkout HEAD~3
+# b840b47 HEAD@{4}: commit: H
+# 38f1a53 HEAD@{5}: commit: G
+# 775b0b0 HEAD@{6}: commit: F
+# fb15ae7 HEAD@{7}: commit: E
+# 4bfb263 HEAD@{8}: commit: D
+# a3c65d0 HEAD@{9}: commit: C
+# a5fc5fb (main) HEAD@{10}: checkout: moving from main to feature
+# a5fc5fb (main) HEAD@{11}: commit: B
+# 4110ec2 HEAD@{12}: commit (initial): A
+```
+
+You could squash just the last commits or just a few intermediate ones while you are rewriting history inside interactive rebase. If you just wanted to squash the last few commits, you could also do via a **soft reset**; it would jump back in history, but keep your changes as staged
+
+```sh title="Squash via Soft Reset"
+# Soft reset to 3 commits behind where HEAD currently is
+git reset --soft HEAD~3
+# Stage current state (containing all changes)
+git add .
+# Make the single commit (of all your changes) and give squash commit's message
+git commit -m "Squashed commit message"
 ```
 
 ## Deciding to Merge or Rebase
 
-You might think that resolving conflicts commit-by-commit during a rebase is tedious. However, if there are conflicts between your `feature` and `main` branches, those conflicts would likely have to be resolved eventually anyway when merging `feature` into `main`. By rebasing early and regularly onto the latest `main`, we resolve integration issues incrementally within our own feature branch and keep it up-to-date with the shared `main` branch. As a result, when it is eventually merged into `main`, the merge is often a simple fast-forward (or at least a much simpler merge).
+You might think that resolving conflicts commit-by-commit during a `rebase` is tedious. However, these conflicts would eventually have to be resolved during a `merge` anyway. By rebasing early and regularly onto the latest `main`, we resolve integration issues incrementally within our own feature branch and keep it up-to-date with the shared `main` branch. As a result, when you eventually merge your `feature` into `main`, the process is often a simple, clean, fast-forward merge.
 
-Additionally, if you find resolving conflicts over each commit of your branch tedious, you may **squash your branch's commits into one** and then rebase. In that case, there is only a single patch to replay, so you may need to resolve conflicts only once.
+Additionally, if you find resolving conflicts commit-by-commit too taxing, you can **squash** your branch's commits into one before rebasing. This creates a single patch to replay, requiring you to resolve merge conflicts only once. Squashing also simplifies reverting your changes if you decide not to include them in the main branch.
 
-Additionally, if you find resolving conflicts over each commit of your brm toanch, you may squash you branch's commits into one and then while rebasing, you'd have to resolve conflicts only once. Squashing would also make it easier to revert your changes if you don't wish to include them in `main`
+Given the benefits of rebase, a benefit of merge commits is that they preserve the actual historical structure of development without rewriting any existing commits i.e. it preserves when exactly the branches diverged, evolved independently, and were eventually integrated. A merge only adds a new commit that ties the two histories together without modifying previous history. Ultimately, the choice comes down to history:
 
-Given the benefits of rebase, a benefit of merge commits is that they preserve the actual historical structure of development without rewriting any existing commits i.e. it preserves when exactly the branches diverged, evolved independently, and were eventually integrated. A merge only adds a new commit that ties the two histories together without modifying previous history
+- Rebase provides a clean, linear project history, making it easier to track when features were developed
+- Merge preserves the actual historical context - it explicitly records exactly when branches diverged, evolved independently, and were integrated
+
+## Rerere
+
+The [rerere](https://git-scm.com/book/en/v2/Git-Tools-Rerere) functionality is a handy feature. The name stands for **reuse recorded resolution** and as the name implies, it allows you to ask Git to remember how you’ve resolved a hunk conflict so that the next time it sees the same conflict, Git can resolve it for you automatically. This is particularly useful for long-running feature branches where you won't have to resolve the same conflicts again and again during after each rebase
+
+```sh title="Enable Rerere"
+# Enable rerere in global config to apply to ALL your repos:
+git config --global rerere.enabled true
+```
+
+Git identifies a conflict by creating a unique SHA-1 hash based on the text content of the conflict hunk and its surrounding context. It then maintains a `preimage` (the hunk before resolution) and a `postimage` (the hunk after resolution) in the `.git/rr-cache/<hash-id>/` directory. When a conflict occurs later, Git executes [`git rerere`](https://git-scm.com/docs/git-rerere) which computes the hash of the new conflict, checks if a matching cache folder exists, and automatically applies the recorded `postimage`. Note that rerere doesn't automatically commit the resolved state; it just stages the resolved content.
+
+This functionality is particularly useful for maintaining a clean, linear commit history. For example, if you are working on a long-lived `feature` branch and want to ensure it will eventually merge cleanly without creating unnecessary intermediate merge commits, you can use rerere. By periodically attempting a merge, resolving the conflicts, and then backing out of the merge (resetting), you "teach" Git how to handle those conflicts. When the time comes for the final merge, rerere will have already "learned" the resolutions, allowing the process to complete automatically.
+
+If you wish to remove previous remembered resolutions, you can just delete the `.git/rr-cache/` directory itself
+
+```sh title="Rerere in action"
+# First time conflict encountered, file PREIMAGE recorded
+on ⎇ favs
+$ git rebase main
+Auto-merging customers/favs.md
+CONFLICT (add/add): Merge conflict in customers/favs.md
+error: could not apply 9b69999... K: Favs added
+Recorded preimage for 'customers/favs.md'
+Could not apply 9b69999... # K: Favs added
+
+# Edit files to resolve conflict and stage them...
+# After conflict resolved and rebased, file resolution (POSTIMAGE) recorded
+on ⎇ HEAD (339c635) (REBASING 1/1) [+]
+$ git rebase --continue
+Recorded resolution for 'customers/favs.md'.
+[detached HEAD 74fb320] K: Combined Favs added
+ 1 file changed, 1 insertion(+)
+Successfully rebased and updated refs/heads/favs.
+
+# Next time similar conflict encountered, previous resolution applied automatically
+on ⎇ favs2
+$ git rebase main
+Auto-merging customers/favs.md
+CONFLICT (add/add): Merge conflict in customers/favs.md
+error: could not apply 9b69999... K: Favs added
+Resolved 'customers/favs.md' using previous resolution.
+Could not apply 9b69999... # K: Favs added
+```
+
+## Delete Branch
+
+After you are done with merging the `feature` branch into `main`, if you are done with the `feature` branch's work and won't be needing to work in the `feature` branch again, you may delete the branch as follows (local copy, not talking about remotes). However, if a branch hasn't been merged anywhere and you attempt to delete it, Git will warn you; you would need to pass the `-D` flag instead of `-d` to force branch deletion
+
+```sh title="Delete (local) branch"
+# Syntax: git branch -d BRANCH_NAME
+git branch -d feature
+```
+
+To delete a remote branch, you would have to do a `push` operation as follows:
+
+```sh title="Delete remote branch"
+# Assuming remote named 'origin', both local and remote branch named 'feature':
+git push origin -d feature
+# We can also push an empty branch to remote branch to delete it
+git push origin :feature
+```
