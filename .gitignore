@@ -32,6 +32,7 @@ pnpm-debug.log*
 !.playground/cpp/.clang-format
 !.playground/js-ts/package.json
 
-# Backup files
+# Backup/Temporary files
 **.bkp
 **.bk
+**.dtmp
