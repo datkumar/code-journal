@@ -6,10 +6,11 @@ tags: [git]
 **Contents**:
 
 - [Git Reset](#git-reset)
-  - [Git Reset modes](#modes-for-git-reset)
-- [Reflog](#reflog)
+  - [Modes for Reset](#modes-for-git-reset)
+- [The Reflog](#the-reflog)
   - [Recover Commit from Reflog](#recover-commit-from-reflog)
-- [Stash](#stash)
+- [Git Stash](#git-stash)
+- [Git Revert](#git-revert)
 
 As humans, we are bound to make mistakes and thereby need a way to get back to the previous working state. Git provides a variety of commands for this purpose based on your use-case
 
@@ -81,9 +82,9 @@ What happens to **Orphaned commits**?
 
 The commits that are "skipped over" become orphaned/dangling commits and are not immediately deleted. They are still present in your local `.git/` repository database, but they are no longer reachable via any branch pointer or tag. Before the garbage collector deletes these commits, they remain protected for a default grace period (usually 30 days) in your `reflog`.
 
-## Reflog
+## The Reflog
 
-Just how `git log` show us the history of commits, `git reflog` shows the history of refs. Reflog i,e. reference log lists the changes made to the references (be it branch pointer or `HEAD` pointer) in the repository. The output mentions history in terms of **steps** i.e something like `HEAD@{2}` means the point where `HEAD` was `2` moves ago
+Just how `git log` show us the history of commits, `git reflog` shows the history of refs. Reflog i.e. "reference log" lists the changes made to the references (be it branch pointer or `HEAD` pointer) in the repository. The output mentions history in terms of **steps** i.e something like `HEAD@{2}` means the point where `HEAD` was `2` moves ago
 
 ```sh title="Git Reflog"
 git reflog
@@ -134,7 +135,9 @@ Fast-forward
  create mode 100644 slander.md
 ```
 
-## Stash
+---
+
+## Git Stash
 
 Suppose you are in the middle of making changes and have to quickly jump into another task or pull latest changes from remote. Your changes are not final enough to be made into a commit but you'd like to save the current state of your work somewhere. Git provides a way to store your current state away in a dirty working directory by using the [`git stash`](https://git-scm.com/docs/git-stash) command.
 
@@ -252,4 +255,167 @@ $ git stash branch fix-api stash@{0}
 #         modified:   src/api.js
 #
 # Dropped refs/stash@{0} (b7c2d91ae39b4f...)
+```
+
+---
+
+## Git Revert
+
+A revert is essentially an _anti-commit_. Unlike `reset` which removes commits and rewrites history, reverting instead creates a **new commit that undoes the changes of the target commit**. It does not remove any existing commits in history but adds a new commit that reverses the changes which the targeted commit had made. This is helpful on public/shared branches where it is dangerous to rewrite history as that may put everyone else's repo out-of-sync.
+
+Pass the _commitish_ whose changes you want to reverted the [`git revert`](https://git-scm.com/docs/git-revert) command:
+
+```sh
+megacorp on ⎇ main [$]
+$ git log --oneline
+48d62e0 (HEAD -> main) M: Integrated stashed work and resolved conflicts
+e1d534d L: Apux script fix
+f7900f6 (origin/main, origin/HEAD) Merge pull request #1 from datkumar/add_scanner
+25c3e3b (origin/add_scanner) K: Scan credit cards, SSN, phone numbers
+65452e1 J: redacted
+# ...
+
+# SYNTAX: git revert COMMIT_HASH
+megacorp on ⎇ main [$]
+$ git revert 48d62e0
+hint: Waiting for your editor to close the file...
+(gnome-text-editor:52456): Gtk-WARNING **: 15:21:30.024: Trying to snapshot GtkGizmo 0x6484ec4fd2a0 without a current allocation
+[main 4dbb90a] N: Revert M
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+megacorp on ⎇ main [$] took 1m32s
+$ git log --oneline
+4dbb90a (HEAD -> main) N: Revert M
+48d62e0 M: Integrated stashed work and resolved conflicts
+e1d534d L: Apux script fix
+f7900f6 (origin/main, origin/HEAD) Merge pull request #1 from datkumar/add_scanner
+25c3e3b (origin/add_scanner) K: Scan credit cards, SSN, phone numbers
+65452e1 J: redacted
+94173e7 H: Merged some ours some theirs
+44b139f G: Replaced some records
+7430614 F: Removed some records
+d310c78 E: fine, Greg can have this one
+665e3bd D: add jayson to customers
+dd95c7d C: update customers and partners
+29d0005 B: slander
+0d16f95 A: The Founding of MegaCorp and the End of Art
+```
+
+```txt
+Revert "M: Integrated stashed work and resolved conflicts"
+
+This reverts commit 48d62e044c44d36d63efd932859f42d36be2757d.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Changes to be committed:
+# modified:   README.md
+#
+```
+
+```sh
+megacorp on ⎇ main [$]
+$ git log -p -n 2
+commit 4dbb90a0921a31b5ccc6b5cb8fad0276e1263de3 (HEAD -> main)
+Author: Kumar Deshmukh <kumar.deshmukh945@gmail.com>
+Date:   Sat Jul 25 15:20:24 2026 +0530
+
+    N: Revert M
+
+    This reverts commit 48d62e044c44d36d63efd932859f42d36be2757d.
+
+diff --git a/README.md b/README.md
+index f0c36b8..13b4fae 100644
+--- a/README.md
++++ b/README.md
+@@ -1,3 +1,3 @@
+-# megacorp | good marketing example
++# megacorp
+
+-MegaCorp™ is _the_ enterprise Customer Relationship Management (CRM) software. Not only is it an incredible product, but it also ships a programming language for "MegaCorp developers" that want to build custom features within the MegaCorp™ ecosystem. That language is called "Apux".
++The starter repo for the [Git 2 course](https://www.boot.dev/learn/learn-git-2) on Boot.dev.
+
+commit 48d62e044c44d36d63efd932859f42d36be2757d
+Author: Kumar Deshmukh <kumar.deshmukh945@gmail.com>
+Date:   Sat Jul 18 17:52:58 2026 +0530
+
+    M: Integrated stashed work and resolved conflicts
+
+diff --git a/README.md b/README.md
+index 13b4fae..f0c36b8 100644
+--- a/README.md
++++ b/README.md
+@@ -1,3 +1,3 @@
+-# megacorp
++# megacorp | good marketing example
+
+-The starter repo for the [Git 2 course](https://www.boot.dev/learn/learn-git-2) on Boot.dev.
++MegaCorp™ is _the_ enterprise Customer Relationship Management (CRM) software. Not only is it an incredible product, but it also ships a programming language for "MegaCorp developers" that want to build custom features within the MegaCorp™ ecosystem. That language is called "Apux".
+```
+
+To fix problems in our final shared branch, we can:
+
+- Revert the commit with the bug (this is more common on large teams)
+- "Fail forward" by just writing a new commit that fixes the bug (this is more common on small teams)
+
+---
+
+<!-- TODO: Move section to another page -->
+
+## Comparing Changes
+
+The [`git diff`](https://git-scm.com/docs/git-diff) command. Also refer [`git show`](https://git-scm.com/docs/git-show) or [`git log -p`](https://git-scm.com/docs/git-log#generate_patch_text_with_p)
+
+```sh frame="none"
+# show the changes between the working tree and the last commit
+git diff
+# show the differences between the previous commit and the current state, including the last commit and uncommitted changes
+git diff HEAD~1
+# show the change between two commits
+git diff COMMIT_HASH_1 COMMIT_HASH_2
+```
+
+Here's an example of `git diff`:
+
+```sh
+megacorp on ⎇ main [$]
+$ git diff 4dbb90a 48d62e0
+diff --git a/README.md b/README.md
+index 13b4fae..f0c36b8 100644
+--- a/README.md
++++ b/README.md
+@@ -1,3 +1,3 @@
+-# megacorp
++# megacorp | good marketing example
+
+-The starter repo for the [Git 2 course](https://www.boot.dev/learn/learn-git-2) on Boot.dev.
++MegaCorp™ is _the_ enterprise Customer Relationship Management (CRM) software. Not only is it an incredible product, but it also ships a programming language for "MegaCorp developers" that want to build custom features within the MegaCorp™ ecosystem. That language is called "Apux".
+
+megacorp on ⎇ main [$]
+$ git diff HEAD HEAD~1
+diff --git a/README.md b/README.md
+index 13b4fae..f0c36b8 100644
+--- a/README.md
++++ b/README.md
+@@ -1,3 +1,3 @@
+-# megacorp
++# megacorp | good marketing example
+
+-The starter repo for the [Git 2 course](https://www.boot.dev/learn/learn-git-2) on Boot.dev.
++MegaCorp™ is _the_ enterprise Customer Relationship Management (CRM) software. Not only is it an incredible product, but it also ships a programming language for "MegaCorp developers" that want to build custom features within the MegaCorp™ ecosystem. That language is called "Apux".
+
+megacorp on ⎇ main [$]
+$ git diff HEAD~1
+diff --git a/README.md b/README.md
+index f0c36b8..13b4fae 100644
+--- a/README.md
++++ b/README.md
+@@ -1,3 +1,3 @@
+-# megacorp | good marketing example
++# megacorp
+
+-MegaCorp™ is _the_ enterprise Customer Relationship Management (CRM) software. Not only is it an incredible product, but it also ships a programming language for "MegaCorp developers" that want to build custom features within the MegaCorp™ ecosystem. That language is called "Apux".
++The starter repo for the [Git 2 course](https://www.boot.dev/learn/learn-git-2) on Boot.dev.
 ```

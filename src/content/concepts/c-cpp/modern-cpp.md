@@ -3,6 +3,13 @@ title: Modern C++ features
 tags: [cpp]
 ---
 
+**Contents**:
+
+- [`auto` keyword for type inference](#auto-keyword-for-type-inference)
+- [Lambda functions](#lambda-functions)
+- [Smart Pointers](#smart-pointers)
+- [Structured Binding](#structured-binding)
+
 ## `auto` keyword for type inference
 
 CPP Reference: [Placeholder type specifiers](https://en.cppreference.com/w/cpp/language/auto.html)
@@ -65,6 +72,8 @@ cout << "Product: " << product << endl;
 ```
 
 ## Smart Pointers
+
+<!-- TODO: Examples of Smart Pointers usage  -->
 
 These pointers safely handle automatic memory deallocation for objects that are no longer being referenced
 

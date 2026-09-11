@@ -13,7 +13,6 @@ tags: [git]
 - [Pull](#pull)
 - [Pull Request](#pull-request)
 - [Fork](#fork)
-- [Stash](#stash)
 
 ## Remotes
 
@@ -82,6 +81,8 @@ git push -u origin main
 git push
 git pull
 ```
+
+<!-- TODO: Git Clone section -->
 
 ---
 
