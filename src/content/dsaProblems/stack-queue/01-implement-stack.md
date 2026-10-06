@@ -116,10 +116,8 @@ class Stack {
 
 int main () {
     try {
-        // Create an instance of our 'Stack' class
-        Stack stk;
-        cout << "Size: " << stk.getSize() << endl;
-        // Size: 0
+        Stack stk; // Create an instance of our 'Stack' class
+        cout << "Size: " << stk.getSize() << endl; // Size: 0
         /*
             Access/Delete operations on empty stack will throw underflow
            exception and exit:
@@ -134,12 +132,11 @@ int main () {
         stk.push(48);
         stk.push(23);
         stk.push(37);
-        cout << "Size: " << stk.getSize() << ", Top: " << stk.peek() << endl;
-        // Size: 4, Top: 37
+        cout << "Size: " << stk.getSize() << ", Top: " << stk.peek() << endl; // Size: 4, Top: 37
         stk.pop();
         stk.pop();
-        cout << "Size: " << stk.getSize() << ", Top: " << stk.peek() << endl;
-        // Size: 2, Top: 48
+        cout << "Size: " << stk.getSize() << ", Top: " << stk.peek() << endl; // Size: 2, Top: 48
+
     } catch (underflow_error const &ue) {
         cout << "UNDERFLOW: " << ue.what() << endl;
     } catch (overflow_error const &oe) {

@@ -1,4 +1,48 @@
-/* Default Theme (Light) */
+/* --- NUNITO SANS VARIABLE FONTS --- */
+@font-face {
+  font-family: 'Nunito Sans Variable';
+  src: url('/code-journal/fonts/NunitoSans-Variable.woff2') format('woff2-variations');
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito Sans Variable';
+  src: url('/code-journal/fonts/NunitoSans-Italic-Variable.woff2') format('woff2-variations');
+  font-weight: 200 1000;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+/* --- "0xProto" Local Fonts --- */
+@font-face {
+  font-family: '0xProto';
+  src: url('/code-journal/fonts/0xProto-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: '0xProto';
+  src: url('/code-journal/fonts/0xProto-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: '0xProto';
+  src: url('/code-journal/fonts/0xProto-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* --- DEFAULT THEME (LIGHT) --- */
 :root,
 :root[data-theme="light"] {
   --bgColor: moccasin;
@@ -17,7 +61,7 @@
   --quoteTextColor: black;
 }
 
-/* Dark Theme */
+/* --- DARK THEME --- */
 :root[data-theme="dark"] {
   --bgColor: rgb(30, 30, 31);
   --textColor: #d9e8eb;
@@ -35,6 +79,7 @@
   --quoteTextColor: #dcdbd8;
 }
 
+
 body {
   box-sizing: border-box;
   display: flex;
@@ -47,10 +92,15 @@ body {
   padding: 30px 40px;
   background-color: var(--bgColor);
   color: var(--textColor);
-  font-family: system-ui, sans-serif;
+  /* Font */
+  /* font-family: system-ui, sans-serif; */
+  /* font-family: 'Special Gothic Variable', system-ui, -apple-system, sans-serif; */
+  font-family: 'Nunito Sans Variable', system-ui, -apple-system, sans-serif;
+  /* font-weight: normal; */
+  font-weight: 400;
   font-size: 16px;
-  font-weight: normal;
   line-height: 1.5em;
+  /*  */
   overflow-wrap: break-word;
   overflow-x: auto;
 }
@@ -59,7 +109,7 @@ body>footer {
   margin-top: auto;
 }
 
-/* Media Queries */
+/* --- Media Queries --- */
 @media only screen and (max-width: 768px) {
   body {
     padding: 20px;
@@ -67,15 +117,50 @@ body>footer {
   }
 }
 
-/* 
-  Code section
-*/
-
-pre {
-  border: 2px solid var(--lineColor);
+/* --- CODE BLOCKS --- */
+:root {
+  /* Override Expressive Code font variables directly without breaking its generator */
+  --ec-codeFontFam: '0xProto', ui-monospace, monospace;
+  --ec-uiFontFam: 'Nunito Sans Variable', system-ui, -apple-system, sans-serif;
 }
 
-code {
+.expressive-code {
+  /* Force fallback for sub-elements */
+  font-family: var(--ec-codeFontFam) !important;
+  font-variant-ligatures: none;
+  font-feature-settings: "calt" 0, "liga" 0;
+}
+
+.expressive-code pre,
+.expressive-code code {
+  font-family: var(--ec-codeFontFam) !important;
+}
+
+
+.expressive-code .title,
+.expressive-code .header {
+  font-family: var(--ec-uiFontFam) !important;
+}
+
+
+/* INLINE CODE (outside Expressive Code) */
+:not(pre)>code {
+  background-color: var(--codeBgColor);
+  color: var(--codeColor);
+  padding: 2px 5px;
+  font-family: var(--ec-codeFontFam);
+  font-size: 0.8em;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* -------------- */
+
+/* pre {
+  border: 2px solid var(--lineColor);
+} */
+
+/* code {
   background-color: var(--codeBgColor);
   color: var(--codeColor);
   padding: 2px 4px;
@@ -84,13 +169,12 @@ code {
   font-size: 80%;
   border-radius: 5px;
   white-space: nowrap;
-}
+} */
 
-pre code {
+/* pre code {
   padding: 0;
-}
+} */
 
-/* Code blocks are a div with class name as below: */
 .expressive-code {
   margin-top: 0.75rem;
   margin-bottom: 1.5rem;
@@ -98,7 +182,7 @@ pre code {
   margin-right: auto;
 }
 
-/* Links */
+/* --- LINKS --- */
 a,
 a:visited {
   color: var(--linkColor);
@@ -122,23 +206,24 @@ hr {
   margin: 2rem 0;
 }
 
+
 h1,
 h2,
 h3,
 h4,
 h5 {
+  font-weight: 700;
   color: var(--accentColor);
   margin-top: 1.5em;
   margin-bottom: 0.5em;
 }
 
+
 summary {
   cursor: pointer;
 }
 
-/* 
-  Lists
-*/
+/* --- LISTS --- */
 
 ul {
   list-style-type: square;
@@ -178,9 +263,7 @@ img {
   align-self: center;
 }
 
-/* 
-  Tables 
-*/
+/* --- TABLE --- */
 
 table {
   padding-top: 4em;
@@ -204,8 +287,7 @@ table {
   margin-bottom: 2rem;
 }
 
-/* KATEX MATH  */
-
+/* --- KATEX MATH --- */
 
 .katex-html {
   /* inline spacing */

@@ -26,17 +26,10 @@ export default defineConfig({
       throwError: false,
       cacheExternalLinks: true,
     }),
-    // Syntax Highlighting
+    // Themed code blocks (if changed, delete .astro/ folder before running)
     expressiveCode({
       themes: ["min-light", "aurora-x"],
-      // themes: ["light-plus", "aurora-x"],
       themeCssSelector: (theme) => `[data-theme='${theme.type}']`,
-      styleOverrides: {
-        codeFontFamily: "ui-monospace, monospace",
-        uiFontFamily: "ui-monospace, monospace",
-        uiFontWeight: "600",
-        uiFontSize: "medium",
-      },
     }),
   ],
 });

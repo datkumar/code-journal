@@ -14,8 +14,8 @@ Referred from [Sean Prashad tips](https://seanprashad.com/leetcode-patterns/) an
 
 ## Uniqueness
 
-- When time imp., use **map/set**: `O(1)` hash check and `O(n)` space at-worst
-- When space imp., use **sorting**: `O(nlogn)` time and `O(1)` space
+- When time imp., use **map/set**: $O(1)$ hash check and $O(n)$ space at-worst
+- When space imp., use **sorting**: $O(nlogn)$ time and $O(1)$ space
 - The **XOR** bitwise operator (`^`) might be handy when finding the **ONE element** appearing as duplicate/unique
 
 ## Strings

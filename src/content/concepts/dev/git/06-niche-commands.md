@@ -71,6 +71,8 @@ TheStartup
 ClosedML
 ```
 
+---
+
 ## Bisect
 
 Suppose you have a piece of code in production that is causing issues and you want to **know exactly when particular change was introduced**. For small teams with fewer number of commits, you might just get by with manually scanning each commit's changes. However, for large teams with numerous commits, such manual scanning would take too long and might not be feasible. This is where the [`git bisect`](https://git-scm.com/docs/git-bisect) command comes in to help your search
@@ -296,7 +298,7 @@ index f4d9eb2..be676a7 100755
 +echo "========= PHONE NUMBER SCAN COMPLETE ========="
 ```
 
-The [`git blame`](https://git-scm.com/docs/git-blame) command can be used to see who made the change, not just when it was made.
+The [`git blame`](https://git-scm.com/docs/git-blame) command can be used to see **who** made the change, not just _when_ it was made.
 
 You can also automate the search process by writing a shell script that detects whether the code change you're looking for exists in current commit or not. If present, use exit code `1` i.e. _bad_ commit and if not found use exit code `0` i.e. _good_ commit
 
@@ -374,7 +376,9 @@ On branch main
 nothing to commit, working tree clean
 ```
 
-Binary Search, good/bad labelling, script automation with exit code (0/1)
+<!-- Binary Search, good/bad labelling, script automation with exit code (0/1) -->
+
+---
 
 ## Worktrees
 
