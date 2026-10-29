@@ -3,7 +3,7 @@ title: Number Systems
 tags: [electronics]
 ---
 
-**List of Contents**:
+**Contents**:
 
 - [Notation](#notation)
 - [Conversion between Number Systems](#conversion-between-number-systems)

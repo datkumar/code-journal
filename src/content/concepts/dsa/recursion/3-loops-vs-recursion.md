@@ -200,6 +200,6 @@ For optimized run:
 2000000000
 ```
 
-The tail-call optimization could done by the compiler via some mechanisms like the `goto` statement, the `jmp` assembly instruction or even by converting the recursive function into a loop
+The tail-call optimization could be done by the compiler via some mechanisms like the `goto` statement, the `jmp` assembly instruction or even by converting the recursive function into a loop
 
 > Note that Tail-call optimization, although handy, isn't always _guaranteed_ to be available

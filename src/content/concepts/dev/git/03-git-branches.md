@@ -3,8 +3,6 @@ title: Git Branches
 tags: [git]
 ---
 
-![Git branches](/code-journal/images/git-branches.png)
-
 **Contents**:
 
 - [What is a Git Branch?](#what-is-a-git-branch)
@@ -26,6 +24,8 @@ tags: [git]
 - [Delete Branch](#delete-branch)
 
 ## What is a Git Branch?
+
+![Git branches](/code-journal/images/git-branches.png)
 
 A [Git Branch](https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell) allows you to keep track of different changes separately
 
@@ -87,7 +87,7 @@ git switch -c BRANCH_NAME
 git checkout -b BRANCH_NAME
 ```
 
-The `checkout` command can also be useThe git rerere functionality is a bit of a hidden feature. The name stands for “reuse recorded resolution” and, as the name implies, it allows you to ask Git to remember how you’ve resolved a hunk conflict so that the next time it sees the same conflict, Git can resolve it for you automatically.d to switch into a certain commit within the history or restore certain files' state from older history too:
+The `checkout` command can also be used to switch into a certain commit within the history or restore certain files' state from older history too:
 
 ```sh title="Other uses of 'checkout'"
 # Switch into a commit (puts 'HEAD' in detached if not latest commit of any branch)

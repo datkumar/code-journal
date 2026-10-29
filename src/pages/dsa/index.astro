@@ -1,9 +1,9 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { compareStrings, containsSomeTag } from "../../utils/helper-functions";
 import { problemDifficulties } from "../../utils/data";
-import type { CollectionEntry } from "astro:content";
+import { compareStrings, containsSomeTag } from "../../utils/helper-functions";
 
 const stlEntries = (await getCollection("concepts")).filter((item) =>
   item.data.tags.includes("stl")
@@ -17,6 +17,7 @@ const sortSearchConcepts: CollectionEntry<"concepts">[] = [];
 const graphTreeConcepts: CollectionEntry<"concepts">[] = [];
 const miscDsaConcepts: CollectionEntry<"concepts">[] = [];
 
+// DSA Concepts filtering:
 for (const entry of dsaConcepts) {
   if (containsSomeTag(entry.data.tags, ["recursion"])) {
     recursionConcepts.push(entry);
@@ -33,6 +34,7 @@ const dsaProblems = await getCollection("dsaProblems");
 const stackQueueHeapProbs: CollectionEntry<"dsaProblems">[] = [];
 const listProbs: CollectionEntry<"dsaProblems">[] = [];
 const arrayStringProbs: CollectionEntry<"dsaProblems">[] = [];
+// DSA Problems filtering:
 for (const entry of dsaProblems) {
   if (containsSomeTag(entry.data.ds, ["stack", "queue", "heap"])) {
     stackQueueHeapProbs.push(entry);
@@ -44,10 +46,6 @@ for (const entry of dsaProblems) {
   }
   arrayStringProbs.push(entry);
 }
-
-// dsaProblems.filter((entry) =>
-//   containsSomeTag(entry.data.ds, ["stack", "queue", "heap"])
-// );
 
 const baseUrl = import.meta.env.BASE_URL;
 ---
@@ -86,6 +84,12 @@ const baseUrl = import.meta.env.BASE_URL;
 
   .problem-item {
     list-style: none;
+  }
+
+  /* Center align text for merged category rows */
+  td[colspan="3"] {
+    text-align: center;
+    color: var(--accentColor);
   }
 </style>
 
@@ -167,51 +171,91 @@ const baseUrl = import.meta.env.BASE_URL;
 
   <!-- PROBLEMS: -->
 
-  <h2>Arrays, Strings</h2>
-  <ul>
-    {
-      arrayStringProbs
-        .sort((a, b) => compareStrings(a.id, b.id))
-        .map((entry) => {
-          return (
-            <li class="problem-item">
-              {problemDifficulties[entry.data.level].icon}&ensp;
-              <a href={`${baseUrl}/dsa/${entry.id}/`}>{entry.data.title}</a>
-            </li>
-          );
-        })
-    }
-  </ul>
+  <h2>DSA Problems</h2>
 
-  <h2>Stack, Queues, Heaps</h2>
-  <ul>
-    {
-      stackQueueHeapProbs
-        .sort((a, b) => a.data.level - b.data.level)
-        .map((entry) => {
-          return (
-            <li class="problem-item">
-              {problemDifficulties[entry.data.level].icon}&ensp;
-              <a href={`${baseUrl}/dsa/${entry.id}/`}>{entry.data.title}</a>
-            </li>
-          );
-        })
-    }
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Lvl</th>
+        <th>Problem</th>
+        <th>Techniques</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- ARRAYS, STRINGS -->
+      <tr>
+        <td colspan="3"><strong>Arrays, Strings</strong></td>
+      </tr>
+      {
+        arrayStringProbs
+          .sort((a, b) => compareStrings(a.id, b.id))
+          .map((entry) => (
+            <tr>
+              <td>{problemDifficulties[entry.data.level].icon}</td>
+              <td>
+                <a href={`${baseUrl}/dsa/${entry.id}/`}>{entry.data.title}</a>
+              </td>
+              <td>
+                {entry.data.techniques?.map((tech, index, arr) => (
+                  <>
+                    <code>{tech}</code>
+                    {index < arr.length - 1 ? " , " : ""}
+                  </>
+                ))}
+              </td>
+            </tr>
+          ))
+      }
 
-  <h2>Linked Lists</h2>
-  <ul>
-    {
-      listProbs
-        .sort((a, b) => a.data.level - b.data.level)
-        .map((entry) => {
-          return (
-            <li class="problem-item">
-              {problemDifficulties[entry.data.level].icon}&ensp;
-              <a href={`${baseUrl}/dsa/${entry.id}/`}>{entry.data.title}</a>
-            </li>
-          );
-        })
-    }
-  </ul>
+      <!-- STACK, QUEUE, HEAP -->
+      <tr>
+        <td colspan="3"><strong>Stack, Queues, Heaps</strong></td>
+      </tr>
+      {
+        stackQueueHeapProbs
+          .sort((a, b) => a.data.level - b.data.level)
+          .map((entry) => (
+            <tr>
+              <td>{problemDifficulties[entry.data.level].icon}</td>
+              <td>
+                <a href={`${baseUrl}/dsa/${entry.id}/`}>{entry.data.title}</a>
+              </td>
+              <td>
+                {entry.data.techniques?.map((tech, index, arr) => (
+                  <>
+                    <code>{tech}</code>
+                    {index < arr.length - 1 ? " , " : ""}
+                  </>
+                ))}
+              </td>
+            </tr>
+          ))
+      }
+
+      <!-- LINKED LIST -->
+      <tr>
+        <td colspan="3"><strong>Linked Lists</strong></td>
+      </tr>
+      {
+        listProbs
+          .sort((a, b) => a.data.level - b.data.level)
+          .map((entry) => (
+            <tr>
+              <td>{problemDifficulties[entry.data.level].icon}</td>
+              <td>
+                <a href={`${baseUrl}/dsa/${entry.id}/`}>{entry.data.title}</a>
+              </td>
+              <td>
+                {entry.data.techniques?.map((tech, index, arr) => (
+                  <>
+                    <code>{tech}</code>
+                    {index < arr.length - 1 ? " , " : ""}
+                  </>
+                ))}
+              </td>
+            </tr>
+          ))
+      }
+    </tbody>
+  </table>
 </BaseLayout>

@@ -65,7 +65,7 @@
 :root[data-theme="dark"] {
   --bgColor: rgb(30, 30, 31);
   --textColor: #d9e8eb;
-  --accentColor: #eec05c;
+  --accentColor: #f8b551;
   --themeSliderBgColor: #0b325e;
   --linkColor: #3cc8cd;
   --lineColor: #717070;
@@ -185,16 +185,17 @@ body>footer {
 /* --- LINKS --- */
 a,
 a:visited {
+  /* enables transforms on <a> tags */
+  display: inline-block;
   color: var(--linkColor);
   text-decoration: none;
   /* Link hover animation */
-  transition: 0.3s ease;
+  transition: 0.25s ease;
 }
 
 a:hover {
-  /* font-size: 112%; */
-  transform: scale(1.15);
-  font-weight: bold;
+  transform: scale(1.05);
+  /* font-weight: bold; */
   text-decoration: underline;
 }
 
@@ -268,6 +269,8 @@ img {
 table {
   padding-top: 4em;
   padding-bottom: 4em;
+  /* Prevents columns from resizing dynamically */
+  table-layout: fixed;
 }
 
 table,
@@ -275,7 +278,9 @@ th,
 td {
   border: 2px solid var(--lineColor);
   border-collapse: collapse;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
+  padding: 6px 16px;
+  /* Increased horizontal padding (from 10px to 16px) */
 }
 
 th {

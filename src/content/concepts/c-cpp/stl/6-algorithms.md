@@ -5,10 +5,10 @@ tags: [cpp, stl, algorithms]
 
 ## References
 
-- [`<algorithm>` library C++ reference](https://en.cppreference.com/w/cpp/algorithm)
-- [GFG: Algorithm Library Functions in C++ STL](https://www.geeksforgeeks.org/algorithms-library-c-stl/)
+Note that I'm using `C++17`
 
-I prefer `C++17`
+- [`<algorithm>` library CPP Reference](https://en.cppreference.com/w/cpp/algorithm)
+- [GFG: Algorithm Library Functions in C++ STL](https://www.geeksforgeeks.org/algorithms-library-c-stl/)
 
 ## Sorting operations
 

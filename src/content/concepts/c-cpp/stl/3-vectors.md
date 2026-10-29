@@ -3,9 +3,26 @@ title: STL - Vectors
 tags: [cpp, stl, containers]
 ---
 
-C++ Reference: [`vector`](https://en.cppreference.com/w/cpp/container/vector)
+**Contents**:
+
+- [Overview](#overview)
+- [Iterators](#iterators)
+- [Element Access](#element-access)
+- [Size functions](#size-functions)
+- [Modifiers](#modifiers)
+- [Ways to Initialize a vector](#ways-to-initialize-a-vector)
+  - [Initializing a 2D vector](#initializing-a-2d-vector)
+- [Traversal](#traversal)
+- [Vector of custom data-type](#vector-of-custom-data-type)
+- [Beware of `vector<bool>`](#beware-of-vectorbool)
+- [Difference between `.emplace_back()` and `.push_back()`](#difference-between-emplace_back-and-push_back)
+- [Difference between `memset()` and `fill()`](#difference-between-memset-and-fill)
+
+## Overview
 
 Present inside the `<vector>` header, vectors are dynamic arrays with the ability to resize itself automatically when an element is inserted or deleted
+
+CPP Reference: [`vector`](https://en.cppreference.com/w/cpp/container/vector)
 
 | Operation      | Time                                                                                                                        |
 | -------------- | --------------------------------------------------------------------------------------------------------------------------- |
@@ -34,6 +51,7 @@ Present inside the `<vector>` header, vectors are dynamic arrays with the abilit
 - **`.capacity()`** - Returns number of elements worth of memory currently allocated to the vector
 - **`.max_size()`** - Returns the theoretical maximum number of items that could be put in your vector
 - **`.resize(n, val)`** - Resizes vector to only include first `n` elements. Can also pass extra argument `val` to which the new elements will be initialized
+- **`reserve(n)`** - Allocates memory of that many elements for the vector, i.e. sets the _capacity_ of the vector; the vector might not have that many elements filled yet
 
 ## Modifiers
 
@@ -43,7 +61,32 @@ Present inside the `<vector>` header, vectors are dynamic arrays with the abilit
 - **`.clear()`** - Remove all elements. Takes `O(N)` time
 - **`.erase()`** - Removes element(s) at specific position via `erase(pos)` or within a range via `erase(start, end)`. Takes `O(N)` time on average
 
-## Ways to initialize a vector
+More methods:
+
+- `.insert()`: Inserts element(s) at specific postition. Takes `O(N)` time on average
+  - `.insert(pos,val)`: Inserts element `val` at position `pos`
+  - `.insert(pos,reps,val)`: Inserts `reps` number of copies of `val` starting from position `pos`
+  - `.insert(pos,start,end)`: Inserts all elements of `[start, end)` at position `pos`
+
+  ```cpp
+  vector<int> v1{10, 20, 30, 40, 50};
+  vector<int> v2{-1, -2, -3, -4, -5, -6};
+
+  v1.insert(v1.begin() + 3, 101);
+  // 10 20 30 101 40 50
+
+  v1.insert(v1.begin() + 2, 3, 420);
+  // 10 20 420 420 420 30 101 40 50
+
+  v1.insert(v1.begin() + 2, v2.begin() + 1, v2.begin() + 4);
+  // 10 20 -2 -3 -4 420 420 420 30 101 40 50
+  ```
+
+- `.emplace(pos,...args)` - Inserts a new element into the container directly before `pos` by constructing it in-place.
+
+---
+
+## Ways to Initialize a vector
 
 **1. Declare and `.push_back()` each element:**
 
@@ -108,23 +151,6 @@ iota(v1.begin() + 2, v1.end() - 3, 20);
 // { 0, 0, 20, 21, 22, 23, 24, 0, 0, 0 }
 ```
 
-### `fill()` vs `memset()` in C++
-
-|  Criteria | `memset()`                                                                                                  | `fill()`                                                                                     |
-| --------: | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| Signature | `memset(void *obj, int ch, size_t N)`                                                                       | `<Itr,T> void fill(Itr first, Itr last, const T& val)`                                       |
-|   Meaning | Sets `N` bytes of `obj` to `ch`                                                                             | Assigns the value `val` to all elements in range `[first, last)`                             |
-|    Values | Used when ALL bytes of element can be the same byte, such as `0` or `-1`                                    | Accepts all valid values of the data-type                                                    |
-| Data-type | Mostly used with `int` or `char` arrays                                                                     | Portable for vectors of various data types                                                   |
-| Execution | Works at the byte level, setting each byte present to the given byte value. Thus no type-safety per element | Has an underlying loop initializing each element to the given value. So type-safe assignment |
-|    Import | `#include <cstring>`                                                                                        | `#include <vector>`                                                                          |
-|     Speed | It's slightly faster as it's written in assembler                                                           | Basic looping, so slightly slower than `memset`                                              |
-|   Example | `memset(arr, -1, n * sizeof(int));`                                                                         | `fill(arr.begin(), arr.end(), 42);`                                                          |
-
-Below picture would illustrate why `memset` makes sense for values `0` or `-1` when we want to set a certain number of bytes as the same byte-value
-
-![`int` value representation for `memset`](/code-journal/diagrams/memset-int.svg)
-
 ### Initializing a 2D vector
 
 ```cpp
@@ -133,16 +159,15 @@ Below picture would illustrate why `memset` makes sense for values `0` or `-1` w
 vector<vector<int>> mat(3, vector<int>(4, -1));
 ```
 
+---
+
 ## Traversal
 
-- Range-based loop: `for(auto &element : v1)`
-- Using iterators: `for(auto itr = v1.begin(); itr != v1.end(); itr++)`
-- Reverse traversal: `for(auto itr = v1.rbegin(); itr != v1.rend(); itr++)`
+- **Range-based loop**: `for(auto &element : v1)`
+- **Using iterators**: `for(auto itr = v1.begin(); itr != v1.end(); itr++)`
+- **Reverse traversal**: `for(auto itr = v1.rbegin(); itr != v1.rend(); itr++)`
 
-<details>
-<summary>Traversals demo:</summary>
-
-```cpp
+```cpp title="Vector Traversals"
 vector<int> v1{105, 48, 23, 6, 94, 52};
 
 // Range-based for loop
@@ -163,45 +188,6 @@ for (auto itr = v1.rbegin(); itr != v1.rend(); itr++) cout << *(itr) << ", ";
 cout << "}" << endl;
 // { 52, 94, 6, 23, 48, 105, }
 ```
-
-</details>
-
-**More functions:**
-
-- `.insert()`: Inserts element(s) at specific postition. Takes `O(N)` time on average
-  - `.insert(pos,val)`: Inserts element `val` at position `pos`
-  - `.insert(pos,reps,val)`: Inserts `reps` number of copies of `val` starting from position `pos`
-  - `.insert(pos,start,end)`: Inserts all elements of `[start, end)` at position `pos`
-
-  ```cpp
-  vector<int> v1{10, 20, 30, 40, 50};
-  vector<int> v2{-1, -2, -3, -4, -5, -6};
-
-  v1.insert(v1.begin() + 3, 101);
-  // 10 20 30 101 40 50
-
-  v1.insert(v1.begin() + 2, 3, 420);
-  // 10 20 420 420 420 30 101 40 50
-
-  v1.insert(v1.begin() + 2, v2.begin() + 1, v2.begin() + 4);
-  // 10 20 -2 -3 -4 420 420 420 30 101 40 50
-  ```
-
-- `.emplace(pos,...args)` - Inserts a new element into the container directly before `pos` by constructing it in-place.
-
----
-
-## Beware of `vector<bool>`
-
-`vector<bool>` in C++ is a specialization of the standard `vector` container class that allows you to store a sequence of boolean values. Unlike a regular `vector<T>` where `T` can be any data type, `vector<bool>` doesn't store each `bool` value as a full byte in memory. Instead, it utilizes bit manipulation techniques to **pack multiple boolean values (typically 8) into a single byte**. Due to the bit-packing optimization, operations like element access and modification are not as straightforward as with other types:
-
-- **No Direct Element Access**: You cannot directly access individual elements via `[]`. Instead, you need to use member functions like `at()` or iterators.
-- **No References**: The reference type returned by `std::vector<bool>::operator[]` is a proxy class (often called `std::vector<bool>::reference`), which behaves like a `bool&` but **is not actually a reference to a single bool value**. This can lead to confusion and unexpected behavior. You cannot take the address of a bool element in a `std::vector<bool>`, as each element is not stored as a separate byte in memory.
-
-**Better alternatives**:
-
-- If the size is known at compile-time: use [`bistset<N>`](https://en.cppreference.com/w/cpp/container/vector_bool) as suggested by [C++ Reference](https://en.cppreference.com/w/cpp/utility/bitset)
-- For dynamic sizes: you can use `vector<char>` or [`boost::dynamic_bitset`](https://www.boost.org/doc/libs/latest/libs/dynamic_bitset/doc/html/dynamic_bitset/index.html)
 
 ---
 
@@ -261,7 +247,23 @@ int main () {
 }
 ```
 
-> Difference between `.emplace_back()` and `.push_back()`
+---
+
+## Beware of `vector<bool>`
+
+`vector<bool>` in C++ is a specialization of the standard `vector` container class that allows you to store a sequence of boolean values. Unlike a regular `vector<T>` where `T` can be any data type, `vector<bool>` doesn't store each `bool` value as a full byte in memory. Instead, it utilizes bit manipulation techniques to **pack multiple boolean values (typically 8) into a single byte**. Due to the bit-packing optimization, operations like element access and modification are not as straightforward as with other types:
+
+- **No Direct Element Access**: You cannot directly access individual elements via `[]`. Instead, you need to use member functions like `at()` or iterators.
+- **No References**: The reference type returned by `std::vector<bool>::operator[]` is a proxy class (often called `std::vector<bool>::reference`), which behaves like a `bool&` but **is not actually a reference to a single bool value**. This can lead to confusion and unexpected behavior. You cannot take the address of a bool element in a `std::vector<bool>`, as each element is not stored as a separate byte in memory.
+
+Some better alternatives to `vector<bool>` are:
+
+- If the size is known at compile-time: use [`bistset<N>`](https://en.cppreference.com/cpp/utility/bitset) as [suggested by CPP Reference](https://en.cppreference.com/cpp/container/vector_bool#Notes)
+- For dynamic sizes: you can use `vector<char>` or [`boost::dynamic_bitset`](https://www.boost.org/doc/libs/latest/libs/dynamic_bitset/doc/html/dynamic_bitset/index.html)
+
+---
+
+## Difference between `.emplace_back()` and `.push_back()`
 
 - Generally, `emplace_back()` is slightly faster than `push_back()` as it **constructs the element in-place** while `push_back()` creates the element and then **copies** it. So, prefer `emplace_back()` for complex objects or fast insertion.
 - You can also pass the appropriate list of arguments to construct the vector element during `emplace_back()`, but for `push_back()`, you need to create the object first:
@@ -300,3 +302,26 @@ int main () {
       // 105. Joe got 35.26
   }
   ```
+
+## Difference between `memset()` and `fill()`
+
+|  Criteria | `memset()`                                                                                                  | `fill()`                                                                                     |
+| --------: | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Signature | `memset(void *obj, int ch, size_t N)`                                                                       | `<Itr,T> void fill(Itr first, Itr last, const T& val)`                                       |
+|   Meaning | Sets `N` bytes of `obj` to `ch`                                                                             | Assigns the value `val` to all elements in range `[first, last)`                             |
+|    Values | Used when ALL bytes of element can be the same byte, such as `0` or `-1`                                    | Accepts all valid values of the data-type                                                    |
+| Data-type | Mostly used with `int` or `char` arrays                                                                     | Portable for vectors of various data types                                                   |
+| Execution | Works at the byte level, setting each byte present to the given byte value. Thus no type-safety per element | Has an underlying loop initializing each element to the given value. So type-safe assignment |
+|    Import | `#include <cstring>`                                                                                        | `#include <vector>`                                                                          |
+|     Speed | It's slightly faster as it's written in assembler                                                           | Basic looping, so slightly slower than `memset`                                              |
+|   Example | `memset(arr, -1, n * sizeof(int));`                                                                         | `fill(arr.begin(), arr.end(), 42);`                                                          |
+
+Below picture would illustrate why `memset` makes sense for values `0` or `-1` when we want to set a certain number of bytes as the same byte-value
+
+![`int` value representation for `memset`](/code-journal/diagrams/memset-int.svg)
+
+---
+
+**Further Learning**:
+
+Watch [this video by Cherno](https://youtu.be/Xx-NcqmveDc?si=NObJ-18Eey9rSe-U) for optimal memory and performant usage of `vector` with minimal resizing or copies or moves.

@@ -9,7 +9,7 @@ The actual running time (or space) of an algorithm is not a good measure for eva
 
 <img  alt="Big-O Complexity Chart" src="/code-journal/images/big-o-chart.png" >
 
-> **Increasing Order of Complexity:** <br> $$O(1) < O(logn) < O(\sqrt n) < O(n) < O(n \cdot logn) < O(n^2) < O(n^3) < O(2^n) < O(n!) < O(n^n)$$
+> **Increasing Order of Complexity:** <br> $O(1) < O(logn) < O(\sqrt n) < O(n) < O(n \cdot logn) < O(n^2) < O(n^3) < ... $ <br> $ ... < O(2^n) < O(n!) < O(n^n)$
 
 ---
 
@@ -146,7 +146,9 @@ Refer: [Wikipedia section](https://en.wikipedia.org/wiki/Amortized_analysis), [S
 
 ---
 
-> $\text{How } n! \text{ is } O(n^n)$
+Some notable comparisons:
+
+> $n! \text{ is } O(n^n)$
 
 $n! = [n \cdot (n-1) \cdot (n-2) \cdot ... \cdot 1] \space\space\text{ with 'n' terms }$
 
@@ -154,7 +156,7 @@ $n^n = [n \cdot n \cdot n \cdot ... \cdot n] \space\space\text{ with 'n' terms }
 
 $\therefore n^n > n! \implies n! = O(n)$
 
-> $\text{How } log(n!) \text{ is } O(n \cdot logn)$
+> $log(n!) \text{ is } O(n \cdot logn)$
 
 $\text{Note that } n \cdot logn = log(n^n)$
 

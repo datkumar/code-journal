@@ -71,7 +71,7 @@ Also refer these posts for writing better hash functions:
 
 > **`set`** and **`unordered_set`** store a collection of **unique keys** of a specified type
 
-C++ Reference: [`set`](https://en.cppreference.com/w/cpp/container/set), [`unordered_set`](https://en.cppreference.com/w/cpp/container/unordered_set)
+CPP Reference: [`set`](https://en.cppreference.com/w/cpp/container/set), [`unordered_set`](https://en.cppreference.com/w/cpp/container/unordered_set)
 
 **Declaration**: `set<Type> s1;` , `unordered_set<Type> us1;`
 
@@ -242,7 +242,7 @@ int main () {
 
 > `map` and `unordered_map` store a collection of pairs of **key-value mappings** with **unique keys**
 
-C++ Reference: [`map`](https://en.cppreference.com/w/cpp/container/map) , [`unordered_map`](https://en.cppreference.com/w/cpp/container/unordered_map)
+CPP Reference: [`map`](https://en.cppreference.com/w/cpp/container/map) , [`unordered_map`](https://en.cppreference.com/w/cpp/container/unordered_map)
 
 **Declaration**: `map<keyType,valueType>` , `unordered_map<keyType,valueType>`
 
@@ -486,7 +486,7 @@ cout << "]" << endl;  // [ {4, w}, {3, r}, {1, p}, ]
 
 ## Tuple
 
-- C++ reference: [`tuple`](https://en.cppreference.com/w/cpp/utility/tuple)
+- CPP Reference: [`tuple`](https://en.cppreference.com/w/cpp/utility/tuple)
 - Used for clubbing multiple items of different types together
 
 ```cpp title="tuple"

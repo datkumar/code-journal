@@ -22,7 +22,7 @@ tags: [cpp, stl]
 - `.swap(other)` - Swap content of current container with `other` container of same type
 - `.resize(n)` , `resize(n,val)` - Resize container to contain `n` elements. Can also pass default value `val` to set newly created elements as
 
-> The **`emplace`** member functions (like `emplace_back`, `emplace_front`, `emplace_front`, `emplace` etc.) perform insertions slightly faster than regular `push` or `insert` functions as they construct the new element **in-place** (instead of constructing the element and then copying it to that place). These are particularly useful for bulky **composite types** where copying is expensive. They take single list of variadic arguments required for that composite object
+> The **`emplace`** member functions (like `emplace_back`, `emplace_front`, `emplace_front`, `emplace` etc.) perform insertions slightly faster than regular `push` or `insert` functions as they construct the new element **in-place** (instead of constructing the element and then **copying** it to that place). They take single list of **variadic arguments** required to construct the object. These are particularly useful for bulky **composite types** where copying is expensive.
 
 ## Adaptors for Sequence Containers
 
@@ -36,7 +36,7 @@ They provide a **wrapper interface** for sequential containers. These are:
 
 ## Singly Linked-List
 
-- C++ Reference: [`forward_list`](https://en.cppreference.com/w/cpp/container/forward_list)
+- CPP Reference: [`forward_list`](https://en.cppreference.com/w/cpp/container/forward_list)
 - **Declaration**: `forward_list<Type> ll;`
 - Supports `O(1)` **insertion/deletion** if **location specified** (only links get updated)
 - Operations at the **start** are `O(1)` and `O(N)` elsewhere.
@@ -153,7 +153,7 @@ int main () {
 
 ## Doubly-Linked List
 
-- C++ Reference: [`list`](https://en.cppreference.com/w/cpp/container/list)
+- CPP Reference: [`list`](https://en.cppreference.com/w/cpp/container/list)
 - **Declaration**: `list<Type> dll;`
 - Supports `O(1)` **insertion/deletion** if **location specified** (only links get updated)
 - Operations at the **start/end** are `O(1)`, but `O(N)` elsewhere
@@ -263,7 +263,7 @@ int main () {
 
 ## Double-ended Queue
 
-- C++ Reference: [`deque`](https://en.cppreference.com/w/cpp/container/deque)
+- CPP Reference: [`deque`](https://en.cppreference.com/w/cpp/container/deque)
 
 - **Declaration**: `deque<Type> dq;`
 - Operations at the **start** and **end** are `O(1)`, but `O(N)` elsewhere
@@ -378,7 +378,7 @@ int main () {
 
 ## Stack
 
-- C++ Reference: [`stack`](https://en.cppreference.com/w/cpp/container/stack)
+- CPP Reference: [`stack`](https://en.cppreference.com/w/cpp/container/stack)
 - The `stack` adaptor provides a **Stack** data structure wrapper to the container, which has the property of **Last-in First-out** i.e. **LIFO** (also called first-in last-out)
 - Supports operations **ONLY** at the **top** of Stack, which take `O(1)` time each
 - It's defined as:
@@ -456,7 +456,7 @@ int main () {
 
 ## Queue
 
-- C++ Reference: [`queue`](https://en.cppreference.com/w/cpp/container/queue)
+- CPP Reference: [`queue`](https://en.cppreference.com/w/cpp/container/queue)
 - The `queue` adaptor provides a **Queue** data structure wrapper to the container, which has the property of **First-in First-out** i.e. **FIFO** (also called last-in last-out)
 - **Insertion** occurs at the **back** and **Deletion** at the **front**, both taking `O(1)` time
 - It's defined as:
@@ -537,7 +537,7 @@ int main () {
 
 ## Heap
 
-- C++ Reference: [`priority_queue`](https://en.cppreference.com/w/cpp/container/priority_queue)
+- CPP Reference: [`priority_queue`](https://en.cppreference.com/w/cpp/container/priority_queue)
 - The `priority_queue` adaptor provides a **Heap** data structure wrapper to the container
 - Fast lookup of **highest-priority element** in `O(1)` time
 - Insertion/Deletions take upto `O(logN)` time

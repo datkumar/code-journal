@@ -3,6 +3,8 @@ title: Pointers
 tags: [cpp]
 ---
 
+<!-- TODO: Add Illustrative Memory layout diagram, Pointers vs References, L-Value & R-Value  -->
+
 ```cpp
 int x = 5;
 int *p1;

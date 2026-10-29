@@ -134,15 +134,11 @@ CPP Reference: [Structured binding declaration](https://en.cppreference.com/w/cp
 
 ## Smart Pointers
 
-These pointers safely handle automatic memory deallocation for objects that are no longer being referenced
-
-These pointers safely handle automatic memory deallocation using the [RAII](https://en.cppreference.com/cpp/language/raii) idiom when objects are no longer referenced, eliminating memory leaks common with raw pointers (new/delete).
+These pointers safely handle automatic memory deallocation using the [RAII](https://en.cppreference.com/cpp/language/raii) idiom when objects are no longer referenced, eliminating memory leaks common with manual memory management via raw pointers (`new` for allocations and `delete` for deallocations).
 
 - [`unique_ptr`](https://en.cppreference.com/w/cpp/memory/unique_ptr) : Only **ONE** pointer allowed to access the object. Copying is disabled, but ownership can be transferred via `std::move`.
 - [`shared_ptr`](https://en.cppreference.com/w/cpp/memory/shared_ptr) : **Multiple** pointers can access the same object. An internal **reference counter** tracks active owners; the resource is freed when the last `shared_ptr` goes out of scope.
 - [`weak_ptr`](https://en.cppreference.com/w/cpp/memory/weak_ptr) : A **non-owning observer** companion to `shared_ptr`. It does not increment the strong reference counter and is primarily used to break cyclic dependencies, such as in deadlocks
-
-<!-- TODO: Examples of Smart Pointers usage  -->
 
 ```cpp title="Smart Pointers usage example"
 struct Resource {
