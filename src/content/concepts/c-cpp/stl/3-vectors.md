@@ -172,20 +172,20 @@ vector<int> v1{105, 48, 23, 6, 94, 52};
 
 // Range-based for loop
 cout << "{ ";
-for (auto &x : v1) cout << x << ", ";
-cout << "}" << endl;
+for (const auto &x : v1) cout << x << ", ";
+cout << "}\n";
 // { 105, 48, 23, 6, 94, 52, }
 
 // For-loop with iterators
 cout << "{ ";
 for (auto itr = v1.begin(); itr != v1.end(); itr++) cout << *(itr) << ", ";
-cout << "}" << endl;
+cout << "}\n";
 // { 105, 48, 23, 6, 94, 52, }
 
 // Reverse traversal: For-loop with reverse iterators
 cout << "{ ";
 for (auto itr = v1.rbegin(); itr != v1.rend(); itr++) cout << *(itr) << ", ";
-cout << "}" << endl;
+cout << "}\n";
 // { 52, 94, 6, 23, 48, 105, }
 ```
 
@@ -194,56 +194,61 @@ cout << "}" << endl;
 ## Vector of custom data-type
 
 ```cpp
-void printVector (vector<int> &v) {
+void printVector (const vector<int> &v) {
     if (v.empty()) {
-        cout << "Vector is empty";
-
-    } else {
-        cout << "{ ";
-        for (int &num : v) cout << num << ", ";
-        cout << "}";
+        cout << "Vector is empty\n";
+        return;
     }
-    cout << endl;
+    cout << "{ ";
+    for (const int &num : v) cout << num << ", ";
+    cout << "}\n";
 }
 
 struct Student {
     int id;
     string name;
-    Student(int _id, string _name) : id(_id), name(_name) {}
+    Student (int _id, string _name) : id(_id), name(_name) {}
 };
 
-bool compareIds (Student &s1, Student &s2) {
+bool compareIds (const Student &s1, const Student &s2) {
     return (s1.id < s2.id);  // Assuming unique ids
 }
 
-void showStudents (vector<Student> &students) {
-    for (auto &s : students) cout << s.id << "\t" << s.name << endl;
+void showStudents (const vector<Student> &students) {
+    for (const Student &s : students) cout << s.id << "  " << s.name << "\n";
 }
 
 int main () {
-    // Constructor as well as List Initialization
+    cout << "======== PROGRAM START ========\n";
+    auto start = chrono::steady_clock::now();
+    /* =========================================================================== */
+    // Init Vector of objectsh (showing various object initialization ways):
     vector<Student> v1{
         Student(104, "Sai"),
-        Student{101, "Ramesh"},
-        Student(102, "Pankaj"),
-        Student{103, "Shyam"},
+        Student{102, "Ramesh"},
+        Student(105, "Pankaj"),
+        Student{101, "Nilesh"},
+        {103, "Jatin"},
     };
-
     showStudents(v1);
-    // 101     Ramesh
-    // 103     Shyam
-    // 102     Pankaj
-    // 104     Sai
+    /*
+        104  Sai
+        102  Ramesh
+        105  Pankaj
+        101  Nilesh
+        103  Jatin
+    */
 
     sort(v1.begin(), v1.end(), compareIds);
-
+    cout << "After Sorting:\n";
     showStudents(v1);
-    // 101     Ramesh
-    // 102     Pankaj
-    // 103     Shyam
-    // 104     Sai
-
-    return 0;
+    /*
+        101  Nilesh
+        102  Ramesh
+        103  Jatin
+        104  Sai
+        105  Pankaj
+    */
 }
 ```
 
@@ -268,40 +273,40 @@ Some better alternatives to `vector<bool>` are:
 - Generally, `emplace_back()` is slightly faster than `push_back()` as it **constructs the element in-place** while `push_back()` creates the element and then **copies** it. So, prefer `emplace_back()` for complex objects or fast insertion.
 - You can also pass the appropriate list of arguments to construct the vector element during `emplace_back()`, but for `push_back()`, you need to create the object first:
 
-  ```cpp
-  struct Student {
-      string name;
-      int roll;
-      float marks;
-      Student(string _name, int _roll, float _marks) : name(_name), roll(_roll), marks(_marks) {}
-  };
+```cpp
+struct Student {
+    string name;
+    int roll;
+    float marks;
+    Student(string _name, int _roll, float _marks) : name(_name), roll(_roll), marks(_marks) {}
+};
 
-  int main () {
-      vector<pair<char, int>> v1;
-      v1.emplace_back('x', 12);
-      v1.push_back({'y', 15});
-      v1.push_back(make_pair('z', 17));
-      for (auto &p : v1) cout << p.first << ", " << p.second << endl;
-      // x, 12
-      // y, 15
-      // z, 17
+int main () {
+    vector<pair<char, int>> v1;
+    v1.emplace_back('x', 12);
+    v1.push_back({'y', 15});
+    v1.push_back(make_pair('z', 17));
+    for (const auto &p : v1) cout << p.first << ", " << p.second << "\n";
+    // x, 12
+    // y, 15
+    // z, 17
 
-      vector<Student> students;
-      students.push_back(Student("Ram", 101, 87.25));
-      students.emplace_back("Jack", 102, 65.81);
-      students.push_back(Student{"Shyam", 103, 75.34});
-      students.emplace_back(Student{"John", 104, 65.32});
-      students.emplace_back(Student("Joe", 105, 35.26));
-      for (auto &st : students) {
-          cout << st.roll << ". " << st.name << " got " << st.marks << endl;
-      }
-      // 101. Ram got 87.25
-      // 102. Jack got 65.81
-      // 103. Shyam got 75.34
-      // 104. John got 65.32
-      // 105. Joe got 35.26
-  }
-  ```
+    vector<Student> students;
+    students.push_back(Student("Ram", 101, 87.25));
+    students.emplace_back("Jack", 102, 65.81);
+    students.push_back(Student{"Shyam", 103, 75.34});
+    students.emplace_back(Student{"John", 104, 65.32});
+    students.emplace_back(Student("Joe", 105, 35.26));
+    for (const Student &st : students) {
+        cout << st.roll << ". " << st.name << " got " << st.marks << "\n";
+    }
+    // 101. Ram got 87.25
+    // 102. Jack got 65.81
+    // 103. Shyam got 75.34
+    // 104. John got 65.32
+    // 105. Joe got 35.26
+}
+```
 
 ## Difference between `memset()` and `fill()`
 

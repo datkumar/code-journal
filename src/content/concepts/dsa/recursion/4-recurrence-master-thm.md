@@ -1,41 +1,69 @@
 ---
-title: Recurrence relations and Master theorem
+title: Recurrence Relations and Master theorem
 tags: [dsa, recursion]
 ---
 
-## Recurrence relation
+**Contents**:
 
-A recurrence relation is an equation that recursively defines elements in a sequence of numbers as a function of the preceeding one(s)
+- [Recurrence Relations](#recurrence-relations)
+  - [Order](#order)
+  - [Initial Terms](#initial-terms)
+  - [1. Factorial of a number](#1-factorial-of-a-number)
+  - [2. Fibonacci number](#2-fibonacci-numbers)
+- [Decreasing functions](#decreasing-functions)
+- [Master Theorem for evaluating Decreasing functions](#master-theorem-for-evaluating-decreasing-functions)
+  - [Examples of decreasing function evaluated by Master theorem](#examples-of-decreasing-functions-evaluated-by-master-theorem)
+- [Dividing functions](#dividing-functions)
+- [Master Theorem for evaluating Dividing functions](#master-theorem-for-evaluating-dividing-functions)
+- [Tracing Recursion calls](#tracing-recursion-calls)
 
-**Order**: The order of a recurrence relation refers to the highest difference between the subscripts of the term being defined and the preceding terms used in the equation. It essentially tells you **how far back you need to look** in the sequence to calculate the $n^{th}$ term
+## Recurrence Relations
 
-**Initial Terms**: These are the **starting seed values** of the sequence you need to kick off the calculations using the recurrence relation.
+A recurrence relation is an equation that recursively defines elements in a sequence of numbers as a function of the preceding one(s)
 
-## 1. Factorial of a number
+### Order
+
+The order of a recurrence relation refers to the highest difference between the subscripts of the term being defined and the preceding terms used in the equation. It essentially tells you **how far back you need to look** in the sequence to calculate the $n^{th}$ term
+
+### Initial Terms
+
+These are the **starting seed values** of the sequence you need to kick off the calculations using the recurrence relation.
+
+Below are some examples of recurrence relations for common recursive functions
+
+### 1. Factorial of a number
 
 The factorial function is defined as:
 
 $$
-f(n) =
-\begin{cases}
-1 & \text{if n = 0} \\\\ n \ast f(n-1) & \text{if n > 0}
+f(n) = \begin{cases}
+    1 & \text{if } n = 0 \\
+    n \cdot f(n-1) & \text{if } n > 0
 \end{cases}
 $$
 
 And the recurrence relation can be written as:
 
 $$
-\boxed{F_n = n \cdot F_{n-1}} \quad \text{with} \quad F_0 = 1
+\boxed{F_n = n \cdot F_{n-1}}
+$$
+
+$$
+\text{with} \quad F_0 = 1
 $$
 
 Here, the order is $1$ and number of initial terms is also $1$
 
-## 2. Fibonacci number
+### 2. Fibonacci numbers
 
 The $n^{th}$ fibonacci number is given by function:
 
 $$
-f(n) = \begin{cases} 0 & \text{if n = 0} \\\\ 1 & \text{if n = 1} \\\\ f(n-1) + f(n-2) & \text{if n > 1} \end{cases}
+f(n) = \begin{cases}
+    0 & \text{if } n = 0 \\
+    1 & \text{if } n = 1 \\
+    f(n-1) + f(n-2) & \text{if } n > 1
+\end{cases}
 $$
 
 And the recurrence relation can be written as:
@@ -43,7 +71,11 @@ And the recurrence relation can be written as:
 $$
 \boxed{
     F_{n} = F_{n-1} + F_{n-2}
-} \space\space \text{with} \space\space F_0 = 0, \space F_1 = 1
+}
+$$
+
+$$
+\text{with} \quad F_0 = 0, \space F_1 = 1
 $$
 
 Here, the order is $2$ and number of initial terms is also $2$
@@ -61,8 +93,8 @@ Here are a few examples of decreasing functions:
 ```cpp title="Example 1"
 void func(int n) {          // T(n)
     if (n > 0) {
-        cout << n << endl; // 1
-        func(n - 1);       // T(n-1)
+        cout << n << endl;  // 1
+        func(n - 1);        // T(n-1)
     }
 }
 ```
@@ -70,7 +102,11 @@ void func(int n) {          // T(n)
 The recurrence relation for above recursive function is:
 
 $$
-T(n) = T(n-1) + 1 \space\space\text{and assuming}\space T(0)=1
+T(n) = T(n-1) + n\cdot1 \space\space
+$$
+
+$$
+\text{with}\quad T(0)=1
 $$
 
 <br>
@@ -78,8 +114,8 @@ $$
 ```cpp title="Example 2"
 void func(int n) {                    // T(n)
     if (n > 0) {
-        for (int i = 0; i < n; i++) {
-            cout << n << endl;        // n
+        for (int i = 0; i < n; i++) { // n
+            cout << n << endl;        // 1
         }
         func(n - 1);                  // T(n-1)
     }
@@ -89,14 +125,18 @@ void func(int n) {                    // T(n)
 The recurrence relation of above recursive function is:
 
 $$
-T(n) = T(n-1) + n \space\space\text{and assuming}\space T(0)=1
+T(n) = T(n-1) + n\cdot1
+$$
+
+$$
+\text{with}\quad T(0)=1
 $$
 
 ```cpp title="Example 3"
 void func(int n) {                          // T(n)
     if (n > 0) {
-        for (int i = 0; i < n; i *= 2) {
-            cout << n << endl;              // log(n)
+        for (int i = 0; i < n; i *= 2) {    // log(n)
+            cout << n << endl;              // 1
         }
         func(n - 1);                        // T(n-1)
         func(n - 1);                        // T(n-1)
@@ -107,7 +147,11 @@ void func(int n) {                          // T(n)
 The recurrence relation of above recursive function is:
 
 $$
-T(n) = 2T(n-1) + log(n) \space\space\text{and assuming}\space T(0)=1
+T(n) = 2 \cdot T (n-1) + log_2(n) \cdot 1
+$$
+
+$$
+\text{with}\quad T(0)=1
 $$
 
 ---
@@ -124,13 +168,13 @@ $$
 }
 $$
 
-such that:
+such that $a,b > 0$ and
 
 $$
-a,b > 0 \space\space\text{and}\space\space
 \boxed{
     f(n) = O(n^k)
-}\space\text{where}\space k \ge 0
+}
+\quad\text{where}\quad k \ge 0
 $$
 
 It can be solved with the following cases:
@@ -141,7 +185,7 @@ It can be solved with the following cases:
 | $$a = 1$$ | $O\left(f(n) \cdot n \right) = O(n^{k+1})$                                             |
 | $$a > 1$$ | $O\left(f(n) \cdot a^{n/b} \right) = O( f(n) \cdot a^{n/b} ) = O( n^k \cdot a^{n/b} )$ |
 
-### Examples of decreasing function evaluated by Master theorem
+### Examples of decreasing functions evaluated by Master theorem
 
 - $T(n) = T(n-1) + 1 \implies O(n)$
 - $T(n) = T(n-1) + n \implies O(n^2)$
@@ -173,7 +217,11 @@ void func(int n) {            // T(n)
 The recurrence relation for above recursive function is:
 
 $$
-T(n) = T \left(\frac{n}{2} \right) + 1 \space\space\text{and assuming}\space T(1)=1
+T(n) = T \left(\frac{n}{2} \right) + 1
+$$
+
+$$
+\text{with}\quad T(1)=1
 $$
 
 <br>
@@ -181,8 +229,8 @@ $$
 ```cpp title="Example 2"
 void func(int n) {                        // T(n)
     if (n > 1) {
-        for (int i = 0; i < n; i *= 2) {
-            cout << n << endl;            // log(n)
+        for (int i = 0; i < n; i *= 2) {  // log(n)
+            cout << n << endl;            // 1
         }
         func(n / 3);                      // T(n/3)
         func(n / 3);                      // T(n/3)
@@ -193,7 +241,11 @@ void func(int n) {                        // T(n)
 The recurrence relation of above recursive function is:
 
 $$
-T(n) = 2T \left(\frac{n}{3} \right) + logn \space\space\text{and assuming}\space T(1)=1
+T(n) = 2 \cdot T \left(\frac{n}{3} \right) + log_2(n) \cdot 1
+$$
+
+$$
+\text{with}\quad T(1)=1
 $$
 
 <br>
@@ -210,7 +262,11 @@ void func(int n) {            // T(n)
 The recurrence relation of above recursive function is:
 
 $$
-T(n) = T( \sqrt{n}) + 1 \space\space\text{and assuming}\space T(2)=1
+T(n) = T( \sqrt{n}) + 1
+$$
+
+$$
+\text{with}\quad T(2)=1
 $$
 
 ---
@@ -227,13 +283,12 @@ $$
 }
 $$
 
-such that:
+such that $a\ge1,\space b > 1$ and
 
 $$
-a\ge1,\space b > 1 \space\space \text{and} \space\space
 \boxed{
     f(n) = \boldsymbol{\Theta \left( n^k \cdot log^p(n) \right)}
-}\space\space \text{where} \space\space  k \ge 0
+}\quad \text{where} \quad  k \ge 0
 $$
 
 - $n$ is the **input size**
@@ -399,8 +454,8 @@ $$
 // Assuming base case: T(0) = 1
 void func(int n){                           // T(n)
     if(n > 0){
-        for(int i = 1; i < n; i *= 2){
-            cout << i << endl;              // log(n)
+        for(int i = 1; i < n; i *= 2){      // log(n)
+            cout << i << endl;              // 1
         }
         func(n - 1);                        // T(n-1)
     }
@@ -410,7 +465,11 @@ void func(int n){                           // T(n)
 The recurrence relation of above recursive function is:
 
 $$
-T(n) = T(n-1) + log(n) \space\space\text{and assuming}\space T(0)=1
+T(n) = T(n-1) + log_2(n) \cdot 1
+$$
+
+$$
+\text{with}\quad T(0)=1
 $$
 
 We can trace the recusive calls in a tree as:
@@ -441,12 +500,12 @@ linkStyle 6 stroke-width:3px, stroke-dasharray:6;
 
 So, the total time would be:
 
-$ T(n) = 1 + log(1) + log(2) + ... + log(n-2) + log(n-1) + log(n) $
+$ T(n) = 1 + log(1) + log(2) + log(3) + ... + log(n-2) + log(n-1) + log(n) $
 
-$ T(n) = 1 + log \left(1 \cdot 2 \cdot ... \cdot (n-2) \cdot (n-1) \cdot n \right) $
+$ T(n) = 1 + \log \left[ 1 \cdot 2 \cdot 3 \cdot ... \cdot (n-2) \cdot (n-1) \cdot n \right] $
 
 $ T(n) = 1 + log(n!) $
 
-$ \text{We know } log(n!) \text{ is } O(n\cdot logn) $ ... See [here](/code-journal/dsa/dsa/algorithm-complexity#asymptotic-notations)
+$ \text{We know } log(n!) \text{ is } O(n\cdot logn) $ ... See [here](/code-journal/dsa/dsa/algorithm-complexity#notable-comparisons)
 
-$ \therefore T(n) = O(n\cdot logn) $
+$ \therefore \space T(n) = O(n\cdot logn) $

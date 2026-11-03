@@ -26,21 +26,6 @@ Throw exception when stack underflow or overflow occurs
 
 > The **insertion** and **deletion** operations would occur at the **beginning** of the internal **linked-list**
 
-### Diagrams of some operations
-
-<details>
-<summary><strong>Expand to see diagrams</strong></summary>
-
-**`push(val)` operation**:
-
-![push operation](/code-journal/diagrams/stack-ll-push.svg)
-
-**`pop()` operation**:
-
-![pop() operation](/code-journal/diagrams/stack-ll-pop.svg)
-
-</details>
-
 ### Implementation Code
 
 ```cpp title="C++"
@@ -149,3 +134,13 @@ int main () {
 ```
 
 Making `Stack` class as `friend` of `Node` class introduces **tight coupling** between the two. Use getters and setters to avoid this.
+
+### Diagrams of some operations
+
+**`push(val)` operation**:
+
+![push operation](/code-journal/diagrams/stack-ll-push.svg)
+
+**`pop()` operation**:
+
+![pop() operation](/code-journal/diagrams/stack-ll-pop.svg)

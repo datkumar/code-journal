@@ -146,7 +146,7 @@ Refer: [Wikipedia section](https://en.wikipedia.org/wiki/Amortized_analysis), [S
 
 ---
 
-Some notable comparisons:
+## Notable Comparisons
 
 > $n! \text{ is } O(n^n)$
 

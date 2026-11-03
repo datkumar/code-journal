@@ -5,11 +5,21 @@ tags: [dsa, recursion]
 
 Inspired from [this video](https://youtu.be/sGjAe6y299g?si=5wmAdFYiqgNijWT7) by "Dreams of Code"
 
+**Contents**:
+
+- [Loops](#loops)
+  - [The `while` loop](#the-while-loop)
+  - [The `for` Loop](#the-for-loop)
+  - [The Range-based `for` Loop](#the-range-based-for-loop)
+- [Recursion](#recursion)
+  - [Recursion uses the Call-Stack](#recursion-uses-the-call-stack)
+  - [Tail-Call Optimization](#tail-call-optimization)
+
 ## Loops
 
 Loops are used to do a certain action a number of times. The code inside the loop braces `{...}` keeps executing as long as the condition check on tracker variable evaluates to `true`
 
-### The `while` loop
+### The `while` Loop
 
 ```txt title="Pseudocode"
 init tracker
@@ -55,7 +65,7 @@ Generally `for` loops are used when **the number of iterations are known** or th
 
 Note that the "update tracker" step is done **AFTER** each iteration. A common use-case of such loop is iterating over a structure. To fulfill this, a new type of loop was introduced with nicer syntax:
 
-### The range-based `for` loop
+### The Range-based `for` Loop
 
 ```txt title="Pseudocode"
 for (item in structure) {
@@ -111,7 +121,7 @@ int solveUsingRecursion(int N) {
 
 > Thus, both loop and recursion can achieve the **same final answer**. So _technically_, you can use recursion to achieve the same work as loops. But that doesn't always mean you _should_
 
-### Recursion uses a call stack
+### Recursion uses the Call-Stack
 
 ```txt
 |           |
@@ -158,7 +168,7 @@ const int STEP = 1e4;
 
 void func (int curr) {
     if (curr % STEP == 0) {
-        cout << N - curr << endl;
+        cout << N - curr << "\n";
     }
     if (curr == 0) {        // Base case i.e. Exit Condition
         return;

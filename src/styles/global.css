@@ -63,7 +63,7 @@
 
 /* --- DARK THEME --- */
 :root[data-theme="dark"] {
-  --bgColor: rgb(30, 30, 31);
+  --bgColor: rgb(32, 32, 32);
   --textColor: #d9e8eb;
   --accentColor: #f8b551;
   --themeSliderBgColor: #0b325e;
@@ -194,7 +194,7 @@ a:visited {
 }
 
 a:hover {
-  transform: scale(1.05);
+  transform: scale(1.035);
   /* font-weight: bold; */
   text-decoration: underline;
 }
@@ -279,7 +279,7 @@ td {
   border: 2px solid var(--lineColor);
   border-collapse: collapse;
   /* padding: 5px 10px; */
-  padding: 6px 16px;
+  padding: 5px 12px;
   /* Increased horizontal padding (from 10px to 16px) */
 }
 

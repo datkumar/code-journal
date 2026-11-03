@@ -29,22 +29,64 @@ Note: `true` is `1` and `false` is `0` in these functions
 Code to print **ALL punctuation** characters:
 
 ```cpp
-char c = numeric_limits<char>::min();
-while (true) {
-    if (ispunct(c)) {
-        cout << c << " ";
+vector<char> getAllPunctuations () {
+    vector<char> ans;
+    char ch = numeric_limits<char>::min();
+    while (true) {
+        // Add current character to answer if it is a punctuation
+        if (ispunct(ch)) ans.emplace_back(ch);
+        // Keep incrementing ahead
+        ch++;
+        // Stop loop when it overflows back to starting value
+        if (ch == numeric_limits<char>::min()) break;
     }
-    c++;
-    // Stop when it overflows back to starting value
-    if (c == numeric_limits<char>::min()) {
-        break;
+    return ans;
+}
+
+int main () {
+    const vector<char> allPuncts = getAllPunctuations();
+    for (const char &ch : allPuncts) {
+        cout << (int)ch << " " << ch << "\n";
     }
 }
-cout << endl;
 ```
 
-Output:
+<details>
+<summary>Output</summary>
 
-```txt
-! " # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~
+```txt title="Punctuation Characters"
+33 !
+34 "
+35 #
+36 $
+37 %
+38 &
+39 '
+40 (
+41 )
+42 *
+43 +
+44 ,
+45 -
+46 .
+47 /
+58 :
+59 ;
+60 <
+61 =
+62 >
+63 ?
+64 @
+91 [
+92 \
+93 ]
+94 ^
+95 _
+96 `
+123 {
+124 |
+125 }
+126 ~
 ```
+
+</details>

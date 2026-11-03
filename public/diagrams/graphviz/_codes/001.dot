@@ -2,12 +2,7 @@ graph {
     rankdir = LR;
     node [shape = circle; width = 0.5; height = 0.5; fixedsize = true;];
     
-    // Nodes separated into subgraphs:
-    
-    subgraph {
-        8;
-    }
-    
+    // Nodes separated into subgraphs (connected components):    
     subgraph {
         0;
         1;
@@ -16,7 +11,6 @@ graph {
         7;
         9;
     }
-    
     subgraph {
         3;
         4;
@@ -25,7 +19,10 @@ graph {
         10;
         11;
     }
-    
+    subgraph {
+        8;
+    }
+
     // Edges:
     0 -- 1;
     0 -- 2;

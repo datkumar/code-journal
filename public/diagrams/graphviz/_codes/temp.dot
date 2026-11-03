@@ -8,6 +8,7 @@
  * VSCode Extension: Graphviz Interactive Preview 
  * Link: https://marketplace.visualstudio.com/items?itemName=tintinweb.graphviz-interactive-preview
  */
+
 digraph {
     // rankdir = LR;
     node [shape = circle; width = 0.5; height = 0.5; fixedsize = true;];

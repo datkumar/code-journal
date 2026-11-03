@@ -3,7 +3,7 @@ title: Switch-case in C++
 tags: [cpp]
 ---
 
-When initializing separate variables inside switch cases, wrap the case code inside `{_}` braces
+When initializing separate variables inside switch cases, wrap the case code inside `{...}` braces
 
 Refer [this answer](https://stackoverflow.com/a/11578973)
 

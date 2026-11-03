@@ -34,7 +34,7 @@ int main () {
     for (const auto &x : nums) {  // const int&
         cout << x << ", ";
     }
-    cout << "]" << endl;  // [ 1, 2, 3, 4, ]
+    cout << "]\n";  // [ 1, 2, 3, 4, ]
 
     return 0;
 }
@@ -51,23 +51,23 @@ Use `[capture_list] (params) -> returnType {...} (args)` if you want to explicit
 
 ```cpp title="Lambda expressions"
 // Define and call
-[](int a, int b){ cout << "Sum: " << a + b << endl; }(3, 6);
+[](int a, int b){ cout << "Sum: " << a + b << "\n"; }(3, 6);
 // Sum: 9
 
 // Define, call and store result
 int res = [](int a, int b){ return a + b; }(2, 5);
-cout << "Result: " << res << endl;
+cout << "Result: " << res << "\n";
 // Result: 7
 
 // Store reference to function definition
 auto add = [](int a, int b){ return a + b; };
 int ans = add(1, 4);
-cout << "add(1,4): " << ans << endl;
+cout << "add(1,4): " << ans << "\n";
 // add(1,4): 5
 
 // Explicitly specify return-type
 int product = [](int a, int b) -> int { return a * b; }(3, 4);
-cout << "Product: " << product << endl;
+cout << "Product: " << product << "\n";
 // Product: 12
 ```
 
@@ -100,7 +100,7 @@ CPP Reference: [Structured binding declaration](https://en.cppreference.com/w/cp
     tuple<int, double, string> myTuple(420, 3.14159, "Hello World");
     // Creates variables x,y,z of type int, double, string respectively
     auto [x, y, z] = myTuple;
-    cout << x << " " << y << " " << z << endl;
+    cout << x << " " << y << " " << z << "\n";
     // Output: 420 3.14159 Hello World
 
 
@@ -110,7 +110,7 @@ CPP Reference: [Structured binding declaration](https://en.cppreference.com/w/cp
     };
     // Uses reference to each key,value entry in map
     for (auto &[key, val] : mp) {
-      cout << key << " -> " << val << endl;
+      cout << key << " -> " << val << "\n";
     }
     /* Output:
     1 -> bruh
@@ -122,10 +122,10 @@ CPP Reference: [Structured binding declaration](https://en.cppreference.com/w/cp
     // Extracting fields of custom "Point" data type
     auto myPair = make_pair(Point(2, 3), 'z');
     auto &[myPoint, alphabet] = myPair;
-    cout << myPoint.x << " " << myPoint.y << " " << alphabet << endl;
+    cout << myPoint.x << " " << myPoint.y << " " << alphabet << "\n";
     // 2 3 z
     auto &[x_coord, y_coord] = myPoint;
-    cout << x_coord << " " << y_coord << endl;
+    cout << x_coord << " " << y_coord << "\n";
     // 2 3
 
     return 0;
@@ -142,46 +142,46 @@ These pointers safely handle automatic memory deallocation using the [RAII](http
 
 ```cpp title="Smart Pointers usage example"
 struct Resource {
-    Resource () { cout << "Resource acquired" << endl; }
-    ~Resource () { cout << "Resource destroyed" << endl; }
-    void greet () { cout << "Hello from Resource!" << endl; }
+    Resource () { cout << "Resource acquired\n"; }
+    ~Resource () { cout << "Resource destroyed\n"; }
+    void greet () { cout << "Hello from Resource!\n"; }
 };
 
 int main () {
     {  // unique_ptr => Exclusive ownership
-        cout << "==== UNIQUE POINTER BLOCK START ====" << endl;
+        cout << "==== UNIQUE POINTER BLOCK START ====\n";
         unique_ptr<Resource> ptr1 = make_unique<Resource>();
         ptr1->greet();
 
         // unique_ptr<Resource> ptr2 = ptr1;  // Throws error
         unique_ptr<Resource> ptr2 = move(ptr1);  // Ownership transferred
         if (!ptr1) {
-            cout << "ptr1 is now null after move" << endl;
+            cout << "ptr1 is now null after move\n";
         }
         ptr2->greet();
-        cout << "==== UNIQUE POINTER BLOCK END ====" << endl;
+        cout << "==== UNIQUE POINTER BLOCK END ====\n";
     }  // ptr2 goes out of scope here, resource is automatically destroyed
 
     {  // shared_ptr => Shared ownership with reference counting
-        cout << "\n==== SHARED POINTER BLOCK START ====" << endl;
+        cout << "\n==== SHARED POINTER BLOCK START ====\n" ;
         shared_ptr<Resource> s1 = make_shared<Resource>();
-        cout << "Use count after s1: " << s1.use_count() << endl;  // 1
+        cout << "Use count after s1: " << s1.use_count() << "\n";  // 1
         {
             shared_ptr<Resource> s2 = s1; // Shared ownership
-            cout << "Use count inside inner block: " << s1.use_count() << endl;  // 2
+            cout << "Use count inside inner block: " << s1.use_count() << "\n";  // 2
         }  // s2 goes out of scope, reference count drops
 
-        cout << "Use count after s2 destroyed: " << s1.use_count() << endl;  // 1
-        cout << "==== SHARED POINTER BLOCK END ====" << endl;
+        cout << "Use count after s2 destroyed: " << s1.use_count() << "\n";  // 1
+        cout << "==== SHARED POINTER BLOCK END ====" << "\n";
     }  // s1 goes out of scope, resource is destroyed
 
     {  // weak_ptr => Non-owning observer
-        cout << "\n==== WEAK POINTER BLOCK START ====" << endl;
+        cout << "\n==== WEAK POINTER BLOCK START ====" << "\n";
         weak_ptr<Resource> w1;
         {
             auto sharedRes = make_shared<Resource>();
             w1 = sharedRes;  // Does not increment strong reference count
-            cout << "Weak ptr expired? " << (w1.expired() ? "Yes" : "No") << endl;
+            cout << "Weak ptr expired? " << (w1.expired() ? "Yes" : "No") << "\n";
 
             // Access resource via .lock() which returns a temporary shared_ptr
             if (auto tempShared = w1.lock()) {
@@ -189,8 +189,8 @@ int main () {
             }
         }  // sharedRes goes out of scope, resource is destroyed here
 
-        cout << "Weak ptr expired after scope? " << (w1.expired() ? "Yes" : "No") << endl;
-        cout << "==== WEAK POINTER BLOCK END ====" << endl;
+        cout << "Weak ptr expired after scope? " << (w1.expired() ? "Yes" : "No") << "\n";
+        cout << "==== WEAK POINTER BLOCK END ====\n";
     }
 
     return 0;

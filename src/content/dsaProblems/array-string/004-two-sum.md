@@ -173,7 +173,7 @@ $ = log(n-1) + log(n-2) + ... + log(1) $
 
 $ = log[ (n-1) \ast (n-2) ... \ast 1] $
 
-$ = log[(n-1)!] \approx O(n \cdot logn) $ ... refer [here](/code-journal/dsa/dsa/algorithm-complexity#asymptotic-notations)
+$ = log[(n-1)!] \approx O(n \cdot logn) $ ... refer [here](/code-journal/dsa/dsa/algorithm-complexity#notable-comparisons)
 
 | Metric | Complexity          |
 | ------ | ------------------- |

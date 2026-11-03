@@ -118,49 +118,49 @@ class DynamicArray {
 // Demo run:
 int main () {
     DynamicArray arr(2);  // Initial capacity of 2
-    cout << "capacity: " << arr.getCapacity() << ", size: " << arr.getSize() << ", isEmpty: " << arr.isEmpty() << endl;
+    cout << "capacity: " << arr.getCapacity() << ", size: " << arr.getSize() << ", isEmpty: " << arr.isEmpty() << "\n";
 
     arr.pushback(10), arr.pushback(20);
-    cout << "capacity: " << arr.getCapacity() << ", size: " << arr.getSize() << ", isEmpty: " << arr.isEmpty() << endl;
+    cout << "capacity: " << arr.getCapacity() << ", size: " << arr.getSize() << ", isEmpty: " << arr.isEmpty() << "\n";
 
     arr.pushback(30);
-    cout << "capacity: " << arr.getCapacity() << ", size: " << arr.getSize() << ", isEmpty: " << arr.isEmpty() << endl;
+    cout << "capacity: " << arr.getCapacity() << ", size: " << arr.getSize() << ", isEmpty: " << arr.isEmpty() << "\n";
 
-    cout << "arr.get(1): " << arr.get(1) << endl;
+    cout << "arr.get(1): " << arr.get(1) << "\n";
     arr.set(1, 99);
-    cout << "arr.get(1): " << arr.get(1) << endl;
+    cout << "arr.get(1): " << arr.get(1) << "\n";
 
     try {  // Out of Bounds get() example:
-        cout << "Attempting arr.get(25) ..." << endl;
+        cout << "Attempting arr.get(25) ...\n";
         int temp = arr.get(25);
     } catch (const std::out_of_range& e) {
-        cerr << "An exception occurred: " << e.what() << endl;
+        cerr << "An exception occurred: " << e.what() << "\n";
     }
 
     // Printing array:
     cout << "Array elements: [";
     for (int i = 0; i < arr.getSize(); i++) cout << arr.get(i) << ", ";
-    cout << "]" << endl;
+    cout << "]" << "\n";
 
-    cout << "\nCopy Constructor and Deep Cloning:" << endl;
+    cout << "\nCopy Constructor and Deep Cloning:\n";
     DynamicArray brr = arr;  // Invokes Copy Constructor
     brr.set(0, 45);          // Modify copy to prove it's a deep copy (independent)
-    cout << "Original arr[0]: " << arr.get(0) << " (should be 10)" << endl;
-    cout << "Copied   brr[0]: " << brr.get(0) << " (should be 45)" << endl;
+    cout << "Original arr[0]: " << arr.get(0) << " (should be 10)\n";
+    cout << "Copied   brr[0]: " << brr.get(0) << " (should be 45)\n";
 
-    cout << "\nPopback and Underflow Exception:" << endl;
+    cout << "\nPopback and Underflow Exception:" << "\n";
     try {  // Array has 3 elements. Try popping more than 3 times
-        cout << "size: " << arr.getSize() << ", isEmpty: " << arr.isEmpty() << endl;
-        cout << "Popping thrice.." << endl;
+        cout << "size: " << arr.getSize() << ", isEmpty: " << arr.isEmpty() << "\n";
+        cout << "Popping thrice.." << "\n";
         arr.popback();
         arr.popback();
         arr.popback();
         // Array is now empty. Trying to pop again will trigger underflow.
-        cout << "size: " << arr.getSize() << ", isEmpty: " << arr.isEmpty() << endl;
-        cout << "Trying to pop from empty array..." << endl;
+        cout << "size: " << arr.getSize() << ", isEmpty: " << arr.isEmpty() << "\n";
+        cout << "Trying to pop from empty array..." << "\n";
         arr.popback();
     } catch (const std::underflow_error& e) {
-        cerr << "An exception occurred: " << e.what() << endl;
+        cerr << "An exception occurred: " << e.what() << "\n";
     }
 
     return 0;
