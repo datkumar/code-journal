@@ -1,5 +1,5 @@
 ---
-title: Graph Theory terminology
+title: Graph Theory Terminology
 tags: [dsa, graph, tree]
 ---
 
@@ -27,7 +27,7 @@ tags: [dsa, graph, tree]
 
 **PART 2**: [**Trees**](#trees)
 
-- [Tree](#tree)
+- [Trees](#trees)
   - [Forest](#forest)
 - [Rooted Tree](#rooted-tree)
   - [Types of nodes in a rooted tree](#types-of-nodes-in-a-rooted-tree)
@@ -286,8 +286,6 @@ A topological ordering is possible if and only if the graph has no directed cycl
 ---
 
 # Trees
-
-## Tree
 
 ![Tree examples](/code-journal/images/tree-examples.png)
 

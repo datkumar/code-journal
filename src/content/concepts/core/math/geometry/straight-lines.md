@@ -3,7 +3,7 @@ title: Straight Lines (2D)
 tags: [math, geometry]
 ---
 
-**List of Contents**:
+**Contents**:
 
 - [Distance between two points](#distance-between-two-points)
 - [Slope of a Line](#slope-of-a-line)

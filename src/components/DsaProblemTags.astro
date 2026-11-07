@@ -68,7 +68,7 @@ const { links, techniques, level } = Astro.props;
     {
       techniques.map((t) => (
         <>
-          <code>{t.toUpperCase()}</code>&ensp;
+          <code>{t}</code>&ensp;
         </>
       ))
     }
@@ -84,7 +84,7 @@ const { links, techniques, level } = Astro.props;
     }
   </div>
 </div>
-<br />
+<hr />
 
 <style>
   code {

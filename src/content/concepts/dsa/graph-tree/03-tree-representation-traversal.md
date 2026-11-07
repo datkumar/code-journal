@@ -3,6 +3,23 @@ title: Tree Representation and Traversal
 tags: [dsa, tree]
 ---
 
+**Contents**:
+
+- [Considerations for Tree representation](#considerations-for-tree-representation)
+- [Tree Representation](#tree-representation)
+- [Tree Node Representation](#tree-node-representation)
+- [N-ary trees](#n-ary-trees)
+- [Array representation of Binary Tree](#array-representation-of-binary-tree)
+- [Binary Tree Traversal](#binary-tree-traversal)
+  - [Pre-order Traversal](#pre-order-traversal)
+  - [Post-order Traversal](#post-order-traversal)
+  - [In-order Traversal](#in-order-traversal)
+  - [Level Order Traversal](#level-order-traversal)
+- [Algorithm Analysis of Traversal](#algorithm-analysis-of-traversal)
+- [N-ary tree Traversal](#n-ary-tree-traversal)
+
+## Considerations for Tree representation
+
 Trees as used in computing are similar to but can be different from mathematical constructs of trees in graph theory. In computer science, a tree is a widely used abstract data type that represents a **hierarchical** tree structure with a set of connected nodes. Each node in the tree can be connected to many children (depending on the type of tree), but must be connected to exactly one parent, except for the root node, which has no parent (i.e., the root node as the top-most node in the tree hierarchy).
 
 Generally, we use to a rooted out-tree i.e. edge connection links pointing down (away from root, towards the children) which is also known as arborescence in graph theory
@@ -15,8 +32,6 @@ In contrast to linear data structures, many trees cannot be represented by relat
 
 ## Tree Representation
 
-![Tree and it's representation](/code-journal/diagrams/tree-representation.svg)
-
 The Tree ADT can be represented in a number of ways such as:
 
 - A list of parents with pointers to children (most common, used with out-trees)
@@ -25,15 +40,17 @@ The Tree ADT can be represented in a number of ways such as:
 
 Representations might also be more complicated, for example using indexes or ancestor lists for performance.
 
-Binary trees are a commonly used type, which constrain the number of children for each parent to at most two. Above image is example of a out-tree which is a rooted out-tree. Each child edge corresponds to a pointer from one node to it's children. If the pointer is null, it means that child is not present on that link
+Binary trees are a commonly used type, which constrain the number of children for each parent to at most two. Below image is example of a out-tree which is a rooted out-tree. Each child edge corresponds to a pointer from one node to it's children. If the pointer is null, it means that child is not present on that link
 
-## Node Representation
+![Tree and it's representation](/code-journal/diagrams/tree-representation.svg)
 
-![Tree node representation](/code-journal/diagrams/tree-node-representation.svg)
+## Tree Node Representation
 
 For a **Binary tree**, we will have only two child links, `left` and `right`. These may be pointing to a child node or empty i.e. not having any child below it. Recursively, each child node will also have the same ADT format:
 
-Technically, a Singly **Linked-list** can also be thought of a a **skewed tree** where each node only has one or none left child link
+![Tree node representation](/code-journal/diagrams/tree-node-representation.svg)
+
+Technically, a Singly **Linked-list** can also be thought of as a **skewed tree** where each node only has one or none left child link
 
 ```cpp title="Binary Tree nodes"
 template <typename T = int>
@@ -125,7 +142,7 @@ int main () {
 }
 ```
 
-## Array representation
+## Array representation of Binary Tree
 
 ![Binary Tree Array Representation](/code-journal/diagrams/binary-tree-array-representation.svg)
 
@@ -135,7 +152,9 @@ int main () {
 
 This method benefits from more compact storage and better locality of reference, particularly during a preorder traversal. It is often used for **binary heaps**
 
-## Tree Traversal
+---
+
+## Binary Tree Traversal
 
 Stepping through the items of a tree, by means of the connections between parents and children, is called walking the tree, and the action is a **walk** of the tree. Often, an operation might be performed when a pointer arrives at a particular node
 
@@ -146,9 +165,9 @@ Stepping through the items of a tree, by means of the connections between parent
 
 In below traversal codes, note that `const` indicates that the nodes are just accessed during traversal and not modified in any way
 
-## Pre-order Traversal
+### Pre-order Traversal
 
-Sequence: `<CURRENT-node> <LEFT-child> <RIGHT-child>`
+**Sequence**: `<Process CURRENT> <Go LEFT_Child> <Go RIGHT_Child>`
 
 The excution of recursive function calls also follow this preorder sequence, meaning the current function call is executed completely and then we move to further recursive calls in current function execution block
 
@@ -164,9 +183,9 @@ void preorder (const Node<T> *curr, vector<T> &traversal) {
 }
 ```
 
-## Post-order Traversal
+### Post-order Traversal
 
-Sequence: `<LEFT-child> <RIGHT-child> <CURRENT-node>`
+**Sequence**: `<Go LEFT_Child> <Go RIGHT_Child> <Process CURRENT>`
 
 ```cpp title="Post-order traversal"
 template <typename T = int>
@@ -178,9 +197,9 @@ void postorder (const Node<T> *curr, vector<T> &traversal) {
 }
 ```
 
-## In-order Traversal
+### In-order Traversal
 
-Sequence: `<LEFT-child> <CURRENT-node> <RIGHT-child>`
+**Sequence**: `<Go LEFT_Child> <Process CURRENT> <Go RIGHT_Child>`
 
 ```cpp title="In-order traversal"
 void inorder (const Node<T> *curr, vector<T> &traversal) {
@@ -191,9 +210,9 @@ void inorder (const Node<T> *curr, vector<T> &traversal) {
 }
 ```
 
-## Level-order Traversal
+### Level-order Traversal
 
-Sequence: `<root> <Lvl-1 nodes> <Lvl-2 nodes> ...`
+**Sequence**: `<Lvl_0 root> <Lvl_1 nodes> <Lvl_2 nodes> ...`
 
 At each level, the nodes are processed from left to right, as that is the fashion in which the child links get added for next processing
 
@@ -201,84 +220,41 @@ At each level, the nodes are processed from left to right, as that is the fashio
 template <typename T = int>
 vector<vector<T>> levelorder (const Node<T> *root) {
     if (!root) return {};
-
     vector<vector<T>> allLevelTraversal;
     queue<const Node<T> *> upcoming;
-
     upcoming.push(root);
     while (!upcoming.empty()) {
         vector<T> currLevelTraversal;
         size_t levelNodeCount = upcoming.size();
-
         for (size_t i = 0; i < levelNodeCount; i++) {
             const Node<T> *currNode = upcoming.front();
             upcoming.pop();
-
             currLevelTraversal.push_back(currNode->val);
-
             if (currNode->left) upcoming.push(currNode->left);
             if (currNode->right) upcoming.push(currNode->right);
         }
-
         allLevelTraversal.push_back(currLevelTraversal);
     }
-
     return allLevelTraversal;
 }
 ```
 
-## Algorithm Analysis
-
-### Time Complexity
-
-All of the 4 traversals (viz. preorder, postorder, inorder and level-order) visit and explore each node exactly once, resulting in the time complexity of $O(|V|)$
-
-### Space Complexity
-
-While traversing, we're not storing any extra space such as `visited[]` array in the case of graphs
-
-- **Recursive Traversals** (preorder, postorder, inorder):
-
-  - The space complexity would be the **max depth of the recursive call stack**
-  - This depth can reach $O(|V|)$ in worst-case when the the binary tree is **skewed**, whereas in best case, it would be $O(log_2(|V|))$ for **balanced** binary trees
-
-- **Level-order traversal**:
-  - While we're not using any recursive call-stack, we are using a queue to store nodes of the next level that we would be exploring once we're done exploring current level.
-  - In balanced trees where the last level is completely filled, the number of nodes being pushed into queue would be $|V|/2$ at one point of time , meaning the worst-case complexity of level-order traversal is $O(|V|)$
-
-**Purely Skewed Trees**:
-
-Purely skewed trees are those in which all child links are all only-left child ones or all are right-child ones. Level order traversal of them would have $O(1)$ space complexity (only one node at each level). We can apply tail-call optimization over their preorder traversal to get space complexity of $O(1)$; there is only one recursive call due to branching factor of $1$
-
-To summarize, with $n$ being the number of nodes i.e. $|V|$ :
-
-| Traversal         |   Best-case Space complexity    | Worst-case Space complexity |
-| ----------------- | :-----------------------------: | :-------------------------: |
-| Pre/Post/In order | $O(log_2(n))$ ... Balanced tree |    $O(n)$ ... skew tree     |
-| Level order       |      $O(1)$ ... Skew tree       |  $O(n)$ ... Balanced tree   |
-
-## Binary Tree traversal example
-
-Here's an example of running all above traversals on a binary tree
-
-```cpp title="Binary Tree traversals"
+```cpp title="Binary Tree traversals example"
 template <typename T = int>
 void printVector (const vector<T> &vect) {
     cout << "[ ";
-    for (const T &x : vect) {
-        cout << x << ", ";
-    }
-    cout << "]" << endl;
+    for (const T &x : vect)cout << x << ", ";
+    cout << "]\n";
 }
 
 template <typename T = int>
 void printVectorOfVector (const vector<vector<T>> &vect) {
-    cout << "[" << endl;
+    cout << "[\n";
     for (const vector<T> &x : vect) {
         cout << "  ";
         printVector<T>(x);
     }
-    cout << "]" << endl;
+    cout << "]\n"
 }
 
 int main () {
@@ -321,7 +297,36 @@ int main () {
 }
 ```
 
-## N-ary Tree traversal
+## Algorithm Analysis of Traversal
+
+### Time Complexity
+
+All of the 4 traversals i.e. preorder, postorder, inorder and level-order visit and explore each node **exactly once**, resulting in the time complexity of $O(V)$
+
+### Space Complexity
+
+While traversing, we're not storing any extra space such as `visited[]` array in the case of graphs
+
+- **Recursive Traversals** i.e. preorder, postorder, inorder:
+  - The space complexity would be the **max depth of the recursive call stack**
+  - This depth can reach $O(V)$ in worst-case when the the binary tree is **skewed**, whereas in best case, it would be $O(log_2(V))$ for **balanced** binary trees
+
+- **Level-order traversal**:
+  - While we're not using any recursive call-stack, we are using a queue to store nodes of the next level that we would be exploring once we're done exploring current level.
+  - In balanced trees where the last level is completely filled, the number of nodes being pushed into queue would be $(V/2)$ at one point of time , meaning the worst-case complexity of level-order traversal is $O(V)$
+
+**Purely Skewed Trees**:
+
+Purely skewed trees are those in which all child links are all only-left child ones or all are right-child ones. Level order traversal of them would have $O(1)$ space complexity (only one node at each level). We can apply tail-call optimization over their preorder traversal to get space complexity of $O(1)$; there is only one recursive call due to branching factor of $1$
+
+To summarize, with $n$ being the number of nodes i.e. $V$ :
+
+| Traversal                    |   Best-case Space complexity    | Worst-case Space complexity |
+| ---------------------------- | :-----------------------------: | :-------------------------: |
+| Preorder, Postorder, Inorder | $O(log_2(n))$ ... Balanced tree |    $O(n)$ ... Skew tree     |
+| Level order                  |      $O(1)$ ... Skew tree       |  $O(n)$ ... Balanced tree   |
+
+## N-ary Tree Traversal
 
 To traverse an N-ary tree, the only difference you need to make is to iterate over the child links instead of `left` and `right` child links as we did in binary tree
 
@@ -338,12 +343,11 @@ for (Node<T> *child : curr->children) {
 
 Also, since there is no concept of which child link is `left` and which is `right`, there is **no In-order traversal** defined for N-ary trees
 
-```cpp title="N-ary Tree traversals"
+```cpp title="N-ary Tree traversals example"
 template <typename T = int>
 void preorder (const Node<T> *curr, vector<T> &traversal) {
     if (!curr) return;
     traversal.push_back(curr->val);
-
     // Iterate over child links and visit each child one-by-one
     for (const Node<T> *child : curr->children) {
         preorder(child, traversal);
@@ -353,42 +357,32 @@ void preorder (const Node<T> *curr, vector<T> &traversal) {
 template <typename T = int>
 void postorder (const Node<T> *curr, vector<T> &traversal) {
     if (!curr) return;
-
     // Iterate over child links and visit each child one-by-one
     for (const Node<T> *child : curr->children) {
         postorder(child, traversal);
     }
-
     traversal.push_back(curr->val);
 }
 
 template <typename T = int>
 vector<vector<T>> levelorder (const Node<T> *root) {
     if (!root) return {};
-
     vector<vector<T>> allLevelTraversal;
     queue<const Node<T> *> upcoming;
-
     upcoming.push(root);
     while (!upcoming.empty()) {
         vector<T> currLevelTraversal;
         size_t levelNodeCount = upcoming.size();
-
         for (size_t i = 0; i < levelNodeCount; i++) {
             const Node<T> *currNode = upcoming.front();
-
             upcoming.pop();
-
             currLevelTraversal.push_back(currNode->val);
-
             for (const Node<T> *child : currNode->children) {
                 upcoming.push(child);
             }
         }
-
         allLevelTraversal.push_back(currLevelTraversal);
     }
-
     return allLevelTraversal;
 }
 

@@ -261,8 +261,8 @@ public class Demo {
 Upcasting is the process of assigning a derived class reference/pointer to a base class reference/pointer. Note how in below example, we are assigning a `Child` class object to a pointer/reference of `Parent` class
 
 ```cpp
-Parent* ptr = new Child();  // Upcasting for C++ example below
-Parent ref = new Child();   // Upcasting for Java example below
+Parent* ptr = new Child();  // Upcasting in C++ example above
+Parent ref = new Child();   // Upcasting in Java example above
 ```
 
 It forms the bedrock of runtime polymorphism. Upcasting enables treating diverse derived objects uniformly as instances of a common base type such as storing `Circle`, `Square`, and `Triangle` objects in a `vector<Shape*>`
@@ -281,7 +281,7 @@ A common misconception is that member variables undergo dynamic dispatch just li
 |  |   String category = "millennial"             |  |
 |  +----------------------------------------------+  |
 |  | Child Fields                                 |  |
-|  |   String category = "gen-z" (Shadows) Parent |  |
+|  |   String category = "gen-z" (Shadows Parent) |  |
 +----------------------------------------------------+
 ```
 

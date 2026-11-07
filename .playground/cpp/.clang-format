@@ -2,7 +2,7 @@ BasedOnStyle: Google
 UseTab: Never
 TabWidth: 4
 IndentWidth: 4
-ColumnLimit: 100
+ColumnLimit: 120
 BreakBeforeBraces: Attach
 AllowShortFunctionsOnASingleLine: Inline
 AllowAllParametersOfDeclarationOnNextLine: false
@@ -15,10 +15,11 @@ SpaceBeforeParensOptions:
   AfterFunctionDefinitionName: true
 # Testing below:
 
-#AlignAfterOpenBracket: Align
 
+ReferenceAlignment: Right # func(vector<int> &nums) { .. }
+BreakTemplateDeclarations: MultiLine
+
+#AlignAfterOpenBracket: Align
 # DerivePointerAlignment: false
-# PointerAlignment: Right # Node *ptr1, *ptr2;
-# ReferenceAlignment: Right # func(vector<int> &nums) { .. }
+# PointerAlignment: Right # Node *ptr1, *ptr2; 
 # SpaceAroundPointerQualifiers: Before
-# BreakTemplateDeclarations: Yes

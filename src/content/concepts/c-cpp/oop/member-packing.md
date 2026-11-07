@@ -3,29 +3,26 @@ title: Packing members in a struct
 tags: [cpp, oop]
 ---
 
-The order of members in a struct can affect memory usage and performance:
+> The **order of declaring members** in a struct can affect memory usage and performance considerably
 
 ```cpp
 struct S1 {
-    char a;     // 1 byte
-    double c;   // 8 bytes
-    int b;      // 4 bytes
+    char a;    // 1 byte
+    double c;  // 8 bytes
+    int b;     // 4 bytes
 };
 
 struct S2 {
-    double c;   // 8 bytes
-    int b;      // 4 bytes
-    char a;     // 1 byte
+    double c;  // 8 bytes
+    int b;     // 4 bytes
+    char a;    // 1 byte
 };
 
-int main() {
+int main () {
     cout << "S1: " << sizeof(S1) << " bytes" << endl;
-    // S1: 24 bytes
-
     cout << "S2: " << sizeof(S2) << " bytes" << endl;
+    // S1: 24 bytes
     // S2: 16 bytes
-
-    return 0;
 }
 ```
 

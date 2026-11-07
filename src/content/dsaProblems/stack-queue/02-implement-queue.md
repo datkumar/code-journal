@@ -28,29 +28,6 @@ Throw exception when queue underflow or overflow occurs
 
 > **Insertion** occurs at the **beginning** and **deletion** at the end (via **rear pointer**) in the internal linked-list
 
-### Diagrams of some operations
-
-<details>
-<summary><strong>Expand to see diagrams</strong></summary>
-
-**`enque(val)`** operation:
-
-![`enque(val)` operation](/code-journal/diagrams/queue-ll-enque.svg)
-
-**`enque(val)`** operation on an **empty** queue;
-
-![enque operation on empty queue](/code-journal/diagrams/queue-ll-enque-empty.svg)
-
-**`deque()`** operation:
-
-![deque operation](/code-journal/diagrams/queue-ll-deque.svg)
-
-**`deque()`** operation on a **single-element** queue:
-
-![deque operation on single-element queue](/code-journal/diagrams/queue-ll-deque-single-element.svg)
-
-</details>
-
 ### Implementation Code
 
 ```cpp title="C++"
@@ -195,3 +172,14 @@ int main () {
     return 0;
 }
 ```
+
+### Diagrams of some operations
+
+- **`enque(val)`** operation:
+  ![`enque(val)` operation](/code-journal/diagrams/queue-ll-enque.svg)
+- **`enque(val)`** operation on an **empty** queue;
+  ![enque operation on empty queue](/code-journal/diagrams/queue-ll-enque-empty.svg)
+- **`deque()`** operation:
+  ![deque operation](/code-journal/diagrams/queue-ll-deque.svg)
+- **`deque()`** operation on a **single-element** queue:
+  ![deque operation on single-element queue](/code-journal/diagrams/queue-ll-deque-single-element.svg)

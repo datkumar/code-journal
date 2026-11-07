@@ -23,13 +23,14 @@ pnpm-debug.log*
 
 # Ignore everything in .playground folder and its subfolders
 .playground/**
-# Do not ignore the folder structure
+# Do NOT ignore the folder structure
 !.playground/
 !.playground/**/
-# Do not ignore these files in any subfolder of .playground
+# Do NOT ignore these files in any subfolder of .playground
 !.playground/**/Makefile
 !.playground/**/notes.md
 !.playground/cpp/.clang-format
+!.playground/cpp/boilerplate.cpp
 !.playground/js-ts/package.json
 
 # Backup/Temporary files

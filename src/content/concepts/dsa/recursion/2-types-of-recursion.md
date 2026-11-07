@@ -11,10 +11,10 @@ and [this example](/code-journal/dsa/dsa/recursion/4-recurrence-master-thm#traci
 - The recursive call is the **last step** in the function body. No operation is to be done after it
 - These can be **easily optimized into loops** to save call stack memory
 
-```cpp
+```cpp title="Tail Recursion"
 void func(int n) {
     if (n > 0) {
-        cout << n << endl;
+        cout << n << "\n";
         func(n - 1);        // Recursive call
     }
 }
@@ -22,10 +22,10 @@ void func(int n) {
 
 If it had something like `func(n-1) + 1`, it wouldn't be tail recursion as there is some extra operation after the recursive call. The above tail-recursive function can be converted into iterative one as:
 
-```cpp
+```cpp title="Iterative version of Tail Recursion"
 void func(int n) {
     while (n > 0) {
-        cout << n << endl;
+        cout << n << "\n";
         n--;
     }
 }
@@ -35,22 +35,22 @@ void func(int n) {
 
 - The recursive call is the **first step** in the function body
 
-```cpp
+```cpp title="Head Recursion"
 void func(int n) {
     if (n > 0) {
         func(n - 1);        // Recursive call
-        cout << n << endl;
+        cout << n << "\n";
     }
 }
 ```
 
-The iterative version would be:
+The iterative version of above code would be:
 
-```cpp
+```cpp title="Iterative version of Head Recursion"
 void func(int n) {
     int i = 0;
     while (i < n) {
-        cout << i << endl;
+        cout << i << "\n";
         i++;
     }
 }
@@ -65,13 +65,21 @@ Recursion in which there's a **single recursive call per input** is called **Lin
 There can be **multiple recursive calls (branching) per input**. These are typically called Tree Recursion
 
 ```cpp
-void func() {
-    if (n > 0) {
-        cout << n << endl;
+void func(int n) {
+    if (n > 3) {
+        cout << n << "\n";
         func(n - 1);        // Recursive call
-        func(n - 1);        // Recursive call
+        func(n - 2);        // Recursive call
+        func(n - 3);        // Recursive call
     }
 }
+```
+
+```mermaid
+flowchart TB
+    f0["f(n)"] -->  f1["f(n-1)"]
+    f0 -->  f2["f(n-2)"]
+    f0 -->  f3["f(n-3)"]
 ```
 
 ## 4. Indirect Recursion
@@ -85,14 +93,14 @@ void F2(int n);
 
 void F1() {
     if (n > 0) {
-        cout << n << endl;
+        cout << n << "\n";
         F2(n - 1);
     }
 }
 
 void F2() {
     if (n > 0) {
-        cout << n << endl;
+        cout << n << "\n";
         F1(n / 2);
     }
 }
@@ -105,7 +113,7 @@ The recursive call is nested inside another call
 ```cpp
 void func() {
     if (n > 0) {
-        cout << n << endl;
+        cout << n << "\n";
         func(func(n - 1));  // Nested Recursive call
     }
 }

@@ -3,16 +3,43 @@ title: STL - Associative Containers
 tags: [cpp, stl, containers]
 ---
 
-Commonly used associative containers are:
+Commonly used associative containers are follows. These allow only single instance of a _key_ i.e. **duplicates NOT allowed**
 
 - [**Sets**](#sets) : `set` and `unordered_set`
 - [**Maps**](#maps) : `map` and `unordered_map`
 
-[`pair`](#pair) and [`tuple`](#tuple) being similar to these, have been placed in this section
+Other associative containers which allow multiple entries of a _key_ i.e. **duplicates allowed** are:
+
+- [`multiset`](https://en.cppreference.com/w/cpp/container/multiset) and [`unordered_multiset`](https://en.cppreference.com/w/cpp/container/unordered_multiset)
+- [`multimap`](https://en.cppreference.com/w/cpp/container/multimap) and [`unordered_multimap`](https://en.cppreference.com/w/cpp/container/unordered_multimap)
+
+> [`pair`](#pair) and [`tuple`](#tuple) being similar to these, have been written within this page
+
+---
+
+## Ordered vs Unordered Associative containers
+
+| Metric           | `set` , `map`                                     | `unordered_set` , `unordered_map`                         |
+| ---------------- | ------------------------------------------------- | --------------------------------------------------------- |
+| Internals        | Uses **balanced BST** (Red-Black tree) internally | Uses **Hashing** internally                               |
+| Keys             | Elements are **sorted by keys**                   | No sorting of elements                                    |
+| Operations       | Operations take $O(logN)$ time                    | Operations take $O(1)$ on average                         |
+| Custom Data-type | Supports custom (sortable) data-types             | We need to define **Hash function** for custom data-types |
+
+> If the hash function is poorly defined, operations in `unordered_set` & `unordered_map` can take $O(N)$ time in worst case due to several collisions
+
+Also refer these posts for writing better hash functions:
+
+- [C++ `unordered_map` using a custom class type as the key](https://stackoverflow.com/questions/17016175/c-unordered-map-using-a-custom-class-type-as-the-key)
+- [Blowing up `unordered_map`, and how to stop getting hacked on it](https://codeforces.com/blog/entry/62393)
+- [C++ STL: Order of magnitude faster hash tables with Policy Based Data Structures](https://codeforces.com/blog/entry/60737)
+
+---
 
 ## Pair
 
-- [`pair`](https://en.cppreference.com/w/cpp/utility/pair) is used to **club two items together**
+- CPP Reference: [`pair`](https://en.cppreference.com/w/cpp/utility/pair)
+- It is used to **club two items together**
 - **Declaration**: `pair<Type1, Type2> myPair;`
 - The data types of these two items need not be similar. Custom types also allowed
 - **Initialization**: `{item1, item2}`
@@ -21,12 +48,12 @@ Commonly used associative containers are:
 
   ```cpp
   pair<int, char> p{5, 'm'};
-  cout << p.first << " " << p.second << endl;  // 5 m
+  cout << p.first << " " << p.second << "\n";  // 5 m
 
   p = {3, 'z'};
   // Structured binding
   auto &[item1, item2] = p;
-  cout << item1 << " " << item2 << endl;  // 3 z
+  cout << item1 << " " << item2 << "\n";  // 3 z
   ```
 
 - STL provides function [`make_pair`](https://en.cppreference.com/w/cpp/utility/pair/make_pair) to construct a pair. Helpful for custom data-types:
@@ -40,7 +67,7 @@ Commonly used associative containers are:
   int main() {
       auto myPair = make_pair(Point(2, 3), 'z');
       auto &[myPoint, alphabet] = myPair;
-      cout << myPoint.x << " " << myPoint.y << " " << alphabet << endl;
+      cout << myPoint.x << " " << myPoint.y << " " << alphabet << "\n";
       // 2 3 z
       return 0;
   }
@@ -48,22 +75,24 @@ Commonly used associative containers are:
 
 ---
 
-## Ordered vs Unordered associative containers
+## Tuple
 
-| Metric      | `set` , `map`                         | `unordered_set` , `unordered_map`           |
-| ----------- | ------------------------------------- | ------------------------------------------- |
-| Keys        | Elements are **sorted by keys**       | No sorting of elements                      |
-| Operations  | Operations take `O(logN)` time        | Operations take `O(1)` avg. time            |
-| Internals   | Uses **balanced BST** internally      | Uses **Hashing** internally                 |
-| Custom-type | Supports custom (sortable) data types | **Hash function** required for custom types |
+- CPP Reference: [`tuple`](https://en.cppreference.com/w/cpp/utility/tuple)
+- Used for clubbing multiple items of different types together
 
-> If the hash function is poorly defined, operations in `unordered_set` & `unordered_map` can take `O(N)` time in worst case due to several collisions
+```cpp title="tuple"
+tuple<char, int, double> data('g', 5, 3.14);
 
-Also refer these posts for writing better hash functions:
+char ch = get<0>(data);
+int num1 = get<1>(data);
+double num2 = get<2>(data);
+cout << ch << " " << num1 << " " << num2 << "\n";  // g 5 3.14
 
-- [C++ `unordered_map` using a custom class type as the key](https://stackoverflow.com/questions/17016175/c-unordered-map-using-a-custom-class-type-as-the-key)
-- [Blowing up `unordered_map`, and how to stop getting hacked on it](https://codeforces.com/blog/entry/62393)
-- [C++ STL: Order of magnitude faster hash tables with Policy Based Data Structures](https://codeforces.com/blog/entry/60737)
+auto &[a, b, c] = data;
+cout << a << " " << b << " " << c << "\n";  // g 5 3.14
+```
+
+Also refer: [`make_tuple()`](https://en.cppreference.com/w/cpp/utility/tuple/make_tuple), [`tie()`](https://en.cppreference.com/w/cpp/utility/tuple/tie),
 
 ---
 
@@ -71,7 +100,7 @@ Also refer these posts for writing better hash functions:
 
 > **`set`** and **`unordered_set`** store a collection of **unique keys** of a specified type
 
-C++ Reference: [`set`](https://en.cppreference.com/w/cpp/container/set), [`unordered_set`](https://en.cppreference.com/w/cpp/container/unordered_set)
+CPP Reference: [`set`](https://en.cppreference.com/w/cpp/container/set), [`unordered_set`](https://en.cppreference.com/w/cpp/container/unordered_set)
 
 **Declaration**: `set<Type> s1;` , `unordered_set<Type> us1;`
 
@@ -100,141 +129,166 @@ C++ Reference: [`set`](https://en.cppreference.com/w/cpp/container/set), [`unord
 - **`.clear()`** - Empties the set
 - **`.merge(another_set)`** - Merge keys from the other set into current set
 
-<blockquote><details>
-<summary>
-<strong><code>set</code> , <code>unordered_set</code> Demo</strong>
-</summary>
+<blockquote>
+<details>
+<summary><strong><code>unordered_set</code> Demo</strong></summary>
 
-```cpp title="unordered_set"
-void printHashSet (unordered_set<int> &us) {
-    cout << "[ ";
-    for (auto &key : us) cout << key << ", ";
-    cout << "]" << endl;
+```cpp title="unordered_set demo"
+void printHashSet (const unordered_set<int> &hs) {
+    if (hs.empty()) {
+        cout << "Set is empty\n";
+        return;
+    }
+    cout << "[";
+    for (const int &key : hs) cout << key << ", ";
+    cout << "]\n";
 }
 
 // Lookup using find()
-void lookupViaFind (unordered_set<int> &us, int key) {
-    if (us.find(key) != us.end()) cout << key << " found in set" << endl;
-    else cout << key << " NOT found in set" << endl;
+void lookupViaFind (const unordered_set<int> &hs, const int key) {
+    if (hs.find(key) != hs.end()) cout << key << " FOUND in set\n";
+    else cout << key << " NOT FOUND in set\n";
 }
 // Lookup using count()
-void lookupViaCount (unordered_set<int> &us, int key) {
-    if (us.count(key)) cout << key << " found in set" << endl;
-    else cout << key << " NOT found in set" << endl;
+void lookupViaCount (const unordered_set<int> &hs, const int key) {
+    if (hs.count(key)) cout << key << " FOUND in set\n";
+    else cout << key << " NOT FOUND in set\n";
 }
 
 int main () {
-    // Declare, Initialize
-    unordered_set<int> us1{20, 10, 30};
-    printHashSet(us1);  // [ 30, 10, 20, ]
+    unordered_set<int> hs1{20, 10, 30};     // Declare, Initialize
+    printHashSet(hs1);                      // [30, 10, 20, ]
+    cout << "Size: " << size(hs1) << "\n";  // Size: 3
 
-    // Lookup
-    lookupViaFind(us1, 10);   // 10 found in set
-    lookupViaCount(us1, 20);  // 20 found in set
+    // Lookup:
+    lookupViaFind(hs1, 10);   // 10 FOUND in set
+    lookupViaFind(hs1, 75);   // 75 NOT FOUND in set
+    lookupViaCount(hs1, 10);  // 10 FOUND in set
+    lookupViaCount(hs1, 75);  // 75 NOT FOUND in set
 
-    us1.insert(999), us1.insert(888);  // insert(key)
-    printHashSet(us1);                 // [ 999, 888, 30, 10, 20, ]
+    hs1.insert(999), hs1.insert(888);  // insert(key)
+    printHashSet(hs1);                 // [999, 888, 30, 10, 20, ]
 
     vector<int> v1{42, 17, 55, 64, 25};
-    us1.insert(v1.begin(), v1.end());  // insert(start,end)
-    printHashSet(us1);                 // [ 25, 64, 55, 42, 999, 17, 888, 30, 10, 20, ]
+    // insert(start,end)
+    hs1.insert(v1.begin(), v1.end());
+    printHashSet(hs1);  // [25, 64, 55, 42, 999, 17, 888, 30, 10, 20, ]
+    // insert({ ... })
+    hs1.insert({1, 2, 3, 4});
+    printHashSet(hs1);  // [4, 20, 10, 888, 17, 999, 42, 55, 3, 64, 25, 30, 1, 2, ]
 
-    us1.insert({1, 2, 3, 4});  // insert({ ... })
-    printHashSet(us1);         // 4 10 20 888 17 999 42 55 3 64 25 30 1 2
+    unordered_set<int> hs2{100, 99, 98, 10};
+    // merge(another_set)
+    hs1.merge(hs2);
+    printHashSet(hs1);  // [99, 98, 4, 20, 10, 888, 17, 100, 999, 42, 55, 3, 64, 25, 30, 1, 2, ]
 
-    unordered_set<int> us2{100, 99, 98, 10};
-    us1.merge(us2); // merge(another_set)
-    printHashSet(us1);
-    // [ 99, 98, 4, 20, 10, 888, 17, 100, 999, 42, 55, 3, 64, 25, 30, 1, 2, ]
+    unordered_set<int> hs3{1, 2, 1, 0, 2};  // handles duplicates
+    printHashSet(hs3);                      // [0, 2, 1, ]
 
-    unordered_set<int> us3{1, 2, 1, 0, 2};  // handles duplicates
-    printHashSet(us3);                      // [ 0, 2, 1, ]
+    unordered_set<int> hs4{1, 2, 3, 4};
+    // erase(key)
+    hs4.erase(2);       // key exists, so removed
+    hs4.erase(70);      // key not existing, so no change
+    printHashSet(hs4);  // [4, 3, 1, ]
+    // erase(itr)
+    auto itr = hs4.find(3);
+    hs4.erase(itr);
+    printHashSet(hs4);  // [4, 1, ]
 
-    unordered_set<int> us4{1, 2, 3, 4};
-    us4.erase(2);       // removed if exists
-    us4.erase(70);      // not existing, so no change
-    printHashSet(us4);  // [ 4, 3, 1, ]
-
-    us4.clear();
-    cout << "Size: " << us4.size() << endl;  // Size: 0
-    printHashSet(us4);                       // [ ]
-
-    return 0;
+    hs4.clear();
+    cout << "Size: " << hs4.size() << "\n";  // Size: 0
+    printHashSet(hs4);                       // Set is empty
 }
 ```
 
-```cpp title="set"
-void printSet (set<int> &s) {
-    cout << "[ ";
-    for (auto &key : s) cout << key << ", ";
-    cout << "]" << endl;
+</details>
+</blockquote>
+
+<blockquote>
+<details>
+<summary><strong><code>set</code> Demo</strong></summary>
+
+```cpp title="set demo"
+void printSet (const set<int> &s) {
+    if (s.empty()) {
+        cout << "Set is empty\n";
+        return;
+    }
+    cout << "[";
+    for (const int &key : s) cout << key << ", ";
+    cout << "]\n";
+}
+
+// Lookup using find()
+void lookupViaFind (const set<int> &s, const int key) {
+    if (s.find(key) != s.end()) cout << key << " FOUND in set\n";
+    else cout << key << " NOT FOUND in set\n";
+}
+// Lookup using count()
+void lookupViaCount (const set<int> &s, const int key) {
+    if (s.count(key)) cout << key << " FOUND in set\n";
+    else cout << key << " NOT FOUND in set\n";
 }
 
 int main () {
-    // Declare, Initialize
-    set<int> s1{20, 10, 30};
-    printSet(s1);                          // [ 10, 20, 30, ]
-    cout << "Size: " << size(s1) << endl;  // Size: 3
+    set<int> s1{20, 10, 30};               // Declare, Initialize
+    printSet(s1);                          // [10, 20, 30, ]
+    cout << "Size: " << size(s1) << "\n";  // Size: 3
 
-    set<int> s2{1, 2, 1, 0, 2};  // Duplicate keys not inserted
-    printSet(s2);                // 0 1 2
+    set<int> s2{1, 2, 1, 0, 2};  // Duplicate keys NOT inserted
+    printSet(s2);                // [0, 1, 2, ]
 
-    const int TARGET = 20;
+    // Lookup:
+    lookupViaFind(s1, 10);   // 10 FOUND in set
+    lookupViaFind(s1, 75);   // 75 NOT FOUND in set
+    lookupViaCount(s1, 10);  // 10 FOUND in set
+    lookupViaCount(s1, 75);  // 75 NOT FOUND in set
 
-    // Lookup via find():
-    if (s1.find(TARGET) != s1.end()) cout << "Key " << TARGET << " found" << endl;
-    // Key 20 found
-
-    // Lookup via count():
-    if (s1.count(TARGET)) cout << "Key " << TARGET << " found" << endl;
-    // Key 20 found
-
-    s1.insert(999), s1.insert(888);  // insert(key)
-    printSet(s1);                    // [ 10, 20, 30, 888, 999, ]
-
+    // insert(key)
+    s1.insert(999), s1.insert(888);
+    printSet(s1);  // [10, 20, 30, 888, 999, ]
     vector<int> v1{42, 17, 55, 64, 25};
-    s1.insert(v1.begin(), v1.end());  // insert(start,end)
-    printSet(s1);                     // [ 10, 17, 20, 25, 30, 42, 55, 64, 888, 999, ]
-
-    s1.insert({3, 1, 2, 3});  // insert({...})
-    printSet(s1);             // [ 1, 2, 3, 10, 17, 20, 25, 30, 42, 55, 64, 98, 99, 100, 888, 999, ]
-
-    auto moreThan20 = s1.upper_bound(20);
-    cout << "Key > 20: " << *moreThan20 << endl;  // Key > 20: 25
+    // insert(start,end)
+    s1.insert(v1.begin(), v1.end());
+    printSet(s1);  // [10, 17, 20, 25, 30, 42, 55, 64, 888, 999, ]
+    // insert({...})
+    s1.insert({3, 1, 2, 3});
+    printSet(s1);  // [1, 2, 3, 10, 17, 20, 25, 30, 42, 55, 64, 888, 999, ]
 
     auto atLeast55 = s1.lower_bound(55);
-    cout << "Key >= 55: " << *atLeast55 << endl;  // Key >= 55: 55
+    auto moreThan20 = s1.upper_bound(20);
+    cout << "First item >= 55 is: " << *atLeast55 << "\n";  // First item >= 55 is: 55
+    cout << "First item > 20 is: " << *moreThan20 << "\n";  // First item > 20 is: 25
 
     set<int> s3{100, 99, 98, 10};
-    s1.merge(s3);  // merge(another_set)
-    printSet(s1);  // [ 1, 2, 3, 10, 17, 20, 25, 30, 42, 55, 64, 98, 99, 100, 888, 999, ]
+    // merge(another_set)
+    s1.merge(s3);
+    printSet(s1);  // [1, 2, 3, 10, 17, 20, 25, 30, 42, 55, 64, 98, 99, 100, 888, 999, ]
 
     // erase(key)
-    s1.erase(3);   // removed if exists
-    s1.erase(70);  // not existing, so no change
-    printSet(s1);  // [ 1, 2, 10, 17, 20, 25, 30, 42, 55, 64, 98, 99, 100, 888, 999, ]
-
+    s1.erase(3);   // key exists, so removed
+    s1.erase(70);  // key not existing, so no change
+    printSet(s1);  // [1, 2, 10, 17, 20, 25, 30, 42, 55, 64, 98, 99, 100, 888, 999, ]
+    // erase(itr)
     auto itr = s1.find(99);
     s1.erase(itr);
-    printSet(s1);  // [ 1, 2, 10, 17, 20, 25, 30, 42, 55, 64, 98, 100, 888, 999, ]
-
-    s1.erase(moreThan20, atLeast55);  // erase(start,end)
-    printSet(s1);                     // [ 1, 2, 10, 17, 20, 55, 64, 98, 100, 888, 999, ]
+    printSet(s1);  // [1, 2, 10, 17, 20, 25, 30, 42, 55, 64, 98, 100, 888, 999, ]
+    // erase(start,end)
+    s1.erase(moreThan20, atLeast55);
+    printSet(s1);  // [1, 2, 10, 17, 20, 55, 64, 98, 100, 888, 999, ]
 
     // Reverse Traversal:
-    cout << "[ ";
-    for (auto itr = s1.rbegin(); itr != s1.rend(); itr++) {
-        cout << *itr << ", ";
-    }
-    cout << "]" << endl;  // [ 999, 888, 100, 98, 64, 55, 20, 17, 10, 2, 1, ]
+    cout << "[";
+    for (auto itr = s1.rbegin(); itr != s1.rend(); itr++) cout << *itr << ", ";
+    cout << "]\n";  // [999, 888, 100, 98, 64, 55, 20, 17, 10, 2, 1, ]
 
     s1.clear();
-    printSet(s1);  // [ ]
-    return 0;
+    printSet(s1);  // Set is empty
 }
 ```
 
-</details></blockquote>
+</details>
+</blockquote>
 
 ---
 
@@ -242,7 +296,7 @@ int main () {
 
 > `map` and `unordered_map` store a collection of pairs of **key-value mappings** with **unique keys**
 
-C++ Reference: [`map`](https://en.cppreference.com/w/cpp/container/map) , [`unordered_map`](https://en.cppreference.com/w/cpp/container/unordered_map)
+CPP Reference: [`map`](https://en.cppreference.com/w/cpp/container/map) , [`unordered_map`](https://en.cppreference.com/w/cpp/container/unordered_map)
 
 **Declaration**: `map<keyType,valueType>` , `unordered_map<keyType,valueType>`
 
@@ -278,233 +332,277 @@ We can pass our custom hash function as: `unordered_map<keyType, valueType, hash
 - **`.clear()`** - Empties the map
 - **`.merge(another_set)`** - Merge keys from the other set into current set
 
-<blockquote><details>
-<summary>
-<strong><code>unordered_map</code> , <code>map</code> Demo</strong>
-</summary>
+<blockquote>
+<details>
+<summary><strong><code>unordered_map</code> Demo</strong></summary>
 
-```cpp title="unordered_map"
-void printHashMap (unordered_map<int, string> &ump) {
+```cpp title="unordered_map demo"
+void printHashMap (const unordered_map<int, string> &hmp) {
+    if (hmp.empty()) {
+        cout << "Map is Empty\n";
+        return;
+    }
     cout << "[ ";
-    for (auto &[key, val] : ump) {
+    for (const auto &[key, val] : hmp) {
         cout << "{" << key << "," << val << "}, ";
     }
-    cout << "]" << endl;
+    cout << "]\n";
+}
+
+// Lookup using count()
+void lookupViaCount (const unordered_map<int, string> &hmp, const int key) {
+    size_t keyCnt = hmp.count(key);
+    if (keyCnt) cout << key << " key EXISTS in Map\n";
+    else cout << key << " key DOES NOT EXIST in Map\n";
+}
+// Lookup using find()
+void lookupViaFind (const unordered_map<int, string> &hmp, const int key) {
+    auto searchResult = hmp.find(key);
+    if (searchResult != hmp.end()) {
+        const int storedKey = searchResult->first;
+        const string storedVal = searchResult->second;
+        // We can also do it as below:
+        // const auto &[storedKey, storedVal] = *(searchResult);
+        cout << storedKey << " key FOUND in Map. Value stored is: " << storedVal;
+    } else {
+        cout << key << " key NOT FOUND in Map";
+    }
+    cout << "\n";
 }
 
 int main () {
     // Declare, Initialize
-    unordered_map<int, string> ump{
+    unordered_map<int, string> hmp{
         {5, "aaa"}, {1, "bbb"}, {9, "cc"}, {5, "dddd"}, {4, "eeee"},
-    };  // Duplicate keys don't get inserted
-    printHashMap(ump);  // [ {4,eeee}, {9,cc}, {1,bbb}, {5,aaa}, ]
+    };
+    // Duplicate keys don't get inserted
+    printHashMap(hmp);  // [ {4,eeee}, {9,cc}, {1,bbb}, {5,aaa}, ]
 
-    const int TARGET = 9;
-    // Lookup via find()
-    auto keyPtr = ump.find(TARGET);
-    if (keyPtr != ump.end()) {
-        cout << "Key " << TARGET << " found" << endl;  // Key 9 found
-        // Can also do: auto &[key,val] = *(keyPtr);
-        int key = keyPtr->first;
-        string val = keyPtr->second;
-        cout << "The entry is {" << key << ", " << val << "}" << endl;
-        // The entry is {9, cc}
+    // Lookup:
+    lookupViaCount(hmp, 47);  // 47 key DOES NOT EXIST in Map
+    lookupViaCount(hmp, 5);   // 5 key EXISTS in Map
+    lookupViaFind(hmp, 47);   // 47 key NOT FOUND in Map
+    lookupViaFind(hmp, 5);    // 5 key FOUND in Map. Value stored is: aaa
+
+    /* ---- Access via [key] operator ---- */
+    // on key that EXISTS in map:
+    cout << "Value at key 9: " << hmp[9] << "\n";  // Value at key 9: cc
+
+    // on key that does NOT exist in map - new entry added
+    // The value at the added key entry is default-value of data-type ("" for string)
+    cout << "Value at key 100: " << hmp[100] << "\n";  // Value at key 100:
+
+    // Set/Update value at key:
+    hmp[100] = "WOW";
+    cout << "Value at key 100: " << hmp[100] << "\n";  // Value at key 100: WOW
+
+    /* ---- Access value via .at(key) ---- */
+    // on key that EXISTS in map:
+    cout << "Value at key 4: " << hmp.at(4) << "\n";  // Value at key 4: eeee
+
+    // on key that does NOT exist in map - throws exception std::out_of_range
+    try {
+        cout << "Value at key 75: " << hmp.at(75) << "\n";
+    } catch (std::out_of_range) {
+        cout << "\nException std::out_of_range: Key does NOT exist in Map\n";
     }
-    // Lookup via count()
-    if (ump.count(TARGET)) {
-        cout << "Key " << TARGET << " found" << endl;  // Key 9 found
-    }
+    // Value at key 75:
+    // Exception std::out_of_range: Key does NOT exist in Map
 
-    // Access via [] operator
-    cout << "Value at key " << TARGET << " is " << ump[TARGET] << endl;
-    // Value at key 9 is cc
-    int newKey = 100;
-    // When [] used on non-existing key, new entry gets added
-    // with default value ("" here)
-    cout << "Value at key " << newKey << " is " << ump[newKey] << endl;
-    // Value at key 100 is
+    /* ---- Insertion ---- */
+    hmp.insert(make_pair(20, "xyz"));
+    hmp.insert({10, "pqr"});
+    hmp.insert({{30, "abc"}, {20, "def"}, {40, "ghi"}});  // Duplicate key 20 ignored
+    vector<pair<int, string>> v1{{99, "nn"}, {100, "oh"}, {101, "oho"}};
+    hmp.insert(v1.begin(), v1.end());
+    printHashMap(hmp);
+    // [ {99,nn}, {101,oho}, {10,pqr}, {20,xyz}, {30,abc}, {4,eeee}, {100,WOW}, {9,cc}, {40,ghi}, {1,bbb}, {5,aaa}, ]
 
-    ump[newKey] = "WOW";
-    cout << "Value at key " << newKey << " is " << ump[newKey] << endl;
-    // Value at key 100 is WOW
+    /* ---- Deletion ---- */
+    // erase(key)
+    hmp.erase(99);    // Key exists, so entry removed
+    hmp.erase(1234);  // Key does NOT exist, so no removed
+    // erase(itr)
+    auto itr = hmp.find(100);
+    hmp.erase(itr);
+    printHashMap(hmp);
+    // [ {101,oho}, {10,pqr}, {20,xyz}, {30,abc}, {4,eeee}, {9,cc}, {40,ghi}, {1,bbb}, {5,aaa}, ]
 
-    // Access via at()
-    cout << "Value at key " << newKey << " is " << ump.at(newKey) << endl;
-    // Value at key 100 is WOW
+    /* ---- Merging two Maps ---- */
+    unordered_map<int, string> hmp2{{-1, "AAA"}, {-2, "BBB"}, {1, "CCC"}};
+    hmp.merge(hmp2);  // .merge(another_map)
+    printHashMap(hmp);
+    // [ {-1,AAA}, {101,oho}, {10,pqr}, {20,xyz}, {30,abc}, {4,eeee}, {9,cc}, {-2,BBB}, {40,ghi}, {1,bbb}, {5,aaa}, ]
 
-    vector<pair<int, string>> v1{
-        {99, "nn"},
-        {100, "oh"},
-        {101, "oho"},
-    };  // Duplicate keys don't get inserted
-
-    // insert()
-    ump.insert(make_pair(20, "xyz"));
-    ump.insert({10, "pqr"});
-    ump.insert({{30, "abc"}, {20, "def"}});  // Duplicate keys don't get inserted
-    ump.insert(v1.begin(), v1.end());
-    printHashMap(ump);
-    // [ {99,nn}, {101,oho}, {10,pqr}, {20,xyz}, {30,abc}, {4,eeee}, {100,WOW}, {9,cc}, {1,bbb}, {5,aaa}, ]
-
-    ump.erase(99);  // erase(key)
-    auto itr = ump.find(100);
-    ump.erase(itr);     // erase(itr)
-    ump.erase(1234);    // Key not present, so not removed
-    printHashMap(ump);  // [ {101,oho}, {10,pqr}, {20,xyz}, {30,abc}, {4,eeee}, {9,cc}, {1,bbb}, {5,aaa}, ]
-
-    unordered_map<int, string> ump2{{-1, "AAA"}, {-2, "BBB"}, {1, "CCC"}};
-    ump.merge(ump2);  // merge(another_map)
-    printHashMap(ump);
-    // [ {-1,AAA}, {101,oho}, {10,pqr}, {20,xyz}, {30,abc}, {4,eeee}, {9,cc}, {-2,BBB}, {1,bbb}, {5,aaa}, ]
-    cout << "Size: " << ump.size() << endl;  // Size: 10
-
-    ump.clear();
-    printHashMap(ump);  // [ ]
-    return 0;
+    cout << "Size: " << hmp.size() << "\n";  // Size: 11
+    hmp.clear();
+    printHashMap(hmp);  // Map is Empty
 }
 ```
 
-```cpp title="map"
+</details>
+</blockquote>
 
-void printMap (map<int, string> &mp) {
+<blockquote>
+<details>
+<summary><strong><code>map</code> Demo</strong></summary>
+
+```cpp title="map demo"
+void printMap (const map<int, string> &mp) {
+    if (mp.empty()) {
+        cout << "Map is Empty\n";
+        return;
+    }
     cout << "[ ";
-    for (auto &[key, val] : mp) {
+    for (const auto &[key, val] : mp) {
         cout << "{" << key << "," << val << "}, ";
     }
-    cout << "]" << endl;
+    cout << "]\n";
+}
+
+// Lookup using count()
+void lookupViaCount (const map<int, string> &mp, const int key) {
+    size_t keyCnt = mp.count(key);
+    if (keyCnt) cout << key << " key EXISTS in Map\n";
+    else cout << key << " key DOES NOT EXIST in Map\n";
+}
+// Lookup using find()
+void lookupViaFind (const map<int, string> &mp, const int key) {
+    auto searchResult = mp.find(key);
+    if (searchResult != mp.end()) {
+        const int storedKey = searchResult->first;
+        const string storedVal = searchResult->second;
+        // We can also do it as below:
+        // const auto &[storedKey, storedVal] = *(searchResult);
+        cout << storedKey << " key FOUND in Map. Value stored is: " << storedVal;
+    } else {
+        cout << key << " key NOT FOUND in Map";
+    }
+    cout << "\n";
 }
 
 int main () {
     // Declare, Initialize
     map<int, string> mp{
         {5, "aaa"}, {1, "bbb"}, {9, "cc"}, {5, "dddd"}, {4, "eeee"},
-    };  // Duplicate keys don't get inserted
+    };
+    // Duplicate keys don't get inserted
     printMap(mp);  // [ {1,bbb}, {4,eeee}, {5,aaa}, {9,cc}, ]
 
-    const int TARGET = 9;
-    // Lookup via find()
-    auto keyPtr = mp.find(TARGET);
-    if (keyPtr != mp.end()) {
-        cout << "Key " << TARGET << " found" << endl;  // Key 9 found
-        // Can also do: auto &[key,val] = *(keyPtr);
-        int key = keyPtr->first;
-        string val = keyPtr->second;
-        cout << "The entry is {" << key << ", " << val << "}" << endl;  // The entry is {9, cc}
+    // Lookup:
+    lookupViaCount(mp, 47);  // 47 key DOES NOT EXIST in Map
+    lookupViaCount(mp, 5);   // 5 key EXISTS in Map
+    lookupViaFind(mp, 47);   // 47 key NOT FOUND in Map
+    lookupViaFind(mp, 5);    // 5 key FOUND in Map. Value stored is: aaa
+
+    /* ---- Access via [key] operator ---- */
+    // on key that EXISTS in map:
+    cout << "Value at key 9: " << mp[9] << "\n";  // Value at key 9: cc
+
+    // on key that does NOT exist in map - new entry added
+    // The value at the added key entry is default-value of data-type ("" for string)
+    cout << "Value at key 100: " << mp[100] << "\n";  // Value at key 100:
+
+    // Set/Update value at key:
+    mp[100] = "WOW";
+    cout << "Value at key 100: " << mp[100] << "\n";  // Value at key 100: WOW
+
+    /* ---- Access via .at(key) operator ---- */
+    // on key that EXISTS in map:
+    cout << "Value at key 4: " << mp.at(4) << "\n";  // Value at key 4: eeee
+
+    // on key that does NOT exist in map - throws exception std::out_of_range
+    try {
+        cout << "Value at key 75: " << mp.at(75) << "\n";
+    } catch (std::out_of_range) {
+        cout << "\nException std::out_of_range: Key does NOT exist in Map\n";
     }
-    // Lookup via count()
-    if (mp.count(TARGET)) {
-        cout << "Key " << TARGET << " found" << endl;  // Key 9 found
-    }
+    // Value at key 75:
+    // Exception std::out_of_range: Key does NOT exist in Map
 
-    // Access via [] operator
-    cout << "Value at key " << TARGET << " is " << mp[TARGET] << endl;
-    // Value at key 9 is cc
-
-    int newKey = 100;
-    // When [] used on non-existing key, new entry gets added
-    // with default value ("" here)
-    cout << "Value at key " << newKey << " is " << mp[newKey] << endl;
-    // Value at key 100 is
-    mp[newKey] = "WOW";
-    cout << "Value at key " << newKey << " is " << mp[newKey] << endl;
-    // Value at key 100 is WOW
-
-    // Access via at()
-    cout << "Value at key " << newKey << " is " << mp.at(newKey) << endl;
-    // Value at key 100 is WOW
-
+    /* ---- Insertion ---- */
+    mp.insert(make_pair(20, "xyz"));
+    mp.insert({10, "pqr"});
+    mp.insert({{30, "abc"}, {20, "def"}, {40, "ghi"}});  // Duplicate key 20 ignored
     vector<pair<int, string>> v1{{99, "nn"}, {100, "oh"}, {101, "oho"}};
-    // insert()
-    mp.insert(make_pair(10, "xyz"));
-    mp.insert({20, "pqr"});
-    mp.insert({{30, "abc"}, {20, "def"}});
     mp.insert(v1.begin(), v1.end());
-    // Duplicate keys not inserted
     printMap(mp);
-    // [ {1,bbb}, {4,eeee}, {5,aaa}, {9,cc}, {10,xyz}, {20,pqr}, {30,abc}, {99,nn}, {100,WOW}, {101,oho}, ]
+    // [ {1,bbb}, {4,eeee}, {5,aaa}, {9,cc}, {10,pqr}, {20,xyz}, {30,abc}, {40,ghi}, {99,nn}, {100,WOW}, {101,oho}, ]
 
-    mp.erase(99);  // erase(key)
-    auto itr = mp.find(100);
-    mp.erase(itr);   // erase(itr)
-    mp.erase(1234);  // Key not present, so not removed
-    printMap(mp);    // [ {1,bbb}, {4,eeee}, {5,aaa}, {9,cc}, {10,xyz}, {20,pqr}, {30,abc}, {101,oho}, ]
-
-    // Upper and Lower Bounds:
-    auto moreThanFour = mp.upper_bound(4);
-    cout << "Entry with key > 4 is {" << moreThanFour->first << ", " << moreThanFour->second << "}\n";
-    // Entry with key > 4 is {5, aaa}
+    /* ---- Upper and Lower Bounds ---- */
     auto uptoTen = mp.lower_bound(10);
-    cout << "Entry with key <= 10 is {" << uptoTen->first << ", " << uptoTen->second << "}\n";
-    // Entry with key <= 10 is {10, xyz}
+    auto moreThanFour = mp.upper_bound(4);
+    cout << "First entry with key >= 10: {" << uptoTen->first << ", " << uptoTen->second << "}\n";
+    cout << "First entry with key > 4: {" << moreThanFour->first << ", " << moreThanFour->second << "}\n";
+    // First entry with key >= 10: {10, pqr}
+    // First entry with key > 4: {5, aaa}
 
-    mp.erase(moreThanFour, uptoTen);  // erase(start,end)
-    printMap(mp);                     // [ {1,bbb}, {4,eeee}, {10,xyz}, {20,pqr}, {30,abc}, {101,oho}, ]
+    /* ---- Deletion ---- */
+    // erase(key)
+    mp.erase(99);    // Key exists, so entry removed
+    mp.erase(1234);  // Key does NOT exist, so no removed
+    // erase(itr)
+    auto itr = mp.find(100);
+    mp.erase(itr);
+    printMap(mp);  // [ {1,bbb}, {4,eeee}, {5,aaa}, {9,cc}, {10,pqr}, {20,xyz}, {30,abc}, {40,ghi}, {101,oho}, ]
+    // erase(start,end)
+    mp.erase(moreThanFour, uptoTen);
+    printMap(mp);  // [ {1,bbb}, {4,eeee}, {10,pqr}, {20,xyz}, {30,abc}, {40,ghi}, {101,oho}, ]
 
-    map<int, string> mp2{{-101, "AAA"}, {20, "CCC"}, {-102, "BBB"}};
-    mp.merge(mp2);  //  merge(another_map)
-    printMap(mp);   // Duplicate keys excluded
-    // [ {-102,BBB}, {-101,AAA}, {1,bbb}, {4,eeee}, {10,xyz}, {20,pqr}, {30,abc}, {101,oho}, ]
-    cout << "Size: " << mp.size() << endl;  // Size: 8
+    /* ---- Merging two Maps ---- */
+    map<int, string> mp2{{-1, "AAA"}, {-2, "BBB"}, {1, "CCC"}};
+    mp.merge(mp2);  // .merge(another_map)
+    printMap(mp);
+    // [ {-2,BBB}, {-1,AAA}, {1,bbb}, {4,eeee}, {10,pqr}, {20,xyz}, {30,abc}, {40,ghi}, {101,oho}, ]
 
+    cout << "Size: " << mp.size() << "\n";  // Size: 9
     mp.clear();
-    printMap(mp);  // [ ]
-    return 0;
+    printMap(mp);  // Map is Empty
 }
 ```
 
-```cpp title="Traversals"
-unordered_map<int, char> ump{{3, 'r'}, {1, 'p'}, {4, 'w'}};
-map<int, char> mp{{3, 'r'}, {1, 'p'}, {4, 'w'}};
+</details>
+</blockquote>
 
+<details>
+<summary><strong>Map Traversals Demo</strong></summary>
+
+```cpp
+unordered_map<int, char> hmp{{3, 'r'}, {1, 'p'}, {4, 'w'}};
+
+// Range-based loop WITH structured-binding
 cout << "[ ";
+for (const auto &[key, val] : hmp) cout << "{" << key << ", " << val << "}, ";
+cout << "]\n";
+// [ {4, w}, {1, p}, {3, r}, ]
+
 // Range-based loop WITHOUT structured-binding
-for (auto &p : ump) {
-    cout << "{" << p.first << ", " << p.second << "}, ";
-}
-cout << "]" << endl;  // [ {4, w}, {1, p}, {3, r}, ]
-
 cout << "[ ";
-// Normal For loop with iterators
-for (auto itr = ump.begin(); itr != ump.end(); itr++) {
-    cout << "{" << itr->first << ", " << itr->second << "}, ";
-    // Above line could also be written as:
-    // cout << "{" << (*itr).first << ", " << (*itr).second << "}, ";
-}
-cout << "]" << endl;  // [ {4, w}, {1, p}, {3, r}, ]
+for (const auto &pr : hmp) cout << "{" << pr.first << ", " << pr.second << "}, ";
+cout << "]\n";
+// [ {4, w}, {1, p}, {3, r}, ]
 
-// Reverse traversal - Only valid for Maps
+// Normal For-loop with iterators
 cout << "[ ";
-for (auto itr = mp.rbegin(); itr != mp.rend(); itr++) {
-    cout << "{" << itr->first << ", " << itr->second << "}, ";
-}
-cout << "]" << endl;  // [ {4, w}, {3, r}, {1, p}, ]
+for (auto itr = hmp.begin(); itr != hmp.end(); itr++) cout << "{" << itr->first << ", " << itr->second << "}, ";
+cout << "]\n";
+// [ {4, w}, {1, p}, {3, r}, ]
+cout << "[ ";
+for (auto itr = hmp.begin(); itr != hmp.end(); itr++) cout << "{" << (*itr).first << ", " << (*itr).second << "}, ";
+cout << "]\n";
+// [ {4, w}, {1, p}, {3, r}, ]
+
+map<int, char> mp{{3, 'r'}, {1, 'p'}, {4, 'w'}};
+cout << "Forward: [ ";
+for (const auto &[key, val] : mp) cout << "{" << key << ", " << val << "}, ";
+cout << "]\n";
+// Forward: [ {1, p}, {3, r}, {4, w}, ]
+
+// Reverse traversal - ONLY in map, NOT in unordered_map
+cout << "Reverse: [ ";
+for (auto itr = mp.rbegin(); itr != mp.rend(); itr++) cout << "{" << itr->first << ", " << itr->second << "}, ";
+cout << "]\n";
+// Reverse: [ {4, w}, {3, r}, {1, p}, ]
 ```
 
-</details></blockquote>
-
----
-
-## Tuple
-
-- C++ reference: [`tuple`](https://en.cppreference.com/w/cpp/utility/tuple)
-- Used for clubbing multiple items of different types together
-
-```cpp title="tuple"
-tuple<char, int, double> data('g', 5, 3.14);
-
-char ch = get<0>(data);
-int num1 = get<1>(data);
-double num2 = get<2>(data);
-cout << ch << " " << num1 << " " << num2 << endl;  // g 5 3.14
-
-auto &[a, b, c] = data;
-cout << a << " " << b << " " << c << endl;  // g 5 3.14
-```
-
-Also refer: [`make_tuple()`](https://en.cppreference.com/w/cpp/utility/tuple/make_tuple), [`tie()`](https://en.cppreference.com/w/cpp/utility/tuple/tie),
-
-## Other associative containers
-
-These allow **multiple entries of a key**
-
-[`multiset`](https://en.cppreference.com/w/cpp/container/multiset) , [`unordered_multiset`](https://en.cppreference.com/w/cpp/container/unordered_multiset) , [`multimap`](https://en.cppreference.com/w/cpp/container/multimap) , [`unordered_multimap`](https://en.cppreference.com/w/cpp/container/unordered_multimap)
+</details>
