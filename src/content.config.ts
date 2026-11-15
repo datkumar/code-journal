@@ -40,6 +40,7 @@ const solutionTechnique = z.enum([
   "sliding-window",
   "2-ptr",
   "recursion",
+  "stack",
   "greedy",
   "dp",
   "dfs",

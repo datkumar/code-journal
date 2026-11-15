@@ -286,14 +286,13 @@ int main () {
 
     vector<vector<int>> levelorderTraversal = levelorder(root);
     printVectorOfVector(levelorderTraversal);
-    // [
-    //     [ 5, ]
-    //     [ 7, 4, ]
-    //     [ 9, 2, 6, 8, ]
-    // ]
-
-    delete root;
-    return 0;
+    /*
+        [
+            [ 5, ]
+            [ 7, 4, ]
+            [ 9, 2, 6, 8, ]
+        ]
+    */
 }
 ```
 
@@ -414,13 +413,12 @@ int main () {
 
     vector<vector<int>> levelorderTraversal = levelorder(root);
     printVectorOfVector(levelorderTraversal);
-    // [
-    //     [ 5, ]
-    //     [ 7, 2, 8, ]
-    //     [ 6, 4, 1, 3, 9, ]
-    // ]
-
-    delete root;
-    return 0;
+    /*
+        [
+            [ 5, ]
+            [ 7, 2, 8, ]
+            [ 6, 4, 1, 3, 9, ]
+        ]
+    */
 }
 ```

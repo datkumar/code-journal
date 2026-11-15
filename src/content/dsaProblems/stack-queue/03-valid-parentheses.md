@@ -1,7 +1,7 @@
 ---
 title: Valid Parantheses
 ds: [stack]
-techniques: []
+techniques: [stack]
 level: 1
 links: [https://leetcode.com/problems/valid-parentheses]
 ---

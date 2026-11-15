@@ -23,7 +23,7 @@ Implement `MyHashSet` class:
 
 Let $n$ be the input size and $k$ be the number of unique keys in the input
 
-## 1. Brute
+## Brute-force
 
 - Maintain a dynamic array i.e. `vector` of keys
 - Do linear search over the array each time to check if it exists
@@ -36,7 +36,7 @@ Let $n$ be the input size and $k$ be the number of unique keys in the input
 
 We could maintain a sorted array and binary search over it in $O(logn)$ time but the shifting of elements during `add`, `remove` operations would still take be $O(n)$ time at worst
 
-## 2. Boolean Array
+## Boolean Array
 
 Since we know that each input lies in the range $[0, 10^6]$, we can use a fixed sized array of that many booleans. Being `true` means element equal to that index exists and `false` means it doesn't. Note that `vector<bool>` does not guarantee individual element access so we'll be using `bitset<N>` and its functions
 
@@ -66,7 +66,7 @@ Note that LeetCode does not allow `bitset` to be used for this question to be ac
 
 ---
 
-## 3. Buckets of LinkedLists
+## Buckets of LinkedLists
 
 ![Hashing and LinkedList buckets](/code-journal/diagrams/hashing-buckets.svg)
 

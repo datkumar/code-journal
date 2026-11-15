@@ -25,26 +25,29 @@ If we call `pushback(int n)` but the array is full, we should resize the array f
 
 ## Implementation
 
-```cpp title="Dynamic Array in C++ "
+Below is the C++ code for implementing a dynamic array. We can also use template programming like `<template typename T=int> class DynamicArray {...}` with `T* arr` for a more generic dynamic array class. Refer the GFG article [Implement your own Vector class](https://www.geeksforgeeks.org/how-to-implement-our-own-vector-class-in-c/) for it
+
+```cpp title="Design a Dynamic Array in C++"
 class DynamicArray {
   private:
     int* arr;      // Points to block of heap memory containing integer array elements
-    int size;      // Number of filled elements
     int capacity;  // Total elements the current array can hold
+    int size;      // Number of filled elements
 
   public:
     // Parameterized constructor (with default capacity fallback)
-    DynamicArray (int _capacity = 1) : size(0), capacity(_capacity) {
+    DynamicArray (int _capacity = 1) : capacity(_capacity), size(0) {
         arr = new int[_capacity];  // Allocate memory equal to capacity
     }
 
+    // Size functions:
     int getSize () const { return size; }
     int getCapacity () const { return capacity; }
     bool isEmpty () const { return (size == 0); }
 
     int get (int i) const {
         if (i < 0 || i > (size - 1)) {  // Bounds check before access
-            throw std::out_of_range("DynamicArray::set:Index out of bounds");
+            throw std::out_of_range("DynamicArray::get:Index out of bounds");
         }
         return arr[i];
     }
@@ -83,38 +86,49 @@ class DynamicArray {
         return arr[size];  // One element after the current last element at [size-1]
     }
 
-    // ============ FURTHER MEMORY MANAGEMENT IMPROVEMENTS ============
-
+    // ============ MORE MEMORY-MANAGEMENT FUNCTIONS ============
     // Destructor
-    ~DynamicArray () {
-        delete[] arr;  // Free heap memory allocated via "new"
-    }
-
+    ~DynamicArray();
     // By "Rule of Three", we'd have to define the copy and copy assignment constructor too
+    DynamicArray(const DynamicArray &other);
+    DynamicArray &operator=(const DynamicArray &other);
     // If we include move semantics, it would become "Rule of Five"
-
-    // Copy Constructor (Deep Cloning)
-    DynamicArray (const DynamicArray& other) : size(other.size), capacity(other.capacity) {
-        arr = new int[capacity];
-        // Copy individual elements of other array into current
-        for (int i = 0; i < size; ++i) arr[i] = other.arr[i];
-    }
-
-    // Copy Assignment Operator (Deep Cloning)
-    DynamicArray& operator=(const DynamicArray& other) {
-        if (this != &other) {
-            // Create new array and copy individual elements into it
-            int* newArr = new int[other.capacity];
-            for (int i = 0; i < other.size; ++i) newArr[i] = other.arr[i];
-            // Clean up old memory and set fields as per the new array
-            delete[] arr;
-            arr = newArr;
-            size = other.size;
-            capacity = other.capacity;
-        }
-        return *this;
-    }
 };
+```
+
+<details>
+<summary>Definitions of the declared extra <strong>memory-management functions</strong></summary>
+
+```cpp title="Extra Memory-management functions in DynamicArray"
+// Destructor
+DynamicArray::~DynamicArray () {
+    delete[] arr;  // Free up heap memory allocated via "new"
+}
+// Copy Constructor (Deep Cloning)
+DynamicArray::DynamicArray (const DynamicArray &other) : capacity(other.capacity), size(other.size) {
+    arr = new int[capacity];
+    // Copy individual elements of other array into current
+    for (int i = 0; i < size; ++i) arr[i] = other.arr[i];
+}
+// Copy Assignment Operator (Deep Cloning)
+DynamicArray &DynamicArray::operator=(const DynamicArray &other) {
+    if (this != &other) {
+        // Create new array and copy individual elements into it
+        int* newArr = new int[other.capacity];
+        for (int i = 0; i < other.size; ++i) newArr[i] = other.arr[i];
+        // Clean up old memory and set fields as per the new array
+        delete[] arr;
+        arr = newArr;
+        size = other.size;
+        capacity = other.capacity;
+    }
+    return *this;
+}
+```
+
+</details>
+
+```cpp title="Demo run"
 // Demo run:
 int main () {
     DynamicArray arr(2);  // Initial capacity of 2
@@ -133,14 +147,15 @@ int main () {
     try {  // Out of Bounds get() example:
         cout << "Attempting arr.get(25) ...\n";
         int temp = arr.get(25);
-    } catch (const std::out_of_range& e) {
-        cerr << "An exception occurred: " << e.what() << "\n";
+        cout << "temp = " << temp << "\n";
+    } catch (const std::out_of_range &e) {
+        cout << "An exception occurred: " << e.what() << "\n";
     }
 
     // Printing array:
     cout << "Array elements: [";
     for (int i = 0; i < arr.getSize(); i++) cout << arr.get(i) << ", ";
-    cout << "]" << "\n";
+    cout << "]\n";
 
     cout << "\nCopy Constructor and Deep Cloning:\n";
     DynamicArray brr = arr;  // Invokes Copy Constructor
@@ -148,7 +163,7 @@ int main () {
     cout << "Original arr[0]: " << arr.get(0) << " (should be 10)\n";
     cout << "Copied   brr[0]: " << brr.get(0) << " (should be 45)\n";
 
-    cout << "\nPopback and Underflow Exception:" << "\n";
+    cout << "\nPopback and Underflow Exception:\n";
     try {  // Array has 3 elements. Try popping more than 3 times
         cout << "size: " << arr.getSize() << ", isEmpty: " << arr.isEmpty() << "\n";
         cout << "Popping thrice.." << "\n";
@@ -157,24 +172,22 @@ int main () {
         arr.popback();
         // Array is now empty. Trying to pop again will trigger underflow.
         cout << "size: " << arr.getSize() << ", isEmpty: " << arr.isEmpty() << "\n";
-        cout << "Trying to pop from empty array..." << "\n";
+        cout << "Trying to pop from empty array...\n";
         arr.popback();
-    } catch (const std::underflow_error& e) {
-        cerr << "An exception occurred: " << e.what() << "\n";
+    } catch (const std::underflow_error &e) {
+        cout << "An exception occurred: " << e.what() << "\n";
     }
-
-    return 0;
 }
 ```
 
-```txt title="Output"
+```txt title="Output of Demo run"
 capacity: 2, size: 0, isEmpty: 1
 capacity: 2, size: 2, isEmpty: 0
 capacity: 4, size: 3, isEmpty: 0
 arr.get(1): 20
 arr.get(1): 99
 Attempting arr.get(25) ...
-An exception occurred: DynamicArray::set:Index out of bounds
+An exception occurred: DynamicArray::get:Index out of bounds
 Array elements: [10, 99, 30, ]
 
 Copy Constructor and Deep Cloning:
@@ -188,5 +201,3 @@ size: 0, isEmpty: 1
 Trying to pop from empty array...
 An exception occurred: DynamicArray::popback: Cannot pop from an empty array
 ```
-
-We can also use template programming like `<template typename T=int> class DynamicArray` with `T* arr`for a more generic dynamic array class. Refer the GFG article [Implement your own Vector class](https://www.geeksforgeeks.org/how-to-implement-our-own-vector-class-in-c/) for it

@@ -69,7 +69,7 @@ It stores **static and global variables**. It is further categorised into 2 part
 - Assignment on an uninitialized pointer (good practice to set the pointer to `nullptr` when it isn't pointing to anything or if that heap memory has been freed)
 - Segmentation fault i.e. `exit(139)` : program was trying to access a memory location not allocated to it, such as out-of-bounds index etc.
 
----
+## <!-- uninitialzed ptr, memory leak (delete not called), dangling pointer (not set to NULL after deletion), use-after-free, double deletion (undefined behavior)  -->
 
 ## References
 

@@ -22,7 +22,7 @@ Breadth-First Search (BFS) traversal of Graph is also called as **Level-Order** 
 Below is the approach for BFS traversal of a **connected component** with one node selected as the **source node**. To traverse a **disconnected** graph, run this component exploration from **every unvisited node as the source**
 
 ```txt title="Pseudocode: BFS traversal of Component"
-Create a Queue to store which nodes that should be explored next
+Create a Queue to store nodes that should be explored next
 Mark the source node as visited and add it into the empty queue
 Keep iterating till no elements remain in queue:
     Pick one element from the front of queue
@@ -60,9 +60,9 @@ vector<int> bfs (
     const vector<vector<int>> &Adj
 ) {
     vector<int> componentTraversal;  // Stores traversal of this component
-    queue<int> Q;                    // Stores nodes that we have should be EXPLORED NEXT
+    queue<int> Q;                    // Stores nodes that should be EXPLORED NEXT
 
-    // Mark the SOURCE node as visited into the empty queue
+    // Mark the SOURCE node as visited and add it into the empty queue
     visited[src] = true;
     Q.push(src);
 
@@ -74,7 +74,7 @@ vector<int> bfs (
         componentTraversal.emplace_back(currNode);
 
         // Explore all neighbors of this picked node
-        for (auto &nbr : Adj[currNode]) {
+        for (const int &nbr : Adj[currNode]) {
             if (!visited[nbr]) {      // When an unvisited neighbor is encountered
                 visited[nbr] = true;  // Mark this neighbor as visited
                 Q.push(nbr);          // Append the neighbor node into queue to be explored later
@@ -150,46 +150,78 @@ Since the neighbors are present in sorted manner within the adjacency list, the 
   1. Nodes at `depth = 1` from source: **none**
 
 <details>
-    <summary>A <strong>dry-run</strong> of the above example is shown here</summary>
+<summary><strong>See dry-run of BFS for the above example here</strong></summary>
 
-```txt title="Output of Dry-run"
+```txt title="Dry-run Output"
 Start exploring new component from node 0 as source:
-  Source 0 marked visited and appended as first element in queue.
-  Front element 0 popped from queue and added to traversal. Now, exploring it's neighbors:
-    1 is an unvisited neighbor. Mark it visited and append it to end of queue
-    2 is an unvisited neighbor. Mark it visited and append it to end of queue
-    5 is an unvisited neighbor. Mark it visited and append it to end of queue
-  Front element 1 popped from queue and added to traversal. Now, exploring it's neighbors:
-  Front element 2 popped from queue and added to traversal. Now, exploring it's neighbors:
-  Front element 5 popped from queue and added to traversal. Now, exploring it's neighbors:
-    7 is an unvisited neighbor. Mark it visited and append it to end of queue
-    9 is an unvisited neighbor. Mark it visited and append it to end of queue
-  Front element 7 popped from queue and added to traversal. Now, exploring it's neighbors:
-  Front element 9 popped from queue and added to traversal. Now, exploring it's neighbors:
-  This component has been explored completely ✅
-This component's traversal was: [ 0, 1, 2, 5, 7, 9, ]
+Source 0 marked visited and appended as first element in queue.
+   Level 0 (distance 0 from source)
+      Popped 0 from queue and added to traversal. Exploring its neighbors:
+      1 is an unvisited neighbor. Marked visited and pushed to queue
+      2 is an unvisited neighbor. Marked visited and pushed to queue
+      5 is an unvisited neighbor. Marked visited and pushed to queue
+   [Level 0 Complete] Nodes at this level: [0, ]
+   Level 1 (distance 1 from source)
+      Popped 1 from queue and added to traversal. Exploring its neighbors:
+      0 is already visited. Skipped
+      2 is already visited. Skipped
+      5 is already visited. Skipped
+      Popped 2 from queue and added to traversal. Exploring its neighbors:
+      0 is already visited. Skipped
+      1 is already visited. Skipped
+      5 is already visited. Skipped
+      Popped 5 from queue and added to traversal. Exploring its neighbors:
+      0 is already visited. Skipped
+      1 is already visited. Skipped
+      2 is already visited. Skipped
+      7 is an unvisited neighbor. Marked visited and pushed to queue
+      9 is an unvisited neighbor. Marked visited and pushed to queue
+   [Level 1 Complete] Nodes at this level: [1, 2, 5, ]
+   Level 2 (distance 2 from source)
+      Popped 7 from queue and added to traversal. Exploring its neighbors:
+      5 is already visited. Skipped
+      Popped 9 from queue and added to traversal. Exploring its neighbors:
+      5 is already visited. Skipped
+   [Level 2 Complete] Nodes at this level: [7, 9, ]
+This component has been explored completely ✅
+This component's overall traversal was: [ 0, 1, 2, 5, 7, 9, ]
 
 Start exploring new component from node 3 as source:
-  Source 3 marked visited and appended as first element in queue.
-  Front element 3 popped from queue and added to traversal. Now, exploring it's neighbors:
-    4 is an unvisited neighbor. Mark it visited and append it to end of queue
-    6 is an unvisited neighbor. Mark it visited and append it to end of queue
-    10 is an unvisited neighbor. Mark it visited and append it to end of queue
-  Front element 4 popped from queue and added to traversal. Now, exploring it's neighbors:
-    11 is an unvisited neighbor. Mark it visited and append it to end of queue
-  Front element 6 popped from queue and added to traversal. Now, exploring it's neighbors:
-  Front element 10 popped from queue and added to traversal. Now, exploring it's neighbors:
-  Front element 11 popped from queue and added to traversal. Now, exploring it's neighbors:
-  This component has been explored completely ✅
-This component's traversal was: [ 3, 4, 6, 10, 11, ]
+Source 3 marked visited and appended as first element in queue.
+   Level 0 (distance 0 from source)
+      Popped 3 from queue and added to traversal. Exploring its neighbors:
+      4 is an unvisited neighbor. Marked visited and pushed to queue
+      6 is an unvisited neighbor. Marked visited and pushed to queue
+      10 is an unvisited neighbor. Marked visited and pushed to queue
+   [Level 0 Complete] Nodes at this level: [3, ]
+   Level 1 (distance 1 from source)
+      Popped 4 from queue and added to traversal. Exploring its neighbors:
+      3 is already visited. Skipped
+      11 is an unvisited neighbor. Marked visited and pushed to queue
+      Popped 6 from queue and added to traversal. Exploring its neighbors:
+      3 is already visited. Skipped
+      11 is already visited. Skipped
+      Popped 10 from queue and added to traversal. Exploring its neighbors:
+      3 is already visited. Skipped
+   [Level 1 Complete] Nodes at this level: [4, 6, 10, ]
+   Level 2 (distance 2 from source)
+      Popped 11 from queue and added to traversal. Exploring its neighbors:
+      4 is already visited. Skipped
+      6 is already visited. Skipped
+   [Level 2 Complete] Nodes at this level: [11, ]
+This component has been explored completely ✅
+This component's overall traversal was: [ 3, 4, 6, 10, 11, ]
 
 Start exploring new component from node 8 as source:
-  Source 8 marked visited and appended as first element in queue.
-  Front element 8 popped from queue and added to traversal. Now, exploring it's neighbors:
-  This component has been explored completely ✅
-This component's traversal was: [ 8, ]
+Source 8 marked visited and appended as first element in queue.
+   Level 0 (distance 0 from source)
+      Popped 8 from queue and added to traversal. Exploring its neighbors:
+   [Level 0 Complete] Nodes at this level: [8, ]
+This component has been explored completely ✅
+This component's overall traversal was: [ 8, ]
 
-FINAL RESULT:
+========================================
+FINAL RESULT (Combined Graph Traversal):
 0, 1, 2, 5, 7, 9,
 3, 4, 6, 10, 11,
 8,
@@ -197,31 +229,53 @@ FINAL RESULT:
 
 Below code was used to generate the verbose dry-run output:
 
-```cpp title="Dry-run code"
-vector<int> bfs (
-    const int src,
-    vector<char> &visited,
-    const vector<vector<int>> &Adj
-) {
+```cpp title="Dry-run Code"
+vector<int> bfs (const int src, vector<char> &visited, const vector<vector<int>> &Adj) {
     queue<int> Q;
     vector<int> componentTraversal;
+
     visited[src] = true;
-    cout << "  Source " << src << " marked visited and appended as first element in queue.\n";
+    cout << "Source " << src << " marked visited and appended as first element in queue.\n";
     Q.push(src);
+    int lvl = 0;
+
+    // Keep going till no elements remain to be explored
     while (!Q.empty()) {
-        const int currNode = Q.front();
-        Q.pop();
-        componentTraversal.emplace_back(currNode);
-        cout << "  Front element " << currNode
-             << " popped from queue and added to traversal. Now, exploring it's neighbors:\n";
-        for (auto &nbr : Adj[currNode]) {
-            if (!visited[nbr]) {
-                visited[nbr] = true;
-                Q.push(nbr);
-                cout << "    " << nbr << " is an unvisited neighbor. Mark it visited and append it to end of queue\n";
+        // Capture how many nodes belong to the CURRENT LEVEL
+        int currLvlNodeCnt = Q.size();
+        cout << "   Level " << lvl << " (distance " << lvl << " from source) \n";
+
+        // Process all nodes of the CURRENT LEVEL
+        vector<int> currLvlNodes;
+        for (int i = 0; i < currLvlNodeCnt; i++) {
+            const int currNode = Q.front();
+            Q.pop();
+
+            componentTraversal.push_back(currNode);
+            currLvlNodes.push_back(currNode);
+            cout << "      Popped " << currNode << " from queue and added to traversal. Exploring its neighbors:\n";
+
+            // Explore all neighbors of this node
+            for (auto &nbr : Adj[currNode]) {
+                if (!visited[nbr]) {
+                    visited[nbr] = true;
+                    Q.push(nbr);
+                    cout << "      " << nbr << " is an unvisited neighbor. Marked visited and pushed to queue\n";
+                } else {
+                    cout << "      " << nbr << " is already visited. Skipped\n";
+                }
             }
         }
+
+        // Print all nodes processed in this specific level
+        cout << "   [Level " << lvl << " Complete] Nodes at this level: [";
+        for (int node : currLvlNodes) cout << node << ", ";
+        cout << "]\n";
+
+        // Move to the next level
+        lvl++;
     }
+
     return componentTraversal;
 }
 
@@ -232,10 +286,11 @@ vector<vector<int>> bfsOfGraph (const vector<vector<int>> &Adj) {
     for (int node = 0; node < V; node++) {
         if (!visited[node]) {
             cout << "\nStart exploring new component from node " << node << " as source:\n";
-            const auto componentTraversal = bfs(src, visited, Adj);
 
-            cout << "  This component has been explored completely ✅\n";
-            cout << "This component's traversal was: [ ";
+            const auto componentTraversal = bfs(node, visited, Adj);
+
+            cout << "This component has been explored completely ✅\n";
+            cout << "This component's overall traversal was: [ ";
             for (auto &x : componentTraversal) cout << x << ", ";
             cout << "]\n";
 
@@ -259,11 +314,10 @@ int main () {
 
     const auto graphTraversal = bfsOfGraph(Adj);
 
-    cout << "\nFINAL RESULT:\n";
+    cout << "\n========================================\n";
+    cout << "FINAL RESULT (Combined Graph Traversal):\n";
     for (const auto &componentTraversal : graphTraversal) {
-        for (const int &node : componentTraversal) {
-            cout << node << ", ";
-        }
+        for (const int &node : componentTraversal) cout << node << ", ";
         cout << "\n";
     }
 }

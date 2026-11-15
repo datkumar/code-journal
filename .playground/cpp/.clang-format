@@ -13,13 +13,14 @@ SpaceBeforeParens: Custom
 SpaceBeforeParensOptions:
   AfterControlStatements: true
   AfterFunctionDefinitionName: true
-# Testing below:
 
+# func(vector<int> &nums) { .. }
+ReferenceAlignment: Right
 
-ReferenceAlignment: Right # func(vector<int> &nums) { .. }
-BreakTemplateDeclarations: MultiLine
+BreakTemplateDeclarations: Yes # MultiLine, Yes
+
 
 #AlignAfterOpenBracket: Align
 # DerivePointerAlignment: false
-# PointerAlignment: Right # Node *ptr1, *ptr2; 
+# PointerAlignment: Right # Node *ptr1, *ptr2;
 # SpaceAroundPointerQualifiers: Before

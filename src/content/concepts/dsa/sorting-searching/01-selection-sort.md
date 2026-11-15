@@ -1,78 +1,70 @@
 ---
-title: Selection-sort
+title: Selection Sort
 tags: [dsa, algorithm, sorting]
 ---
 
 ## Main idea
 
-- We **select** the **minimum** element and **swap** it with the **first element** in current working subarray
+- We **select** the **minimum** element and **swap** it with the **first element** in current **working subarray**
 - At each pass, traverse the current working subarray to find the next minimum element and place it at the start of working subarray
 
-## Pseudo-code
-
-```txt
+```txt title="PseudoCode"
 For each element in array:
-
-    Locate smallest element among elements from that position to end.
-
-    Place that minimum element at start i.e. it's correct sorted position.
-
-    Update working array as one less element from left.
-
+    Locate SMALLEST element among working subarray elements from that positionAHEAD till the end
+    Place this SMALLEST element of working subarray at START of it i.e. its correct sorted position
+    Shrink working subarray as one less element from the left
 ```
 
 ## Code
 
-- After each $i^{th}$ pass, the $i^{th}$ **minimum** element gets placed at it's correct **sorted position**
-- At last index's pass, since working array is only last one element (which is also minimum itself), no need to process that pass
-
-```cpp title="C++"
-void selectionSort(int arr[], int n) {
+```cpp title="Selection Sort"
+void selectionSort (vector<int> &arr) {
+    const int n = arr.size();
     // Ignore last element's pass, so (n-1) passes
-    for (int i = 0; i < (n - 1); i++) {
-        // Working subarray is arr[i] to arr[n-1]
-
-        // Tracks index of minimum element in working subarray
+    for (int i = 0; i < (n - 1); i++) {  // Current working subarray is from arr[i] to arr[n-1]
+        // Tracks index of minimum element in working subarray, initially i-th element
         int nextMinElemIdx = i;
-
-        // Traverse the working subarray
+        // Iterate through elements AHEAD in working subarray to find smallest
         for (int j = i + 1; j < n; j++) {
-            // Update position whenever smaller element found
-            if (arr[j] < arr[i]) {
+            // Update min-element index whenever a smaller element is found
+            if (arr[j] < arr[nextMinElemIdx]) {
                 nextMinElemIdx = j;
             }
         }
-
-        // Place the smallest of current subarray at it's start
+        // Place the smallest of current working subarray at start of subarray
         swap(arr[i], arr[nextMinElemIdx]);
+        // At end of this pass, the FIRST (i+1) elements of array are in their correct sorted position
     }
 }
 ```
 
+- After each $i^{th}$ pass (0-indexed), the $(i+1)^{th}$ **smallest** element gets placed at its correct **sorted** position.
+- At the last index, the working subarray contains only one element, which must already be in its correct sorted position. Therefore, no pass is necessary for it.
+
 ## Algorithm Analysis
 
-|   Metric   |   Value    | Remarks                               |
-| :--------: | :--------: | ------------------------------------- |
-|  **Time**  | $ O(n^2) $ | Same work in ALL cases (NOT Adaptive) |
-| **Space**  |  $ O(1) $  | In-place sorting                      |
-| **Stable** |     ❌     | Can be made stable by shifting        |
-| **Online** |     ❌     | Needs entire input at once            |
+|   Metric   |  Value   | Remarks                                  |
+| :--------: | :------: | ---------------------------------------- |
+|  **Time**  | $O(n^2)$ | Same work in ALL cases i.e. NOT Adaptive |
+| **Space**  |  $O(1)$  | In-place sorting                         |
+| **Stable** |  No ❌   | Can be made stable by shifting           |
+| **Online** |  No ❌   | Needs entire input at once               |
+
+We are doing the same amount of work in all the cases i.e. the number of comparisons and swaps remains exactly the same regardless of the initial arrangement of input elements. This is why Selection Sort is said to be **NOT Adaptive**.
+
+Selection Sort needs to scan the entire unsorted elements ahead before determining which element belongs at the start of current working subarray; thereby Selection Sort is **NOT Online**.
 
 ### Time Complexity
 
-- Total $ (n-1) $ passes
+- Total $(n-1)$ passes
 
-- For each $i^{th}$ element in array, we are traversing and comparing with next $(n-i)$ elements
+- During each pass, we traverse the remaining elements AHEAD in working subarray to find minimum element of subarray. There are $(n-1)$ comparisons in first pass, $(n-2)$ in second and so on till only $1$ comparison in the last pass:
 
-- Thus, the **same work** is done in **ALL cases** (best, worst, average)
+  **Total Comparisons** $= (n-1) + (n-2) + ... + 1 = \dfrac{(n-1)(n)}{2} \implies O(n^2)$
 
-- There are $ (n-1) $ comparisions in the first pass, $ (n-2) $ in the second and so on till only $1$ comparison in the last pass and so on:
+- Also, $1$ swap after each pass and thereby total $(n-1)$ swaps $\implies O(n)$
 
-  $ = (n-1) + (n-2) + ... + 2 + 1 = \frac{( n-1)(n)}{2} = O(n^2) $ comparisons
-
-- Also, $1$ swap after each pass and thereby total $ (n-1) = O(n) $ swaps
-
-So, total time $ = O(n^2) + O(n) = O(n^2) $
+So, total time $= O(n^2) + O(n) \implies O(n^2)$
 
 ### Stability
 
@@ -83,4 +75,4 @@ Consider input array `[4a, 5, 3, 2, 4b, 1]`
 
 Thus, the relative order between similar elements isn't maintained and selection-sort is **NOT Stable**
 
-We can make it stable by _pushing_ the elements forward instead of swapping two elements
+We can make it stable by **shifting** the relevant elements ahead one position instead of swapping two elements

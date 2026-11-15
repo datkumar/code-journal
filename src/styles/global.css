@@ -190,11 +190,11 @@ a:visited {
   color: var(--linkColor);
   text-decoration: none;
   /* Link hover animation */
-  transition: 0.25s ease;
+  transition: 0.3s ease;
 }
 
 a:hover {
-  transform: scale(1.035);
+  transform: scale(1.02);
   /* font-weight: bold; */
   text-decoration: underline;
 }

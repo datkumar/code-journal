@@ -13,7 +13,7 @@ tags: [cpp]
 using namespace std;
 
 int main() {
-    cout << "Application code is being executed 🔥🔥🔥" << endl;
+    cout << "Application code is being executed 🔥🔥🔥\n";
     return 0;
 }
 ```
@@ -23,7 +23,7 @@ int main() {
 using namespace std;
 
 int main() {
-    cout << "Testing ✅✅✅" << endl;
+    cout << "Testing ✅✅✅\n";
     return 0;
 }
 ```

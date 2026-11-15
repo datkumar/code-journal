@@ -1,5 +1,5 @@
 ---
-title: Identifying and applying Recursion
+title: Identifying and Applying Recursion
 tags: [dsa, recursion]
 ---
 
@@ -22,9 +22,13 @@ Each node represents a **partial/complete solution** (leaf nodes usually form a 
 
 This transition can be thought of as a **decision** made at a state. The number of transitions i.e. **branching** at a state would depend on the number of actions possible at that state
 
-**Base case**: It is the **most-trivial** possible state generally indicating we have reached the end of a recursive exploration path. This prevents infinite nesting of recursive calls so it's quite a crucial component
+### Base-Case
 
-To illustrate, consider an example:
+It is the **most-trivial** possible state generally indicating we have reached the end of a recursive exploration path. This prevents infinite nesting of recursive calls so it's quite a crucial component.
+
+We divide the given big problem into **smaller subproblems**. The base-case is the subproblem we know the answer of for-sure. We then use the result of this smaller subproblem call to solve further bigger subproblems of previous calls
+
+Consider an example for applying recursion:
 
 ## Example: Generate ALL Subsequences
 

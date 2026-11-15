@@ -1,13 +1,13 @@
 # Compiler
-CC=g++
+CC = g++
 # Compilation Flags
 CXXFLAGS = -std=c++17 -O2 -Wall -Wextra
-# STL Header
+# STL Header (verify path exists)
 HEADER = /usr/include/x86_64-linux-gnu/c++/15/bits/stdc++.h
-# Pre-compiled Header		
-PCH = stdc++.h.gch								
+# Pre-Compiled Header
+PCH = stdc++.h.gch
 
-# Indicate which are the recipe names:
+# Indicates which are the recipe names:
 .PHONY: all run cleanup
 
 all: run

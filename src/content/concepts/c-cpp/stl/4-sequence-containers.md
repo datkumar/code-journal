@@ -226,9 +226,9 @@ int main () {
     cout << "]\n";
     // [ 7, 1, 4, 3, 5, ]
 
-    cout << "Size: " << dl.size() << endl;            // Size: 5
-    cout << "First element: " << dl.front() << endl;  // First element: 7
-    cout << "Last element: " << dl.back() << endl;    // Last element: 5
+    cout << "Size: " << dl.size() << "\n";            // Size: 5
+    cout << "First element: " << dl.front() << "\n";  // First element: 7
+    cout << "Last element: " << dl.back() << "\n";    // Last element: 5
 
     // Reverse traversal:
     cout << "Reverse: [";
@@ -335,17 +335,17 @@ int main () {
     deque<int> dq{7, 1, 4, 3, 5};
     printDEQ(dq);  // 7, 1, 4, 3, 5,
 
-    cout << "Size: " << dq.size() << endl;            // Size: 5
-    cout << "dq.at(2): " << dq.at(2) << endl;         // dq.at(2): 4
-    cout << "dq[3]: " << dq[3] << endl;               // dq[3]: 3
-    cout << "First element: " << dq.front() << endl;  // First element: 7
-    cout << "Last element: " << dq.back() << endl;    // Last element: 5
+    cout << "Size: " << dq.size() << "\n";            // Size: 5
+    cout << "dq.at(2): " << dq.at(2) << "\n";         // dq.at(2): 4
+    cout << "dq[3]: " << dq[3] << "\n";               // dq[3]: 3
+    cout << "First element: " << dq.front() << "\n";  // First element: 7
+    cout << "Last element: " << dq.back() << "\n";    // Last element: 5
 
     cout << "Reverse: ";
     for (auto itr = dq.rbegin(); itr != dq.rend(); itr++) {
         cout << *itr << ", ";
     }
-    cout << endl;  // Reverse: 5, 3, 4, 1, 7,
+    cout << "\n";  // Reverse: 5, 3, 4, 1, 7,
 
     dq.push_front(10);
     dq.emplace_front(20);

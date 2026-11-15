@@ -34,7 +34,7 @@ class Person {
   public:
     // The no-args constructor
     Person () {
-        cout << "Initializing new Person" << endl;
+        cout << "Initializing new Person\n";
         this->age = 18;
     }
 
@@ -43,10 +43,10 @@ class Person {
 
 int main () {
     Person p1;
-    cout << "p1 age: " << p1.getAge() << endl;
+    cout << "p1 age: " << p1.getAge() << "\n";
 
     Person *p2 = new Person();
-    cout << "p2 age: " << p2->getAge() << endl;
+    cout << "p2 age: " << p2->getAge() << "\n";
 
     return 0;
 }
@@ -116,19 +116,19 @@ class Person {
 
   public:
     Person () {
-        cout << "Inside Default Constructor" << endl;
+        cout << "Inside Default Constructor\n";
         this->name = "Unknown";
         this->age = 18;
     }
 
     Person (string name, int age) {
-        cout << "Inside Parameterized Constructor" << endl;
+        cout << "Inside Parameterized Constructor\n";
         this->name = name;
         this->age = age;
     }
 
     Person (string name) : Person() {
-        cout << "Default constructor was called from this Parameterized Constructor" << endl;
+        cout << "Default constructor was called from this Parameterized Constructor\n";
         this->name = name;
     }
 
@@ -263,19 +263,19 @@ class Person {
 
   public:
     Person (string name, int age) {
-        cout << "Inside Parameterized Constructor" << endl;
+        cout << "Inside Parameterized Constructor\n";
         this->name = name;
         this->age = age;
     }
 
     Person (const Person &obj) {
-        cout << "Inside Reference Copy Constructor" << endl;
+        cout << "Inside Reference Copy Constructor\n";
         this->name = obj.name;
         this->age = obj.age;
     }
 
     Person (const Person *objPtr) {
-        cout << "Inside Pointer Copy Constructor" << endl;
+        cout << "Inside Pointer Copy Constructor\n";
         this->name = objPtr->name;
         this->age = objPtr->age;
     }
@@ -403,17 +403,17 @@ class Person {
 
   public:
     Person (string name, int age) : name(name), age(age) {
-        cout << "Inside Parameterized Constructor" << endl;
+        cout << "Inside Parameterized Constructor\n";
     }
 
     // Reference Copy Constructor
     Person (const Person &obj) : name(obj.name), age(obj.age) {
-        cout << "Inside Reference Copy Constructor" << endl;
+        cout << "Inside Reference Copy Constructor\n";
     }
 
     // Assignment Operator Overload
     Person &operator=(const Person &obj) {
-        cout << "Inside Assignment Operator Overload" << endl;
+        cout << "Inside Assignment Operator Overload\n";
         if (this != &obj) {  // Avoid self-assignment
             this->name = obj.name;
             this->age = obj.age;
@@ -474,11 +474,11 @@ class Person {
 
   public:
     Person () : name("Unknown"), age(18) {  // Default values
-        cout << "Default Constructor body" << endl;
+        cout << "Default Constructor body\n";
     }
 
     Person (string _name, int _age) : name(_name), age(_age) {  // Parameter values
-        cout << "Parameterized Constructor body" << endl;
+        cout << "Parameterized Constructor body\n";
     }
 
     // ... other methods
@@ -500,11 +500,11 @@ class Person {
 
   public:
     Person () : name("Unknown"), age(18) {
-        cout << "Default Constructor body" << endl;
+        cout << "Default Constructor body\n";
     }
 
     Person (string _name, int _age) : name(_name), age(_age) {
-        cout << "Parameterized Constructor body" << endl;
+        cout << "Parameterized Constructor body\n";
     }
 
     int getAge () const { return this->age; }

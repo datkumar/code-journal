@@ -2,7 +2,7 @@
 title: Stack Implementation
 ds: [stack]
 techniques: [design]
-level: 0
+level: 1
 links:
   [
     https://www.geeksforgeeks.org/problems/implement-stack-using-array/1,

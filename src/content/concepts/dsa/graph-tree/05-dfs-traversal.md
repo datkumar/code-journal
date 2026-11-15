@@ -61,7 +61,7 @@ void dfs (
     // Process current node (append it to the traversed nodes)
     componentTraversal.emplace_back(currNode);
     // Iterate over neighbors of current node
-    for (auto &nbr : Adj[currNode]) {
+    for (const int &nbr : Adj[currNode]) {
         // When an unvisited neighbor encountered
         if (!visited[nbr]) {
             // Make recursive call to explore from that neighbor
@@ -127,7 +127,7 @@ int main() {
 Note that there can be **multiple valid DFS traversals** of a Graph
 
 <details>
-    <summary>A <strong>dry-run</strong> of the above example is shown here</summary>
+<summary><strong>See dry-run of DFS for the above example here</strong></summary>
 
 ```txt title="Output of Dry-run"
 Start exploring new component from 0
